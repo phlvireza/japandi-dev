@@ -4,13 +4,19 @@
 # root and uploads only what actually changed, so a routine deploy moves a few
 # kilobytes rather than the whole bundle.
 #
-# Every connection detail is a repository secret, never a literal in this file:
-# the repository is public, and the hostname and username would otherwise be
-# readable by anyone. Set them under Settings -> Secrets and variables ->
+# Every connection detail is a repository secret, never a literal in this file.
+# The repository is private, but secrets are still the right place: they are
+# masked in Actions logs, and a repository that goes public later must not turn
+# into a credential leak. Set them under Settings -> Secrets and variables ->
 # Actions -> New repository secret:
 #
-#   FTP_SERVER      e.g. ftp.japandi.dev  (see cPanel -> FTP Accounts)
-#   FTP_USERNAME    the full cPanel FTP username
+#   FTP_SERVER      web6-cpn.neohosting.id
+#                   The server's own hostname, NOT ftp.japandi.dev. japandi.dev
+#                   is proxied through Cloudflare, and Cloudflare does not proxy
+#                   FTP - a proxied record would send the deploy to Cloudflare's
+#                   edge, which has no FTP listener.
+#   FTP_USERNAME    the full FTP username from cPanel -> FTP Accounts,
+#                   including the @japandi.dev part
 #   FTP_PASSWORD    that account's password
 #   FTP_SERVER_DIR  public_html/          for a primary domain, or
 #                   public_html/japandi.dev/   for an addon domain
@@ -49,10 +55,13 @@ jobs:
           # password in clear text across the public internet.
           protocol: ftps
           port: 21
-          # Biznet Gio's certificate is issued for the server hostname, which
-          # often differs from the FTP hostname you connect to, so `strict`
-          # tends to fail there. Revisit if you connect via the server hostname.
-          security: loose
+          # `strict` rejects any connection whose certificate does not verify.
+          # This is safe here ONLY because FTP_SERVER is the server's own
+          # hostname (web6-cpn.neohosting.id), which is on the Let's Encrypt
+          # certificate Pure-FTPd presents. Point FTP_SERVER at ftp.japandi.dev
+          # or a bare IP instead and this will fail the handshake - the fix is
+          # to go back to the hostname, not to downgrade this to `loose`.
+          security: strict
           # The first three are the action's own defaults, re-stated because
           # specifying `exclude` at all replaces them. .htaccess is deliberately
           # NOT excluded - without it there is no 404 page, no security headers

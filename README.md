@@ -176,12 +176,23 @@ routine deploy moves kilobytes, not the whole bundle.
 
 Add four repository secrets under **Settings → Secrets and variables → Actions**:
 
-| Secret | Where to find it | Example |
+| Secret | Where to find it | Value |
 |---|---|---|
-| `FTP_SERVER` | cPanel → FTP Accounts → *Configure FTP Client* | `ftp.japandi.dev` |
-| `FTP_USERNAME` | the **full** FTP username, including the `@domain` part | `deploy@japandi.dev` |
-| `FTP_PASSWORD` | that account's password | |
-| `FTP_SERVER_DIR` | document root, **with a trailing slash** | `public_html/` |
+| `FTP_SERVER` | the hosting server's own hostname | `web6-cpn.neohosting.id` |
+| `FTP_USERNAME` | cPanel → FTP Accounts, the **full** username including `@japandi.dev` | `deploy@japandi.dev` |
+| `FTP_PASSWORD` | the password you set when creating that account | |
+| `FTP_SERVER_DIR` | cPanel → Domains → *Document Root*, **with a trailing slash** | `public_html/` |
+
+**`FTP_SERVER` must be the server hostname, not `ftp.japandi.dev`.** `japandi.dev` is proxied
+through Cloudflare, and Cloudflare proxies HTTP only — it has no FTP listener, so a proxied record
+sends the deploy to an edge that cannot answer it. `web6-cpn.neohosting.id` bypasses Cloudflare
+entirely, which is what an origin-side deploy wants. It is also the hostname on the certificate
+Pure-FTPd presents, which is why the workflow can run `security: strict`; a bare IP or any other
+name would fail the handshake.
+
+Verified against the live server: port 21 answers `220 Welcome to Pure-FTPd [privsep] [TLS]`, so
+explicit FTPS on port 21 is the correct protocol. Port 990 (implicit FTPS, `ftps-legacy`) is
+closed — do not use it.
 
 Create a dedicated FTP account in cPanel rather than reusing the main cPanel login. Scope its
 directory to the document root, so a leaked secret cannot reach the rest of the account.
