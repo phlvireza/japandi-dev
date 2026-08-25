@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Japandi Dev — Coding with Simplicity and Purpose</title>
+<meta name="description" content="Japandi Dev is an anonymous personal developer website showcasing thoughtful applications, software projects, and ideas inspired by Japandi simplicity.">
+<link rel="canonical" href="https://japandi.dev/">
+
+<!-- Open Graph (ogp.me: og:title, og:type, og:image and og:url are the four required properties) -->
+<meta property="og:site_name" content="Japandi Dev">
+<meta property="og:title" content="Japandi Dev — Coding with Simplicity and Purpose">
+<meta property="og:description" content="Japandi Dev is an anonymous personal developer website showcasing thoughtful applications, software projects, and ideas inspired by Japandi simplicity.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://japandi.dev/">
+<meta property="og:locale" content="en_ID">
+<meta property="og:image" content="https://japandi.dev/assets/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Japandi Dev logo beside the words Japandi Dev and the line Coding with simplicity and purpose.">
+
+<!-- Twitter/X uses name= rather than property= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Japandi Dev — Coding with Simplicity and Purpose">
+<meta name="twitter:description" content="Japandi Dev is an anonymous personal developer website showcasing thoughtful applications, software projects, and ideas inspired by Japandi simplicity.">
+<meta name="twitter:image" content="https://japandi.dev/assets/images/og-image.png">
+<meta name="twitter:image:alt" content="The Japandi Dev logo beside the words Japandi Dev and the line Coding with simplicity and purpose.">
+
+<meta name="theme-color" content="#F7F2E8">
+
+<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/images/japandi-dev-logo-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="assets/fonts/karla-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!--
+  The one inline script on this site. It flags that scripting is available so the collapsed-nav and
+  reveal styles can apply without a flash of the expanded layout, and it undoes that flag if
+  script.js never ran, so a failed download falls back to the no-JavaScript layout.
+  Deliberately a <script> block rather than an onerror attribute: a block can be allowed by a
+  Content-Security-Policy sha256 hash, whereas an inline event attribute would force 'unsafe-hashes'.
+  See README, "Security headers". Re-generate the hash if you edit these lines.
+-->
+<script>
+  var root = document.documentElement;
+  root.classList.add('js');
+  addEventListener('load', function () {
+    if (!root.dataset.enhanced) root.classList.remove('js');
+  });
+</script>
+<script src="assets/js/script.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://japandi.dev/#website",
+      "name": "Japandi Dev",
+      "url": "https://japandi.dev/",
+      "description": "Japandi Dev is an anonymous personal developer website showcasing thoughtful applications, software projects, and ideas inspired by Japandi simplicity.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/#webpage",
+      "name": "Japandi Dev — Coding with Simplicity and Purpose",
+      "url": "https://japandi.dev/",
+      "description": "Japandi Dev is an anonymous personal developer website showcasing thoughtful applications, software projects, and ideas inspired by Japandi simplicity.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://japandi.dev/#website" }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- Sentinel: the header switches to its scrolled state when this scrolls out of view. -->
+<div class="scroll-sentinel" data-scroll-sentinel aria-hidden="true"></div>
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner container">
+    <a class="brand" href="/">
+      <span class="brand-mark">
+        <!-- alt="" is deliberate: the adjacent "Japandi Dev" text already names this link. -->
+        <img src="assets/images/japandi-dev-logo-transparent.png"
+             width="44" height="44" alt="" decoding="async">
+      </span>
+      <span class="brand__name">Japandi Dev</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+
+    <nav class="site-nav" id="primary-navigation" aria-label="Primary" data-site-nav>
+      <ul class="site-nav__list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="button button--primary site-nav__cta" href="#projects">Explore My Work</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+
+      <div class="hero__copy" data-reveal>
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Code &middot; Create &middot; Simplify</p>
+        <h1 class="hero__title" id="hero-title">Building digital experiences with simplicity and purpose.</h1>
+        <p class="hero__lead">I&rsquo;m a software developer who loves coding and Japandi design. This is where I share applications and digital experiences created with clarity, balance, and thoughtful attention to detail.</p>
+        <div class="button-row">
+          <a class="button button--primary" href="#projects">Explore My Work</a>
+          <a class="button button--ghost" href="#about">About Japandi Dev</a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-reveal>
+        <!--
+          Original illustration. Abstract interface cards, an indented code block, and a circuit
+          branch quoting the logo's right-hand nodes. Purely decorative, so it is hidden from
+          assistive technology; the fixed viewBox reserves its space and contributes no layout shift.
+        -->
+        <svg class="hero__art" viewBox="0 0 520 440" role="presentation" aria-hidden="true" focusable="false">
+          <!-- back card: an abstract list view -->
+          <rect x="16" y="34" width="330" height="248" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="44" cy="62" r="4.5" fill="var(--pine)"/>
+          <circle cx="60" cy="62" r="4.5" fill="var(--sand)"/>
+          <circle cx="76" cy="62" r="4.5" fill="var(--sand)"/>
+          <line x1="16" y1="84" x2="346" y2="84" stroke="var(--line)" stroke-width="1.5"/>
+
+          <!-- code-inspired rows: a chevron prompt, then indented lines -->
+          <path d="M42 108l8 7-8 7" fill="none" stroke="var(--pine)" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="62" y="110" width="118" height="9" rx="4.5" fill="var(--sand)"/>
+          <rect x="192" y="110" width="46" height="9" rx="4.5" fill="var(--pine)" opacity="0.3"/>
+
+          <rect x="62" y="140" width="74" height="9" rx="4.5" fill="var(--sand)"/>
+          <rect x="148" y="140" width="104" height="9" rx="4.5" fill="var(--sand)"/>
+
+          <rect x="82" y="170" width="132" height="9" rx="4.5" fill="var(--pine)" opacity="0.28"/>
+          <rect x="226" y="170" width="52" height="9" rx="4.5" fill="var(--sand)"/>
+
+          <rect x="82" y="200" width="88" height="9" rx="4.5" fill="var(--sand)"/>
+          <rect x="182" y="200" width="66" height="9" rx="4.5" fill="var(--sand)"/>
+
+          <rect x="62" y="230" width="42" height="9" rx="4.5" fill="var(--sand)"/>
+
+          <!-- front card: a ring reading of the logo badge, over a small bar series -->
+          <rect x="212" y="228" width="228" height="176" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="268" cy="288" r="30" fill="none" stroke="var(--sand)" stroke-width="8"/>
+          <circle cx="268" cy="288" r="30" fill="none" stroke="var(--pine)" stroke-width="8"
+                  stroke-linecap="round" stroke-dasharray="132 189" transform="rotate(-90 268 288)"/>
+          <rect x="316" y="274" width="76" height="9" rx="4.5" fill="var(--sand)"/>
+          <rect x="316" y="294" width="52" height="9" rx="4.5" fill="var(--sand)"/>
+
+          <line x1="236" y1="340" x2="416" y2="340" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="240" y="366" width="14" height="18" rx="7" fill="var(--pine)" opacity="0.3"/>
+          <rect x="264" y="356" width="14" height="28" rx="7" fill="var(--pine)" opacity="0.45"/>
+          <rect x="288" y="344" width="14" height="40" rx="7" fill="var(--pine)"/>
+          <rect x="312" y="362" width="14" height="22" rx="7" fill="var(--pine)" opacity="0.3"/>
+
+          <!-- circuit branch: the logo's nature-meets-software motif, restated -->
+          <path d="M440 300 H472 V196" fill="none" stroke="var(--terracotta)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="472" cy="180" r="12" fill="var(--terracotta)"/>
+          <path d="M440 316 H492" fill="none" stroke="var(--sand)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="500" cy="316" r="8" fill="none" stroke="var(--sand)" stroke-width="2.5"/>
+          <circle cx="392" cy="76" r="6" fill="var(--terracotta)" opacity="0.5"/>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================== PROJECTS ========================== -->
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="container">
+
+      <header class="section__head" data-reveal>
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Projects</p>
+        <h2 class="section__title" id="projects-title">Things I&rsquo;ve built.</h2>
+        <p class="section__lead">A collection of applications and digital experiments created to solve real problems through simple, thoughtful design.</p>
+      </header>
+
+      <!--
+        FEATURED PROJECT CARD.
+        To add another project later, copy this <article> block and update the text, the icon path
+        and the links. No CSS or JavaScript changes are needed. See README, "Adding a project".
+      -->
+      <article class="product" aria-labelledby="squirio-name" data-reveal>
+        <div class="product__body">
+
+          <div class="product__heading">
+            <img class="product__icon" src="assets/images/squirio-app-icon.png"
+                 width="64" height="64" alt="" decoding="async">
+            <div>
+              <h3 class="product__name" id="squirio-name">Squirio</h3>
+              <p class="product__category">Personal Finance</p>
+            </div>
+            <!-- Status is carried by the dot AND the words, never by colour alone. -->
+            <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Coming Soon</p>
+          </div>
+
+          <p class="product__tagline">Track your money, not your stress.</p>
+          <p class="product__description">A simple personal finance tracker created to help people understand their money without adding more stress.</p>
+
+          <div class="button-row">
+            <a class="button button--primary" href="https://squirio.japandi.dev" rel="noopener noreferrer">Discover Squirio</a>
+            <!--
+              PLACEHOLDER — waitlist.
+              No waitlist provider exists yet, so this is a genuinely inert control rather than a
+              link pointing nowhere. Once you have a provider, swap the button element below for an
+              anchor carrying the same two classes and pointing at your waitlist URL, then delete the
+              aria-describedby attribute and the note paragraph. See README, "Opening the waitlist".
+            -->
+            <button class="button button--ghost" type="button" disabled aria-describedby="waitlist-note">Join the Waitlist</button>
+          </div>
+          <p class="product__note" id="waitlist-note">The waitlist is not open yet. It opens closer to launch.</p>
+
+        </div>
+
+        <div class="product__preview">
+          <!-- Actual Squirio product artwork. -->
+          <img src="assets/images/squirio-home-preview.png"
+               width="941" height="1672" loading="lazy" decoding="async"
+               alt="Squirio home screen showing the current pay period, balance, spending guidance, wallets, recent transactions, and Squi waving.">
+        </div>
+      </article>
+
+      <p class="future-note" data-reveal>
+        <span class="future-note__rule" aria-hidden="true"></span>
+        More thoughtful projects are coming.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ========================= PHILOSOPHY ========================= -->
+  <section class="section section--sand" id="philosophy" aria-labelledby="philosophy-title">
+    <div class="container">
+
+      <header class="section__head" data-reveal>
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Philosophy</p>
+        <h2 class="section__title" id="philosophy-title">How I approach my work.</h2>
+        <p class="section__lead">I apply the same principles I appreciate in Japandi design to the way I build software: remove what is unnecessary, make every element useful, and create experiences that feel clear and balanced.</p>
+      </header>
+
+      <ul class="principles">
+        <li class="principle" data-reveal>
+          <span class="principle__index" aria-hidden="true">01</span>
+          <span class="principle__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <circle cx="24" cy="24" r="21" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+              <path d="M15 24h18" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h3 class="principle__title">Simplicity</h3>
+          <p>I keep interfaces and code focused on what genuinely matters.</p>
+        </li>
+
+        <li class="principle" data-reveal>
+          <span class="principle__index" aria-hidden="true">02</span>
+          <span class="principle__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <circle cx="24" cy="24" r="21" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+              <path d="M13 30h8v-8h10" fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="34" cy="22" r="3.5" fill="var(--pine)"/>
+            </svg>
+          </span>
+          <h3 class="principle__title">Purpose</h3>
+          <p>Every feature should solve a real problem and provide clear value.</p>
+        </li>
+
+        <li class="principle" data-reveal>
+          <span class="principle__index" aria-hidden="true">03</span>
+          <span class="principle__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <circle cx="24" cy="24" r="21" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="9" fill="none" stroke="var(--pine)" stroke-width="2.5"/>
+              <path d="M24 15a9 9 0 0 0 0 18z" fill="var(--pine)"/>
+            </svg>
+          </span>
+          <h3 class="principle__title">Balance</h3>
+          <p>I balance functionality, maintainability, performance, accessibility, and visual design.</p>
+        </li>
+
+        <li class="principle" data-reveal>
+          <span class="principle__index" aria-hidden="true">04</span>
+          <span class="principle__mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <circle cx="24" cy="24" r="21" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+              <path d="M32 19a10 10 0 1 0 2.5 7" fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M33 13v7h-7" fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3 class="principle__title">Continuous Improvement</h3>
+          <p>I treat every project as an opportunity to learn, experiment, and improve.</p>
+        </li>
+      </ul>
+
+      <p class="philosophy__note" data-reveal>
+        In code these turn into ordinary habits rather than slogans. Simplicity is KISS and YAGNI:
+        build the straightforward thing that is actually needed, and leave out the abstraction that
+        might be needed one day. Purpose is what stops a feature from existing only because it was
+        possible. Balance is where DRY lives — shared design tokens and small focused functions,
+        while leaving harmless duplication alone when removing it would hurt readability. Continuous
+        improvement is where SOLID and GRASP earn their place: one clear responsibility per function,
+        each one handed only the data it needs, so the next change stays cheap. This site is built
+        that way too.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- =========================== ABOUT =========================== -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about" data-reveal>
+        <header class="section__head">
+          <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>About</p>
+          <h2 class="section__title" id="about-title">About Japandi Dev</h2>
+        </header>
+
+        <p class="about__lead">Japandi Dev is my anonymous personal space for sharing applications, experiments, and ideas created through code.</p>
+        <p>The name reflects my appreciation for Japandi design&mdash;a combination of Japanese simplicity and Scandinavian warmth, balance, and functionality.</p>
+        <p>I try to bring those same qualities into every project: clear structure, purposeful features, thoughtful details, and as little unnecessary complexity as possible.</p>
+
+        <!-- Plain list, no ratings or proficiency bars. Add or remove <li> items freely. -->
+        <h3 class="about__tech-title">Things I build with</h3>
+        <ul class="tech-list">
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React</li>
+          <li>Next.js</li>
+          <li>Node.js</li>
+          <li>Java</li>
+          <li>Spring Boot</li>
+          <li>AWS</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== CONTACT ========================== -->
+  <section class="section section--sand" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact" data-reveal>
+
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Contact</p>
+        <h2 class="section__title" id="contact-title">Let&rsquo;s connect.</h2>
+        <p class="section__lead">If you would like to discuss one of my projects, share feedback, or talk about software and product ideas, feel free to reach out.</p>
+
+        <p class="button-row button-row--center">
+          <!-- PLACEHOLDER — brand email. Replace hello@japandi.dev everywhere. See README. -->
+          <a class="button button--primary" href="mailto:hello@japandi.dev">Get in Touch</a>
+        </p>
+
+        <ul class="contact__links">
+          <li>
+            <span class="contact__label">Email</span>
+            <a href="mailto:hello@japandi.dev">hello@japandi.dev</a>
+          </li>
+        </ul>
+        <!--
+          No GitHub or other profile is linked. A link only belongs here once a dedicated,
+          privacy-safe Japandi Dev account exists. See README, "Adding a brand GitHub account".
+        -->
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+
+      <div class="site-footer__brand">
+        <a class="brand" href="/">
+          <span class="brand-mark brand-mark--sm">
+            <img src="assets/images/japandi-dev-logo-96.png"
+                 srcset="assets/images/japandi-dev-logo-96.png 1x, assets/images/japandi-dev-logo-192.png 2x"
+                 width="36" height="36" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="brand__name">Japandi Dev</span>
+        </a>
+        <p class="site-footer__description">A personal space for coding, thoughtful products, and Japandi-inspired ideas.</p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer">
+        <div>
+          <h2 class="site-footer__heading">Explore</h2>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="site-footer__heading">More</h2>
+          <ul>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="mailto:hello@japandi.dev">Email</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <!-- The year is refreshed by script.js; this value is a working fallback without JavaScript. -->
+      <p>&copy; <span data-current-year>2026</span> Japandi Dev</p>
+      <p>Built with clarity and care.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

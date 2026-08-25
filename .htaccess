@@ -1,0 +1,121 @@
+# Japandi Dev — Apache / LiteSpeed configuration for shared hosting.
+# Biznet Gio NEO Web Hosting runs LiteSpeed, which reads .htaccess the same way Apache does.
+# If your host ignores this file, ask support to enable AllowOverride for your document root.
+
+# --- Custom error page ----------------------------------------------------
+# Without this line the host serves its own generic 404 instead of 404.html.
+ErrorDocument 404 /404.html
+
+# --- Default document -----------------------------------------------------
+DirectoryIndex index.html
+
+# --- Clean URLs (no .html in the address bar) ----------------------------
+# Two halves that belong together:
+#   1. Anyone arriving at /privacy.html is redirected once, permanently, to
+#      /privacy, so only one address is ever indexed. /index.html collapses to /.
+#   2. /privacy is then served from privacy.html internally, without a redirect,
+#      so the file layout on disk does not change.
+# THE_REQUEST is matched rather than REQUEST_URI so only real browser requests
+# trigger the redirect; the internal rewrite below cannot loop back into it.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /index.html (or /sub/index.html) -> the directory itself
+  RewriteCond %{THE_REQUEST} \s/+(.*)index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # /anything.html -> /anything
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # /privacy/ -> /privacy. Serving the trailing-slash form directly would be a
+  # silent trap: index.html and privacy.html link their assets with RELATIVE
+  # paths, so under /privacy/ the browser would resolve them against
+  # /privacy/assets/... and every image and stylesheet would 404.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/$ /$1 [L,R=301]
+
+  # /anything -> anything.html, only when that file actually exists
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
+
+# --- Canonical host and scheme -------------------------------------------
+# ENABLE AFTER SSL IS ACTIVE. Turning these on before the certificate is issued
+# will redirect visitors to an https:// URL the server cannot yet serve.
+# If Cloudflare's proxy is on, use its "Always Use HTTPS" setting instead of the
+# first rule here, so the redirect happens at the edge rather than the origin.
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} !=on
+#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#   RewriteCond %{HTTP_HOST} ^www\.japandi\.dev$ [NC]
+#   RewriteRule ^ https://japandi.dev%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# --- Security headers -----------------------------------------------------
+<IfModule mod_headers.c>
+  # This site loads only its own CSS, JS, fonts and images, and makes no
+  # third-party or network requests, so the policy can be strict.
+  #
+  # The single sha256 below authorises the one inline <script> in the <head> of
+  # every page. It is the hash of that block's exact contents. If you edit those
+  # lines by even one character the hash changes and the script stops running,
+  # which silently disables the mobile menu. Regenerate it with:
+  #
+  #   see README, "Regenerating the CSP hash"
+  #
+  # data: is permitted for images only, because SVG placeholders may be inlined
+  # by an editor later; remove it if you never do that.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # This site uses none of these browser features.
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+
+  # ENABLE ONLY AFTER https://japandi.dev IS CONFIRMED WORKING.
+  # HSTS is cached by browsers for max-age seconds and cannot be undone quickly.
+  # Turning it on while HTTPS is broken makes the site unreachable for that long.
+  # If Cloudflare is already sending HSTS, do NOT also send it here.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# --- Keep documentation out of the public site ----------------------------
+# README.md would otherwise be readable at /README.md. It describes the CSP hash
+# mechanism and where every placeholder lives - useful to you, not to visitors.
+# You can simply not upload it instead; this rule covers the case where you do.
+<FilesMatch "^(README\.md|.*\.bak|.*\.log)$">
+  Require all denied
+</FilesMatch>
+
+# --- Compression ----------------------------------------------------------
+# Cloudflare also compresses at the edge; having both is harmless.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Caching --------------------------------------------------------------
+# Fonts and images are content-stable, so they get a long TTL. HTML stays short
+# so edits appear promptly and Cloudflare revalidates often.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 1 hour"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+# --- Correct types --------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+</IfModule>

@@ -1,0 +1,7 @@
+# https://japandi.dev/robots.txt
+# Static marketing site — everything here is meant to be crawled.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://japandi.dev/sitemap.xml
