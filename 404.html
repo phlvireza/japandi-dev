@@ -10,7 +10,9 @@
      and does not appear in sitemap.xml. -->
 <meta name="robots" content="noindex">
 
-<meta name="theme-color" content="#F7F2E8">
+<!-- Light first: a UA that does not understand media= takes the first one it finds. -->
+<meta name="theme-color" content="#F7F2E8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1917" media="(prefers-color-scheme: dark)">
 
 <!-- Every path on this page is root-relative: the server may serve it from any URL depth. -->
 <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">

@@ -1,7 +1,10 @@
 /* ==========================================================================
    Japandi Dev — styles.css
    Layer order: fonts → tokens → base → layout → components → sections →
-                utilities → responsive → reduced motion
+                utilities → responsive → reduced motion → dark theme
+
+   The dark palette is a token block inside section 2; section 10 holds only the
+   handful of dark rules that override a component rather than a colour.
    ========================================================================== */
 
 /* ---------------------------------------------------------------- 1. FONTS */
@@ -32,6 +35,13 @@
 /* --------------------------------------------------------------- 2. TOKENS */
 
 :root {
+  /* Declares that the page has real styles for both schemes. This is the line that
+     stops Chrome on Android from force-inverting the site with Auto Dark Theme:
+     that engine only darkens pages it believes are light-only. It names both
+     schemes unconditionally because it states a capability, not a current state —
+     putting it inside the dark media query below would come too late to be read. */
+  color-scheme: light dark;
+
   /* Palette sampled from the logo artwork so the brand tile sits naturally on the page. */
   --bg: #F7F2E8;
   --surface: #FCFAF4;
@@ -91,6 +101,64 @@
   --header-h: 4.5rem;
 
   --transition: 220ms ease;
+}
+
+/* The dark palette. Same Japandi warmth — a dim room, not a cold blue-grey UI —
+   so every plane keeps a warm brown-green cast rather than going neutral.
+
+   Every ratio quoted below is sRGB relative luminance, (L1+0.05)/(L2+0.05),
+   computed against the dark values in this block. The light-theme figures above
+   do not carry over, because three tokens invert their role here:
+
+     - --pine and --pine-deep become LIGHTER than their light-theme values. The
+       accent has to rise off a dark ground, and "deep" now means a lighter
+       hover, not a darker one.
+     - --pine-contrast flips from cream to a near-black ink, because it labels a
+       button whose fill is now light.
+     - --footer-bg becomes a RAISED plane. Elevation runs lighter in dark UI, and
+       there is no room left below --bg to recede into without the footer reading
+       as the page having ended.
+
+   Only the component overrides that cannot be expressed as tokens live apart
+   from this block; they are in section 10 at the end of the file, where they
+   come after the rules they override. */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1B1917;
+    --surface: #2E2820;      /* cards and the scrolled header, raised 1.20:1 above --bg */
+    --surface-alt: #231F18;  /* alternating bands, a gentler 1.07:1 step */
+
+    /* Unchanged, deliberately. This is the logo PNG's own background colour, and
+       the footer mark carries it baked in as opaque pixels — a darker tile would
+       draw a visible seam around the image. It is also what the header mark gets
+       back in dark mode; see section 10. */
+    --logo-field: #F3E8D1;
+
+    --ink: #EDE6D8;       /* 14.12:1 on --bg, 11.74:1 on --surface, 13.21:1 on --surface-alt */
+    --ink-soft: #B0A794;  /*  7.35:1 on --bg,  6.11:1 on --surface,  6.87:1 on --surface-alt */
+
+    /* --pine carries small text (.eyebrow at 0.78rem, the aria-current nav link)
+       and the :focus-visible ring, so it clears 4.5:1 on every ground it can
+       land on, not just the 3:1 a ring would need. */
+    --pine: #8FB39A;          /* 7.58:1 on --bg, 6.30:1 on --surface, 7.09:1 on --surface-alt */
+    --pine-deep: #A8C6B1;     /* the lighter hover fill; 7.90:1 as text on --surface */
+    --pine-contrast: #16211A; /* 7.17:1 on --pine, 8.98:1 on --pine-deep, so the label survives the hover */
+
+    /* The two-tier accent keeps its light-theme contract, which means
+       --terracotta-ink is now the lighter of the pair rather than the darker. */
+    --terracotta: #D08A5E;      /* 6.24:1 on --bg — decorative use, large text and borders */
+    --terracotta-ink: #E0A177;  /* 7.96:1 on --bg, 6.62:1 on --surface — the one safe for body-sized text */
+
+    --sand: #3E362A;        /* .pill fill and the hero's heavy SVG fills; --ink on it is 9.58:1 */
+    --line: #35302A;        /* decorative rules and card edges */
+    --line-strong: #8C8371; /* boundaries of interactive controls — 4.67:1 on --bg, 3.89:1 on --surface */
+
+    --footer-bg: #1F2B24;       /* the one full pine field, raised 1.19:1 above --bg */
+    --footer-ink: #EDE6D8;      /* 11.83:1 on --footer-bg; also the footer focus ring */
+    --footer-ink-soft: #C2CFC4; /*  9.11:1 on --footer-bg */
+    --footer-line: #35473A;     /*  1.48:1 on --footer-bg, matching the light theme's 1.45:1 */
+  }
 }
 
 /* ----------------------------------------------------------------- 3. BASE */
@@ -400,6 +468,10 @@ a { color: inherit; }
   --product-accent: var(--pine);
   --product-accent-deep: var(--pine-deep);
   --product-accent-dark: var(--pine-deep);
+  /* The label on the accent fill. Aliased like the rest so the card re-themes
+     from the root tokens alone; it was a hardcoded #FFFFFF, which would have
+     dropped to 1.8:1 once --pine inverts to a light green in dark mode. */
+  --product-accent-contrast: var(--pine-contrast);
   --product-surface: var(--surface);
   --product-surface-strong: var(--sand);
   --product-line: var(--line);
@@ -468,7 +540,7 @@ a { color: inherit; }
 
 .product .button--primary {
   background: var(--product-accent);
-  color: #FFFFFF;
+  color: var(--product-accent-contrast);
 }
 .product .button--primary:hover { background: var(--product-accent-deep); }
 /* .button:disabled is defined earlier in the file, so this scoped rule would
@@ -754,6 +826,14 @@ a { color: inherit; }
   }
   .js .site-header__inner { flex-wrap: wrap; }
 
+  /* The nav wraps onto a second flex line when it opens. Without a height of its
+     own the first line has none either: closed, it is the only line, so it
+     stretches to fill the inner's 4.5rem min-height and the brand sits centred
+     ~9px down; open, the min-height is already exceeded and the line collapses to
+     its ~54px content height, snapping the brand up. Pinning the brand to the
+     full header height makes line 1 the same box either way. */
+  .js .site-header .brand { min-height: var(--header-h); }
+
   .js .site-nav {
     flex-basis: 100%;
     flex-direction: column;
@@ -813,4 +893,31 @@ a { color: inherit; }
   }
 
   .js [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------- 10. DARK THEME OVERRIDES */
+/* The palette itself is a token block up in section 2. These are the two places
+   where dark mode needs more than a different colour, so they have to sit after
+   the rules they override — same specificity, later wins. */
+
+@media (prefers-color-scheme: dark) {
+  /* The header uses the transparent logo PNG, so section 5 strips the tile and
+     lets the page show through. On a dark ground that fails: about 70% of the
+     mark's opaque pixels are the logo's own dark pine (#436552), which measures
+     2.72:1 there — the artwork reads as half erased. Give the header back the
+     cream field the logo was drawn on, where the same pine is 5.36:1. The logo
+     is still never cropped, recoloured, masked or filtered; only what sits
+     behind it changes. */
+  .site-header .brand-mark {
+    background: var(--logo-field);
+    border-radius: var(--radius-md);
+  }
+
+  /* The Squirio screenshot and icon keep their own pixels — dimming a product
+     shot shows people an app that does not exist. What changes is the frame:
+     --line is only 1.12:1 on the card here, so the bright raster would meet the
+     dark page as a raw cut. --line-strong is visible against both sides, and the
+     image reads as a framed object rather than a hole punched in the page. */
+  .product__preview img,
+  .product__icon { border-color: var(--line-strong); }
 }
