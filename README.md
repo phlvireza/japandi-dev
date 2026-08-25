@@ -21,6 +21,7 @@ The first featured project is **Squirio**, a personal finance tracker
 - [Folder structure](#folder-structure)
 - [Local preview](#local-preview)
 - [Deploying to Biznet Gio](#deploying-to-biznet-gio)
+- [Automatic deploys from GitHub](#automatic-deploys-from-github)
 - [Cloudflare](#cloudflare)
 - [Connecting japandi.dev](#connecting-japandidev)
 - [Clean URLs](#clean-urls)
@@ -156,6 +157,56 @@ Apache does.
 5. **Check permissions** — `644` for files, `755` for directories. cPanel usually gets this right.
 
 SFTP works equally well; upload to the same document root.
+
+---
+
+## Automatic deploys from GitHub
+
+The repository lives at `github.com/phlvireza/japandi-dev` and is **private** — deliberately. The
+site claims an anonymous identity, and a public repository under a personal handle would tie that
+handle to `japandi.dev` no matter what the site itself says. Commits are authored as
+`japandi-dev <hello@japandi.dev>` for the same reason. Keep both when you add collaborators or
+mirror the repo.
+
+`.github/workflows/deploy.yml` syncs the working tree to the document root over FTPS on every push
+to `main`. The action keeps a state file in the document root and uploads only changed files, so a
+routine deploy moves kilobytes, not the whole bundle.
+
+### One-time setup
+
+Add four repository secrets under **Settings → Secrets and variables → Actions**:
+
+| Secret | Where to find it | Example |
+|---|---|---|
+| `FTP_SERVER` | cPanel → FTP Accounts → *Configure FTP Client* | `ftp.japandi.dev` |
+| `FTP_USERNAME` | the **full** FTP username, including the `@domain` part | `deploy@japandi.dev` |
+| `FTP_PASSWORD` | that account's password | |
+| `FTP_SERVER_DIR` | document root, **with a trailing slash** | `public_html/` |
+
+Create a dedicated FTP account in cPanel rather than reusing the main cPanel login. Scope its
+directory to the document root, so a leaked secret cannot reach the rest of the account.
+
+`FTP_SERVER_DIR` is `public_html/` when `japandi.dev` is the primary domain, and
+`public_html/japandi.dev/` when it was added as an addon domain. Getting this wrong deploys the
+site one level away from where the domain actually points — the symptom is a directory listing or
+the host's placeholder page rather than the site.
+
+### Verifying a deploy
+
+Run it once with `dry-run: true` added under `with:` before trusting it against the live document
+root. The Actions log then lists what *would* change without touching the server.
+
+After a real deploy, purge the Cloudflare cache — the origin has new files but the edge may still
+answer from the old ones.
+
+### What is not uploaded
+
+`exclude` in the workflow drops `.git*`, `node_modules`, `README.md` and `.gitattributes`.
+`.htaccess` is deliberately **not** excluded: without it there is no 404 page, no security headers
+and no clean URLs. `.ftp-deploy-sync-state.json`, which the action writes into the document root, is
+denied in `.htaccess` — it lists every file and its hash, which is a free map of the site.
+
+---
 
 ### Enable HTTPS
 

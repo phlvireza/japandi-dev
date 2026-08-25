@@ -89,7 +89,10 @@ DirectoryIndex index.html
 # README.md would otherwise be readable at /README.md. It describes the CSP hash
 # mechanism and where every placeholder lives - useful to you, not to visitors.
 # You can simply not upload it instead; this rule covers the case where you do.
-<FilesMatch "^(README\.md|.*\.bak|.*\.log)$">
+# .ftp-deploy-sync-state.json is written into the document root by the GitHub
+# Actions deploy. It lists every file and its hash - a free map of the site for
+# anyone who requests it - so it is denied here rather than left readable.
+<FilesMatch "^(README\.md|\.ftp-deploy-sync-state\.json|.*\.bak|.*\.log)$">
   Require all denied
 </FilesMatch>
 
