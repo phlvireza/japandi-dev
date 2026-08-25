@@ -1,33 +1,3 @@
-# Push to main -> the site is synced to the Biznet Gio document root over FTPS.
-#
-# The action keeps a state file (.ftp-deploy-sync-state.json) in the document
-# root and uploads only what actually changed, so a routine deploy moves a few
-# kilobytes rather than the whole bundle.
-#
-# Every connection detail is a repository secret, never a literal in this file.
-# The repository is private, but secrets are still the right place: they are
-# masked in Actions logs, and a repository that goes public later must not turn
-# into a credential leak. Set them under Settings -> Secrets and variables ->
-# Actions -> New repository secret:
-#
-#   FTP_SERVER      web6-cpn.neohosting.id
-#                   The server's own hostname, NOT ftp.japandi.dev. japandi.dev
-#                   is proxied through Cloudflare, and Cloudflare does not proxy
-#                   FTP - a proxied record would send the deploy to Cloudflare's
-#                   edge, which has no FTP listener.
-#   FTP_USERNAME    the full FTP username from cPanel -> FTP Accounts,
-#                   including the @japandi.dev part
-#   FTP_PASSWORD    that account's password
-#   FTP_SERVER_DIR  Path RELATIVE TO WHERE THE FTP ACCOUNT LANDS, not an
-#                   absolute path, and it must end in a slash:
-#                     ./            if the account's Directory is scoped to the
-#                                   document root (it logs in already inside it)
-#                     public_html/  if the account lands in the home directory
-#                                   instead, as the main cPanel account does
-#                   Scoping the account and then also writing public_html/ here
-#                   produces public_html/public_html/. Confirm with a dry-run
-#                   before the first real deploy.
-
 name: Deploy to Biznet Gio
 
 on:

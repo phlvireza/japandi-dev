@@ -221,7 +221,14 @@
           <p class="product__description">A simple personal finance tracker created to help people understand their money without adding more stress.</p>
 
           <div class="button-row">
-            <a class="button button--primary" href="https://squirio.japandi.dev" rel="noopener noreferrer">Discover Squirio</a>
+            <!--
+              PLACEHOLDER - Squirio site.
+              squirio.japandi.dev does not resolve yet, so this is an inert control rather than a
+              link to a dead host. Once the site is up, swap this button back for:
+                <a class="button button--primary" href="https://squirio.japandi.dev" rel="noopener noreferrer">Discover Squirio</a>
+              and delete the aria-describedby attribute and the note paragraph below.
+            -->
+            <button class="button button--primary" type="button" disabled aria-describedby="squirio-note">Discover Squirio</button>
             <!--
               PLACEHOLDER — waitlist.
               No waitlist provider exists yet, so this is a genuinely inert control rather than a
@@ -231,6 +238,7 @@
             -->
             <button class="button button--ghost" type="button" disabled aria-describedby="waitlist-note">Join the Waitlist</button>
           </div>
+          <p class="product__note" id="squirio-note">The Squirio site is not live yet.</p>
           <p class="product__note" id="waitlist-note">The waitlist is not open yet. It opens closer to launch.</p>
 
         </div>

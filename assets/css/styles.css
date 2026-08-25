@@ -471,6 +471,13 @@ a { color: inherit; }
   color: #FFFFFF;
 }
 .product .button--primary:hover { background: var(--product-accent-deep); }
+/* .button:disabled is defined earlier in the file, so this scoped rule would
+   otherwise win on later-wins and keep a disabled button looking clickable. */
+.product .button--primary:disabled {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink-soft);
+}
 
 .product .button--ghost {
   border-color: var(--product-line);
