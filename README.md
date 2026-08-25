@@ -181,7 +181,7 @@ Add four repository secrets under **Settings → Secrets and variables → Actio
 | `FTP_SERVER` | the hosting server's own hostname | `web6-cpn.neohosting.id` |
 | `FTP_USERNAME` | cPanel → FTP Accounts, the **full** username including `@japandi.dev` | `deploy@japandi.dev` |
 | `FTP_PASSWORD` | the password you set when creating that account | |
-| `FTP_SERVER_DIR` | cPanel → Domains → *Document Root*, **with a trailing slash** | `public_html/` |
+| `FTP_SERVER_DIR` | see below — depends on how the FTP account is scoped | `./` |
 
 **`FTP_SERVER` must be the server hostname, not `ftp.japandi.dev`.** `japandi.dev` is proxied
 through Cloudflare, and Cloudflare proxies HTTP only — it has no FTP listener, so a proxied record
@@ -195,12 +195,24 @@ explicit FTPS on port 21 is the correct protocol. Port 990 (implicit FTPS, `ftps
 closed — do not use it.
 
 Create a dedicated FTP account in cPanel rather than reusing the main cPanel login. Scope its
-directory to the document root, so a leaked secret cannot reach the rest of the account.
+**Directory** to the document root, so a leaked secret cannot reach the rest of the account.
 
-`FTP_SERVER_DIR` is `public_html/` when `japandi.dev` is the primary domain, and
-`public_html/japandi.dev/` when it was added as an addon domain. Getting this wrong deploys the
-site one level away from where the domain actually points — the symptom is a directory listing or
-the host's placeholder page rather than the site.
+`FTP_SERVER_DIR` is then relative to **wherever that account lands after login**, not an absolute
+path — and the two settings interact:
+
+| FTP account | Lands in | `FTP_SERVER_DIR` |
+|---|---|---|
+| Sub-account, Directory scoped to `public_html` | inside `public_html` | `./` |
+| Main cPanel account, unscoped | `/home/<user>` | `public_html/` |
+
+Scoping the account *and* writing `public_html/` here gives `public_html/public_html/`. Either way,
+drop the `/home/<user>` prefix that cPanel shows under Domains → Document Root, and keep the
+trailing slash.
+
+This is the most expensive of the four to get wrong, because it fails silently: the files upload
+successfully to a folder the domain does not point at, and the symptom — a directory listing or the
+host's placeholder — looks identical to not having deployed at all. **Run once with `dry-run: true`
+and read the paths in the Actions log before the first real deploy.**
 
 ### Verifying a deploy
 

@@ -18,9 +18,15 @@
 #   FTP_USERNAME    the full FTP username from cPanel -> FTP Accounts,
 #                   including the @japandi.dev part
 #   FTP_PASSWORD    that account's password
-#   FTP_SERVER_DIR  public_html/          for a primary domain, or
-#                   public_html/japandi.dev/   for an addon domain
-#                   (the trailing slash is required)
+#   FTP_SERVER_DIR  Path RELATIVE TO WHERE THE FTP ACCOUNT LANDS, not an
+#                   absolute path, and it must end in a slash:
+#                     ./            if the account's Directory is scoped to the
+#                                   document root (it logs in already inside it)
+#                     public_html/  if the account lands in the home directory
+#                                   instead, as the main cPanel account does
+#                   Scoping the account and then also writing public_html/ here
+#                   produces public_html/public_html/. Confirm with a dry-run
+#                   before the first real deploy.
 
 name: Deploy to Biznet Gio
 
