@@ -658,6 +658,60 @@ the neutrals were warmed to sit with the logo's `#F3E8D1` field.
 | `--line` | `#E0D5C0` | Decorative rules and card edges |
 | `--line-strong` | `#94886F` | Boundaries of interactive controls |
 
+### Dark theme
+
+`:root` declares `color-scheme: light dark`, and a `@media (prefers-color-scheme: dark)`
+block in section 2 re-points every token above. Declaring `color-scheme` is not cosmetic:
+it is what stops Chrome on Android from force-inverting the site with Auto Dark Theme,
+which is a light-only page's default fate and which used to make the header flash white
+when the mobile menu opened.
+
+| Token | Dark | Note |
+|---|---|---|
+| `--bg` | `#1B1917` | Warm near-black, never a cold blue-grey |
+| `--surface` | `#2E2820` | Cards, raised 1.20:1 above `--bg` |
+| `--surface-alt` | `#231F18` | Alternating sections |
+| `--logo-field` | `#F3E8D1` | **Unchanged** — the logo's own ground |
+| `--ink` | `#EDE6D8` | 14.12:1 on `--bg` |
+| `--ink-soft` | `#B0A794` | 7.35:1 on `--bg` |
+| `--pine` | `#8FB39A` | 7.58:1 on `--bg` |
+| `--pine-deep` | `#A8C6B1` | Hover fill |
+| `--pine-contrast` | `#16211A` | 7.17:1 on `--pine` |
+| `--terracotta` | `#D08A5E` | 6.24:1 on `--bg` |
+| `--terracotta-ink` | `#E0A177` | 7.96:1 on `--bg` |
+| `--sand` | `#3E362A` | `--ink` on it is 9.58:1 |
+| `--line` | `#35302A` | Decorative rules and card edges |
+| `--line-strong` | `#8C8371` | 4.67:1 on `--bg` |
+| `--footer-bg` | `#1F2B24` | Raised 1.19:1 above `--bg` |
+| `--footer-ink` | `#EDE6D8` | 11.83:1 on `--footer-bg` |
+| `--footer-ink-soft` | `#C2CFC4` | 9.11:1 on `--footer-bg` |
+| `--footer-line` | `#35473A` | 1.48:1 on `--footer-bg` |
+
+Three tokens invert their role, which reads as a mistake without the explanation:
+
+- **`--pine` and `--pine-deep` get *lighter* than their light values.** The accent has to
+  rise off a dark ground, so "deep" means a lighter hover, not a darker one.
+- **`--pine-contrast` flips from cream to a near-black ink**, because it labels a button
+  whose fill is now light.
+- **`--footer-bg` becomes a *raised* plane.** Elevation runs lighter in dark UI, and there
+  is no room below `--bg` to recede into without the footer reading as the page ending.
+
+Two rules need more than a colour and live in section 10, after the rules they override:
+
+- **The header brand tile comes back.** Section 5 strips it because the header uses the
+  transparent logo PNG; on a dark ground ~70% of that mark is the logo's own dark pine,
+  which measures 2.72:1 and reads as half erased. On the cream field it is 5.36:1. The
+  logo itself is still never cropped, recoloured, masked or filtered.
+- **The Squirio images keep their pixels** — dimming a product shot shows people an app
+  that does not exist. Only the 1px frame moves to `--line-strong`, which is visible
+  against both the dark card and the image's own cream.
+
+Everything else re-themes from the tokens alone, including the inline SVG artwork (it
+fills entirely from `var(--…)`) and the six `--product-*` aliases.
+
+Both themes carry a `theme-color` meta, light first so a UA that ignores `media=` keeps
+today's behaviour.
+
 Two carry constraints worth respecting:
 
 - **`--terracotta` is 3.63:1 on the page background.** Fine for large text, icons and borders; it
@@ -736,7 +790,7 @@ checks are also not a substitute for testing with real assistive technology and 
 |---|---|---|
 | HTML validity | W3C Nu validator (API) | **0 errors, 0 warnings** on all three pages |
 | Accessibility | axe-core 4.10.2, WCAG 2.0/2.1/2.2 A+AA + best-practice | **0 violations** on all three pages |
-| Colour contrast | Custom script over every real foreground/background pair | **all pass** |
+| Colour contrast | Custom script over every real foreground/background pair, **both themes** | **all pass** |
 | Link integrity | Custom script | **0 broken** local references; 0 `href="#"`; outbound link carries `rel` |
 | Structured data | Checked against the live schema.org vocabulary | **0 unsupported properties** |
 | `sitemap.xml` | XML parse, namespace and `lastmod` format | Valid |
