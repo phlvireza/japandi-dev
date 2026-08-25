@@ -1,0 +1,65 @@
+# Push to main -> the site is synced to the Biznet Gio document root over FTPS.
+#
+# The action keeps a state file (.ftp-deploy-sync-state.json) in the document
+# root and uploads only what actually changed, so a routine deploy moves a few
+# kilobytes rather than the whole bundle.
+#
+# Every connection detail is a repository secret, never a literal in this file:
+# the repository is public, and the hostname and username would otherwise be
+# readable by anyone. Set them under Settings -> Secrets and variables ->
+# Actions -> New repository secret:
+#
+#   FTP_SERVER      e.g. ftp.japandi.dev  (see cPanel -> FTP Accounts)
+#   FTP_USERNAME    the full cPanel FTP username
+#   FTP_PASSWORD    that account's password
+#   FTP_SERVER_DIR  public_html/          for a primary domain, or
+#                   public_html/japandi.dev/   for an addon domain
+#                   (the trailing slash is required)
+
+name: Deploy to Biznet Gio
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-run a deploy by hand from the Actions tab without a new commit.
+  workflow_dispatch:
+
+# A second push while a deploy is running cancels the first, so two syncs can
+# never interleave and leave the document root in a mixed state.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Sync to document root
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Sync over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Explicit FTPS on the standard port. Plain `ftp` would send the
+          # password in clear text across the public internet.
+          protocol: ftps
+          port: 21
+          # Biznet Gio's certificate is issued for the server hostname, which
+          # often differs from the FTP hostname you connect to, so `strict`
+          # tends to fail there. Revisit if you connect via the server hostname.
+          security: loose
+          # The first three are the action's own defaults, re-stated because
+          # specifying `exclude` at all replaces them. .htaccess is deliberately
+          # NOT excluded - without it there is no 404 page, no security headers
+          # and no clean URLs.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/README.md
+            **/.gitattributes
