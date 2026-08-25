@@ -826,6 +826,14 @@ a { color: inherit; }
   }
   .js .site-header__inner { flex-wrap: wrap; }
 
+  /* The nav wraps onto a second flex line when it opens. Without a height of its
+     own the first line has none either: closed, it is the only line, so it
+     stretches to fill the inner's 4.5rem min-height and the brand sits centred
+     ~9px down; open, the min-height is already exceeded and the line collapses to
+     its ~54px content height, snapping the brand up. Pinning the brand to the
+     full header height makes line 1 the same box either way. */
+  .js .site-header .brand { min-height: var(--header-h); }
+
   .js .site-nav {
     flex-basis: 100%;
     flex-direction: column;
