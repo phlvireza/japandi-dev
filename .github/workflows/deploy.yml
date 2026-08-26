@@ -48,3 +48,25 @@ jobs:
             **/node_modules/**
             **/README.md
             **/.gitattributes
+
+      # The sync above updates the origin, but Cloudflare keeps serving whatever it
+      # already cached until its own TTL expires. Skipping this is how a fixed
+      # stylesheet once sat live-on-origin but unreachable behind a stale edge copy
+      # for a full day. Runs AFTER the sync so the origin is already correct when
+      # the edge is told to refetch.
+      #
+      # Fails the job loudly on error: `curl --fail-with-body` catches HTTP status,
+      # and the grep catches Cloudflare's 200-with-"success":false responses. A
+      # silent purge failure is the exact failure mode this step exists to prevent.
+      #
+      # CF_API_TOKEN needs one permission only - Zone > Cache Purge > Purge, scoped
+      # to the japandi.dev zone. It cannot read or change DNS, settings or content.
+      - name: Purge the Cloudflare cache
+        run: |
+          curl -sS --fail-with-body -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' | tee purge-result.json
+          echo
+          grep -q '"success":true' purge-result.json

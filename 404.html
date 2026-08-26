@@ -43,8 +43,11 @@
   <div class="site-header__inner container">
     <a class="brand" href="/">
       <span class="brand-mark">
-        <img src="/assets/images/japandi-dev-logo-96.png"
-             srcset="/assets/images/japandi-dev-logo-96.png 1x, /assets/images/japandi-dev-logo-192.png 2x"
+        <!-- alt="" is deliberate: the adjacent "Japandi Dev" text already names this link.
+             The TRANSPARENT variant, matching index.html: in dark mode styles.css gives the
+             header mark a cream tile, and the opaque PNG carries that same cream baked into
+             its pixels - the two together read as a square inside a square. -->
+        <img src="/assets/images/japandi-dev-logo-transparent.png"
              width="44" height="44" alt="" decoding="async">
       </span>
       <span class="brand__name">Japandi Dev</span>

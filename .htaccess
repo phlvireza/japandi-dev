@@ -105,13 +105,18 @@ DirectoryIndex index.html
 </IfModule>
 
 # --- Caching --------------------------------------------------------------
-# Fonts and images are content-stable, so they get a long TTL. HTML stays short
-# so edits appear promptly and Cloudflare revalidates often.
+# Fonts and images are content-stable AND replaced under a new filename when they
+# change, so a long TTL there is safe. CSS and JS are edited in place at a fixed
+# URL, which makes a long TTL actively dangerous: Cloudflare once cached this
+# site's stylesheet 48 minutes before a fix deployed, and because the URL never
+# changed, the edge kept serving the pre-fix copy - and browsers kept serving
+# their own - with no way to revalidate. Five minutes keeps them nearly as cheap
+# while letting the site heal itself even if the deploy's cache purge fails.
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/html                 "access plus 1 hour"
-  ExpiresByType text/css                  "access plus 1 year"
-  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/css                  "access plus 5 minutes"
+  ExpiresByType application/javascript    "access plus 5 minutes"
   ExpiresByType image/png                 "access plus 1 year"
   ExpiresByType image/svg+xml             "access plus 1 year"
   ExpiresByType font/woff2                "access plus 1 year"
