@@ -20,6 +20,51 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      # Cache busting. styles.css and script.js live at fixed URLs and are edited in
+      # place, so without this every deploy is a race against whatever TTL each cache
+      # layer decided to apply - the browser's, Cloudflare's, an ISP's. Stamping the
+      # commit SHA into the query string makes each deploy a NEW url, so a stale copy
+      # is not merely unlikely, it is unreachable: nothing can serve you a file at a
+      # url it has never seen. That is what lets .htaccess give CSS and JS a one-year
+      # TTL again without the risk that TTL used to carry.
+      #
+      # Only the two asset attributes are rewritten. A broader sed would risk touching
+      # the inline <script> in <head>, whose exact bytes are pinned by the CSP sha256
+      # in .htaccess - one changed character there silently kills the mobile menu.
+      # The greps below fail the job rather than deploy a half-stamped page.
+      - name: Stamp the asset urls with the commit SHA
+        run: |
+          set -euo pipefail
+          for f in index.html privacy.html 404.html; do
+            sed -i \
+              -e "s|\(href=\"/\?assets/css/styles\.css\)?v=dev|\1?v=${GITHUB_SHA}|g" \
+              -e "s|\(src=\"/\?assets/js/script\.js\)?v=dev|\1?v=${GITHUB_SHA}|g" \
+              "$f"
+          done
+
+          # Every placeholder must be gone, and the SHA must appear exactly twice per file.
+          if grep -rn "?v=dev" index.html privacy.html 404.html; then
+            echo "::error::a ?v=dev placeholder survived the rewrite" >&2
+            exit 1
+          fi
+          for f in index.html privacy.html 404.html; do
+            n=$(grep -c "?v=${GITHUB_SHA}" "$f" || true)
+            if [ "$n" -ne 2 ]; then
+              echo "::error::$f has $n stamped asset refs, expected 2" >&2
+              exit 1
+            fi
+          done
+
+          # The CSP-hashed inline script must be byte-identical to the committed copy.
+          for f in index.html privacy.html 404.html; do
+            if ! diff <(git show "HEAD:$f" | grep -v "?v=dev") <(grep -v "?v=${GITHUB_SHA}" "$f") >/dev/null; then
+              echo "::error::$f changed outside the asset urls - refusing to deploy" >&2
+              exit 1
+            fi
+          done
+
+          grep -n "styles.css?v=\|script.js?v=" index.html privacy.html 404.html
+
       - name: Sync over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

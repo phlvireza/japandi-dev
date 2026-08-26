@@ -226,7 +226,26 @@ Run it once with `dry-run: true` added under `with:` before trusting it against 
 root. The Actions log then lists what *would* change without touching the server.
 
 After a real deploy, purge the Cloudflare cache — the origin has new files but the edge may still
-answer from the old ones.
+answer from the old ones. The workflow's last step does this automatically and fails loudly if the
+purge does not report success.
+
+### Cache busting
+
+`index.html`, `privacy.html` and `404.html` reference their assets as `assets/css/styles.css?v=dev`.
+`dev` is a placeholder you see only when opening the files locally; the **Stamp the asset urls with
+the commit SHA** step rewrites it to `?v=<github.sha>` immediately before the FTP sync, so each
+deploy publishes the stylesheet at a URL no cache has ever seen.
+
+This is what makes the long TTLs in `.htaccess` safe. Without it, a fixed URL edited in place is a
+race against whatever TTL each layer — browser, Cloudflare, ISP — decided to apply, and losing that
+race is how a fixed stylesheet once sat correct on the origin but unreachable behind a stale copy.
+
+The step deliberately rewrites **only** the two asset attributes, and then verifies three things
+before letting the deploy continue: no `?v=dev` placeholder survived, each file carries exactly two
+stamped references, and each file is otherwise byte-identical to the committed copy. That last check
+exists because the inline `<script>` in `<head>` is pinned by the CSP `sha256` in `.htaccess` — a
+single changed character there would silently disable the mobile menu, and a deploy is the worst
+place to discover it. If you add a page, add it to the three filenames listed in that step.
 
 ### What is not uploaded
 
@@ -297,9 +316,18 @@ remove the `<IfModule mod_headers.c>` block from `.htaccess` so they are not set
 on Cloudflare's HSTS (SSL/TLS → Edge Certificates), leave the HSTS line in `.htaccess` commented —
 sending it from both places is redundant and easy to get inconsistent.
 
-**Caching.** The `Expires` rules in `.htaccess` give CSS, JS, fonts and images a one-year TTL and
-HTML one hour. After deploying a change, **purge the Cloudflare cache** (Caching → Configuration →
-Purge Everything) or the old CSS may persist at the edge.
+**Caching.** CSS and JS are requested as `styles.css?v=<commit sha>`; the deploy workflow stamps the
+SHA in before the upload (see [Cache busting](#cache-busting)). Because every deploy is a new URL,
+`.htaccess` gives them a one-year TTL — a stale copy is not unlikely, it is unreachable. Fonts and
+images also get a year. **HTML gets five minutes**, because the HTML is what carries the version
+pointer, so its TTL is the real delay between a deploy and a returning visitor seeing new CSS.
+
+**Set Browser Cache TTL to "Respect Existing Headers"** (Caching → Configuration). Any other value
+makes Cloudflare *rewrite* `Cache-Control` on the way out, and the `.htaccess` rules above become
+advisory — on the free plan the default is 4 hours, which is what browsers would actually obey.
+
+The deploy still purges the edge afterwards, and should: cache busting fixes the *asset* URLs, but
+`index.html` itself is still a fixed URL and needs the purge to update promptly.
 
 ---
 

@@ -107,18 +107,33 @@ DirectoryIndex index.html
 </IfModule>
 
 # --- Caching --------------------------------------------------------------
-# Fonts and images are content-stable AND replaced under a new filename when they
-# change, so a long TTL there is safe. CSS and JS are edited in place at a fixed
-# URL, which makes a long TTL actively dangerous: Cloudflare once cached this
-# site's stylesheet 48 minutes before a fix deployed, and because the URL never
-# changed, the edge kept serving the pre-fix copy - and browsers kept serving
-# their own - with no way to revalidate. Five minutes keeps them nearly as cheap
-# while letting the site heal itself even if the deploy's cache purge fails.
+# CSS and JS used to be the dangerous pair here: they are edited in place at a
+# fixed URL, so a long TTL meant Cloudflare once served this site's pre-fix
+# stylesheet for 48 minutes with no way to revalidate. They now carry a ?v=<commit
+# sha> stamped in by the deploy workflow, so every deploy is a NEW url. A stale
+# copy is no longer unlikely, it is unreachable - nothing can hand you a file at a
+# url it has never seen - which is what makes a one-year TTL correct again rather
+# than merely cheap.
+#
+# HTML is now the one that has to stay short, because it is what carries the
+# version pointer: the HTML TTL IS the staleness window for a CSS fix. One hour
+# was too long for that job; five minutes is the whole delay between a deploy and
+# a returning visitor seeing new CSS.
+#
+# Fonts and images keep their long TTL for the original reason - they are replaced
+# under a new filename when they change.
+#
+# NOTE: this whole block is advisory if Cloudflare's Browser Cache TTL (Caching ->
+# Configuration) is set to anything other than "Respect Existing Headers"; that
+# setting REWRITES Cache-Control on the way out. It is also silently skipped
+# entirely if the host has no mod_expires - check with
+# `curl -sSI https://japandi.dev/assets/css/styles.css?v=<sha>` and look for a
+# cache-control header at all.
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/html                 "access plus 1 hour"
-  ExpiresByType text/css                  "access plus 5 minutes"
-  ExpiresByType application/javascript    "access plus 5 minutes"
+  ExpiresByType text/html                 "access plus 5 minutes"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
   ExpiresByType image/png                 "access plus 1 year"
   ExpiresByType image/webp                "access plus 1 year"
   ExpiresByType image/svg+xml             "access plus 1 year"
