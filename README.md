@@ -255,6 +255,8 @@ behind Cloudflare's proxy without modification. Recommended settings:
 | Always Use HTTPS | SSL/TLS → Edge Certificates | On |
 | Brotli | Speed → Optimization | On |
 | Auto Minify | Speed → Optimization | Off — the files are already small and minifying can break the CSP hash |
+| Web Analytics | Analytics & Logs → Web Analytics | **Off** — injects a script the CSP blocks, and contradicts the privacy page |
+| Browser Insights | Speed → Optimization | **Off** — the same script under a different name |
 
 **Full (strict) matters.** *Flexible* would make Cloudflare talk to your origin over plain HTTP
 while showing visitors a padlock, which is worse than no TLS at all. Issue the origin certificate
@@ -263,6 +265,41 @@ via cPanel AutoSSL first, then set Full (strict).
 **Do not enable Cloudflare's Auto Minify for HTML.** It rewrites inline scripts, which changes the
 bytes the CSP hash covers, and the inline snippet would then be blocked — silently disabling the
 mobile menu.
+
+**Do not enable Cloudflare Web Analytics or Browser Insights.** Both make Cloudflare append its
+own tag to every HTML response as it passes through the proxy:
+
+```html
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v…" data-cf-beacon='…'></script>
+```
+
+The origin has already sent the CSP header by the time that injection happens, and Cloudflare does
+not rewrite the header to match, so the browser blocks the script it was just handed. The console
+error is unmistakable:
+
+```
+loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v…' violates the
+following Content Security Policy directive: "script-src 'self' 'sha256-…'"
+```
+
+Nothing in this repository loads that script — if you see it, the toggle is on at the zone. Turn it
+off under **Analytics & Logs → Web Analytics** (remove the site) and **Speed → Optimization**
+(Browser Insights), then purge the cache; HTML has a one-hour edge TTL, so cached copies keep the
+injected tag until you do. Note that the rest of the site is unaffected: the hashed inline snippet
+still runs, and the mobile menu still works.
+
+Beyond the console noise, the tag is a promise broken. `privacy.html` tells visitors this site
+"includes no analytics, no advertising, no tracking", and the beacon is all three.
+
+*If you ever do decide to run Web Analytics*, two directives have to change, not one — the beacon
+also reports to `https://cloudflareinsights.com/cdn-cgi/rum`, which `connect-src 'none'` blocks:
+
+```
+script-src 'self' 'sha256-…' https://static.cloudflareinsights.com;
+connect-src https://cloudflareinsights.com;
+```
+
+Update `privacy.html` in the same change, or the page will be lying to its readers.
 
 **Headers.** `.htaccess` already sets them at the origin and Cloudflare passes them through. If you
 would rather manage them at the edge, use **Rules → Transform Rules → Modify Response Header** and
@@ -357,6 +394,10 @@ Other security properties of the build: the one outbound link carries `rel="noop
 JavaScript writes text with `textContent` and never uses `innerHTML`, so no markup is ever parsed
 from a string; there are no secrets, keys, analytics, trackers or third-party embeds; and there is
 no cookie banner because the site sets no cookies.
+
+That last point is true of what this repository ships, but it can be undone from outside it:
+Cloudflare's Web Analytics injects a tracking beacon at the edge that no file here can see. See
+**Cloudflare** above — keep it off.
 
 ## Regenerating the CSP hash
 
@@ -965,7 +1006,7 @@ and a 100 does not mean the site is accessible.
 - [ ] Enable the HTTPS / bare-domain redirect block in `.htaccess`
 - [ ] Verify the security headers on the live site (`curl -I https://japandi.dev/`)
 - [ ] Enable HSTS only after HTTPS is confirmed
-- [ ] If using Cloudflare: SSL/TLS **Full (strict)**, Auto Minify **off**, purge cache
+- [ ] If using Cloudflare: SSL/TLS **Full (strict)**, Auto Minify **off**, Web Analytics **off**, purge cache
 - [ ] Confirm `/privacy` loads, and that `/privacy.html` and `/privacy/` both 301 to it
 - [ ] Visit a nonsense URL and confirm `404.html` is served
 - [ ] Check `/robots.txt` and `/sitemap.xml` load
