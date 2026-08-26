@@ -57,8 +57,9 @@ DirectoryIndex index.html
 
 # --- Security headers -----------------------------------------------------
 <IfModule mod_headers.c>
-  # This site loads only its own CSS, JS, fonts and images, and makes no
-  # third-party or network requests, so the policy can be strict.
+  # This site loads its own CSS, JS, fonts and images, plus Cloudflare's Web
+  # Analytics beacon. Automatic injection reports to /cdn-cgi/rum on this site,
+  # so connect-src needs 'self' rather than cloudflareinsights.com.
   #
   # The single sha256 below authorises the one inline <script> in the <head> of
   # every page. It is the hash of that block's exact contents. If you edit those
@@ -70,12 +71,7 @@ DirectoryIndex index.html
   # data: is permitted for images only, because SVG placeholders may be inlined
   # by an editor later; remove it if you never do that.
   #
-  # If the console reports a violation for beacon.min.js from
-  # static.cloudflareinsights.com, nothing here changed: Cloudflare Web Analytics
-  # or Browser Insights is on for the zone and injects that tag at the edge, after
-  # this header has already been sent. Turn it off in the dashboard rather than
-  # widening the policy. See README, "Cloudflare".
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8=' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
 
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

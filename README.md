@@ -6,9 +6,10 @@ Japandi Dev is an **anonymous personal developer identity** — a place to share
 experiments and ideas made through code. It is not a company, an organization, an agency, a team or
 a studio, and the site is written in the first person throughout.
 
-It is a static site: semantic HTML5, one stylesheet, one small vanilla-JavaScript file. No
-framework, no build step, no server-side runtime, no database, and **zero third-party requests at
-runtime**. Deploying it means copying files into a document root.
+It is a static site: semantic HTML5, one stylesheet, and one small vanilla-JavaScript file. There is
+no framework, build step, server-side runtime, or database. Cloudflare injects one Web Analytics
+beacon at the edge; all application assets remain self-hosted. Deploying the site means copying
+files into a document root.
 
 The first featured project is **Squirio**, a personal finance tracker
 ("Track your money, not your stress"), which links out to <https://squirio.japandi.dev>.
@@ -259,8 +260,8 @@ behind Cloudflare's proxy without modification. Recommended settings:
 | Always Use HTTPS | SSL/TLS → Edge Certificates | On |
 | Brotli | Speed → Optimization | On |
 | Auto Minify | Speed → Optimization | Off — the files are already small and minifying can break the CSP hash |
-| Web Analytics | Analytics & Logs → Web Analytics | **Off** — injects a script the CSP blocks, and contradicts the privacy page |
-| Browser Insights | Speed → Optimization | **Off** — the same script under a different name |
+| Web Analytics | Analytics & Logs → Web Analytics | **On** — automatic injection; CSP and privacy policy are configured for it |
+| Browser Insights | Speed → Optimization | **Off** — use Web Analytics as the single RUM configuration |
 
 **Full (strict) matters.** *Flexible* would make Cloudflare talk to your origin over plain HTTP
 while showing visitors a padlock, which is worse than no TLS at all. Issue the origin certificate
@@ -270,40 +271,24 @@ via cPanel AutoSSL first, then set Full (strict).
 bytes the CSP hash covers, and the inline snippet would then be blocked — silently disabling the
 mobile menu.
 
-**Do not enable Cloudflare Web Analytics or Browser Insights.** Both make Cloudflare append its
-own tag to every HTML response as it passes through the proxy:
+**Cloudflare Web Analytics is enabled intentionally.** With automatic injection, Cloudflare appends
+its beacon tag to HTML responses at the proxy:
 
 ```html
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v…" data-cf-beacon='…'></script>
 ```
 
-The origin has already sent the CSP header by the time that injection happens, and Cloudflare does
-not rewrite the header to match, so the browser blocks the script it was just handed. The console
-error is unmistakable:
-
-```
-loading the script 'https://static.cloudflareinsights.com/beacon.min.js/v…' violates the
-following Content Security Policy directive: "script-src 'self' 'sha256-…'"
-```
-
-Nothing in this repository loads that script — if you see it, the toggle is on at the zone. Turn it
-off under **Analytics & Logs → Web Analytics** (remove the site) and **Speed → Optimization**
-(Browser Insights), then purge the cache; HTML has a one-hour edge TTL, so cached copies keep the
-injected tag until you do. Note that the rest of the site is unaffected: the hashed inline snippet
-still runs, and the mobile menu still works.
-
-Beyond the console noise, the tag is a promise broken. `privacy.html` tells visitors this site
-"includes no analytics, no advertising, no tracking", and the beacon is all three.
-
-*If you ever do decide to run Web Analytics*, two directives have to change, not one — the beacon
-also reports to `https://cloudflareinsights.com/cdn-cgi/rum`, which `connect-src 'none'` blocks:
+The CSP permits only Cloudflare's script origin in addition to local scripts. Because this zone is
+proxied and uses automatic injection, the beacon reports to `https://japandi.dev/cdn-cgi/rum` and
+`connect-src 'self'` permits that same-origin request:
 
 ```
 script-src 'self' 'sha256-…' https://static.cloudflareinsights.com;
-connect-src https://cloudflareinsights.com;
+connect-src 'self';
 ```
 
-Update `privacy.html` in the same change, or the page will be lying to its readers.
+The privacy policy discloses the analytics metrics and Cloudflare processing. If Web Analytics is
+disabled later, tighten these two CSP directives and update the policy in the same change.
 
 **Headers.** `.htaccess` already sets them at the origin and Cloudflare passes them through. If you
 would rather manage them at the edge, use **Rules → Transform Rules → Modify Response Header** and
@@ -370,12 +355,12 @@ Consequences worth knowing:
 
 ## Security headers
 
-Set in `.htaccess` and **verified working** — the site was served locally with these exact headers
-and the browser console reported zero violations, with fonts, styles and both scripts all loading.
+Set in `.htaccess`. Local assets remain self-hosted; the only allowed third-party script origin is
+Cloudflare's Web Analytics beacon.
 
 | Header | Value | Why |
 |---|---|---|
-| `Content-Security-Policy` | see below | The site loads only its own assets |
+| `Content-Security-Policy` | see below | Restricts assets and permits the Cloudflare analytics beacon |
 | `X-Content-Type-Options` | `nosniff` | Stops MIME-type guessing |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` | Limits what leaks in the Referer header |
 | `Cross-Origin-Opener-Policy` | `same-origin` | Isolates the browsing context |
@@ -385,8 +370,9 @@ and the browser console reported zero violations, with fonts, styles and both sc
 The policy:
 
 ```
-default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8=';
-style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none';
+default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8='
+https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self';
+connect-src 'self'; base-uri 'none';
 form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
 ```
 
@@ -394,14 +380,10 @@ form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-
 withdrawn quickly; enabling it while HTTPS is misconfigured makes the site unreachable for a year.
 Turn it on after `https://japandi.dev` is confirmed working.
 
-Other security properties of the build: the one outbound link carries `rel="noopener noreferrer"`;
-JavaScript writes text with `textContent` and never uses `innerHTML`, so no markup is ever parsed
-from a string; there are no secrets, keys, analytics, trackers or third-party embeds; and there is
-no cookie banner because the site sets no cookies.
-
-That last point is true of what this repository ships, but it can be undone from outside it:
-Cloudflare's Web Analytics injects a tracking beacon at the edge that no file here can see. See
-**Cloudflare** above — keep it off.
+Other security properties of the build: outbound third-party links carry
+`rel="noopener noreferrer"`; local JavaScript writes text with `textContent` and never uses
+`innerHTML`; there are no secrets, advertising trackers, or third-party embeds; and Cloudflare Web
+Analytics does not require a cookie banner because it is configured without analytics cookies.
 
 ## Regenerating the CSP hash
 
@@ -755,7 +737,7 @@ Two carry constraints worth respecting:
 
 ### Typography
 
-Two self-hosted variable fonts, latin subset, so the site makes **zero third-party requests**:
+Two self-hosted variable fonts, latin subset, so typography makes **no third-party requests**:
 **Fraunces** for display, **Karla** for body. Both preloaded, `font-display: swap`. Type scales with
 `clamp()`, which is what lets the layout survive 320 px reflow and 200% zoom without extra
 breakpoints.
@@ -918,9 +900,9 @@ Target: **WCAG 2.2 Level AA**.
 - [x] No personal email — brand address only
 - [x] No `Person` or `Organization` structured data
 - [x] No `author` meta tag
-- [x] No analytics, trackers, pixels, session recording or fingerprinting
-- [x] No third-party embeds; zero external requests at runtime
-- [x] No cookie banner, because no cookies are set
+- [x] Cloudflare Web Analytics disclosed; no advertising, session recording or fingerprinting
+- [x] No third-party embeds; the only external script is Cloudflare's analytics beacon
+- [x] No analytics cookies; Cloudflare security may set a strictly necessary cookie
 - [x] C2PA/EXIF metadata stripped from the master logo; derivatives carry none
 - [x] No personal information in code comments, filenames or JSON-LD
 - [x] No local filesystem paths anywhere in the deliverable
@@ -996,7 +978,7 @@ and a 100 does not mean the site is accessible.
 - [ ] Enable the HTTPS / bare-domain redirect block in `.htaccess`
 - [ ] Verify the security headers on the live site (`curl -I https://japandi.dev/`)
 - [ ] Enable HSTS only after HTTPS is confirmed
-- [ ] If using Cloudflare: SSL/TLS **Full (strict)**, Auto Minify **off**, Web Analytics **off**, purge cache
+- [ ] If using Cloudflare: SSL/TLS **Full (strict)**, Auto Minify **off**, Web Analytics **on**, purge cache
 - [ ] Confirm `/privacy` loads, and that `/privacy.html` and `/privacy/` both 301 to it
 - [ ] Visit a nonsense URL and confirm `404.html` is served
 - [ ] Check `/robots.txt` and `/sitemap.xml` load
