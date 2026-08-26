@@ -101,7 +101,8 @@ japandi-dev/
         ├── japandi-dev-logo-96.png         Display derivative (1x)
         ├── japandi-dev-logo-transparent-192.webp  Optimized display logo (2x)
         ├── japandi-dev-logo-transparent-96.webp   Optimized display logo (1x)
-        ├── favicon-32.png
+        ├── favicon-header-192.webp          Header-style circular favicon (2x)
+        ├── favicon-header-96.webp           Header-style circular favicon (1x)
         ├── apple-touch-icon.png            180 × 180
         ├── og-image.png                    1200 × 630 social share card
         ├── og-image-placeholder.svg        Editable layout template for the above
