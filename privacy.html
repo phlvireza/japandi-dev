@@ -71,11 +71,11 @@
     <a class="brand" href="/">
       <span class="brand-mark">
         <!-- alt="" is deliberate: the adjacent "Japandi Dev" text already names this link.
-             The TRANSPARENT variant, matching index.html: in dark mode styles.css gives the
-             header mark a cream tile, and the opaque PNG carries that same cream baked into
-             its pixels - the two together read as a square inside a square. -->
-        <img src="assets/images/japandi-dev-logo-transparent.png"
-             width="44" height="44" alt="" decoding="async">
+             The optimized transparent variant keeps the mark circular; dark mode adds a
+             circular cream backing so the green artwork remains visible. -->
+        <img src="assets/images/japandi-dev-logo-transparent-96.webp"
+             srcset="assets/images/japandi-dev-logo-transparent-96.webp 1x, assets/images/japandi-dev-logo-transparent-192.webp 2x"
+             width="44" height="44" alt="" decoding="sync" fetchpriority="high">
       </span>
       <span class="brand__name">Japandi Dev</span>
     </a>
@@ -106,42 +106,64 @@
         <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Privacy</p>
         <h1 class="page__title">Privacy Policy</h1>
 
-        <div class="notice">
-          <p><strong class="notice__label">Placeholder — not the final policy</strong>
-          This page is a working placeholder. It must be reviewed, completed, and updated to reflect
-          actual practice before this site launches, and checked against the requirements that apply
-          to it and to the people who use it.</p>
-        </div>
+        <p class="page__meta"><strong>Last updated:</strong> 26 August 2026</p>
+        <p>This policy explains how Japandi Dev handles information when you visit
+        japandi.dev or contact Japandi Dev by email.</p>
 
-        <p>This page explains how japandi.dev handles information about the people who visit it.</p>
+        <h2>Information collected when you visit</h2>
+        <p>Japandi Dev is a static website. It has no user accounts, contact forms,
+        advertising, third-party embeds, or tracking scripts. Japandi Dev does not use
+        analytics and does not create a visitor profile.</p>
+        <p>The site is delivered through Cloudflare and hosted by Biznet Gio. To deliver
+        and protect the site, these providers may process standard technical request data,
+        including your IP address, request date and time, requested page, referrer, browser
+        or device information, and security-related events. Japandi Dev uses this processing
+        only to operate, secure, and troubleshoot the website.</p>
 
-        <h2>Information collected on this site</h2>
-        <p>This site is a set of static pages. It includes no analytics, no advertising, no tracking
-        scripts, no embedded third-party content, and no contact form, and it sets no cookies. It
-        makes no requests to any other domain. No account is created, and nothing is submitted
-        through these pages.</p>
+        <h2>Cookies and browser storage</h2>
+        <p>The pages on japandi.dev do not set cookies or store information in your browser.
+        Cloudflare may set a strictly necessary cookie if one of its security features is
+        triggered. Japandi Dev does not use that cookie for advertising or cross-site tracking.</p>
 
-        <h2>Contacting me by email</h2>
-        <p>The contact links on this site open your own email application. If you choose to write,
-        your message and your email address reach me the way any ordinary email does, and I use them
-        only to reply to you.</p>
+        <h2>Information you send by email</h2>
+        <p>Email links on this site open your own email application. If you contact Japandi
+        Dev, the information you choose to include—such as your email address, name, and message—is
+        used to respond to you, manage the conversation, and address any related security or legal
+        issue. Please do not send sensitive personal information that is not needed for your request.</p>
 
-        <h2>Web server logs</h2>
-        <p>Like most websites, the hosting provider and any content delivery network serving these
-        pages may record standard request information such as IP address, timestamp, requested URL,
-        and browser user-agent string. This section must be confirmed against those providers' own
-        documentation and retention practices before launch.</p>
+        <h2>How information is shared</h2>
+        <p>Japandi Dev does not sell personal information. Information is shared only as needed with:</p>
+        <ul>
+          <li><a href="https://www.cloudflare.com/policies/privacy/" rel="noopener noreferrer">Cloudflare</a>, which delivers and protects the site;</li>
+          <li><a href="https://www.biznetgio.com/en/legal" rel="noopener noreferrer">Biznet Gio</a>, which hosts the site;</li>
+          <li>the email service providers involved when you choose to send an email; and</li>
+          <li>authorities or other parties when reasonably necessary to comply with law, protect rights and safety, or investigate abuse.</li>
+        </ul>
+        <p>Cloudflare operates a global network, so technical request data may be processed outside
+        your country. Each service provider handles information under its own privacy terms.</p>
 
-        <h2>My projects</h2>
-        <p>Applications published under Japandi Dev, including Squirio, are covered by their own
-        privacy policies rather than this one. Each project's policy will be published alongside it.</p>
+        <h2>Retention</h2>
+        <p>Japandi Dev does not maintain its own analytics or visitor-log database. Cloudflare and
+        Biznet Gio retain technical data according to their own service settings and policies.
+        Email correspondence is kept only for as long as it is reasonably needed for the conversation,
+        security, record-keeping, or legal obligations, and is then deleted when no longer needed.</p>
+
+        <h2>Your choices and requests</h2>
+        <p>You may ask whether Japandi Dev holds personal information from an email conversation,
+        and request access, correction, or deletion. A request may be limited where retaining
+        information is necessary for security, record-keeping, or a legal obligation. You can also
+        contact Cloudflare or Biznet Gio directly about information they process under their policies.</p>
+
+        <h2>Other Japandi Dev projects</h2>
+        <p>This policy covers japandi.dev only. Applications published by Japandi Dev, including
+        Squirio, have separate privacy policies describing their own data practices.</p>
 
         <h2>Changes to this policy</h2>
-        <p>If this policy changes, the revised version will be published on this page.</p>
+        <p>If this policy changes, the updated policy and its new revision date will be published
+        on this page.</p>
 
-        <h2>Questions</h2>
-        <!-- PLACEHOLDER — brand email. Replace hello@japandi.dev everywhere. See README. -->
-        <p>Questions about this policy can be sent to
+        <h2>Contact</h2>
+        <p>For privacy questions or requests, email
         <a href="mailto:hello@japandi.dev">hello@japandi.dev</a>.</p>
 
         <p class="page__back"><a href="/">Return to the Japandi Dev home page</a></p>
@@ -157,9 +179,9 @@
 
       <div class="site-footer__brand">
         <a class="brand" href="/">
-          <span class="brand-mark brand-mark--sm">
-            <img src="assets/images/japandi-dev-logo-96.png"
-                 srcset="assets/images/japandi-dev-logo-96.png 1x, assets/images/japandi-dev-logo-192.png 2x"
+          <span class="brand-mark">
+            <img src="assets/images/japandi-dev-logo-transparent-96.webp"
+                 srcset="assets/images/japandi-dev-logo-transparent-96.webp 1x, assets/images/japandi-dev-logo-transparent-192.webp 2x"
                  width="36" height="36" alt="" loading="lazy" decoding="async">
           </span>
           <span class="brand__name">Japandi Dev</span>

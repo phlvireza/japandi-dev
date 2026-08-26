@@ -80,7 +80,7 @@ grep -rniE "your-name|your-initials|@gmail|@yahoo|linkedin|instagram|facebook|wh
 ```text
 japandi-dev/
 ├── index.html                              Single-page personal site
-├── privacy.html                            Privacy policy (placeholder text)
+├── privacy.html                            Privacy policy
 ├── 404.html                                Custom error page (root-relative paths)
 ├── robots.txt
 ├── sitemap.xml
@@ -98,10 +98,14 @@ japandi-dev/
         ├── japandi-dev-logo.png            MASTER — the supplied logo, metadata stripped
         ├── japandi-dev-logo-192.png        Display/icon derivative (2x)
         ├── japandi-dev-logo-96.png         Display derivative (1x)
+        ├── japandi-dev-logo-transparent-192.webp  Optimized display logo (2x)
+        ├── japandi-dev-logo-transparent-96.webp   Optimized display logo (1x)
         ├── favicon-32.png
         ├── apple-touch-icon.png            180 × 180
         ├── og-image.png                    1200 × 630 social share card
         ├── og-image-placeholder.svg        Editable layout template for the above
+        ├── squirio-app-icon-128.webp        Optimized app icon
+        ├── squirio-home-preview.webp        Optimized product screenshot
         ├── squirio-icon-placeholder.svg    PLACEHOLDER
         └── squirio-screenshot-placeholder.svg  PLACEHOLDER
 ```
@@ -439,12 +443,10 @@ recoloured, masked or filtered anywhere on the site.
 | Brand green | `#4C6956` |
 | Mark size | 976 × 1010 — about 78% of the canvas |
 
-**The logo has no transparency.** That single fact drives the header, footer and share-card design.
-Because it cannot sit invisibly on an arbitrary background, it is always rendered inside a
-`.brand-mark` tile filled with its own `#F3E8D1`. The rounded corner is on **the tile**; the image
-keeps its own square corners, and the tile's padding is sized so those corners stay inside the
-rounded silhouette. Nothing is clipped. Do not add `border-radius`, `clip-path` or
-`overflow: hidden` to the `<img>` itself.
+The master logo has no transparency. Header and footer display use transparent 96 px and 192 px
+WebP derivatives so the visible badge stays circular and a 44 px logo does not download the
+1.4 MB master. The favicon, touch icon, and social card remain PNG because those formats are the
+most interoperable for their respective uses.
 
 ### Metadata that was removed
 
@@ -467,8 +469,9 @@ mean altering the logo's pixels, which the brief forbids. If that matters to you
 obtain a logo from a source that does not watermark — ideally a vector original, which would also
 let you drop the tile background entirely.
 
-The generated derivatives (96, 192, 180 and 32 px, and the OG image) were produced by re-encoding
-and carry no metadata beyond `sRGB`, `gAMA` and `pHYs` colour/density chunks. Verify at any time:
+The generated PNG derivatives (96, 192, 180 and 32 px, and the OG image) were produced by
+re-encoding and carry no metadata beyond `sRGB`, `gAMA` and `pHYs` colour/density chunks. The WebP
+display derivatives carry no EXIF or XMP metadata. Verify the PNG files at any time:
 
 ```bash
 python - <<'PY'
@@ -487,8 +490,8 @@ PY
 ### Replacing the logo
 
 1. Overwrite `assets/images/japandi-dev-logo.png`.
-2. Regenerate the derivatives at 96, 192, 180 and 32 px, keeping the same filenames. Scale the
-   **whole canvas** uniformly — never crop.
+2. Regenerate the PNG derivatives at 96, 192, 180 and 32 px and the transparent WebP display
+   derivatives at 96 and 192 px, keeping the same filenames. Scale uniformly.
 3. If the new background colour differs, update `--logo-field` in `assets/css/styles.css` to match
    exactly, or set it to `transparent` if the new file has an alpha channel.
 4. Strip metadata from whatever you add, and regenerate `og-image.png`.
@@ -504,32 +507,21 @@ reader announce the name twice. If you ever use the logo as a link *without* adj
 
 ## Squirio artwork
 
-Two files are placeholders, visibly marked as such (dashed terracotta borders, and the words
-"Screenshot placeholder" on the larger one) so they cannot be mistaken for final artwork.
-
-**App icon** — replace `assets/images/squirio-icon-placeholder.svg`, referenced once in `index.html`:
+The project card uses optimized WebP derivatives of the supplied app icon and home screenshot:
 
 ```html
-<img class="product__icon" src="assets/images/squirio-icon-placeholder.svg"
+<img class="product__icon" src="assets/images/squirio-app-icon-128.webp"
      width="64" height="64" alt="" decoding="async">
 ```
 
-Rename to `squirio-icon.png` (or `.svg`) and update the `src`. Keep `width="64" height="64"` so the
-layout cannot shift. `alt=""` is correct — the heading "Squirio" beside it already names it.
+The original PNG files remain available as source assets. Keep the explicit dimensions when
+replacing either WebP so the layout cannot shift. The icon's `alt=""` is correct because the
+adjacent heading already names Squirio; the screenshot keeps descriptive alternative text.
 
-**Screenshot** — replace `assets/images/squirio-screenshot-placeholder.svg`:
-
-```html
-<img src="assets/images/squirio-screenshot-placeholder.svg"
-     width="440" height="560" loading="lazy" decoding="async"
-     alt="Placeholder image standing in for a screenshot of the Squirio app.">
-```
-
-Set `width` and `height` to the real pixel dimensions — they must match the file's true aspect ratio
-or the image distorts. Keep `loading="lazy"`. Write a real `alt` describing what the screen shows,
-for example *"The Squirio dashboard, showing a monthly balance and spending by category."*
-**Check screenshots for identifying content** before publishing — real account numbers, names or
-locations in a demo screen would undo the anonymity everywhere else.
+When replacing the screenshot, keep `loading="lazy"`, use its true pixel dimensions, and write
+alternative text that describes what the screen shows. Check screenshots for identifying content
+before publishing; real account numbers, names, or locations in a demo screen would undo the
+anonymity everywhere else.
 
 ---
 
@@ -998,8 +990,6 @@ and a 100 does not mean the site is accessible.
 ## Pre-launch checklist
 
 - [ ] Create `hello@japandi.dev`, or replace it everywhere
-- [ ] Replace the Squirio icon and screenshot placeholders
-- [ ] Write the real privacy policy and delete the placeholder notice
 - [ ] Decide on the waitlist provider and swap in a real link
 - [ ] Confirm `.htaccess` uploaded (show hidden files in File Manager)
 - [ ] Run AutoSSL and confirm `https://japandi.dev` loads
@@ -1030,10 +1020,7 @@ them all.
 | 1 | Brand email | `hello@japandi.dev` | all three pages |
 | 2 | Waitlist destination | disabled button + explanatory note | `index.html` |
 | 3 | Brand GitHub | omitted entirely | — |
-| 4 | Squirio app icon | `squirio-icon-placeholder.svg` | `index.html` |
-| 5 | Squirio screenshot | `squirio-screenshot-placeholder.svg` | `index.html` |
-| 6 | Privacy policy text | marked placeholder, needs review | `privacy.html` |
-| 7 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
+| 4 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
 
 Not placeholders, but worth checking before launch: `https://squirio.japandi.dev` does not resolve
 yet, and the technology list in the About section should say what you actually build with.

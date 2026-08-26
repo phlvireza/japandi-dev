@@ -268,9 +268,7 @@ a { color: inherit; }
 /* ----------------------------------------------------------- 5. COMPONENTS */
 
 /* -- Brand ---------------------------------------------------------------- */
-/* The logo PNG is opaque, so it always sits on a tile filled with its own
-   background colour. The radius is on the tile; the image itself is never
-   cropped, masked, recoloured or distorted. */
+/* The transparent display logo keeps the brand mark circular on every surface. */
 
 .brand {
   display: inline-flex;
@@ -283,20 +281,20 @@ a { color: inherit; }
   letter-spacing: -0.01em;
   color: var(--ink);
 }
-/* The image keeps its own square corners — no radius, no mask, nothing clipped.
-   The tile's padding is large enough that those corners stay inside the rounded
-   silhouette, so only the tile appears rounded. */
 .brand-mark {
   display: block;
-  padding: 5px;
-  background: var(--logo-field);
-  border-radius: var(--radius-md);
+  border-radius: 50%;
+  overflow: hidden;
 }
-.brand-mark--sm { border-radius: var(--radius-sm); }
+.brand-mark img { border-radius: inherit; }
 
 .site-header .brand-mark {
   background: transparent;
-  border-radius: 0;
+}
+
+.site-footer .brand-mark {
+  padding: 3px;
+  background: var(--logo-field);
 }
 
 /* -- Buttons -------------------------------------------------------------- */
@@ -750,30 +748,19 @@ a { color: inherit; }
   margin-bottom: var(--space-xs);
 }
 .page__inner p { margin-top: var(--space-sm); color: var(--ink-soft); }
+.page__meta { font-size: var(--step-small); }
+.page__inner ul {
+  margin-top: var(--space-sm);
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+  color: var(--ink-soft);
+}
+.page__inner li + li { margin-top: var(--space-xs); }
 .page__back { margin-top: var(--space-xl); }
 /* :not(.button) matters — without it this descendant selector outranks .button--primary
    and repaints the button label in ink, dropping it to 2.38:1 on the green fill. */
 .page__inner a:not(.button) { color: var(--ink); text-underline-offset: 4px; }
 .page__inner a:not(.button):hover { color: var(--pine); }
-
-/* A visibly-marked placeholder so draft policy text can never be mistaken for final copy. */
-.notice {
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md);
-  background: var(--surface);
-  border: 1px dashed var(--terracotta);
-  border-radius: var(--radius-md);
-}
-.notice p { color: var(--ink); margin-top: 0; }
-.notice__label {
-  display: block;
-  margin-bottom: var(--space-2xs);
-  font-size: var(--step-eyebrow);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--terracotta-ink);
-}
 
 .page--center { text-align: center; }
 .page--center .page__inner { margin-inline: auto; }
@@ -901,7 +888,7 @@ a { color: inherit; }
    the rules they override — same specificity, later wins. */
 
 @media (prefers-color-scheme: dark) {
-  /* The header uses the transparent logo PNG, so section 5 strips the tile and
+  /* The header uses the transparent logo WebP, so section 5 strips the tile and
      lets the page show through. On a dark ground that fails: about 70% of the
      mark's opaque pixels are the logo's own dark pine (#436552), which measures
      2.72:1 there — the artwork reads as half erased. Give the header back the
@@ -909,8 +896,8 @@ a { color: inherit; }
      is still never cropped, recoloured, masked or filtered; only what sits
      behind it changes. */
   .site-header .brand-mark {
+    padding: 3px;
     background: var(--logo-field);
-    border-radius: var(--radius-md);
   }
 
   /* The Squirio screenshot and icon keep their own pixels — dimming a product
