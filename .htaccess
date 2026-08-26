@@ -69,6 +69,12 @@ DirectoryIndex index.html
   #
   # data: is permitted for images only, because SVG placeholders may be inlined
   # by an editor later; remove it if you never do that.
+  #
+  # If the console reports a violation for beacon.min.js from
+  # static.cloudflareinsights.com, nothing here changed: Cloudflare Web Analytics
+  # or Browser Insights is on for the zone and injects that tag at the edge, after
+  # this header has already been sent. Turn it off in the dashboard rather than
+  # widening the policy. See README, "Cloudflare".
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
 
   Header always set X-Content-Type-Options "nosniff"
