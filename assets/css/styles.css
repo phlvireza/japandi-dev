@@ -318,10 +318,22 @@ a { color: inherit; }
 }
 
 .button--primary { background: var(--pine); color: var(--pine-contrast); }
-.button--primary:hover { background: var(--pine-deep); }
+/* Every :hover rule in this file is gated behind (hover: hover).
+
+   A touchscreen has no hover, but it fakes one: Chrome and Safari on a phone latch
+   :hover onto whatever you last tapped and hold it until you tap somewhere else.
+   That is not a flicker - it is seconds. On this palette it is also highly visible,
+   because --pine-deep INVERTS in dark mode: it is a darker green in light mode but a
+   LIGHTER one (#A8C6B1) in dark, so a tapped .button--primary does not settle down,
+   it goes pale and stays pale. The full-width nav CTA is the worst case: tap the menu
+   and a 350px bar in the navbar turns near-white until the next tap.
+
+   The query is per-rule rather than one block around the file so each hover style
+   stays next to the rule it modifies. */
+@media (hover: hover) { .button--primary:hover { background: var(--pine-deep); } }
 
 .button--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-.button--ghost:hover { border-color: var(--pine); color: var(--pine); }
+@media (hover: hover) { .button--ghost:hover { border-color: var(--pine); color: var(--pine); } }
 
 .button:disabled {
   color: var(--ink-soft);
@@ -421,7 +433,7 @@ a { color: inherit; }
   color: var(--ink);
   transition: color var(--transition);
 }
-.site-nav__list a:hover { color: var(--pine); }
+@media (hover: hover) { .site-nav__list a:hover { color: var(--pine); } }
 
 .site-nav__list a[aria-current] {
   color: var(--pine);
@@ -540,7 +552,7 @@ a { color: inherit; }
   background: var(--product-accent);
   color: var(--product-accent-contrast);
 }
-.product .button--primary:hover { background: var(--product-accent-deep); }
+@media (hover: hover) { .product .button--primary:hover { background: var(--product-accent-deep); } }
 /* .button:disabled is defined earlier in the file, so this scoped rule would
    otherwise win on later-wins and keep a disabled button looking clickable. */
 .product .button--primary:disabled {
@@ -553,9 +565,11 @@ a { color: inherit; }
   border-color: var(--product-line);
   color: var(--product-accent-dark);
 }
-.product .button--ghost:hover {
-  border-color: var(--product-accent);
-  color: var(--product-accent-dark);
+@media (hover: hover) {
+  .product .button--ghost:hover {
+    border-color: var(--product-accent);
+    color: var(--product-accent-dark);
+  }
 }
 .product .button--ghost:disabled {
   background: transparent;
@@ -682,7 +696,7 @@ a { color: inherit; }
   text-decoration-color: var(--line);
   text-underline-offset: 4px;
 }
-.contact__links a:hover { color: var(--pine); text-decoration-color: currentColor; }
+@media (hover: hover) { .contact__links a:hover { color: var(--pine); text-decoration-color: currentColor; } }
 
 /* -- Footer --------------------------------------------------------------- */
 
@@ -724,7 +738,7 @@ a { color: inherit; }
   text-decoration: none;
   color: var(--footer-ink);
 }
-.site-footer__nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (hover: hover) { .site-footer__nav a:hover { text-decoration: underline; text-underline-offset: 4px; } }
 .site-footer :focus-visible { outline-color: var(--footer-ink); }
 
 .site-footer__bottom {
@@ -760,7 +774,7 @@ a { color: inherit; }
 /* :not(.button) matters — without it this descendant selector outranks .button--primary
    and repaints the button label in ink, dropping it to 2.38:1 on the green fill. */
 .page__inner a:not(.button) { color: var(--ink); text-underline-offset: 4px; }
-.page__inner a:not(.button):hover { color: var(--pine); }
+@media (hover: hover) { .page__inner a:not(.button):hover { color: var(--pine); } }
 
 .page--center { text-align: center; }
 .page--center .page__inner { margin-inline: auto; }
