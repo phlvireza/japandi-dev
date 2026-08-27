@@ -415,7 +415,7 @@
 /* --------------------------------------------------------------------------
    Bottom nav with the center notch + docked FAB.
    The app hand-paints a hairline that follows the notch (_NotchedTopBorderPainter);
-   the SVG below reproduces exactly that edge.
+   the two masked layers below reproduce exactly that edge.
    -------------------------------------------------------------------------- */
 .ph-nav {
   position: relative;
@@ -424,14 +424,33 @@
   margin-top: 4px;
 }
 
-.ph-nav__shape {
+/* The bar is painted with CSS backgrounds rather than an SVG <path> fill on
+   purpose. Browsers that force-darken a light page -- Chrome Android's Auto
+   Dark Theme, Samsung Internet's dark mode -- invert backgrounds and text but
+   leave SVG fills alone, which left this one bar bright white on an otherwise
+   dark mockup. Two masked layers stand in for the old fill-plus-stroke pair:
+   the border colour across the whole shape, then the surface inset 1px, so the
+   layer below survives as the hairline and as the arc around the notch. */
+.ph-nav__surface {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background: var(--border);
+  --ph-notch: radial-gradient(circle 30px at 50% 0, rgba(0, 0, 0, 0) 0 29.5px, #000 30.5px);
+  -webkit-mask-image: var(--ph-notch);
+          mask-image: var(--ph-notch);
 }
-.ph-nav__fill { fill: var(--surface); }
-.ph-nav__edge { fill: none; stroke: var(--border); stroke-width: 1; }
+
+/* Inset 1px, and the notch centre with it, so the hairline is even all the way
+   round instead of thinning out across the arc. */
+.ph-nav__surface::after {
+  content: "";
+  position: absolute;
+  inset: 1px 0 0;
+  background: var(--surface);
+  --ph-notch: radial-gradient(circle 30px at 50% -1px, rgba(0, 0, 0, 0) 0 29.5px, #000 30.5px);
+  -webkit-mask-image: var(--ph-notch);
+          mask-image: var(--ph-notch);
+}
 
 .ph-nav__items {
   position: absolute;
@@ -830,6 +849,18 @@
   flex: none;
 }
 .legend__pct { margin-left: auto; color: var(--text-2-strong); }
+
+/* On a phone the fixed 168px chart plus a 150px legend wants 338px inside a
+   card that offers 308px, so the legend used to wrap under the donut and the
+   pairing of slice to label was lost. Scaling the chart with the card keeps the
+   two side by side all the way down to a 320px viewport. */
+@media (max-width: 560px) {
+  .donut { gap: var(--s-md); flex-wrap: nowrap; }
+  .donut__svg { width: clamp(96px, 38%, 168px); height: auto; aspect-ratio: 1; }
+  .legend { min-width: 0; flex: 1 1 auto; }
+  .legend li { font-size: 0.75rem; gap: var(--s-xs); }
+  .legend__pct { padding-left: var(--s-xs); }
+}
 
 /* Heatmap. Cell alpha ramps 0.15 -> 0.70 over the expense color, exactly as
    the app's spending-intensity calendar does. */
