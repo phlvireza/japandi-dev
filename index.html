@@ -54,6 +54,7 @@
     if (!root.dataset.enhanced) root.classList.remove('js');
   });
 </script>
+<script src="assets/js/shell.js" defer></script>
 <script src="assets/js/script.js" defer></script>
 
 <script type="application/ld+json">
@@ -206,43 +207,35 @@
         To add another project later, copy this <article> block and update the text, the icon path
         and the links. No CSS or JavaScript changes are needed. See README, "Adding a project".
       -->
-      <article class="product" aria-labelledby="squirio-name" data-reveal>
+      <article class="product product--compact" aria-labelledby="squirio-name" data-reveal>
+        <div class="product__preview product__preview--mark" aria-hidden="true">
+          <img src="assets/images/squirio-app-icon-512.webp"
+               width="512" height="512" loading="lazy" decoding="async" alt="">
+        </div>
         <div class="product__body">
 
           <div class="product__heading">
-            <img class="product__icon" src="assets/images/squirio-app-icon-128.webp"
-                 width="64" height="64" alt="" decoding="async">
             <div>
               <h3 class="product__name" id="squirio-name">Squirio</h3>
-              <p class="product__category">Personal Finance</p>
+              <p class="product__category">Personal Finance · Android</p>
             </div>
             <!-- Status is carried by the dot AND the words, never by colour alone. -->
-            <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Coming Soon</p>
+            <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Coming October 2026</p>
           </div>
 
           <p class="product__tagline">Track your money, not your stress.</p>
-          <p class="product__description">A simple personal finance tracker created to help people understand their money without adding more stress.</p>
+          <p class="product__description">A simple, private finance tracker designed to make everyday money feel clearer.</p>
+          <a class="product__link" href="projects/squirio/">View project <span aria-hidden="true">&rarr;</span></a>
 
           <div class="button-row">
-            <!--
-              PLACEHOLDER - Squirio site.
-              squirio.japandi.dev does not resolve yet, so this is an inert control rather than a
-              link to a dead host. Once the site is up, swap this button back for:
-                <a class="button button--primary" href="https://squirio.japandi.dev" rel="noopener noreferrer">Discover Squirio</a>
-              and delete the aria-describedby attribute and the note paragraph below.
-            -->
-            <button class="button button--primary" type="button" disabled aria-describedby="squirio-note">Discover Squirio</button>
-            <!--
-              PLACEHOLDER — waitlist.
-              No waitlist provider exists yet, so this is a genuinely inert control rather than a
-              link pointing nowhere. Once you have a provider, swap the button element below for an
-              anchor carrying the same two classes and pointing at your waitlist URL, then delete the
-              aria-describedby attribute and the note paragraph. See README, "Opening the waitlist".
-            -->
-            <button class="button button--ghost" type="button" disabled aria-describedby="waitlist-note">Join the Waitlist</button>
+            <a class="button button--primary" href="projects/squirio/">Discover Squirio</a>
           </div>
-          <p class="product__note" id="squirio-note">The Squirio site is not live yet.</p>
-          <p class="product__note" id="waitlist-note">The waitlist is not open yet. It opens closer to launch.</p>
+          <!-- No signup control: there is no waitlist, and an app that has not shipped is
+               better served by naming the platform and the month. Both of those are carried
+               by the pill and the category above, which is what the compact card actually
+               shows -- .product--compact hides .button-row and .product__note (styles.css),
+               so this line is here for the full-width variant a future project may use. -->
+          <p class="product__note">Launching exclusively on Android in October 2026.</p>
 
         </div>
 
