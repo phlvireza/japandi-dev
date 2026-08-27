@@ -486,10 +486,7 @@
 
           <!-- Notched bottom bar with the docked FAB. -->
           <div class="ph-nav">
-            <svg class="ph-nav__shape" viewBox="0 0 284 58" aria-hidden="true">
-              <path class="ph-nav__fill" d="M0 .5 H112 A30 30 0 0 0 172 .5 H284 V58 H0 Z"/>
-              <path class="ph-nav__edge" d="M0 .5 H112 A30 30 0 0 0 172 .5 H284"/>
-            </svg>
+            <div class="ph-nav__surface" aria-hidden="true"></div>
             <div class="ph-nav__items">
               <!-- Glyphs trace the Material icons the app actually ships:
                    home (filled, since Home is the selected tab),
@@ -990,15 +987,13 @@
 
           <div class="ph-body">
             <div class="ph-card" style="text-align:center">
-              <svg viewBox="0 0 140 140" style="width:110px;height:110px;margin-inline:auto" aria-hidden="true">
-                <g class="donut__ring">
-                  <circle cx="70" cy="70" r="54" fill="none" stroke="var(--surface-2)" stroke-width="13"/>
-                  <circle cx="70" cy="70" r="54" fill="none" stroke="var(--primary)" stroke-width="13"
-                          stroke-dasharray="228 112" stroke-linecap="butt"/>
-                </g>
-                <text x="70" y="66" text-anchor="middle" class="donut__center-label">{{left_this_period}}</text>
-                <text x="70" y="84" text-anchor="middle" class="donut__center-value">{{rp_1_4jt}}</text>
-              </svg>
+              <div class="ph-ring">
+                <div class="ph-ring__track" aria-hidden="true"></div>
+                <div class="ph-ring__center">
+                  <div class="ph-ring__label">{{left_this_period}}</div>
+                  <div class="ph-ring__value tnum">{{rp_1_4jt}}</div>
+                </div>
+              </div>
               <div style="font-size:9px;color:var(--text-2);margin-top:2px" class="tnum">{{rp_4_6jt_of}}</div>
             </div>
 

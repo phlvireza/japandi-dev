@@ -216,8 +216,16 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
 
 @media (max-width: 859px) {
   .jd-shell-container { width: min(100% - 32px, 1120px); }
-  .jd-header__inner { flex-wrap: wrap; }
-  .jd-nav-toggle { display: inline-flex; }
+  /* The wrap exists for .jd-nav, which takes a row of its own when open. The
+     brand and the toggle must never use it: at 390px the untrimmed row wanted
+     363px of a 358px container and dropped the button to a second line, which
+     read as a broken header rather than an open menu. Trimming the brand and
+     pinning the toggle keeps them on one row down to 360px. */
+  .jd-header__inner { flex-wrap: wrap; gap: 0.75rem; }
+  .jd-brand { min-width: 0; flex: 0 1 auto; gap: 0.5rem; }
+  .jd-brand__mark { width: 36px; height: 36px; }
+  .jd-brand__name { font-size: 1.05rem; }
+  .jd-nav-toggle { display: inline-flex; flex: 0 0 auto; padding-inline: 0.75rem; }
   .jd-nav {
     display: none;
     flex-basis: 100%;
@@ -230,6 +238,21 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
   .jd-nav__list { flex-direction: column; align-items: stretch; gap: 0; }
   .jd-nav__list a { min-height: 48px; border-bottom: 1px solid #ded3c0; }
   .jd-nav__back { width: 100%; }
+}
+
+/* Below ~360px even the trimmed brand and a labelled button cannot share the
+   row. The label is clipped rather than removed so the button keeps "Menu" as
+   its accessible name -- the bars alone are not one. */
+@media (max-width: 359px) {
+  .jd-nav-toggle > span:not(.jd-nav-toggle__bars) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .jd-nav-toggle { padding-inline: 0.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

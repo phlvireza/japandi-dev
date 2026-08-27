@@ -309,6 +309,57 @@
 }
 
 /* --------------------------------------------------------------------------
+   Budgets header ring.
+   Drawn with a conic gradient behind an annulus mask rather than two stroked
+   SVG circles, for the same reason .ph-nav__surface is: browsers that
+   force-darken a light page leave SVG strokes alone, so the unspent track kept
+   its near-white --surface-2 on a darkened card and read as the FILLED part of
+   the ring -- the chart told the opposite story.
+
+   The geometry mirrors the SVG it replaces: a 140-unit box scaled to 110px,
+   r=54 with a 13-wide stroke, so the band runs from 47.5 to 60.5 units. As a
+   share of the box's half-width (55px) that is 67.9% to 86.4%. The gradient
+   starts at twelve o'clock and runs clockwise, which is what the old
+   rotate(-90deg) on .donut__ring bought.
+   -------------------------------------------------------------------------- */
+.ph-ring {
+  position: relative;
+  width: 110px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+}
+
+/* 228 of the 339.3-unit circumference was spent: 67.2%. */
+.ph-ring__track {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(var(--primary) 0 67.2%, var(--surface-2) 67.2% 100%);
+  --ph-ring-band: radial-gradient(circle closest-side,
+                    rgba(0, 0, 0, 0) 0 67.9%, #000 67.9% 86.4%, rgba(0, 0, 0, 0) 86.4%);
+  -webkit-mask-image: var(--ph-ring-band);
+          mask-image: var(--ph-ring-band);
+}
+
+/* A sibling of the track, not a child: the mask that cuts the hole would cut
+   the label out with it. */
+.ph-ring__center {
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ph-ring__label { font-size: 7px; font-weight: 500; color: var(--text-2); }
+
+.ph-ring__value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
    Budget rows + the pace bar.
    The pace tick is the point of this component: "85% used" reads very
    differently on day 3 of a period than on day 27.
@@ -415,7 +466,7 @@
 /* --------------------------------------------------------------------------
    Bottom nav with the center notch + docked FAB.
    The app hand-paints a hairline that follows the notch (_NotchedTopBorderPainter);
-   the SVG below reproduces exactly that edge.
+   the two masked layers below reproduce exactly that edge.
    -------------------------------------------------------------------------- */
 .ph-nav {
   position: relative;
@@ -424,14 +475,33 @@
   margin-top: 4px;
 }
 
-.ph-nav__shape {
+/* The bar is painted with CSS backgrounds rather than an SVG <path> fill on
+   purpose. Browsers that force-darken a light page -- Chrome Android's Auto
+   Dark Theme, Samsung Internet's dark mode -- invert backgrounds and text but
+   leave SVG fills alone, which left this one bar bright white on an otherwise
+   dark mockup. Two masked layers stand in for the old fill-plus-stroke pair:
+   the border colour across the whole shape, then the surface inset 1px, so the
+   layer below survives as the hairline and as the arc around the notch. */
+.ph-nav__surface {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background: var(--border);
+  --ph-notch: radial-gradient(circle 30px at 50% 0, rgba(0, 0, 0, 0) 0 29.5px, #000 30.5px);
+  -webkit-mask-image: var(--ph-notch);
+          mask-image: var(--ph-notch);
 }
-.ph-nav__fill { fill: var(--surface); }
-.ph-nav__edge { fill: none; stroke: var(--border); stroke-width: 1; }
+
+/* Inset 1px, and the notch centre with it, so the hairline is even all the way
+   round instead of thinning out across the arc. */
+.ph-nav__surface::after {
+  content: "";
+  position: absolute;
+  inset: 1px 0 0;
+  background: var(--surface);
+  --ph-notch: radial-gradient(circle 30px at 50% -1px, rgba(0, 0, 0, 0) 0 29.5px, #000 30.5px);
+  -webkit-mask-image: var(--ph-notch);
+          mask-image: var(--ph-notch);
+}
 
 .ph-nav__items {
   position: absolute;
@@ -830,6 +900,18 @@
   flex: none;
 }
 .legend__pct { margin-left: auto; color: var(--text-2-strong); }
+
+/* On a phone the fixed 168px chart plus a 150px legend wants 338px inside a
+   card that offers 308px, so the legend used to wrap under the donut and the
+   pairing of slice to label was lost. Scaling the chart with the card keeps the
+   two side by side all the way down to a 320px viewport. */
+@media (max-width: 560px) {
+  .donut { gap: var(--s-md); flex-wrap: nowrap; }
+  .donut__svg { width: clamp(96px, 38%, 168px); height: auto; aspect-ratio: 1; }
+  .legend { min-width: 0; flex: 1 1 auto; }
+  .legend li { font-size: 0.75rem; gap: var(--s-xs); }
+  .legend__pct { padding-left: var(--s-xs); }
+}
 
 /* Heatmap. Cell alpha ramps 0.15 -> 0.70 over the expense color, exactly as
    the app's spending-intensity calendar does. */
