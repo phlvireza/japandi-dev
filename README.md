@@ -12,7 +12,7 @@ beacon at the edge; all application assets remain self-hosted. Deploying the sit
 files into a document root.
 
 The first featured project is **Squirio**, a personal finance tracker
-("Track your money, not your stress"), which links out to <https://squirio.japandi.dev>.
+("Track your money, not your stress"), integrated at <https://japandi.dev/projects/squirio/>.
 
 ---
 
@@ -31,7 +31,7 @@ The first featured project is **Squirio**, a personal finance tracker
 - [The logo](#the-logo)
 - [Squirio artwork](#squirio-artwork)
 - [Adding a project](#adding-a-project)
-- [Opening the waitlist](#opening-the-waitlist)
+- [Launch status](#launch-status)
 - [The brand email](#the-brand-email)
 - [Adding a brand GitHub account](#adding-a-brand-github-account)
 - [Page metadata](#page-metadata)
@@ -91,7 +91,8 @@ japandi-dev/
     ├── css/
     │   └── styles.css                      All styles, token-driven
     ├── js/
-    │   └── script.js                       Progressive enhancement only
+    │   ├── shell.js                        Shared header behaviour (also used by project pages)
+    │   └── script.js                       Homepage enhancement: reveal + footer year
     ├── fonts/
     │   ├── fraunces-latin-var.woff2        Display serif  (67 KB)
     │   └── karla-latin-var.woff2           Body sans      (24 KB)
@@ -106,7 +107,7 @@ japandi-dev/
         ├── apple-touch-icon.png            180 × 180
         ├── og-image.png                    1200 × 630 social share card
         ├── og-image-placeholder.svg        Editable layout template for the above
-        ├── squirio-app-icon-128.webp        Optimized app icon
+        ├── squirio-app-icon-512.webp        High-resolution WebP app icon
         ├── squirio-home-preview.webp        Optimized product screenshot
         ├── squirio-icon-placeholder.svg    PLACEHOLDER
         └── squirio-screenshot-placeholder.svg  PLACEHOLDER
@@ -317,12 +318,35 @@ Purge Everything) or the old CSS may persist at the edge.
 3. Wait for propagation (minutes to a few hours). Verify with `nslookup japandi.dev`.
 4. Issue the certificate, then enable the redirect block in `.htaccess`.
 
-### Later: the Squirio subdomain
+### Squirio project site
 
-When Squirio is ready, add `squirio.japandi.dev` in cPanel (**Domains → Create A New Domain**),
-which creates the DNS record and a document root for it. If Cloudflare is in front, add a matching
-proxied A record there too. The "Discover Squirio" button already points there, so nothing in this
-repository needs to change.
+Squirio is served from `/projects/squirio/` in the same document root, and its pages carry the Japandi
+Dev global navbar. Edit `projects/squirio/_src/template.html` or `_src/en.json`, then run
+`python projects/squirio/build.py`; never hand-edit the generated `projects/squirio/index.html`.
+
+`build.py` runs on your machine only — the host serves static files and executes no Python. It is
+excluded from the FTP deploy, and `projects/squirio/.htaccess` denies it and `_src/` if a copy ever
+reaches the server.
+
+**Image derivatives.** Every raster the page fetches is sized for where it is drawn, because a
+1024px file drawn at 32px costs the visitor the full 1024px:
+
+| Served file | Size | Drawn at | Source |
+|---|---|---|---|
+| `assets/squi_wave_cutout-960.webp` | 80 KB | 320 CSS px (3× headroom) | `_src/masters/squi_wave_cutout.png` |
+| `assets/images/squirio-app-icon-96.webp` | 2 KB | 32 px + favicon | `assets/images/squirio-app-icon-512.webp` |
+| `assets/apple-touch-icon-180.png` | 35 KB | iOS home screen | `assets/app_icon.png` |
+
+`assets/app_icon.png` (1024², 745 KB) stays because the `Brand.logo` node in the structured data
+points at it — crawlers fetch it, browsers never do. Masters that no page serves live in
+`_src/masters/`, which is blocked by `.htaccess` and excluded from the deploy, so keeping them costs
+the site nothing.
+
+Derivatives were generated through a headless Chromium canvas (`toDataURL('image/webp', 0.95)`) —
+no image toolchain is installed or required. Note that Chromium's canvas encoder is **lossy even at
+quality 1.0**: a WebP written this way is never bit-identical to its source. At the size these are
+drawn the difference measured 0.47/255 mean per channel, which is invisible; if you ever need a
+mathematically lossless WebP, use `Pillow` with `lossless=True` instead.
 
 ---
 
@@ -490,21 +514,16 @@ reader announce the name twice. If you ever use the logo as a link *without* adj
 
 ## Squirio artwork
 
-The project card uses optimized WebP derivatives of the supplied app icon and home screenshot:
+The compact project card uses a high-resolution WebP derivative of the supplied app icon:
 
 ```html
-<img class="product__icon" src="assets/images/squirio-app-icon-128.webp"
-     width="64" height="64" alt="" decoding="async">
+<img src="assets/images/squirio-app-icon-512.webp"
+     width="512" height="512" alt="" decoding="async">
 ```
 
-The original PNG files remain available as source assets. Keep the explicit dimensions when
-replacing either WebP so the layout cannot shift. The icon's `alt=""` is correct because the
-adjacent heading already names Squirio; the screenshot keeps descriptive alternative text.
-
-When replacing the screenshot, keep `loading="lazy"`, use its true pixel dimensions, and write
-alternative text that describes what the screen shows. Check screenshots for identifying content
-before publishing; real account numbers, names, or locations in a demo screen would undo the
-anonymity everywhere else.
+The original PNG remains available in the Squirio project assets. Keep the explicit dimensions when
+replacing the WebP so the layout cannot shift. The icon's `alt=""` is correct because the adjacent
+heading already names Squirio.
 
 ---
 
@@ -526,25 +545,26 @@ Once a project has its own page, add it to `sitemap.xml`.
 
 ---
 
-## Opening the waitlist
+## Launch status
 
-There is no waitlist provider yet, so the site does not pretend there is one. The control is a real
-disabled button with a visible explanation beside it, rather than a link pointing nowhere:
+There is no waitlist. Squirio ships **exclusively on Android in October 2026**, and the site states
+that plainly rather than collecting addresses it has nowhere to store — a static site cannot keep a
+submission, and a page whose whole argument is "we collect nothing" is the wrong place to ask for an
+email.
 
-```html
-<button class="button button--ghost" type="button" disabled aria-describedby="waitlist-note">Join the Waitlist</button>
-<p class="product__note" id="waitlist-note">The waitlist is not open yet. It opens closer to launch.</p>
-```
+The status lives in three places, all of which must agree:
 
-When you have a provider, swap the button for an anchor with the same classes and delete the note:
+| What | Where |
+|---|---|
+| Card pill and category on the homepage | `index.html`, the Squirio `<article class="product">` |
+| Hero eyebrow, launch note and closing line | `projects/squirio/_src/en.json` |
+| `operatingSystem` and the platform FAQ answer | `projects/squirio/_src/template.html` |
 
-```html
-<a class="button button--ghost" href="https://your-waitlist-url" rel="noopener noreferrer">Join the Waitlist</a>
-```
+The Squirio page is generated: edit `_src/`, then run `python build.py` inside
+`projects/squirio/`. Never hand-edit `projects/squirio/index.html`.
 
-Remove the `aria-describedby` attribute along with the note paragraph it points at. If the provider
-embeds a form, remember it becomes a third party: update the privacy policy, and add its origin to
-the CSP or the form will be blocked.
+If a waitlist is ever added it becomes a third party: update the privacy policy, and add its origin
+to the CSP or the form will be blocked.
 
 ---
 
@@ -745,16 +765,38 @@ breakpoints.
 
 ### JavaScript
 
-`assets/js/script.js` is one IIFE with a single `init()` wiring five independent functions: the
-mobile navigation, the header's scrolled state, the current-section indicator, the reveal-on-scroll
-animation and the footer year. No globals, no dependencies.
+Two files, split by who needs what.
 
-**It is enhancement only.** With scripting off, or if `script.js` fails to load, the navigation
+`assets/js/shell.js` holds the three behaviours every header on the site needs — the mobile
+navigation disclosure, the header's scrolled state and the current-section indicator — plus the
+`MediaQueryList` fallback they share. Pages do not edit it; they pass their own selectors:
+
+```js
+JapandiShell.init({
+  header: '[data-site-header]', toggle: '[data-nav-toggle]', nav: '[data-site-nav]',
+  links: '[data-site-nav] .site-nav__list a', sentinel: '[data-scroll-sentinel]',
+  desktop: '(min-width: 62em)'
+});
+```
+
+`assets/js/script.js` makes that call for the homepage and adds the two things only these pages
+need: reveal-on-scroll and the footer year. `projects/squirio/js/japandi-shell.js` makes the same
+call with the `jd-*` selectors and an 860px breakpoint. Before the split each behaviour existed
+twice, in two dialects, and a fix to one never reached the other — which is exactly how the project
+page ended up with a navbar whose indicator never moved.
+
+The scrolled state works with or without a sentinel element: given one it uses an
+`IntersectionObserver`, and without one (the project pages have no sentinel) it falls back to a
+passive `scroll` listener.
+
+**It is enhancement only.** With scripting off, or if either file fails to load, the navigation
 renders open and stacked, every section is visible, the footer shows a hardcoded fallback year, and
 the current-section indicator is simply absent. No page content is ever rendered by JavaScript.
 
-The current-section indicator sets `aria-current="true"`, so the state is exposed to assistive
-technology natively and is shown with a dot plus weight change, never colour alone.
+The current-section indicator sets `aria-current="location"` — ARIA's token for the current item
+*within* a page, as opposed to `page`, which marks a link pointing at the page you are already on
+(the Squirio privacy policy uses that one). The state is shown with a dot plus a weight change,
+never colour alone.
 
 ---
 
@@ -949,8 +991,8 @@ navigation should be visible and stacked and every section readable.
 
 **Screen reader.** NVDA on Windows, VoiceOver on macOS (<kbd>Cmd</kbd>+<kbd>F5</kbd>). Listen for:
 the brand link announced once as "Japandi Dev", not twice; the menu button announcing its expanded
-state; the current section announced as "current"; and the disabled waitlist button announcing as
-unavailable with its explanation.
+state; and the current section announced as "current" — on the homepage and on the Squirio page,
+where the nav marker follows the section in view.
 
 ## Lighthouse testing
 
@@ -973,7 +1015,6 @@ and a 100 does not mean the site is accessible.
 ## Pre-launch checklist
 
 - [ ] Create `hello@japandi.dev`, or replace it everywhere
-- [ ] Decide on the waitlist provider and swap in a real link
 - [ ] Confirm `.htaccess` uploaded (show hidden files in File Manager)
 - [ ] Run AutoSSL and confirm `https://japandi.dev` loads
 - [ ] Enable the HTTPS / bare-domain redirect block in `.htaccess`
@@ -1001,12 +1042,11 @@ them all.
 | # | Placeholder | Current value | Where |
 |---|---|---|---|
 | 1 | Brand email | `hello@japandi.dev` | all three pages |
-| 2 | Waitlist destination | disabled button + explanatory note | `index.html` |
-| 3 | Brand GitHub | omitted entirely | — |
-| 4 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
+| 2 | Brand GitHub | omitted entirely | — |
+| 3 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
 
-Not placeholders, but worth checking before launch: `https://squirio.japandi.dev` does not resolve
-yet, and the technology list in the About section should say what you actually build with.
+Not a placeholder, but worth checking before launch: the technology list in the About section
+should say what you actually build with.
 
 ---
 

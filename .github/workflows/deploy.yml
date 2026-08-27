@@ -42,12 +42,19 @@ jobs:
           # specifying `exclude` at all replaces them. .htaccess is deliberately
           # NOT excluded - without it there is no 404 page, no security headers
           # and no clean URLs.
+          # _src/ and build.py are inputs to Squirio's page, not site content.
+          # projects/squirio/.htaccess already blocks them if they reach the
+          # server; not uploading them is one fewer thing depending on that.
+          # (Comments must stay outside the block scalar below - inside it a
+          # "#" line is a literal exclude pattern, not a comment.)
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
             **/README.md
             **/.gitattributes
+            **/_src/**
+            **/build.py
 
       # The sync above updates the origin, but Cloudflare keeps serving whatever it
       # already cached until its own TTL expires. Skipping this is how a fixed

@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Every indexable page, and nothing else: 404.html carries a noindex robots tag,
+  so listing it here would ask Google to crawl a page it is told to drop.
+
+  <lastmod> is the only optional field kept. Google reads it, but only from
+  sitemaps whose dates it has learned to trust, so it must reflect a real change
+  to that page - bumping all four on every deploy is what makes it ignored.
+  <changefreq> and <priority> are omitted: Google states it ignores both.
+
+  URLs match the canonical tag on each page exactly: clean /privacy without the
+  .html, and a trailing slash on the two project directories.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://japandi.dev/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/privacy</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-27</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/</loc>
+    <lastmod>2026-08-27</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/privacy/</loc>
+    <lastmod>2026-08-27</lastmod>
   </url>
 </urlset>
