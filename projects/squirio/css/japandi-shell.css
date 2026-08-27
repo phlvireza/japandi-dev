@@ -235,6 +235,16 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
     padding-bottom: 1rem;
   }
   .jd-header.is-nav-open .jd-nav { display: flex; }
+
+  /* The nav wraps onto a second flex line when it opens. Without a height of
+     its own the first line has none either: closed, it is the only line, so it
+     stretches to fill the inner's --jd-header-h and the brand sits centred 18px
+     down; open, the min-height is already exceeded and the line collapses to its
+     44px content height, snapping the brand and the toggle up 14px. Pinning the
+     brand to the full header height makes line 1 the same box either way.
+     Same rule, same reason, as .site-header .brand in assets/css/styles.css --
+     this shell was split out of that header and did not carry it across. */
+  .jd-header .jd-brand { min-height: var(--jd-header-h); }
   .jd-nav__list { flex-direction: column; align-items: stretch; gap: 0; }
   .jd-nav__list a { min-height: 48px; border-bottom: 1px solid #ded3c0; }
   .jd-nav__back { width: 100%; }
