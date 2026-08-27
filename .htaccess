@@ -20,6 +20,14 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Squirio moved into the project hierarchy. Preserve old bookmarks and any
+  # already-indexed /website/ URLs with a permanent path-preserving redirect.
+  RewriteRule ^website(?:/(.*))?$ /projects/squirio/$1 [L,R=301,NE]
+
+  # Squirio is English-only. Send old Indonesian bookmarks to the canonical
+  # project page instead of leaving visitors on a removed locale URL.
+  RewriteRule ^projects/squirio/id(?:/.*)?$ /projects/squirio/ [L,R=301,NE]
+
   # /index.html (or /sub/index.html) -> the directory itself
   RewriteCond %{THE_REQUEST} \s/+(.*)index\.html[\s?] [NC]
   RewriteRule ^ /%1 [L,R=301]

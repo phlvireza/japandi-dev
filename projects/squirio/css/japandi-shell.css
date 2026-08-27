@@ -1,0 +1,332 @@
+/* Japandi Dev global shell for project pages.
+   All selectors are jd-prefixed so the shell cannot overwrite Squirio UI. */
+
+@font-face {
+  font-family: "JD Karla";
+  src: url("../../../assets/fonts/karla-latin-var.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JD Fraunces";
+  src: url("../../../assets/fonts/fraunces-latin-var.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root { --jd-header-h: 72px; }
+
+html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
+
+.jd-skip-link {
+  position: fixed;
+  top: 0;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.7rem 1rem;
+  background: #213c30;
+  color: #fff;
+  font: 600 0.875rem/1 "JD Karla", sans-serif;
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform 180ms ease;
+}
+
+.jd-skip-link:focus { transform: translateY(0); }
+
+.jd-header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  min-height: var(--jd-header-h);
+  background: #f7f2e8;
+  /* Transparent rather than absent so gaining the rule on scroll costs no
+     layout shift. Same lift-off-the-page move the main site makes in
+     assets/css/styles.css -- the shell has to match it or the navbar looks
+     inert on project pages while the homepage reacts. */
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 1px 12px rgba(33, 60, 48, 0);
+  color: #1f2521;
+  font-family: "JD Karla", sans-serif;
+  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.jd-header.is-scrolled {
+  background: #fbf8f1;
+  border-bottom-color: #ded3c0;
+  box-shadow: 0 1px 12px rgba(33, 60, 48, 0.07);
+}
+
+.jd-header *,
+.jd-header *::before,
+.jd-header *::after { box-sizing: border-box; }
+
+.jd-shell-container {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.jd-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--jd-header-h);
+}
+
+.jd-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-right: auto;
+  color: #1f2521;
+  text-decoration: none;
+}
+
+.jd-brand:hover { opacity: 1; }
+
+.jd-brand__mark {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.jd-brand__name {
+  font-family: "JD Fraunces", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.jd-brand__separator { color: #a8542d; }
+
+.jd-brand__project {
+  color: #6f655c;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.jd-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.jd-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jd-nav__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #1f2521;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.jd-nav__list a:hover { color: #476552; opacity: 1; }
+
+.jd-nav__list a[aria-current] {
+  color: #476552;
+  font-weight: 600;
+}
+
+/* The dot is drawn on every link and revealed on the current one, rather than
+   created by the [aria-current] rule itself: an element that only exists while
+   the section is in view has nothing to animate from, and the reserved space
+   keeps the labels from shifting sideways as the marker moves down the page. */
+.jd-nav__list a::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: #a8542d;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.jd-nav__list a[aria-current]::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.jd-nav__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border: 1px solid #b6aa96;
+  border-radius: 10px;
+  color: #344d3d;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.jd-nav__back:hover { background: #eee5d7; color: #213c30; opacity: 1; }
+
+.jd-nav__back:focus-visible { outline: 2px solid #476552; outline-offset: 2px; }
+
+.jd-nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #b6aa96;
+  border-radius: 8px;
+  background: transparent;
+  color: #1f2521;
+  font: 600 0.875rem/1 "JD Karla", sans-serif;
+  cursor: pointer;
+}
+
+.jd-nav-toggle__bars {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.jd-nav-toggle__bars span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.jd-header.is-nav-open .jd-nav-toggle__bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.jd-header.is-nav-open .jd-nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.jd-header.is-nav-open .jd-nav-toggle__bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 859px) {
+  .jd-shell-container { width: min(100% - 32px, 1120px); }
+  .jd-header__inner { flex-wrap: wrap; }
+  .jd-nav-toggle { display: inline-flex; }
+  .jd-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+  }
+  .jd-header.is-nav-open .jd-nav { display: flex; }
+  .jd-nav__list { flex-direction: column; align-items: stretch; gap: 0; }
+  .jd-nav__list a { min-height: 48px; border-bottom: 1px solid #ded3c0; }
+  .jd-nav__back { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The scrolled state, the current-section dot and the menu bars still change
+     -- they just change instantly. Removing the transition never removes the
+     information. */
+  .jd-skip-link,
+  .jd-header,
+  .jd-nav__list a,
+  .jd-nav__list a::before,
+  .jd-nav-toggle__bars span { transition: none; }
+}
+
+/* Squirio follows the operating-system theme. The project shell must follow
+   the same signal so the sticky navbar never stays bright above dark content. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .jd-header {
+    background: #1a1816;
+    border-bottom-color: transparent;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0);
+    color: #f7f1e8;
+  }
+
+  :root:not([data-theme="light"]) .jd-header.is-scrolled {
+    background: #211e1b;
+    border-bottom-color: #3d3732;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.38);
+  }
+
+  :root:not([data-theme="light"]) .jd-brand,
+  :root:not([data-theme="light"]) .jd-nav__list a,
+  :root:not([data-theme="light"]) .jd-nav-toggle {
+    color: #f7f1e8;
+  }
+
+  :root:not([data-theme="light"]) .jd-brand__project { color: #c9beb1; }
+  :root:not([data-theme="light"]) .jd-brand__separator { color: #e47a42; }
+
+  :root:not([data-theme="light"]) .jd-brand__mark {
+    padding: 2px;
+    border-radius: 50%;
+    background: #f7f2e8;
+  }
+
+  :root:not([data-theme="light"]) .jd-nav__list a:hover,
+  :root:not([data-theme="light"]) .jd-nav__list a[aria-current] {
+    color: #f0b28d;
+  }
+
+  :root:not([data-theme="light"]) .jd-nav__back {
+    border-color: #675b51;
+    color: #f7f1e8;
+  }
+
+  :root:not([data-theme="light"]) .jd-nav__back:hover {
+    background: #302b27;
+    color: #f0b28d;
+  }
+
+  :root:not([data-theme="light"]) .jd-nav-toggle {
+    border-color: #675b51;
+  }
+
+  :root:not([data-theme="light"]) .jd-nav__list a {
+    border-bottom-color: #3d3732;
+  }
+}
+
+/* Also support an explicit theme attribute supplied by an embedding shell or
+   browser tooling, even though Squirio itself no longer exposes a toggle. */
+:root[data-theme="dark"] .jd-header {
+  background: #1a1816;
+  border-bottom-color: transparent;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0);
+  color: #f7f1e8;
+}
+
+:root[data-theme="dark"] .jd-header.is-scrolled {
+  background: #211e1b;
+  border-bottom-color: #3d3732;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.38);
+}
+
+:root[data-theme="dark"] .jd-brand,
+:root[data-theme="dark"] .jd-nav__list a,
+:root[data-theme="dark"] .jd-nav-toggle { color: #f7f1e8; }
+
+:root[data-theme="dark"] .jd-brand__project { color: #c9beb1; }
+:root[data-theme="dark"] .jd-brand__separator { color: #e47a42; }
+:root[data-theme="dark"] .jd-brand__mark {
+  padding: 2px;
+  border-radius: 50%;
+  background: #f7f2e8;
+}
+:root[data-theme="dark"] .jd-nav__list a:hover,
+:root[data-theme="dark"] .jd-nav__list a[aria-current] { color: #f0b28d; }
+:root[data-theme="dark"] .jd-nav__back,
+:root[data-theme="dark"] .jd-nav-toggle { border-color: #675b51; color: #f7f1e8; }
+:root[data-theme="dark"] .jd-nav__back:hover { background: #302b27; color: #f0b28d; }
+:root[data-theme="dark"] .jd-nav__list a { border-bottom-color: #3d3732; }

@@ -1,0 +1,14 @@
+<IfModule mod_headers.c>
+  # Squirio's code-rendered phone mockups use inline style attributes for
+  # positioning and data visualization. Scripts remain restricted to self.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^_src(?:/|$) - [F,L]
+</IfModule>
+
+<Files "build.py">
+  Require all denied
+</Files>

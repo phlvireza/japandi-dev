@@ -1,0 +1,307 @@
+/* ==========================================================================
+   Site components
+   Rule inherited from the app: there are ZERO box-shadows in lib/. Separation
+   is carried by 1px hairline borders and surface-tone steps. Nothing here
+   introduces a shadow, so the site reads as the same material as the product.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Footer brand
+   The header lockup lives in japandi-shell.css as .jd-brand; this is the
+   smaller mark the footer signs off with.
+   -------------------------------------------------------------------------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  color: var(--text);
+  margin-right: auto;
+}
+.brand:hover { opacity: 1; }
+
+.brand__mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+}
+
+/* The in-app wordmark is 'Squirio' at weight 700 with letter-spacing 1.2. */
+.brand__name {
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: 0.075em;
+}
+
+/* --------------------------------------------------------------------------
+   Squi introduction
+   The mascot supports the product story without competing with proof points.
+   -------------------------------------------------------------------------- */
+.squi-intro { border-bottom: 1px solid var(--border); }
+
+.squi-intro__grid {
+  display: grid;
+  gap: var(--s-2xl);
+  align-items: center;
+}
+
+.squi-intro__art {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.squi-intro__art img {
+  display: block;
+  width: min(72vw, 320px);
+  height: auto;
+}
+
+.squi-intro__rule {
+  margin-top: var(--s-lg);
+  max-width: 62ch;
+  color: var(--text-2-strong);
+}
+
+@media (min-width: 760px) {
+  .squi-intro__grid {
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--s-3xl);
+  }
+}
+
+/* The moon hides in light mode and the sun in dark, so the phone mockup's app
+   bar always shows the theme currently in effect, matching the page around it. */
+.theme-icon--dark { display: none; }
+:root[data-theme="dark"] .theme-icon--light { display: none; }
+:root[data-theme="dark"] .theme-icon--dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon--light { display: none; }
+  :root:not([data-theme="light"]) .theme-icon--dark { display: block; }
+}
+
+/* --------------------------------------------------------------------------
+   Card: surface fill, 1px border, radius 12, no shadow. Straight from
+   app_theme.dart's CardTheme ("subtle border, no heavy shadow").
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-2xl);
+}
+.section--alt .card { background: var(--bg); }
+
+/* The app's two universal alpha conventions, ported to CSS:
+   12% tint for an identity chip, 10-15% for a status pill, with the source
+   color reused at full strength for the icon or label on top. */
+.chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--chip, var(--primary)) 12%, transparent);
+  color: var(--chip, var(--primary));
+  flex: none;
+}
+
+/* --------------------------------------------------------------------------
+   Trust strip
+   -------------------------------------------------------------------------- */
+.trust {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+@media (min-width: 760px) { .trust { grid-template-columns: repeat(4, 1fr); } }
+
+.trust__item {
+  background: var(--bg);
+  padding: var(--s-xl) var(--s-lg);
+  text-align: center;
+}
+.section--alt .trust__item { background: var(--surface); }
+
+.trust__title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-top: var(--s-sm);
+}
+.trust__note {
+  font-size: 0.8125rem;
+  color: var(--text-2-strong);
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Feature grid
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--s-lg);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid--3 { grid-template-columns: repeat(3, 1fr); } }
+
+.feature-card__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: var(--s-lg);
+}
+.feature-card__body {
+  font-size: 0.9375rem;
+  color: var(--text-2-strong);
+  margin-top: var(--s-sm);
+}
+
+/* Numbered list used in the copy columns of the split sections. */
+.points { margin-top: var(--s-xl); }
+.points li {
+  display: flex;
+  gap: var(--s-md);
+  padding-block: var(--s-md);
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+}
+.points li:last-child { border-bottom: 1px solid var(--border); }
+.points strong { font-weight: 600; }
+.points span { color: var(--text-2-strong); }
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+.faq { border-top: 1px solid var(--border); }
+
+.faq__item { border-bottom: 1px solid var(--border); }
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-lg);
+  padding-block: var(--s-xl);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  cursor: pointer;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+
+/* The question is an <h3> so the FAQ enters the document outline, but it must
+   not look like one: the UA gives h3 its own bold 1.17em, which would override
+   the weight and size set on the summary above. min-width lets a long question
+   wrap instead of pushing the chevron off the row. */
+.faq__question {
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.faq__item summary::after {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-2-strong);
+  border-bottom: 2px solid var(--text-2-strong);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform var(--t-normal) var(--ease);
+}
+.faq__item[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+
+.faq__answer {
+  padding-bottom: var(--s-xl);
+  color: var(--text-2-strong);
+  max-width: 68ch;
+}
+
+/* --------------------------------------------------------------------------
+   Launch note
+   The hero's one factual claim about availability: which platform, and when.
+   It replaces the waitlist form -- there is no list to join, so the page says
+   the date plainly instead of asking for an address it cannot store.
+   -------------------------------------------------------------------------- */
+.launch-note {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-md);
+  padding: var(--s-md) var(--s-lg);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.launch-note__platform {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  /* 11px, so it takes the darker ink for the full 4.5:1 -- same reasoning as
+     .eyebrow in base.css. */
+  color: var(--text-2-strong);
+}
+
+/* A hairline rather than a bullet: the two halves are one statement, and a
+   separator that inherits the border token stays right in both themes. */
+.launch-note__platform::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.9em;
+  margin-left: var(--s-md);
+  vertical-align: -0.1em;
+  background: var(--border-strong);
+}
+
+.launch-note__date {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 420px) {
+  .launch-note { flex-direction: column; align-items: flex-start; gap: var(--s-xs); }
+  .launch-note__platform::after { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--s-3xl);
+  font-size: 0.875rem;
+  color: var(--text-2-strong);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-lg);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-lg);
+}
+/* 2.5.8: these measured 22px tall. Hit area only -- text size unchanged. */
+.footer__meta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
