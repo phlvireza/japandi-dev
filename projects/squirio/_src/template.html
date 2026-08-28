@@ -703,6 +703,7 @@
             <span class="tnum">{{9_41_2}}</span>
             <span class="ph-status__icons">
               <svg width="12" height="9" viewBox="0 0 12 9" fill="currentColor" aria-hidden="true"><rect x="0" y="6" width="2" height="3" rx=".5"/><rect x="3" y="4" width="2" height="5" rx=".5"/><rect x="6" y="2" width="2" height="7" rx=".5"/><rect x="9" y="0" width="2" height="9" rx=".5"/></svg>
+              <svg width="16" height="9" viewBox="0 0 16 9" fill="none" stroke="currentColor" aria-hidden="true"><rect x=".5" y=".5" width="12" height="8" rx="2"/><rect x="2" y="2" width="9" height="5" rx="1" fill="currentColor"/><path d="M14 3v3" stroke-linecap="round"/></svg>
             </span>
           </div>
 
@@ -808,6 +809,7 @@
               <span class="tnum">{{9_41_3}}</span>
               <span class="ph-status__icons">
                 <svg width="12" height="9" viewBox="0 0 12 9" fill="currentColor" aria-hidden="true"><rect x="0" y="6" width="2" height="3" rx=".5"/><rect x="3" y="4" width="2" height="5" rx=".5"/><rect x="6" y="2" width="2" height="7" rx=".5"/><rect x="9" y="0" width="2" height="9" rx=".5"/></svg>
+                <svg width="16" height="9" viewBox="0 0 16 9" fill="none" stroke="currentColor" aria-hidden="true"><rect x=".5" y=".5" width="12" height="8" rx="2"/><rect x="2" y="2" width="9" height="5" rx="1" fill="currentColor"/><path d="M14 3v3" stroke-linecap="round"/></svg>
               </span>
             </div>
 
@@ -909,6 +911,7 @@
               <span class="tnum">{{9_41_4}}</span>
               <span class="ph-status__icons">
                 <svg width="12" height="9" viewBox="0 0 12 9" fill="currentColor" aria-hidden="true"><rect x="0" y="6" width="2" height="3" rx=".5"/><rect x="3" y="4" width="2" height="5" rx=".5"/><rect x="6" y="2" width="2" height="7" rx=".5"/><rect x="9" y="0" width="2" height="9" rx=".5"/></svg>
+                <svg width="16" height="9" viewBox="0 0 16 9" fill="none" stroke="currentColor" aria-hidden="true"><rect x=".5" y=".5" width="12" height="8" rx="2"/><rect x="2" y="2" width="9" height="5" rx="1" fill="currentColor"/><path d="M14 3v3" stroke-linecap="round"/></svg>
               </span>
             </div>
 
@@ -975,6 +978,7 @@
             <span class="tnum">{{9_41_5}}</span>
             <span class="ph-status__icons">
               <svg width="12" height="9" viewBox="0 0 12 9" fill="currentColor" aria-hidden="true"><rect x="0" y="6" width="2" height="3" rx=".5"/><rect x="3" y="4" width="2" height="5" rx=".5"/><rect x="6" y="2" width="2" height="7" rx=".5"/><rect x="9" y="0" width="2" height="9" rx=".5"/></svg>
+              <svg width="16" height="9" viewBox="0 0 16 9" fill="none" stroke="currentColor" aria-hidden="true"><rect x=".5" y=".5" width="12" height="8" rx="2"/><rect x="2" y="2" width="9" height="5" rx="1" fill="currentColor"/><path d="M14 3v3" stroke-linecap="round"/></svg>
             </span>
           </div>
 
@@ -1009,7 +1013,13 @@
                 <div class="ph-bar" style="--bar:var(--c1);--pct:68%;--pace:71%">
                   <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
                 </div>
-                <div class="ph-bar__caption"><span>{{rp_640_000_left}}</span><span>{{on_pace}}</span></div>
+                <div class="ph-budget__details">
+                  <div>
+                    <div class="ph-budget__pace">{{on_pace}} <span class="ph-budget__info" aria-hidden="true">i</span></div>
+                    <div class="ph-budget__used tnum">{{food_budget_used}}</div>
+                  </div>
+                  <span class="ph-budget__remaining tnum">{{rp_640_000_left}}</span>
+                </div>
               </div>
 
               <div class="ph-budget">
@@ -1023,7 +1033,13 @@
                 <div class="ph-bar" style="--bar:var(--warning);--pct:88%;--pace:71%">
                   <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
                 </div>
-                <div class="ph-bar__caption"><span>{{rp_120_000_left}}</span><span>{{ahead_of_pace}}</span></div>
+                <div class="ph-budget__details">
+                  <div>
+                    <div class="ph-budget__pace">{{ahead_of_pace}} <span class="ph-budget__info" aria-hidden="true">i</span></div>
+                    <div class="ph-budget__used tnum">{{transport_budget_used}}</div>
+                  </div>
+                  <span class="ph-budget__remaining tnum">{{rp_120_000_left}}</span>
+                </div>
               </div>
 
               <div class="ph-budget">
@@ -1037,7 +1053,13 @@
                 <div class="ph-bar" style="--bar:var(--expense);--pct:100%;--pace:71%">
                   <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
                 </div>
-                <div class="ph-bar__caption"><span class="expense">{{rp_210_000_over}}</span><span>{{rollover_210k}}</span></div>
+                <div class="ph-budget__details">
+                  <div>
+                    <div class="ph-budget__pace">{{ahead_of_pace}} <span class="ph-budget__info" aria-hidden="true">i</span></div>
+                    <div class="ph-budget__used tnum">{{going_out_budget_used}}</div>
+                  </div>
+                  <span class="ph-budget__remaining expense tnum">{{rp_210_000_over}}</span>
+                </div>
               </div>
 
               <div class="ph-budget ph-budget--ended">

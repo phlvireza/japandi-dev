@@ -416,6 +416,44 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The app puts pace context and the used/total amount together on the left,
+   with the remaining amount aligned independently on the right. */
+.ph-budget__details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--text-2);
+  font-size: 9px;
+}
+
+.ph-budget__pace {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ph-budget__info {
+  display: inline-flex;
+  width: 10px;
+  height: 10px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ph-budget__used { margin-top: 1px; }
+.ph-budget__remaining {
+  padding-top: 1px;
+  text-align: right;
+  white-space: nowrap;
+}
+
 /* An expired one-off budget stays visible, dimmed, rather than vanishing --
    a budget silently disappearing at a period boundary reads as data loss. */
 .ph-budget--ended { opacity: 0.6; }
