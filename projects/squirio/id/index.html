@@ -9,8 +9,8 @@
 <!-- The title leads with the category, not the tagline: "Squirio" is an unknown
      brand pre-launch, so the brand name alone matches nothing anyone searches
      for. The tagline still carries the page as the closing H2. -->
-<title>Squirio — Pencatat Anggaran & Pengeluaran Offline untuk Android</title>
-<meta name="description" content="Aplikasi pencatat anggaran Android yang berjalan sepenuhnya di ponsel Anda — tanpa akun, tanpa cloud, tanpa pelacakan, dan anggaran yang berganti saat gajian, bukan tanggal 1.">
+<title>Squirio: Aplikasi Pencatatan Keuangan Gratis Android</title>
+<meta name="description" content="Aplikasi pencatatan keuangan gratis untuk mencatat anggaran, pengeluaran, dan arus kas di Android. Tanpa akun, cloud, iklan, atau pelacakan.">
 
 <link rel="canonical" href="https://japandi.dev/projects/squirio/id/">
 
@@ -27,10 +27,10 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="id_ID">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:title" content="Squirio — Pencatat Anggaran & Pengeluaran Offline untuk Android">
+<meta property="og:title" content="Squirio: Aplikasi Pencatatan Keuangan Gratis Android">
 <!-- Kept identical to meta[name=description]. This used to drop the payday
      clause, which meant every shared link lost the one differentiator. -->
-<meta property="og:description" content="Aplikasi pencatat anggaran Android yang berjalan sepenuhnya di ponsel Anda — tanpa akun, tanpa cloud, tanpa pelacakan, dan anggaran yang berganti saat gajian, bukan tanggal 1.">
+<meta property="og:description" content="Aplikasi pencatatan keuangan gratis untuk mencatat anggaran, pengeluaran, dan arus kas di Android. Tanpa akun, cloud, iklan, atau pelacakan.">
 <meta property="og:url" content="https://japandi.dev/projects/squirio/id/">
 <meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
 <meta property="og:image:width" content="1200">
@@ -78,13 +78,12 @@
      conflict. "about" carries the app (WebPage semantics), "mainEntity"
      carries the Questions (FAQPage's required property).
 
-     Deliberately absent from SoftwareApplication: offers.price and
-     aggregateRating/review. Google needs both for the Software App rich
-     result, but Squirio has no settled price and no ratings because it has not
-     shipped. Inventing either violates Google's structured data policy — add
-     them only when a real store listing exists. "screenshot" is absent for the
-     same reason: the phone mockups are HTML/CSS, not image files, and
-     og-card.png is a marketing card, not a screenshot.
+     Squirio is completely free, so offers.price is truthfully set to 0 and the
+     pre-launch offer uses PreOrder rather than pretending the app is already
+     available. aggregateRating/review remain absent because the app has not
+     shipped and has no real reviews. Inventing either would violate Google's
+     structured data policy. Replace the offer URL and availability at launch,
+     and add ratings only when real, visible store data exists.
 
      Squirio is a Brand rather than an Organization because Japandi Dev is an
      anonymous personal developer identity, not a company or studio.
@@ -121,7 +120,7 @@
       "@id": "https://japandi.dev/projects/squirio/#website",
       "url": "https://japandi.dev/projects/squirio/",
       "name": "Squirio",
-      "description": "Aplikasi pencatat anggaran Android yang berjalan sepenuhnya di ponsel Anda — tanpa akun, tanpa cloud, tanpa pelacakan, dan anggaran yang berganti saat gajian, bukan tanggal 1.",
+      "description": "Aplikasi pencatatan keuangan gratis untuk mencatat anggaran, pengeluaran, dan arus kas di Android. Tanpa akun, cloud, iklan, atau pelacakan.",
       "inLanguage": ["en", "id"]
     },
     {
@@ -131,8 +130,8 @@
       ],
       "@id": "https://japandi.dev/projects/squirio/id/#webpage",
       "url": "https://japandi.dev/projects/squirio/id/",
-      "name": "Squirio — Pencatat Anggaran & Pengeluaran Offline untuk Android",
-      "description": "Aplikasi pencatat anggaran Android yang berjalan sepenuhnya di ponsel Anda — tanpa akun, tanpa cloud, tanpa pelacakan, dan anggaran yang berganti saat gajian, bukan tanggal 1.",
+      "name": "Squirio: Aplikasi Pencatatan Keuangan Gratis Android",
+      "description": "Aplikasi pencatatan keuangan gratis untuk mencatat anggaran, pengeluaran, dan arus kas di Android. Tanpa akun, cloud, iklan, atau pelacakan.",
       "isPartOf": {
         "@id": "https://japandi.dev/projects/squirio/#website"
       },
@@ -147,7 +146,7 @@
       },
       "inLanguage": "id",
       "datePublished": "2026-08-16",
-      "dateModified": "2026-08-27",
+      "dateModified": "2026-08-30",
       "mainEntity": [
         {
           "@type": "Question",
@@ -191,10 +190,10 @@
         },
         {
           "@type": "Question",
-          "name": "Apakah akan berbayar?",
+          "name": "Apakah Squirio sepenuhnya gratis?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Harga belum ditetapkan. Yang sudah pasti: tanpa iklan, tanpa analitik, dan tanpa penjualan data — tidak satu pun dari itu mungkin dilakukan di aplikasi yang tidak membuat permintaan jaringan."
+            "text": "Ya. Squirio sepenuhnya gratis tanpa biaya unduh, langganan, pembelian dalam aplikasi, iklan, atau fitur premium berbayar."
           }
         },
         {
@@ -243,10 +242,17 @@
       "applicationCategory": "FinanceApplication",
       "applicationSubCategory": "Personal Finance",
       "operatingSystem": "Android",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://japandi.dev/projects/squirio/"
+      },
       "brand": {
         "@id": "https://japandi.dev/projects/squirio/#brand"
       },
-      "description": "Aplikasi pencatat anggaran Android yang berjalan sepenuhnya di ponsel Anda — tanpa akun, tanpa cloud, tanpa pelacakan, dan anggaran yang berganti saat gajian, bukan tanggal 1.",
+      "description": "Aplikasi pencatatan keuangan gratis untuk mencatat anggaran, pengeluaran, dan arus kas di Android. Tanpa akun, cloud, iklan, atau pelacakan.",
       "inLanguage": [
         "en",
         "id"
@@ -256,7 +262,9 @@
       "image": {
         "@id": "https://japandi.dev/projects/squirio/#primaryimage"
       },
+      "screenshot": "https://japandi.dev/assets/images/squirio-home-preview.webp",
       "featureList": [
+        "Completely free with no subscription, in-app purchase or paid tier",
         "Budgets anchored to your payday rather than the calendar month",
         "Recurring transactions and bill reminders",
         "Savings goals with progress tracking",
@@ -322,12 +330,12 @@
 <section class="section" id="top">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Android · Segera hadir</p>
-      <h1 class="display" style="margin-top:var(--s-md)">Pencatat anggaran yang tetap tinggal di ponsel Anda.</h1>
-      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio adalah pencatat keuangan pribadi tanpa akun yang perlu dibuat, tanpa cloud untuk sinkronisasi, dan tanpa perusahaan yang berdiri di antara Anda dan angka-angka Anda sendiri. Semuanya tersimpan dalam satu berkas di perangkat Anda — dan anggarannya mengikuti tanggal gajian Anda, bukan tanggal 1.</p>
+      <p class="eyebrow">Android · Gratis sepenuhnya · Segera hadir</p>
+      <h1 class="display" style="margin-top:var(--s-md)">Aplikasi pencatatan keuangan gratis yang tetap di ponsel Anda.</h1>
+      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio adalah aplikasi pencatatan keuangan gratis tanpa akun yang perlu dibuat, tanpa cloud untuk sinkronisasi, dan tanpa perusahaan yang berdiri di antara Anda dan angka-angka Anda sendiri. Semua fitur tersedia tanpa biaya, langganan, pembelian dalam aplikasi, iklan, atau fitur premium berbayar. Semuanya tersimpan dalam satu berkas di perangkat Anda — dan anggarannya mengikuti tanggal gajian Anda, bukan tanggal 1.</p>
 
       <div class="launch-note" style="margin-top:var(--s-2xl)">
-        <span class="launch-note__platform">Hanya Android</span>
+        <span class="launch-note__platform">Gratis · Android</span>
         <strong class="launch-note__date">Hadir Oktober 2026</strong>
       </div>
     </div>
@@ -602,7 +610,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Perbedaan yang langsung terasa</p>
-      <h2 class="h2">Anggaran Anda berganti saat gajian. Bukan tanggal 1.</h2>
+      <h2 class="h2">Anggaran berdasarkan tanggal gajian, bukan tanggal 1.</h2>
       <p class="lede">Hampir semua aplikasi keuangan memotong hidup Anda menjadi bulan kalender. Jika Anda gajian tanggal 25, pemisahan itu keliru dengan cara yang diam-diam merusak angkanya — gaji Anda masuk di satu bulan sementara sewa, belanja dan transportasi yang dibiayainya jatuh di bulan berikutnya.</p>
     </div>
 
@@ -662,7 +670,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Privasi sejak rancangannya</p>
-      <h2 class="h2">Tidak ada server yang harus dipercaya.</h2>
+      <h2 class="h2">Privasi data keuangan tanpa server atau cloud.</h2>
       <p class="lede">Sebagian besar aplikasi keuangan meminta Anda menyerahkan riwayat pengeluaran lalu berjanji akan menjaganya. Squirio menghapus tahap ketika Anda harus memercayai siapa pun. Data Anda tidak pernah pergi ke mana-mana, karena aplikasinya tidak punya tempat untuk mengirimkannya.</p>
     </div>
 
@@ -704,7 +712,7 @@
   <div class="wrap split split--reverse">
     <div>
       <p class="eyebrow">Kecerdasan di dalam perangkat</p>
-      <h2 class="h2">Ia memperhatikan hal-hal yang tak pernah Anda beri tahu.</h2>
+      <h2 class="h2">Insight keuangan yang diproses di perangkat.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">Squirio membaca riwayat Anda sendiri dan menunjukkan apa yang berubah — tanpa satu pun darinya meninggalkan ponsel.</p>
       <ul class="points">
         <li><span><strong>Menemukan langganan dengan sendirinya.</strong> Ketika merchant yang sama menagih Anda dengan jumlah yang kurang lebih sama hampir setiap bulan, Squirio mengenalinya dan menawarkan untuk mulai melacaknya dalam satu ketukan.</span></li>
@@ -800,12 +808,56 @@
   </div>
 </section>
 
+<!-- ===================== METHODOLOGY & PRODUCT PREVIEW ================== -->
+<section class="section section--alt" id="methodology">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Metodologi yang transparan</p>
+      <h2 class="h2">Cara Squirio menghitung skor kesehatan keuangan</h2>
+      <p class="lede">Skor kesehatan keuangan merangkum pola dari transaksi yang Anda catat dalam periode gajian. Seluruh perhitungan berlangsung di perangkat dan ketiga sub-skor tetap ditampilkan agar angka akhirnya tidak menjadi penilaian tersembunyi.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="card">
+        <h3 class="feature-card__title">Rasio tabungan</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Membandingkan pemasukan yang tercatat dengan pengeluaran pada periode gajian yang sama. Transaksi yang belum dicatat tidak dapat diperhitungkan.</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">Kepatuhan anggaran</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Membandingkan pengeluaran dengan batas anggaran yang Anda tetapkan serta kemajuan hari dalam periode tersebut.</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">Stabilitas pemasukan</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Melihat perubahan pemasukan yang Anda catat di antara periode gajian yang telah selesai. Pendapatan tidak tetap dapat membuat nilai ini lebih berfluktuasi.</p>
+      </article>
+    </div>
+
+    <aside class="card" style="margin-top:var(--s-lg)" aria-labelledby="methodology-limits">
+      <h3 class="h3" id="methodology-limits">Batasan dan arti skor</h3>
+      <p class="body-2" style="margin-top:var(--s-sm);max-width:80ch">Skor ini adalah ringkasan edukatif dari data yang Anda masukkan, bukan penilaian kredit, diagnosis kondisi finansial, atau nasihat keuangan, investasi, pajak, maupun hukum. Kelengkapan transaksi dan anggaran menentukan kualitas hasil. Rumus final dan nomor versinya akan ditampilkan bersama build aplikasi saat rilis agar perubahan perhitungan dapat ditelusuri.</p>
+    </aside>
+
+    <div class="split" style="margin-top:var(--s-3xl);align-items:center">
+      <div>
+        <p class="eyebrow">Pratinjau produk</p>
+        <h2 class="h2">Lihat pencatatan keuangan Squirio dalam satu layar</h2>
+        <p class="lede" style="margin-top:var(--s-lg)">Pratinjau menggunakan data demonstrasi dan memperlihatkan periode gajian, saldo, pemasukan, pengeluaran, batas aman belanja, dompet, dan transaksi terbaru.</p>
+      </div>
+      <figure class="card split__visual product-preview">
+        <img src="../../../assets/images/squirio-home-preview.webp"
+             width="941" height="1672" loading="lazy" decoding="async"
+             class="product-preview__image" alt="Pratinjau aplikasi pencatatan keuangan gratis Squirio menampilkan periode gajian, saldo, pemasukan, pengeluaran, batas aman belanja, dompet, dan transaksi terbaru.">
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FAST ENTRY ===================================== -->
 <section class="section section--alt">
   <div class="wrap split">
     <div>
       <p class="eyebrow">Dibuat untuk nominal sungguhan</p>
-      <h2 class="h2">Mencatat transaksi cukup tiga ketukan.</h2>
+      <h2 class="h2">Pencatatan transaksi dalam tiga ketukan.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">Orang berhenti memakai pencatat keuangan karena pencatatannya merepotkan. Maka pencatatan adalah bagian yang digarap paling keras oleh Squirio.</p>
       <ul class="points">
         <li><span><strong>Papan angka yang dibuat untuk bilangan enam digit,</strong> dengan tombol<strong> 000</strong> — karena mengetik 1.250.000 di papan ketik ponsel adalah cara sebuah kebiasaan mati.</span></li>
@@ -980,7 +1032,7 @@
   <div class="wrap split split--reverse">
     <div>
       <p class="eyebrow">Anggaran yang berkata jujur</p>
-      <h2 class="h2">"85% terpakai" tidak berarti apa-apa tanpa tanggal.</h2>
+      <h2 class="h2">Pantau anggaran sesuai periode gajian.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">Berada di 85% anggaran makan Anda mengkhawatirkan pada hari ke-3 dan sama sekali wajar pada hari ke-27. Setiap batang anggaran Squirio membawa penanda laju yang menunjukkan sudah sejauh mana periode Anda benar-benar berjalan, sehingga angkanya punya konteks.</p>
       <ul class="points">
         <li><span><strong>Anggaran bisa memperbarui dirinya sendiri.</strong> Nyalakan "Ulangi setiap periode" dan batas yang sama kembali setiap siklus — yang bulanan mengikuti tanggal gajian Anda, bukan tanggal 1. Biarkan mati dan ia hanya mencakup periode saat Anda membuatnya.</span></li>
@@ -1108,7 +1160,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Analitik</p>
-      <h2 class="h2">Lihat ke mana uangnya benar-benar pergi.</h2>
+      <h2 class="h2">Analisis arus kas dan pengeluaran.</h2>
       <p class="lede">Rincian per kategori, arus kas dua belas bulan berjalan, tren pengeluaran dibanding rata-rata Anda sendiri, kalender intensitas harian, dan peringkat merchant yang diam-diam mengambil paling banyak.</p>
     </div>
 
@@ -1167,7 +1219,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Selebihnya</p>
-      <h2 class="h2">Sisa dari apa yang ada di dalamnya.</h2>
+      <h2 class="h2">Fitur gratis lain dalam aplikasi Squirio.</h2>
     </div>
 
     <div class="grid grid--3">
@@ -1232,7 +1284,7 @@
 <section class="section section--alt" id="faq">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="h2">Pertanyaan yang layak diajukan</h2>
+      <h2 class="h2">Pertanyaan umum tentang Squirio</h2>
     </div>
 
     <div class="faq">
@@ -1262,8 +1314,8 @@
       </details>
 
       <details class="faq__item">
-        <summary><h3 class="faq__question">Apakah akan berbayar?</h3></summary>
-        <p class="faq__answer">Harga belum ditetapkan. Yang sudah pasti: tanpa iklan, tanpa analitik, dan tanpa penjualan data — tidak satu pun dari itu mungkin dilakukan di aplikasi yang tidak membuat permintaan jaringan.</p>
+        <summary><h3 class="faq__question">Apakah Squirio sepenuhnya gratis?</h3></summary>
+        <p class="faq__answer">Ya. Squirio sepenuhnya gratis tanpa biaya unduh, langganan, pembelian dalam aplikasi, iklan, atau fitur premium berbayar.</p>
       </details>
 
       <details class="faq__item">
@@ -1279,7 +1331,7 @@
 <section class="section">
   <div class="wrap center" style="max-width:640px">
     <h2 class="h2">Lacak uang Anda, bukan kecemasan Anda.</h2>
-    <p class="lede" style="margin-top:var(--s-lg)">Hadir khusus di Android pada Oktober 2026.</p>
+    <p class="lede" style="margin-top:var(--s-lg)">Gratis sepenuhnya dan hadir khusus di Android pada Oktober 2026.</p>
   </div>
 </section>
 
@@ -1297,10 +1349,16 @@
         </a>
       </div>
       <div class="footer__meta">
-        <a href="privacy/">Privasi</a>
+        <a href="privacy/">Privasi aplikasi</a>
         <a href="#faq">Tanya Jawab</a>
+        <a href="/id/#about">Tentang pengembang</a>
+        <a href="/id/#contact">Kontak</a>
+        <a href="/id/privacy">Privasi situs</a>
       </div>
     </div>
+    <p class="body-2" style="margin-top:var(--s-lg)">
+      <time datetime="2026-08-29">Diterbitkan oleh Japandi Dev · Terakhir diperbarui 30 Agustus 2026</time>
+    </p>
   </div>
 </footer>
 

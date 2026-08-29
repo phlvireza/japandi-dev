@@ -582,8 +582,8 @@ to the CSP or the form will be blocked.
 
 ## The brand email
 
-`hello@japandi.dev` is a **placeholder**. Create the mailbox before launch or replace it. Use a
-brand address only — never a personal one, and never one built from a real name.
+`hello@japandi.dev` is the verified brand mailbox. Use a brand address only — never a personal
+one, and never one built from a real name.
 
 It appears in `index.html` (the Get in Touch button, the contact list and the footer),
 `privacy.html` (the Questions section and the footer) and `404.html` (the footer). Find them all:
@@ -1015,6 +1015,7 @@ Target: **WCAG 2.2 Level AA**.
 - [x] No personal information in code comments, filenames or JSON-LD
 - [x] No local filesystem paths anywhere in the deliverable
 - [ ] Check the domain's public WHOIS record — enable registrar privacy if it exposes you
+- [x] Verify `hello@japandi.dev` is active
 - [ ] Check MX/mail headers if you self-host `hello@japandi.dev`
 - [ ] Review Squirio screenshots for identifying content before publishing
 - [ ] Vet any brand GitHub account's commit author names and emails before linking it
@@ -1079,7 +1080,7 @@ and a 100 does not mean the site is accessible.
 
 ## Pre-launch checklist
 
-- [ ] Create `hello@japandi.dev`, or replace it everywhere
+- [x] Verify `hello@japandi.dev` is active
 - [ ] Confirm `.htaccess` uploaded (show hidden files in File Manager)
 - [ ] Run AutoSSL and confirm `https://japandi.dev` loads
 - [ ] Enable the HTTPS / bare-domain redirect block in `.htaccess`
@@ -1101,14 +1102,13 @@ and a 100 does not mean the site is accessible.
 
 ## Remaining placeholders
 
-Each is marked in the source with a `PLACEHOLDER` comment — `grep -rn "PLACEHOLDER" *.html` lists
-them all.
+Remaining launch choices are listed below. They are optional integrations or replaceable artwork,
+not broken contact information.
 
 | # | Placeholder | Current value | Where |
 |---|---|---|---|
-| 1 | Brand email | `hello@japandi.dev` | all three pages |
-| 2 | Brand GitHub | omitted entirely | — |
-| 3 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
+| 1 | Brand GitHub | omitted entirely | — |
+| 2 | Open Graph image | generated and launch-ready; replace for custom art | `og-image.png` |
 
 Not a placeholder, but worth checking before launch: the technology list in the About section
 should say what you actually build with.

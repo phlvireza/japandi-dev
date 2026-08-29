@@ -97,6 +97,22 @@
 }
 .section--alt .card { background: var(--bg); }
 
+/* The product artwork is a tall 941 x 1672 marketing screenshot. Letting it
+   fill half of a desktop split makes the section nearly a full screen taller
+   than its copy and reads like a cropped/broken image. Keep the whole artwork
+   visible at a phone-like width; it remains fluid on narrow screens. */
+.product-preview {
+  width: min(100%, 360px);
+  padding: var(--s-md);
+  justify-self: center;
+}
+
+.product-preview__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-sm);
+}
+
 /* The app's two universal alpha conventions, ported to CSS:
    12% tint for an identity chip, 10-15% for a status pill, with the source
    color reused at full strength for the icon or label on top. */

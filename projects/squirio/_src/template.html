@@ -75,13 +75,12 @@
      conflict. "about" carries the app (WebPage semantics), "mainEntity"
      carries the Questions (FAQPage's required property).
 
-     Deliberately absent from SoftwareApplication: offers.price and
-     aggregateRating/review. Google needs both for the Software App rich
-     result, but Squirio has no settled price and no ratings because it has not
-     shipped. Inventing either violates Google's structured data policy — add
-     them only when a real store listing exists. "screenshot" is absent for the
-     same reason: the phone mockups are HTML/CSS, not image files, and
-     og-card.png is a marketing card, not a screenshot.
+     Squirio is completely free, so offers.price is truthfully set to 0 and the
+     pre-launch offer uses PreOrder rather than pretending the app is already
+     available. aggregateRating/review remain absent because the app has not
+     shipped and has no real reviews. Inventing either would violate Google's
+     structured data policy. Replace the offer URL and availability at launch,
+     and add ratings only when real, visible store data exists.
 
      Squirio is a Brand rather than an Organization because Japandi Dev is an
      anonymous personal developer identity, not a company or studio.
@@ -144,7 +143,7 @@
       },
       "inLanguage": "{{__lang}}",
       "datePublished": "2026-08-16",
-      "dateModified": "2026-08-27",
+      "dateModified": "2026-08-30",
       "mainEntity": [
         {
           "@type": "Question",
@@ -240,6 +239,13 @@
       "applicationCategory": "FinanceApplication",
       "applicationSubCategory": "Personal Finance",
       "operatingSystem": "Android",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://japandi.dev/projects/squirio/"
+      },
       "brand": {
         "@id": "https://japandi.dev/projects/squirio/#brand"
       },
@@ -253,7 +259,9 @@
       "image": {
         "@id": "https://japandi.dev/projects/squirio/#primaryimage"
       },
+      "screenshot": "https://japandi.dev/assets/images/squirio-home-preview.webp",
       "featureList": [
+        "Completely free with no subscription, in-app purchase or paid tier",
         "Budgets anchored to your payday rather than the calendar month",
         "Recurring transactions and bill reminders",
         "Savings goals with progress tracking",
@@ -797,6 +805,50 @@
   </div>
 </section>
 
+<!-- ===================== METHODOLOGY & PRODUCT PREVIEW ================== -->
+<section class="section section--alt" id="methodology">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{{transparent_methodology}}</p>
+      <h2 class="h2">{{how_squirio_calculates_financial_health}}</h2>
+      <p class="lede">{{health_score_method_intro}}</p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="card">
+        <h3 class="feature-card__title">{{savings_rate_method}}</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">{{savings_rate_method_body}}</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">{{budget_adherence_method}}</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">{{budget_adherence_method_body}}</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">{{income_stability_method}}</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">{{income_stability_method_body}}</p>
+      </article>
+    </div>
+
+    <aside class="card" style="margin-top:var(--s-lg)" aria-labelledby="methodology-limits">
+      <h3 class="h3" id="methodology-limits">{{methodology_limits_heading}}</h3>
+      <p class="body-2" style="margin-top:var(--s-sm);max-width:80ch">{{methodology_limits_body}}</p>
+    </aside>
+
+    <div class="split" style="margin-top:var(--s-3xl);align-items:center">
+      <div>
+        <p class="eyebrow">{{product_preview_eyebrow}}</p>
+        <h2 class="h2">{{product_preview_heading}}</h2>
+        <p class="lede" style="margin-top:var(--s-lg)">{{product_preview_body}}</p>
+      </div>
+      <figure class="card split__visual product-preview">
+        <img src="{{__site_root}}assets/images/squirio-home-preview.webp"
+             width="941" height="1672" loading="lazy" decoding="async"
+             class="product-preview__image" alt="{{product_preview_alt}}">
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FAST ENTRY ===================================== -->
 <section class="section section--alt">
   <div class="wrap split">
@@ -1296,8 +1348,14 @@
       <div class="footer__meta">
         <a href="privacy/">{{privacy_3}}</a>
         <a href="#faq">{{faq_3}}</a>
+        <a href="{{__root_url}}#about">{{about_publisher}}</a>
+        <a href="{{__root_url}}#contact">{{contact_publisher}}</a>
+        <a href="{{__root_url}}privacy">{{site_privacy}}</a>
       </div>
     </div>
+    <p class="body-2" style="margin-top:var(--s-lg)">
+      <time datetime="2026-08-29">{{published_by_updated}}</time>
+    </p>
   </div>
 </footer>
 

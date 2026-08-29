@@ -40,7 +40,7 @@
   "privacy_h_children": "Children",
   "privacy_p_children": "Squirio is not directed to children under 13 and does not knowingly collect information from children.",
   "privacy_h_contact": "Contact and policy changes",
-  "privacy_p_contact": "The privacy contact address will be added here before public release and will also appear on Squirio&rsquo;s store listing. Material changes will be reflected on this page and in the app.",
+  "privacy_p_contact": "For privacy questions or data-related requests, contact <a href=\"mailto:hello@japandi.dev\">hello@japandi.dev</a>. The same address will appear on Squirio&rsquo;s store listing. Material changes will be reflected on this page and in the app.",
   "privacy_footer_project_pre": "Squirio is a project by ",
   "privacy_footer_project_post": ".",
   "privacy_footer_scope_pre": "This policy covers the Squirio app. The japandi.dev website, which uses privacy-preserving analytics, has its ",

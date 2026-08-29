@@ -9,8 +9,8 @@
 <!-- The title leads with the category, not the tagline: "Squirio" is an unknown
      brand pre-launch, so the brand name alone matches nothing anyone searches
      for. The tagline still carries the page as the closing H2. -->
-<title>Squirio — Offline Budget & Expense Tracker for Android</title>
-<meta name="description" content="An Android budget tracker that runs entirely on your phone — no account, no cloud, no tracking, and budgets that reset on payday instead of the 1st.">
+<title>Squirio: Free Financial Tracker App for Android</title>
+<meta name="description" content="Free financial tracker app for Android to manage budgets, expenses, savings, and cash flow. No account, cloud, ads, or tracking.">
 
 <link rel="canonical" href="https://japandi.dev/projects/squirio/">
 
@@ -27,10 +27,10 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="id_ID">
-<meta property="og:title" content="Squirio — Offline Budget & Expense Tracker for Android">
+<meta property="og:title" content="Squirio: Free Financial Tracker App for Android">
 <!-- Kept identical to meta[name=description]. This used to drop the payday
      clause, which meant every shared link lost the one differentiator. -->
-<meta property="og:description" content="An Android budget tracker that runs entirely on your phone — no account, no cloud, no tracking, and budgets that reset on payday instead of the 1st.">
+<meta property="og:description" content="Free financial tracker app for Android to manage budgets, expenses, savings, and cash flow. No account, cloud, ads, or tracking.">
 <meta property="og:url" content="https://japandi.dev/projects/squirio/">
 <meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
 <meta property="og:image:width" content="1200">
@@ -78,13 +78,12 @@
      conflict. "about" carries the app (WebPage semantics), "mainEntity"
      carries the Questions (FAQPage's required property).
 
-     Deliberately absent from SoftwareApplication: offers.price and
-     aggregateRating/review. Google needs both for the Software App rich
-     result, but Squirio has no settled price and no ratings because it has not
-     shipped. Inventing either violates Google's structured data policy — add
-     them only when a real store listing exists. "screenshot" is absent for the
-     same reason: the phone mockups are HTML/CSS, not image files, and
-     og-card.png is a marketing card, not a screenshot.
+     Squirio is completely free, so offers.price is truthfully set to 0 and the
+     pre-launch offer uses PreOrder rather than pretending the app is already
+     available. aggregateRating/review remain absent because the app has not
+     shipped and has no real reviews. Inventing either would violate Google's
+     structured data policy. Replace the offer URL and availability at launch,
+     and add ratings only when real, visible store data exists.
 
      Squirio is a Brand rather than an Organization because Japandi Dev is an
      anonymous personal developer identity, not a company or studio.
@@ -121,7 +120,7 @@
       "@id": "https://japandi.dev/projects/squirio/#website",
       "url": "https://japandi.dev/projects/squirio/",
       "name": "Squirio",
-      "description": "An Android budget tracker that runs entirely on your phone — no account, no cloud, no tracking, and budgets that reset on payday instead of the 1st.",
+      "description": "Free financial tracker app for Android to manage budgets, expenses, savings, and cash flow. No account, cloud, ads, or tracking.",
       "inLanguage": ["en", "id"]
     },
     {
@@ -131,8 +130,8 @@
       ],
       "@id": "https://japandi.dev/projects/squirio/#webpage",
       "url": "https://japandi.dev/projects/squirio/",
-      "name": "Squirio — Offline Budget & Expense Tracker for Android",
-      "description": "An Android budget tracker that runs entirely on your phone — no account, no cloud, no tracking, and budgets that reset on payday instead of the 1st.",
+      "name": "Squirio: Free Financial Tracker App for Android",
+      "description": "Free financial tracker app for Android to manage budgets, expenses, savings, and cash flow. No account, cloud, ads, or tracking.",
       "isPartOf": {
         "@id": "https://japandi.dev/projects/squirio/#website"
       },
@@ -147,7 +146,7 @@
       },
       "inLanguage": "en",
       "datePublished": "2026-08-16",
-      "dateModified": "2026-08-27",
+      "dateModified": "2026-08-30",
       "mainEntity": [
         {
           "@type": "Question",
@@ -191,10 +190,10 @@
         },
         {
           "@type": "Question",
-          "name": "Will it cost anything?",
+          "name": "Is Squirio completely free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Pricing isn't settled yet. What is settled: no ads, no analytics, and no selling data — none of which are possible in an app that doesn't make network requests."
+            "text": "Yes. Squirio is completely free, with no download fee, subscription, in-app purchase, advertising, or paid premium tier."
           }
         },
         {
@@ -243,10 +242,17 @@
       "applicationCategory": "FinanceApplication",
       "applicationSubCategory": "Personal Finance",
       "operatingSystem": "Android",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://japandi.dev/projects/squirio/"
+      },
       "brand": {
         "@id": "https://japandi.dev/projects/squirio/#brand"
       },
-      "description": "An Android budget tracker that runs entirely on your phone — no account, no cloud, no tracking, and budgets that reset on payday instead of the 1st.",
+      "description": "Free financial tracker app for Android to manage budgets, expenses, savings, and cash flow. No account, cloud, ads, or tracking.",
       "inLanguage": [
         "en",
         "id"
@@ -256,7 +262,9 @@
       "image": {
         "@id": "https://japandi.dev/projects/squirio/#primaryimage"
       },
+      "screenshot": "https://japandi.dev/assets/images/squirio-home-preview.webp",
       "featureList": [
+        "Completely free with no subscription, in-app purchase or paid tier",
         "Budgets anchored to your payday rather than the calendar month",
         "Recurring transactions and bill reminders",
         "Savings goals with progress tracking",
@@ -322,12 +330,12 @@
 <section class="section" id="top">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Android · Coming soon</p>
-      <h1 class="display" style="margin-top:var(--s-md)">The budget tracker that stays on your phone.</h1>
-      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio is a personal finance tracker with no account to create, no cloud to sync to, and no company sitting between you and your own numbers. Everything lives in a single file on your device — and it budgets around your payday, not the 1st of the month.</p>
+      <p class="eyebrow">Android · Completely free · Coming soon</p>
+      <h1 class="display" style="margin-top:var(--s-md)">The free financial tracker app that stays on your phone.</h1>
+      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio is a free financial tracker app with no account to create, no cloud to sync to, and no company sitting between you and your own numbers. Every feature is available without a fee, subscription, in-app purchase, advertising, or paid premium tier. Everything lives in a single file on your device — and it budgets around your payday, not the 1st of the month.</p>
 
       <div class="launch-note" style="margin-top:var(--s-2xl)">
-        <span class="launch-note__platform">Android only</span>
+        <span class="launch-note__platform">Free · Android</span>
         <strong class="launch-note__date">Coming October 2026</strong>
       </div>
     </div>
@@ -602,7 +610,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">The difference you feel first</p>
-      <h2 class="h2">Your budget resets on payday. Not on the 1st.</h2>
+      <h2 class="h2">Budgets based on payday, not the 1st.</h2>
       <p class="lede">Almost every finance app slices your life into calendar months. If you get paid on the 25th, that split is wrong in a way that quietly ruins the numbers — your salary lands in one month while the rent, groceries and transport it pays for land in the next.</p>
     </div>
 
@@ -662,7 +670,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Privacy by construction</p>
-      <h2 class="h2">There is no server to trust.</h2>
+      <h2 class="h2">Financial data privacy without a server or cloud.</h2>
       <p class="lede">Most finance apps ask you to hand over your spending history and then promise to look after it. Squirio removes the step where you have to believe anyone. Your data never goes anywhere, because the app has nowhere to send it.</p>
     </div>
 
@@ -704,7 +712,7 @@
   <div class="wrap split split--reverse">
     <div>
       <p class="eyebrow">On-device intelligence</p>
-      <h2 class="h2">It notices things you never told it.</h2>
+      <h2 class="h2">Financial insights processed on your device.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">Squirio reads your own history and points out what changed — without any of it leaving the phone.</p>
       <ul class="points">
         <li><span><strong>Finds subscriptions by itself.</strong> When the same merchant charges you roughly the same amount roughly every month, Squirio spots it and offers to start tracking it in one tap.</span></li>
@@ -800,12 +808,56 @@
   </div>
 </section>
 
+<!-- ===================== METHODOLOGY & PRODUCT PREVIEW ================== -->
+<section class="section section--alt" id="methodology">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Transparent methodology</p>
+      <h2 class="h2">How Squirio calculates its financial health score</h2>
+      <p class="lede">The financial health score summarizes patterns from the transactions you record within a pay cycle. Every calculation stays on your device, and all three sub-scores remain visible so the final number is not a hidden judgment.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="card">
+        <h3 class="feature-card__title">Savings rate</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Compares recorded income with spending in the same pay cycle. Transactions you have not recorded cannot be included.</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">Budget adherence</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Compares spending with the budget limits you set and with how far the current pay cycle has progressed.</p>
+      </article>
+      <article class="card">
+        <h3 class="feature-card__title">Income stability</h3>
+        <p class="body-2" style="margin-top:var(--s-sm)">Looks at changes in recorded income across completed pay cycles. Irregular income can make this value fluctuate more.</p>
+      </article>
+    </div>
+
+    <aside class="card" style="margin-top:var(--s-lg)" aria-labelledby="methodology-limits">
+      <h3 class="h3" id="methodology-limits">Limits and meaning of the score</h3>
+      <p class="body-2" style="margin-top:var(--s-sm);max-width:80ch">This score is an educational summary of the data you enter, not a credit score, a diagnosis of your financial condition, or financial, investment, tax, or legal advice. The completeness of your transactions and budgets determines the quality of the result. The final formula and its version number will be published with the release build so calculation changes remain traceable.</p>
+    </aside>
+
+    <div class="split" style="margin-top:var(--s-3xl);align-items:center">
+      <div>
+        <p class="eyebrow">Product preview</p>
+        <h2 class="h2">See Squirio's financial tracking in one screen</h2>
+        <p class="lede" style="margin-top:var(--s-lg)">This preview uses demonstration data and shows the pay cycle, balance, income, expenses, safe-to-spend guidance, wallets, and recent transactions.</p>
+      </div>
+      <figure class="card split__visual product-preview">
+        <img src="../../assets/images/squirio-home-preview.webp"
+             width="941" height="1672" loading="lazy" decoding="async"
+             class="product-preview__image" alt="Preview of the free Squirio financial tracker app showing a pay cycle, balance, income, expenses, safe-to-spend guidance, wallets, and recent transactions.">
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FAST ENTRY ===================================== -->
 <section class="section section--alt">
   <div class="wrap split">
     <div>
       <p class="eyebrow">Built for real amounts</p>
-      <h2 class="h2">Logging a transaction takes three taps.</h2>
+      <h2 class="h2">Log a transaction in three taps.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">People abandon finance trackers because entry is tedious. So entry is the part Squirio works hardest on.</p>
       <ul class="points">
         <li><span><strong>A keypad built for six-digit numbers,</strong> with a<strong> 000</strong> key — because typing 1.250.000 on a phone keyboard is how a habit dies.</span></li>
@@ -980,7 +1032,7 @@
   <div class="wrap split split--reverse">
     <div>
       <p class="eyebrow">Budgets that tell the truth</p>
-      <h2 class="h2">"85% used" means nothing without a date.</h2>
+      <h2 class="h2">Track budgets in the context of your pay cycle.</h2>
       <p class="lede" style="margin-top:var(--s-lg)">Being 85% through your food budget is alarming on day 3 and completely fine on day 27. Every Squirio budget bar carries a pace marker showing how far through the period you actually are, so the number has context.</p>
       <ul class="points">
         <li><span><strong>A budget can renew itself.</strong> Switch on "Repeat every period" and the same limit comes back each cycle — monthly ones on your payday, not the 1st. Leave it off and it covers only the period you set it in.</span></li>
@@ -1108,7 +1160,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Analytics</p>
-      <h2 class="h2">See where it actually went.</h2>
+      <h2 class="h2">Analyze cash flow and spending.</h2>
       <p class="lede">Category breakdowns, a rolling twelve-month cashflow, spend trends against your own average, a daily intensity calendar, and a ranking of the merchants quietly taking the most.</p>
     </div>
 
@@ -1167,7 +1219,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Everything else</p>
-      <h2 class="h2">The rest of what's in there.</h2>
+      <h2 class="h2">More features in the free Squirio app.</h2>
     </div>
 
     <div class="grid grid--3">
@@ -1232,7 +1284,7 @@
 <section class="section section--alt" id="faq">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="h2">Questions worth asking</h2>
+      <h2 class="h2">Frequently asked questions about Squirio</h2>
     </div>
 
     <div class="faq">
@@ -1262,8 +1314,8 @@
       </details>
 
       <details class="faq__item">
-        <summary><h3 class="faq__question">Will it cost anything?</h3></summary>
-        <p class="faq__answer">Pricing isn't settled yet. What is settled: no ads, no analytics, and no selling data — none of which are possible in an app that doesn't make network requests.</p>
+        <summary><h3 class="faq__question">Is Squirio completely free?</h3></summary>
+        <p class="faq__answer">Yes. Squirio is completely free, with no download fee, subscription, in-app purchase, advertising, or paid premium tier.</p>
       </details>
 
       <details class="faq__item">
@@ -1279,7 +1331,7 @@
 <section class="section">
   <div class="wrap center" style="max-width:640px">
     <h2 class="h2">Track your money, not your worry.</h2>
-    <p class="lede" style="margin-top:var(--s-lg)">Coming exclusively to Android in October 2026.</p>
+    <p class="lede" style="margin-top:var(--s-lg)">Completely free and coming exclusively to Android in October 2026.</p>
   </div>
 </section>
 
@@ -1297,10 +1349,16 @@
         </a>
       </div>
       <div class="footer__meta">
-        <a href="privacy/">Privacy</a>
+        <a href="privacy/">App privacy</a>
         <a href="#faq">FAQ</a>
+        <a href="/#about">About the developer</a>
+        <a href="/#contact">Contact</a>
+        <a href="/privacy">Site privacy</a>
       </div>
     </div>
+    <p class="body-2" style="margin-top:var(--s-lg)">
+      <time datetime="2026-08-29">Published by Japandi Dev · Last updated August 30, 2026</time>
+    </p>
   </div>
 </footer>
 
