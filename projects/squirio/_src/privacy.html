@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="{{__lang}}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{__title}}</title>
+  <meta name="description" content="{{__desc}}">
+  <link rel="canonical" href="https://japandi.dev/projects/squirio/{{__path}}">
+
+  <!-- The English and Indonesian policies form one hreflang cluster. Both
+       entries appear on both pages, self-reference included: a one-way
+       annotation is ignored outright. The canonical above stays
+       self-referential per locale - pointing a translation at the English URL
+       is what quietly deindexes it. -->
+  <link rel="alternate" hreflang="en" href="{{__alt_en}}">
+  <link rel="alternate" hreflang="id" href="{{__alt_id}}">
+  <link rel="alternate" hreflang="x-default" href="{{__alt_en}}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Squirio">
+  <meta property="og:locale" content="{{__oglocale}}">
+  <meta property="og:locale:alternate" content="{{__oglocale_alt}}">
+  <meta property="og:title" content="{{__title}}">
+  <meta property="og:description" content="{{__desc}}">
+  <meta property="og:url" content="https://japandi.dev/projects/squirio/{{__path}}">
+  <meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{__ogalt}}">
+  <!-- Twitter/X reads name=, not property=. Without the card type a shared link
+       falls back to a small thumbnail even though og:image is a real 1200x630. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{__title}}">
+  <meta name="twitter:description" content="{{__desc}}">
+  <meta name="twitter:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+  <meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+  <link rel="apple-touch-icon" href="{{__root}}assets/apple-touch-icon-180.png">
+  <link rel="stylesheet" href="{{__root}}css/fonts.css">
+  <link rel="stylesheet" href="{{__root}}css/tokens.css">
+  <link rel="stylesheet" href="{{__root}}css/base.css">
+  <link rel="stylesheet" href="{{__root}}css/japandi-shell.css">
+  <link rel="stylesheet" href="{{__root}}css/privacy.css">
+
+  <script src="{{__root}}js/init.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://japandi.dev/projects/squirio/{{__path}}#webpage",
+        "url": "https://japandi.dev/projects/squirio/{{__path}}",
+        "name": "{{__title|json}}",
+        "description": "{{__desc|json}}",
+        "isPartOf": { "@id": "https://japandi.dev/projects/squirio/#website" },
+        "about": { "@id": "https://japandi.dev/projects/squirio/#app" },
+        "breadcrumb": { "@id": "https://japandi.dev/projects/squirio/{{__path}}#breadcrumb" },
+        "inLanguage": "{{__lang}}",
+        "datePublished": "2026-08-24",
+        "dateModified": "2026-08-24"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://japandi.dev/projects/squirio/{{__path}}#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Squirio",
+            "item": "https://japandi.dev/projects/squirio/{{__project_path}}"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{privacy_title|json}}",
+            "item": "https://japandi.dev/projects/squirio/{{__path}}"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="privacy-page">
+  <a class="jd-skip-link" href="#main">{{__skip_to_content}}</a>
+
+  <header class="jd-header" data-jd-header>
+    <div class="jd-header__inner jd-shell-container">
+      <a class="jd-brand" href="../" aria-label="{{__brand_aria}}">
+        <img class="jd-brand__mark"
+             src="/assets/images/japandi-dev-logo-transparent-96.webp"
+             srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+             width="44" height="44" alt="" decoding="sync">
+        <span class="jd-brand__name">Japandi Dev</span>
+        <span class="jd-brand__separator" aria-hidden="true">/</span>
+        <span class="jd-brand__project">Squirio</span>
+      </a>
+      <button class="jd-nav-toggle" type="button" aria-expanded="false"
+              aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+        <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>{{__menu}}</span>
+      </button>
+      <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
+        <ul class="jd-nav__list">
+          <li><a href="../">{{__nav_squirio_home}}</a></li>
+          <li><a href="./" aria-current="page">{{__nav_privacy}}</a></li>
+        </ul>
+        <!-- Inside .jd-nav the switch renders in the header row on desktop and
+             inside the collapsed panel on mobile, leaving the header's first
+             row - already tight at 360px - untouched. Real links, so the other
+             language stays reachable and crawlable with scripting off. -->
+        <div class="jd-lang" role="group" aria-label="{{__lang_group_label}}">
+          <a class="jd-lang__option" href="{{__href_en}}" hreflang="en" lang="en"
+             data-lang-choice="en"{{__lang_current_en}}>EN</a>
+          <a class="jd-lang__option" href="{{__href_id}}" hreflang="id" lang="id"
+             data-lang-choice="id"{{__lang_current_id}}>ID</a>
+        </div>
+        <a class="jd-nav__back" href="{{__root_url}}#projects">{{__nav_all_projects}}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="privacy-main" id="main">
+    <a class="privacy-back" href="../">&larr; Squirio</a>
+    <p class="privacy-eyebrow">{{privacy_eyebrow}}</p>
+    <h1 class="privacy-title">{{privacy_title}}</h1>
+    <p class="privacy-updated">{{privacy_updated}}</p>
+    <div class="privacy-card">
+      <h2>{{privacy_h_overview}}</h2>
+      <p>{{privacy_p_overview}}</p>
+      <h2>{{privacy_h_stored}}</h2>
+      <p>{{privacy_p_stored}}</p>
+      <h2>{{privacy_h_collection}}</h2>
+      <p>{{privacy_p_collection}}</p>
+      <h2>{{privacy_h_backups}}</h2>
+      <p>{{privacy_p_backups}}</p>
+      <h2>{{privacy_h_notifications}}</h2>
+      <p>{{privacy_p_notifications}}</p>
+      <h2>{{privacy_h_retention}}</h2>
+      <p>{{privacy_p_retention}}</p>
+      <h2>{{privacy_h_children}}</h2>
+      <p>{{privacy_p_children}}</p>
+      <h2>{{privacy_h_contact}}</h2>
+      <p>{{privacy_p_contact}}</p>
+    </div>
+  </main>
+
+  <!-- Sign-off, not a navigation block: the header nav and the back link above the
+       policy already lead to Squirio, so repeating that here would be a third
+       route to one destination. What is worth saying is the boundary of this
+       document, which mirrors how japandi.dev's own policy describes it. -->
+  <footer class="privacy-footer">
+    <p>{{privacy_footer_project_pre}}<a href="{{__root_url}}">Japandi Dev</a>{{privacy_footer_project_post}}</p>
+    <p>{{privacy_footer_scope_pre}}<a href="{{__root_url}}privacy">{{privacy_footer_scope_link}}</a>{{privacy_footer_scope_post}}</p>
+  </footer>
+
+  <script src="/assets/js/shell.js"></script>
+  <script src="{{__root}}js/japandi-shell.js"></script>
+</body>
+</html>

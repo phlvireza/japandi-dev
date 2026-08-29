@@ -436,6 +436,53 @@ a { color: inherit; }
   background: var(--terracotta-ink);
 }
 
+/* -- Language switch ------------------------------------------------------
+   A segmented pair of real links, not a scripted control: with JavaScript off
+   the other language is still one click away, and a crawler follows it like
+   any other link. It lives inside .site-nav, so it inherits the nav's existing
+   collapse - part of the header row on desktop, part of the panel on small
+   screens - and never asks the header's top row to carry a third control.
+   The current language is marked with aria-current, so the styling follows the
+   accessible state rather than a duplicate class. */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+}
+
+.lang-switch__option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  /* 40px here plus the 2px padding either side of the track clears 44px. */
+  min-height: 40px;
+  padding: 0 0.55rem;
+  border-radius: calc(var(--radius-sm) - 3px);
+  font-size: var(--step-small);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.lang-switch__option:hover { color: var(--ink); }
+
+.lang-switch__option[aria-current] {
+  background: var(--pine);
+  color: var(--pine-contrast);
+}
+
+.lang-switch__option:focus-visible {
+  outline: 2px solid var(--pine);
+  outline-offset: 2px;
+}
+
+
 /* The toggle only exists in the small-screen layout. */
 .nav-toggle { display: none; }
 
@@ -873,6 +920,8 @@ a { color: inherit; }
     border-bottom: 1px solid var(--line);
   }
   .site-nav__cta { width: 100%; }
+  .lang-switch { width: 100%; }
+  .lang-switch__option { flex: 1; }
 
   /* Bars fold into a cross while the menu is open. */
   .is-nav-open .nav-toggle__bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }

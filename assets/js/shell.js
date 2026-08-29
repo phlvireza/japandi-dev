@@ -14,6 +14,11 @@
 window.JapandiShell = (function () {
   'use strict';
 
+  /* Shared with the early <head> snippet that acts on it. Change both together. */
+  var LANG_KEY = 'japandi-lang';
+
+  var REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
+
   /** Safari below 14 exposes addListener but not addEventListener on MediaQueryList. */
   function addMediaListener(mediaQuery, handler) {
     if (typeof mediaQuery.addEventListener === 'function') {
@@ -143,6 +148,76 @@ window.JapandiShell = (function () {
     });
   }
 
+  /**
+   * Remembers the language the visitor picks.
+   *
+   * Only the click is recorded here. The matching redirect has to run before
+   * the page paints, so it lives in each page's early <head> script rather
+   * than in this deferred file - see js/init.js on the project pages and the
+   * inline snippet in the root pages.
+   *
+   * The value is written before the browser follows the link, so what is
+   * stored always matches the page being navigated to; that is what stops the
+   * redirect on the other side from bouncing straight back.
+   */
+  function initLangSwitch(links) {
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        try {
+          localStorage.setItem(LANG_KEY, link.getAttribute('data-lang-choice'));
+        } catch (error) {
+          /* Private mode and blocked site data both throw on write. The link
+             still navigates; only the memory is lost. */
+        }
+      });
+    });
+  }
+
+  /**
+   * Reveals elements as they scroll into view.
+   *
+   * Both sites used to carry their own copy of this - script.js observing
+   * [data-reveal] to add .is-revealed, main.js observing .reveal to add
+   * .is-visible - and the two had already drifted apart on root margin and
+   * threshold. The algorithm is one thing, so it lives here once. The
+   * selector, class name and tuning stay with the caller, because those are
+   * per-site styling rather than behaviour.
+   *
+   * Anything that cannot be observed is revealed immediately, so content is
+   * never left hidden. That matches what each stylesheet already does for the
+   * no-JavaScript case.
+   *
+   * options: selector, visibleClass, rootMargin, threshold
+   */
+  function initReveal(options) {
+    var elements = toArray(document.querySelectorAll(options.selector));
+    if (!elements.length) return;
+
+    function revealAll() {
+      elements.forEach(function (element) {
+        element.classList.add(options.visibleClass);
+      });
+    }
+
+    if (window.matchMedia(REDUCED_MOTION).matches ||
+        !('IntersectionObserver' in window)) {
+      revealAll();
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add(options.visibleClass);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: options.rootMargin, threshold: options.threshold });
+
+    elements.forEach(function (element) {
+      observer.observe(element);
+    });
+  }
+
   function toArray(nodeList) {
     return Array.prototype.slice.call(nodeList);
   }
@@ -152,6 +227,7 @@ window.JapandiShell = (function () {
    *   header, nav, toggle   selectors for the three header parts
    *   links                 selector for the nav links to track (optional)
    *   sentinel              selector for a top-of-page sentinel (optional)
+   *   reveal                scroll-reveal options (optional); see initReveal
    *   openClass             class the header carries while the menu is open
    *   scrolledClass         class the header carries once the page is scrolled
    *   desktop               media query at which the nav stops collapsing
@@ -175,7 +251,11 @@ window.JapandiShell = (function () {
     if (config.links) {
       initSectionHighlight(toArray(document.querySelectorAll(config.links)));
     }
+    if (config.reveal) {
+      initReveal(config.reveal);
+    }
+    initLangSwitch(toArray(document.querySelectorAll('[data-lang-choice]')));
   }
 
-  return { init: init, addMediaListener: addMediaListener, toArray: toArray };
+  return { init: init, toArray: toArray };
 })();

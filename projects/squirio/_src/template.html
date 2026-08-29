@@ -11,8 +11,19 @@
 
 <link rel="canonical" href="https://japandi.dev/projects/squirio/{{__path}}">
 
+<!-- The English and Indonesian pages form one hreflang cluster. Both entries
+     appear on both pages, self-reference included: a one-way annotation is
+     ignored outright. x-default points at English, which is where a visitor
+     with no matching language preference should land. The canonical above
+     stays self-referential per locale - pointing a translation at the English
+     URL is what quietly deindexes it. -->
+<link rel="alternate" hreflang="en" href="{{__alt_en}}">
+<link rel="alternate" hreflang="id" href="{{__alt_id}}">
+<link rel="alternate" hreflang="x-default" href="{{__alt_en}}">
+
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{__oglocale}}">
+<meta property="og:locale:alternate" content="{{__oglocale_alt}}">
 <meta property="og:title" content="{{__title}}">
 <!-- Kept identical to meta[name=description]. This used to drop the payday
      clause, which meant every shared link lost the one differentiator. -->
@@ -108,7 +119,7 @@
       "url": "https://japandi.dev/projects/squirio/",
       "name": "Squirio",
       "description": "{{__desc}}",
-      "inLanguage": "en"
+      "inLanguage": ["en", "id"]
     },
     {
       "@type": [
@@ -137,58 +148,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Does it connect to my bank?",
+          "name": "{{does_it_connect_to|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No — and that is deliberate. Bank connections require handing your credentials to a third-party aggregator that then holds your full transaction history. Squirio doesn't have a server, so it couldn't do that even if it wanted to. You enter transactions yourself, or import a CSV your bank already gives you."
+            "text": "{{no_and_that_is|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "Do I have to set my budgets up again every month?",
+          "name": "{{do_i_have_to|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Only if you want to. Every budget has a \"Repeat every period\" switch — turn it on and the same limit comes back each cycle, renewing on your payday rather than the 1st, carrying unspent money across if you asked for that. Leave it off and the budget covers just the period you made it in, then moves to an \"Ended\" list instead of disappearing. It is a switch rather than an assumption because a budget you deliberately chose to repeat is one you can still explain to yourself six months later."
+            "text": "{{only_if_you_want|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "What happens if I lose my phone?",
+          "name": "{{what_happens_if_i|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This is the honest trade-off of a local-first app: if the only copy is on the phone and the phone is gone, the data is gone. Squirio gives you a one-tap backup that produces a zip file you can put in your own cloud drive, email to yourself, or keep anywhere you like. Do it occasionally and you are covered — on your terms, in a file you control."
+            "text": "{{this_is_the_honest|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "Can I sync between two devices?",
+          "name": "{{can_i_sync_between|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not automatically. Sync means a server, and a server means your spending history sits on someone else's computer — which is the exact thing this app is built to avoid. You can move data between devices with a backup file whenever you need to."
+            "text": "{{not_automatically_sync_means|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "Which platforms will it be on?",
+          "name": "{{which_platforms_will_it|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Squirio will launch exclusively on Android in October 2026."
+            "text": "{{squirio_will_launch_exclusively|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "Will it cost anything?",
+          "name": "{{will_it_cost_anything|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Pricing isn't settled yet. What is settled: no ads, no analytics, and no selling data — none of which are possible in an app that doesn't make network requests."
+            "text": "{{pricing_isn_t_settled|json}}"
           }
         },
         {
           "@type": "Question",
-          "name": "Can I get my data out?",
+          "name": "{{can_i_get_my|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Any time, two ways. A full backup is a zip containing the actual database file, and CSV export gives you a plain spreadsheet of every transaction. Both go straight to your share sheet."
+            "text": "{{any_time_two_ways|json}}"
           }
         }
       ]
@@ -211,13 +222,13 @@
           "@type": "ListItem",
           "position": 1,
           "name": "{{__breadcrumb_home}}",
-          "item": "https://japandi.dev/"
+          "item": "https://japandi.dev{{__root_url}}"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Squirio",
-          "item": "https://japandi.dev/projects/squirio/"
+          "item": "https://japandi.dev/projects/squirio/{{__path}}"
         }
       ]
     },
@@ -263,11 +274,11 @@
 </head>
 <body>
 
-<a class="jd-skip-link" href="#main">Skip to main content</a>
+<a class="jd-skip-link" href="#main">{{__skip_to_content}}</a>
 
 <header class="jd-header" data-jd-header>
   <div class="jd-header__inner jd-shell-container">
-    <a class="jd-brand" href="#top" aria-label="Squirio project overview">
+    <a class="jd-brand" href="#top" aria-label="{{__brand_aria}}">
       <img class="jd-brand__mark"
            src="/assets/images/japandi-dev-logo-transparent-96.webp"
            srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
@@ -280,18 +291,24 @@
     <button class="jd-nav-toggle" type="button" aria-expanded="false"
             aria-controls="jd-primary-navigation" data-jd-nav-toggle>
       <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span>Menu</span>
+      <span>{{__menu}}</span>
     </button>
 
     <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
       <ul class="jd-nav__list">
-        <li><a href="#top">Overview</a></li>
-        <li><a href="#payday">Payday</a></li>
-        <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#top">{{__nav_overview}}</a></li>
+        <li><a href="#payday">{{__nav_payday}}</a></li>
+        <li><a href="#privacy">{{__nav_privacy}}</a></li>
+        <li><a href="#features">{{__nav_features}}</a></li>
+        <li><a href="#faq">{{__nav_faq}}</a></li>
       </ul>
-      <a class="jd-nav__back" href="/#projects">All Projects</a>
+      <div class="jd-lang" role="group" aria-label="{{__lang_group_label}}">
+        <a class="jd-lang__option" href="{{__href_en}}" hreflang="en" lang="en"
+           data-lang-choice="en"{{__lang_current_en}}>EN</a>
+        <a class="jd-lang__option" href="{{__href_id}}" hreflang="id" lang="id"
+           data-lang-choice="id"{{__lang_current_id}}>ID</a>
+      </div>
+      <a class="jd-nav__back" href="{{__root_url}}#projects">{{__nav_all_projects}}</a>
     </nav>
   </div>
 </header>
@@ -307,8 +324,8 @@
       <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">{{squirio_is_a_personal}}</p>
 
       <div class="launch-note" style="margin-top:var(--s-2xl)">
-        <span class="launch-note__platform">Android only</span>
-        <strong class="launch-note__date">Coming October 2026</strong>
+        <span class="launch-note__platform">{{android_only}}</span>
+        <strong class="launch-note__date">{{coming_october_2026}}</strong>
       </div>
     </div>
 
@@ -1286,6 +1303,5 @@
 
 <script src="/assets/js/shell.js"></script>
 <script src="{{__root}}js/japandi-shell.js"></script>
-<script src="{{__root}}js/main.js"></script>
 </body>
 </html>

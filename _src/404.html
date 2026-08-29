@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<!-- GENERATED FILE - do not edit.
-     Built by build.py from _src/404.html + _src/404.<locale>.json.
-     Edit those and re-run `python build.py`; this file is overwritten. -->
-<html lang="en">
+<html lang="{{__lang}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Page Not Found — Japandi Dev</title>
-<meta name="description" content="The page you were looking for could not be found on japandi.dev.">
+<title>{{__title}}</title>
+<meta name="description" content="{{__desc}}">
 <!-- An error page should never be indexed, so it carries no canonical, no structured data,
      and does not appear in sitemap.xml. -->
 <meta name="robots" content="noindex">
@@ -48,13 +45,13 @@
 </head>
 
 <body>
-<a class="skip-link" href="#main">Skip to main content</a>
+<a class="skip-link" href="#main">{{skip_to_main_content}}</a>
 
 <div class="scroll-sentinel" data-scroll-sentinel aria-hidden="true"></div>
 
 <header class="site-header" data-site-header>
   <div class="site-header__inner container">
-    <a class="brand" href="/">
+    <a class="brand" href="{{__root_url}}">
       <span class="brand-mark">
         <!-- alt="" is deliberate: the adjacent "Japandi Dev" text already names this link.
              The optimized transparent variant keeps the mark circular; dark mode adds a
@@ -63,29 +60,29 @@
              srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
              width="44" height="44" alt="" decoding="sync" fetchpriority="high">
       </span>
-      <span class="brand__name">Japandi Dev</span>
+      <span class="brand__name">{{japandi_dev}}</span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
       <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__label">{{menu}}</span>
     </button>
 
-    <nav class="site-nav" id="primary-navigation" aria-label="Primary" data-site-nav>
+    <nav class="site-nav" id="primary-navigation" aria-label="{{primary}}" data-site-nav>
       <ul class="site-nav__list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#projects">Projects</a></li>
-        <li><a href="/#philosophy">Philosophy</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a href="{{__root_url}}">{{home}}</a></li>
+        <li><a href="{{__root_url}}#projects">{{projects}}</a></li>
+        <li><a href="{{__root_url}}#philosophy">{{philosophy}}</a></li>
+        <li><a href="{{__root_url}}#about">{{about}}</a></li>
+        <li><a href="{{__root_url}}#contact">{{contact}}</a></li>
       </ul>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a class="lang-switch__option" href="/" hreflang="en" lang="en"
-           data-lang-choice="en" aria-current="page">EN</a>
-        <a class="lang-switch__option" href="/id/" hreflang="id" lang="id"
-           data-lang-choice="id">ID</a>
+      <div class="lang-switch" role="group" aria-label="{{__lang_group_label}}">
+        <a class="lang-switch__option" href="{{__href_en}}" hreflang="en" lang="en"
+           data-lang-choice="en"{{__lang_current_en}}>EN</a>
+        <a class="lang-switch__option" href="{{__href_id}}" hreflang="id" lang="id"
+           data-lang-choice="id"{{__lang_current_id}}>ID</a>
       </div>
-      <a class="button button--primary site-nav__cta" href="/#projects">Explore My Work</a>
+      <a class="button button--primary site-nav__cta" href="{{__root_url}}#projects">{{explore_my_work}}</a>
     </nav>
   </div>
 </header>
@@ -95,14 +92,13 @@
     <div class="container">
       <div class="page__inner">
 
-        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>Error 404</p>
-        <h1 class="page__title">This page could not be found.</h1>
-        <p>The page you were looking for may have been moved, renamed, or may never have existed.
-        Everything published here is reachable from the home page.</p>
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>{{error_404}}</p>
+        <h1 class="page__title">{{this_page_could_not}}</h1>
+        <p>{{the_page_you_were}}</p>
 
         <p class="button-row button-row--center">
-          <a class="button button--primary" href="/">Back to Home</a>
-          <a class="button button--ghost" href="/#projects">Explore My Work</a>
+          <a class="button button--primary" href="{{__root_url}}">{{back_to_home}}</a>
+          <a class="button button--ghost" href="{{__root_url}}#projects">{{explore_my_work_2}}</a>
         </p>
 
       </div>
@@ -115,32 +111,32 @@
     <div class="site-footer__top">
 
       <div class="site-footer__brand">
-        <a class="brand" href="/">
+        <a class="brand" href="{{__root_url}}">
           <span class="brand-mark">
             <img src="/assets/images/japandi-dev-logo-transparent-96.webp"
                  srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
                  width="36" height="36" alt="" loading="lazy" decoding="async">
           </span>
-          <span class="brand__name">Japandi Dev</span>
+          <span class="brand__name">{{japandi_dev_2}}</span>
         </a>
-        <p class="site-footer__description">A personal space for coding, thoughtful products, and Japandi-inspired ideas.</p>
+        <p class="site-footer__description">{{a_personal_space_for}}</p>
       </div>
 
-      <nav class="site-footer__nav" aria-label="Footer">
+      <nav class="site-footer__nav" aria-label="{{footer}}">
         <div>
-          <h2 class="site-footer__heading">Explore</h2>
+          <h2 class="site-footer__heading">{{explore}}</h2>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/#projects">Projects</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="{{__root_url}}">{{home_2}}</a></li>
+            <li><a href="{{__root_url}}#projects">{{projects_2}}</a></li>
+            <li><a href="{{__root_url}}#about">{{about_2}}</a></li>
+            <li><a href="{{__root_url}}#contact">{{contact_2}}</a></li>
           </ul>
         </div>
         <div>
-          <h2 class="site-footer__heading">More</h2>
+          <h2 class="site-footer__heading">{{more}}</h2>
           <ul>
-            <li><a href="/privacy">Privacy</a></li>
-            <li><a href="mailto:hello@japandi.dev">Email</a></li>
+            <li><a href="{{__root_url}}privacy">{{privacy}}</a></li>
+            <li><a href="mailto:hello@japandi.dev">{{email}}</a></li>
           </ul>
         </div>
       </nav>
@@ -148,8 +144,8 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>&copy; <span data-current-year>2026</span> Japandi Dev</p>
-      <p>Built with clarity and care.</p>
+      <p>&copy; <span data-current-year>2026</span> {{japandi_dev_3}}</p>
+      <p>{{built_with_clarity_and}}</p>
     </div>
   </div>
 </footer>

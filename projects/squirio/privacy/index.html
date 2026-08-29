@@ -1,4 +1,7 @@
 <!doctype html>
+<!-- GENERATED FILE - do not edit.
+     Built by build.py from projects/squirio/_src/privacy.html + projects/squirio/_src/privacy.<locale>.json.
+     Edit those and re-run `python build.py`; this file is overwritten. -->
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
@@ -6,9 +9,20 @@
   <title>Squirio Privacy Policy</title>
   <meta name="description" content="How Squirio handles personal and financial information.">
   <link rel="canonical" href="https://japandi.dev/projects/squirio/privacy/">
+
+  <!-- The English and Indonesian policies form one hreflang cluster. Both
+       entries appear on both pages, self-reference included: a one-way
+       annotation is ignored outright. The canonical above stays
+       self-referential per locale - pointing a translation at the English URL
+       is what quietly deindexes it. -->
+  <link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/privacy/">
+  <link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/privacy/">
+  <link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/privacy/">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Squirio">
   <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="id_ID">
   <meta property="og:title" content="Squirio Privacy Policy">
   <meta property="og:description" content="How Squirio handles personal and financial information.">
   <meta property="og:url" content="https://japandi.dev/projects/squirio/privacy/">
@@ -31,6 +45,8 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/japandi-shell.css">
   <link rel="stylesheet" href="../css/privacy.css">
+
+  <script src="../js/init.js"></script>
 
   <script type="application/ld+json">
   {
@@ -95,6 +111,16 @@
           <li><a href="../">Squirio Home</a></li>
           <li><a href="./" aria-current="page">Privacy</a></li>
         </ul>
+        <!-- Inside .jd-nav the switch renders in the header row on desktop and
+             inside the collapsed panel on mobile, leaving the header's first
+             row - already tight at 360px - untouched. Real links, so the other
+             language stays reachable and crawlable with scripting off. -->
+        <div class="jd-lang" role="group" aria-label="Language">
+          <a class="jd-lang__option" href="/projects/squirio/privacy/" hreflang="en" lang="en"
+             data-lang-choice="en" aria-current="page">EN</a>
+          <a class="jd-lang__option" href="/projects/squirio/id/privacy/" hreflang="id" lang="id"
+             data-lang-choice="id">ID</a>
+        </div>
         <a class="jd-nav__back" href="/#projects">All Projects</a>
       </nav>
     </div>
@@ -131,9 +157,7 @@
        document, which mirrors how japandi.dev's own policy describes it. -->
   <footer class="privacy-footer">
     <p>Squirio is a project by <a href="/">Japandi Dev</a>.</p>
-    <p>This policy covers the Squirio app. The japandi.dev website, which uses
-       privacy-preserving analytics, has its
-       <a href="/privacy">own separate policy</a>.</p>
+    <p>This policy covers the Squirio app. The japandi.dev website, which uses privacy-preserving analytics, has its <a href="/privacy">own separate policy</a>.</p>
   </footer>
 
   <script src="/assets/js/shell.js"></script>

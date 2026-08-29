@@ -1,31 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Every indexable page, and nothing else: 404.html carries a noindex robots tag,
-  so listing it here would ask Google to crawl a page it is told to drop.
+  so listing it here would ask Google to crawl a page it is told to drop. That
+  applies to /id/404.html too.
+
+  Each URL is annotated with the whole language cluster it belongs to, itself
+  included. Google requires every URL in a set to list every alternate - a
+  one-way annotation is ignored outright - and the same reciprocity is repeated
+  in the <link rel="alternate"> tags in each page's <head>. x-default points at
+  the English URL, which is where a visitor with no matching language
+  preference should land.
 
   <lastmod> is the only optional field kept. Google reads it, but only from
   sitemaps whose dates it has learned to trust, so it must reflect a real change
-  to that page - bumping all four on every deploy is what makes it ignored.
+  to that page - bumping all eight on every deploy is what makes it ignored.
   <changefreq> and <priority> are omitted: Google states it ignores both.
 
   URLs match the canonical tag on each page exactly: clean /privacy without the
-  .html, and a trailing slash on the two project directories.
+  .html, and a trailing slash on the project directories.
 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://japandi.dev/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/"/>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/id/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/"/>
+    <lastmod>2026-08-29</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/privacy</loc>
-    <lastmod>2026-08-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/privacy"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/privacy"/>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/id/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/privacy"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/privacy"/>
+    <lastmod>2026-08-29</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/projects/squirio/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/"/>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/"/>
+    <lastmod>2026-08-29</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/projects/squirio/privacy/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/privacy/"/>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/privacy/"/>
+    <lastmod>2026-08-29</lastmod>
   </url>
 </urlset>

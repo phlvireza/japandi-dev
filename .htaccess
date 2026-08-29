@@ -24,10 +24,6 @@ DirectoryIndex index.html
   # already-indexed /website/ URLs with a permanent path-preserving redirect.
   RewriteRule ^website(?:/(.*))?$ /projects/squirio/$1 [L,R=301,NE]
 
-  # Squirio is English-only. Send old Indonesian bookmarks to the canonical
-  # project page instead of leaving visitors on a removed locale URL.
-  RewriteRule ^projects/squirio/id(?:/.*)?$ /projects/squirio/ [L,R=301,NE]
-
   # /index.html (or /sub/index.html) -> the directory itself
   RewriteCond %{THE_REQUEST} \s/+(.*)index\.html[\s?] [NC]
   RewriteRule ^ /%1 [L,R=301]
@@ -49,6 +45,19 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME}\.html -f
   RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
+
+# --- Build inputs are not site content -----------------------------------
+# _src/ and build.py generate the pages; they are never served. Both are already
+# excluded from the FTP deploy, so this is the second lock on the same door -
+# it makes a stray manual upload harmless. Mirrors projects/squirio/.htaccess.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^_src(?:/|$) - [F,L]
+</IfModule>
+
+<Files "build.py">
+  Require all denied
+</Files>
 
 # --- Canonical host and scheme -------------------------------------------
 # ENABLE AFTER SSL IS ACTIVE. Turning these on before the certificate is issued
@@ -79,7 +88,7 @@ DirectoryIndex index.html
   # data: is permitted for images only, because SVG placeholders may be inlined
   # by an editor later; remove it if you never do that.
   #
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8=' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-bm+Egwabh5OGFJDohAinzUJf36/GGQk2WfS6+JLb8xg=' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
 
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

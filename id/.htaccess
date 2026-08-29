@@ -1,0 +1,7 @@
+# Indonesian section of japandi.dev.
+#
+# ErrorDocument is inherited from the document root, which points at the English
+# /404.html. A visitor who mistypes a URL under /id/ should get the Indonesian
+# page instead. Everything else - clean URLs, security headers, caching - is
+# inherited from the root .htaccess and deliberately not repeated here.
+ErrorDocument 404 /id/404.html

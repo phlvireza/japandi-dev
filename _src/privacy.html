@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="{{__lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{__title}}</title>
+<meta name="description" content="{{__desc}}">
+<link rel="canonical" href="https://japandi.dev/{{__path}}">
+
+<!-- The English and Indonesian pages form one hreflang cluster. Both entries
+     appear on both pages, self-reference included: a one-way annotation is
+     ignored outright. x-default points at English, which is where a visitor
+     with no matching language preference should land. The canonical above
+     stays self-referential per locale - pointing a translation at the
+     English URL is what quietly deindexes it. -->
+<link rel="alternate" hreflang="en" href="{{__alt_en}}">
+<link rel="alternate" hreflang="id" href="{{__alt_id}}">
+<link rel="alternate" hreflang="x-default" href="{{__alt_en}}">
+
+<meta property="og:site_name" content="Japandi Dev">
+<meta property="og:title" content="{{__title}}">
+<meta property="og:description" content="{{__desc}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://japandi.dev/{{__path}}">
+<meta property="og:locale" content="{{__oglocale}}">
+<meta property="og:locale:alternate" content="{{__oglocale_alt}}">
+<meta property="og:image" content="https://japandi.dev/assets/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{__ogalt}}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{__title}}">
+<meta name="twitter:description" content="{{__desc}}">
+<meta name="twitter:image" content="https://japandi.dev/assets/images/og-image.png">
+<meta name="twitter:image:alt" content="{{__ogalt}}">
+
+<!-- Light first: a UA that does not understand media= takes the first one it finds. -->
+<meta name="theme-color" content="#F7F2E8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1917" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="{{__root}}assets/images/favicon-header-96.webp" sizes="96x96" type="image/webp">
+<link rel="icon" href="{{__root}}assets/images/favicon-header-192.webp" sizes="192x192" type="image/webp">
+<link rel="apple-touch-icon" href="{{__root}}assets/images/apple-touch-icon.png">
+
+<link rel="preload" href="{{__root}}assets/fonts/karla-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{__root}}assets/fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{__root}}assets/css/styles.css">
+
+<!-- Same single inline snippet as index.html. Covered by the same CSP hash. -->
+<script>
+  var root = document.documentElement;
+  root.classList.add('js');
+  addEventListener('load', function () {
+    if (!root.dataset.enhanced) root.classList.remove('js');
+  });
+  try {
+    var lang = localStorage.getItem('japandi-lang');
+    var xd = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+    if ((lang === 'en' || lang === 'id') && lang !== root.lang &&
+        xd && new URL(xd.href).pathname === location.pathname) {
+      var alt = document.querySelector('link[rel="alternate"][hreflang="' + lang + '"]');
+      if (alt) location.replace(new URL(alt.href).pathname);
+    }
+  } catch (error) {}
+</script>
+<script src="{{__root}}assets/js/shell.js" defer></script>
+<script src="{{__root}}assets/js/script.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://japandi.dev/{{__path}}#webpage",
+  "name": "{{__title|json}}",
+  "url": "https://japandi.dev/{{__path}}",
+  "description": "{{__desc|json}}",
+  "inLanguage": "{{__lang}}",
+  "isPartOf": { "@id": "https://japandi.dev/#website" },
+  "dateModified": "2026-08-26"
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">{{skip_to_main_content}}</a>
+
+<div class="scroll-sentinel" data-scroll-sentinel aria-hidden="true"></div>
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner container">
+    <a class="brand" href="{{__root_url}}">
+      <span class="brand-mark">
+        <!-- alt="" is deliberate: the adjacent "Japandi Dev" text already names this link.
+             The optimized transparent variant keeps the mark circular; dark mode adds a
+             circular cream backing so the green artwork remains visible. -->
+        <img src="{{__root}}assets/images/japandi-dev-logo-transparent-96.webp"
+             srcset="{{__root}}assets/images/japandi-dev-logo-transparent-96.webp 1x, {{__root}}assets/images/japandi-dev-logo-transparent-192.webp 2x"
+             width="44" height="44" alt="" decoding="sync" fetchpriority="high">
+      </span>
+      <span class="brand__name">{{japandi_dev}}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">{{menu}}</span>
+    </button>
+
+    <nav class="site-nav" id="primary-navigation" aria-label="{{primary}}" data-site-nav>
+      <ul class="site-nav__list">
+        <li><a href="{{__root_url}}">{{home}}</a></li>
+        <li><a href="{{__root_url}}#projects">{{projects}}</a></li>
+        <li><a href="{{__root_url}}#philosophy">{{philosophy}}</a></li>
+        <li><a href="{{__root_url}}#about">{{about}}</a></li>
+        <li><a href="{{__root_url}}#contact">{{contact}}</a></li>
+      </ul>
+      <div class="lang-switch" role="group" aria-label="{{__lang_group_label}}">
+        <a class="lang-switch__option" href="{{__href_en}}" hreflang="en" lang="en"
+           data-lang-choice="en"{{__lang_current_en}}>EN</a>
+        <a class="lang-switch__option" href="{{__href_id}}" hreflang="id" lang="id"
+           data-lang-choice="id"{{__lang_current_id}}>ID</a>
+      </div>
+      <a class="button button--primary site-nav__cta" href="{{__root_url}}#projects">{{explore_my_work}}</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="page">
+    <div class="container">
+      <div class="page__inner">
+
+        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>{{privacy}}</p>
+        <h1 class="page__title">{{privacy_policy}}</h1>
+
+        <p class="page__meta"><strong>{{last_updated}}</strong> {{n_26_august_2026}}</p>
+        <p>{{this_policy_explains_how}}</p>
+
+        <h2>{{information_collected_when_you}}</h2>
+        <p>{{japandi_dev_is_a}}</p>
+        <p>{{cloudflare_web_analytics_processes}}</p>
+        <p>{{the_site_is_delivered}}</p>
+
+        <h2>{{cookies_and_browser_storage}}</h2>
+        <p>{{cloudflare_web_analytics_is}}</p>
+
+        <h2>{{information_you_send_by}}</h2>
+        <p>{{email_links_on_this}}</p>
+
+        <h2>{{how_information_is_shared}}</h2>
+        <p>{{japandi_dev_does_not}}</p>
+        <ul>
+          <li><a href="https://www.cloudflare.com/policies/privacy/" rel="noopener noreferrer">{{cloudflare}}</a>{{which_delivers_and_protects}}</li>
+          <li><a href="https://www.biznetgio.com/en/legal" rel="noopener noreferrer">{{biznet_gio}}</a>{{which_hosts_the_site}}</li>
+          <li>{{the_email_service_providers}}</li>
+          <li>{{authorities_or_other_parties}}</li>
+        </ul>
+        <p>{{cloudflare_operates_a_global}}</p>
+
+        <h2>{{retention}}</h2>
+        <p>{{analytics_and_technical_request}}</p>
+
+        <h2>{{your_choices_and_requests}}</h2>
+        <p>{{you_may_ask_whether}}</p>
+
+        <h2>{{other_japandi_dev_projects}}</h2>
+        <p>{{this_policy_covers_japandi}}</p>
+
+        <h2>{{changes_to_this_policy}}</h2>
+        <p>{{if_this_policy_changes}}</p>
+
+        <h2>{{contact_2}}</h2>
+        <p>{{for_privacy_questions_or}}
+        <a href="mailto:hello@japandi.dev">{{hello_japandi_dev}}</a>.</p>
+
+        <p class="page__back"><a href="{{__root_url}}">{{return_to_the_japandi}}</a></p>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+
+      <div class="site-footer__brand">
+        <a class="brand" href="{{__root_url}}">
+          <span class="brand-mark">
+            <img src="{{__root}}assets/images/japandi-dev-logo-transparent-96.webp"
+                 srcset="{{__root}}assets/images/japandi-dev-logo-transparent-96.webp 1x, {{__root}}assets/images/japandi-dev-logo-transparent-192.webp 2x"
+                 width="36" height="36" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="brand__name">{{japandi_dev_2}}</span>
+        </a>
+        <p class="site-footer__description">{{a_personal_space_for}}</p>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="{{footer}}">
+        <div>
+          <h2 class="site-footer__heading">{{explore}}</h2>
+          <ul>
+            <li><a href="{{__root_url}}">{{home_2}}</a></li>
+            <li><a href="{{__root_url}}#projects">{{projects_2}}</a></li>
+            <li><a href="{{__root_url}}#about">{{about_2}}</a></li>
+            <li><a href="{{__root_url}}#contact">{{contact_3}}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="site-footer__heading">{{more}}</h2>
+          <ul>
+            <li><a href="{{__root_url}}privacy">{{privacy_2}}</a></li>
+            <li><a href="mailto:hello@japandi.dev">{{email}}</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; <span data-current-year>2026</span> {{japandi_dev_3}}</p>
+      <p>{{built_with_clarity_and}}</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
