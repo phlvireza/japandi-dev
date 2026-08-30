@@ -376,7 +376,13 @@
   "about_publisher": "About the developer",
   "contact_publisher": "Contact",
   "site_privacy": "Site privacy",
-  "published_by_updated": "Published by Japandi Dev · Last updated August 30, 2026",
+  "footer_description": "A completely free, private financial tracker for Android, built by Japandi Dev.",
+  "footer_navigation": "Squirio footer",
+  "footer_explore": "Explore",
+  "footer_more": "More",
+  "footer_overview": "Overview",
+  "footer_methodology": "Methodology",
+  "footer_built_with": "Built with clarity and care.",
   "android_only": "Free · Android",
   "coming_october_2026": "Coming October 2026"
 }

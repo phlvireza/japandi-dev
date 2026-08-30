@@ -1338,25 +1338,39 @@
 <!-- ===================== FOOTER ========================================= -->
 <footer class="footer">
   <div class="wrap">
-    <div class="footer__inner">
-      <div>
+    <div class="footer__top">
+      <div class="footer__brand">
         <a class="brand" href="#top">
           <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32"
                loading="lazy" decoding="async">
           <span class="brand__name">{{squirio_2}}</span>
         </a>
+        <p class="footer__description">{{footer_description}}</p>
       </div>
-      <div class="footer__meta">
-        <a href="privacy/">{{privacy_3}}</a>
-        <a href="#faq">{{faq_3}}</a>
-        <a href="{{__root_url}}#about">{{about_publisher}}</a>
-        <a href="{{__root_url}}#contact">{{contact_publisher}}</a>
-        <a href="{{__root_url}}privacy">{{site_privacy}}</a>
-      </div>
+      <nav class="footer__nav" aria-label="{{footer_navigation}}">
+        <div>
+          <h2 class="footer__heading">{{footer_explore}}</h2>
+          <ul>
+            <li><a href="#top">{{footer_overview}}</a></li>
+            <li><a href="#methodology">{{footer_methodology}}</a></li>
+            <li><a href="#faq">{{faq_3}}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer__heading">{{footer_more}}</h2>
+          <ul>
+            <li><a href="privacy/">{{privacy_3}}</a></li>
+            <li><a href="{{__root_url}}#about">{{about_publisher}}</a></li>
+            <li><a href="{{__root_url}}#contact">{{contact_publisher}}</a></li>
+            <li><a href="{{__root_url}}privacy">{{site_privacy}}</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
-    <p class="body-2" style="margin-top:var(--s-lg)">
-      <time datetime="2026-08-29">{{published_by_updated}}</time>
-    </p>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Japandi Dev</p>
+      <p>{{footer_built_with}}</p>
+    </div>
   </div>
 </footer>
 

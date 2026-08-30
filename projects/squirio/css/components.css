@@ -296,28 +296,97 @@
    Footer
    -------------------------------------------------------------------------- */
 .footer {
-  border-top: 1px solid var(--border);
-  padding-block: var(--s-3xl);
-  font-size: 0.875rem;
-  color: var(--text-2-strong);
+  --footer-bg: #a25526;
+  --footer-ink: #fff7ef;
+  --footer-ink-soft: #ffe9da;
+  --footer-line: #bd7447;
+  padding-block: 3.5rem;
+  background: var(--footer-bg);
+  color: var(--footer-ink);
+  font-size: 0.9rem;
 }
 
-.footer__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-lg);
-  align-items: center;
-  justify-content: space-between;
+.footer .brand {
+  color: var(--footer-ink);
 }
 
-.footer__meta {
+.footer .brand__mark {
+  border-color: var(--footer-line);
+}
+
+.footer__top {
+  display: grid;
+  gap: 3.5rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--footer-line);
+}
+
+.footer__description {
+  max-width: 26rem;
+  margin-top: 1.5rem;
+  color: var(--footer-ink-soft);
+}
+
+.footer__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-lg);
+  gap: 3.5rem;
 }
-/* 2.5.8: these measured 22px tall. Hit area only -- text size unchanged. */
-.footer__meta a {
+
+.footer__heading {
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--footer-ink-soft);
+}
+
+.footer__nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 24px;
+  min-height: 36px;
+  color: var(--footer-ink);
+  text-decoration: none;
+}
+
+.footer__nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer :focus-visible {
+  outline-color: var(--footer-ink);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 2.25rem;
+  color: var(--footer-ink-soft);
+}
+
+@media (min-width: 768px) {
+  .footer__top {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .footer {
+    --footer-bg: #55301f;
+    --footer-ink: #fff7ef;
+    --footer-ink-soft: #e7cbbb;
+    --footer-line: #754b35;
+  }
+}
+
+:root[data-theme="dark"] .footer {
+  --footer-bg: #55301f;
+  --footer-ink: #fff7ef;
+  --footer-ink-soft: #e7cbbb;
+  --footer-line: #754b35;
 }

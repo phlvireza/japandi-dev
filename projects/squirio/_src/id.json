@@ -376,7 +376,13 @@
   "about_publisher": "Tentang pengembang",
   "contact_publisher": "Kontak",
   "site_privacy": "Privasi situs",
-  "published_by_updated": "Diterbitkan oleh Japandi Dev · Terakhir diperbarui 30 Agustus 2026",
+  "footer_description": "Aplikasi pencatatan keuangan Android yang sepenuhnya gratis dan privat, dibuat oleh Japandi Dev.",
+  "footer_navigation": "Navigasi footer Squirio",
+  "footer_explore": "Jelajahi",
+  "footer_more": "Lainnya",
+  "footer_overview": "Ikhtisar",
+  "footer_methodology": "Metodologi",
+  "footer_built_with": "Dibangun dengan kejelasan dan kepedulian.",
   "android_only": "Gratis · Android",
   "coming_october_2026": "Hadir Oktober 2026"
 }
