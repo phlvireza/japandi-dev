@@ -296,10 +296,10 @@
    Footer
    -------------------------------------------------------------------------- */
 .footer {
-  --footer-bg: #a25526;
+  --footer-bg: #6b3f2b;
   --footer-ink: #fff7ef;
-  --footer-ink-soft: #ffe9da;
-  --footer-line: #bd7447;
+  --footer-ink-soft: #e3cfc1;
+  --footer-line: #89604c;
   padding-block: 3.5rem;
   background: var(--footer-bg);
   color: var(--footer-ink);
@@ -377,16 +377,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .footer {
-    --footer-bg: #55301f;
+    --footer-bg: #3d281f;
     --footer-ink: #fff7ef;
-    --footer-ink-soft: #e7cbbb;
-    --footer-line: #754b35;
+    --footer-ink-soft: #d9c4b7;
+    --footer-line: #604438;
   }
 }
 
 :root[data-theme="dark"] .footer {
-  --footer-bg: #55301f;
+  --footer-bg: #3d281f;
   --footer-ink: #fff7ef;
-  --footer-ink-soft: #e7cbbb;
-  --footer-line: #754b35;
+  --footer-ink-soft: #d9c4b7;
+  --footer-line: #604438;
 }
