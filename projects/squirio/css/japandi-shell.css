@@ -89,6 +89,7 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
 
 .jd-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
@@ -130,6 +131,8 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
 
 .jd-nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   gap: 1.8rem;
 }
@@ -274,7 +277,7 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
 .jd-header.is-nav-open .jd-nav-toggle__bars span:nth-child(2) { opacity: 0; }
 .jd-header.is-nav-open .jd-nav-toggle__bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-@media (max-width: 859px) {
+@media (max-width: 1099px) {
   .jd-shell-container { width: min(100% - 32px, 1120px); }
   /* The wrap exists for .jd-nav, which takes a row of its own when open. The
      brand and the toggle must never use it: at 390px the untrimmed row wanted
@@ -282,10 +285,10 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
      read as a broken header rather than an open menu. Trimming the brand and
      pinning the toggle keeps them on one row down to 360px. */
   .jd-header__inner { flex-wrap: wrap; gap: 0.75rem; }
-  .jd-brand { min-width: 0; flex: 0 1 auto; gap: 0.5rem; }
+  .jd-brand { min-width: 0; flex: 1 1 0; margin-right: 0; gap: 0.5rem; }
   .jd-brand__mark { width: 36px; height: 36px; }
   .jd-brand__name { font-size: 1.05rem; }
-  .jd-nav-toggle { display: inline-flex; flex: 0 0 auto; padding-inline: 0.75rem; }
+  .jd-nav-toggle { display: inline-flex; flex: 0 0 auto; margin-left: auto; padding-inline: 0.75rem; }
   .jd-nav {
     display: none;
     flex-basis: 100%;

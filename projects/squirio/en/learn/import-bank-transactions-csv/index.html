@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- GENERATED FILE - do not edit.
+     Built by build.py from projects/squirio/_src/content.html + projects/squirio/_src/import-bank-transactions-csv.<locale>.json.
+     Edit those and re-run `python build.py`; this file is overwritten. -->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Import Bank Transactions from CSV | Squirio</title>
+<meta name="description" content="Prepare, map, preview, and safely import bank transactions from a CSV file without duplicating or reversing entries.">
+<link rel="canonical" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:title" content="How to Import Bank Transactions from CSV | Squirio">
+<meta property="og:description" content="Prepare, map, preview, and safely import bank transactions from a CSV file without duplicating or reversing entries.">
+<meta property="og:url" content="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Squirio, a local-first financial tracker for Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/learn.bundle.css">
+<script src="/projects/squirio/js/init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/#article",
+      "url": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/",
+      "headline": "How to Import Bank Transactions from CSV Safely",
+      "description": "Prepare, map, preview, and safely import bank transactions from a CSV file without duplicating or reversing entries.",
+      "inLanguage": "en",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-04",
+      "mainEntityOfPage": { "@id": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/#webpage" },
+      "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/#webpage",
+      "url": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/",
+      "name": "How to Import Bank Transactions from CSV Safely",
+      "description": "Prepare, map, preview, and safely import bank transactions from a CSV file without duplicating or reversing entries.",
+      "inLanguage": "en",
+      "breadcrumb": { "@id": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/#breadcrumb" },
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Squirio", "item": "https://japandi.dev/projects/squirio/" },
+        { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://japandi.dev/projects/squirio/learn/" },
+        { "@type": "ListItem", "position": 3, "name": "Import bank CSV", "item": "https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">Skip to content</a>
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="/" aria-label="Japandi Dev home">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span>
+      <span class="jd-brand__separator" aria-hidden="true">/</span>
+      <span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false"
+            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Menu</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="/projects/squirio/#features">Features</a></li>
+        <li><a href="/projects/squirio/learn/">Learn</a></li>
+        <li><a href="/#about">About the developer</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="Language">
+        <a class="jd-lang__option" href="/projects/squirio/learn/import-bank-transactions-csv/" hreflang="en" lang="en" aria-current="page">EN</a>
+        <a class="jd-lang__option" href="/projects/squirio/id/learn/import-bank-transactions-csv/" hreflang="id" lang="id">ID</a>
+      </div>
+      <a class="jd-nav__back" href="/projects/squirio/#availability">Get Squirio</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article>
+    <header class="article-hero" id="top">
+      <div class="wrap article-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol><li><a href="/projects/squirio/">Squirio</a></li><li><a href="/projects/squirio/learn/">Learn</a></li><li aria-current="page">Import bank CSV</li></ol>
+        </nav>
+        <p class="eyebrow">Personal finance guide</p>
+        <h1 class="display" style="margin-top:var(--s-md)">How to Import Bank Transactions from CSV Safely</h1>
+        <p class="lede" style="margin-top:var(--s-lg)">Keep the original statement, map each column, preview the result, and verify totals before importing.</p>
+        <p class="article-meta"><time datetime="2026-09-03">Published September 3, 2026</time><span aria-hidden="true">&middot;</span><span>6 min read</span></p>
+      </div>
+    </header>
+    <div class="section section--alt" id="isi">
+      <div class="wrap article-layout">
+        <div class="article-body">
+          <p class="summary-box">Export a CSV from the bank, keep the original unchanged, import a working copy, map date, description, and amount columns, preview several rows, and verify totals before accepting. Back up existing app data first.</p>
+<h2 id="prepare">Prepare the file</h2>
+<ol><li>Download the statement directly from the bank or e-wallet.</li><li>Store the untouched original for reference.</li><li>Check the date range and account identity.</li><li>Remove summary rows from a working copy if the importer cannot ignore them.</li><li>Confirm whether spending uses negative values or a separate debit column.</li></ol>
+<p>Never upload a statement to an unknown online converter merely to change delimiters. A financial file can contain names, account references, balances, and detailed behavior.</p>
+<h2 id="map">Check each column mapping</h2>
+<div class="article-table-wrap" role="region" aria-label="Scrollable comparison table" tabindex="0"><table class="article-table"><caption>CSV fields to verify before importing</caption><thead><tr><th scope="col">CSV field</th><th scope="col">Check</th></tr></thead><tbody><tr><td>Date</td><td>Day/month order, four-digit year, and any time value</td></tr><tr><td>Description</td><td>Merchant or transfer text remains readable</td></tr><tr><td>Amount</td><td>Decimal and thousands separators are interpreted correctly</td></tr><tr><td>Direction</td><td>Debits become expenses and credits become income</td></tr><tr><td>Account</td><td>Every row enters the intended Squirio account</td></tr></tbody></table></div>
+<p>Squirio provides mapping and a preview before import. Inspect the first row, a debit, a credit, and any unusual transaction. If the same date range was imported previously, stop and prevent duplicates.</p>
+<h2 id="verify">Verify after importing</h2>
+<p>Compare the number of accepted rows, total credits, total debits, and closing balance with the statement. Spot-check descriptions and dates. Keep the original file until the account has been reconciled.</p>
+<p>After import, follow the <a href="/projects/squirio/learn/how-to-track-daily-expenses/">daily expense routine</a> for new activity and create a <a href="/projects/squirio/learn/backup-and-restore-financial-data/">new application backup</a>. The <a href="/projects/squirio/learn/free-financial-tracker/">free tracker guide</a> explains export and backup options.</p>
+
+        </div>
+        <aside class="article-sidebar" aria-label="On this page">
+          <div class="card">
+            <h2>On this page</h2>
+            <ul><li><a href="#prepare">Prepare the file</a></li><li><a href="#map">Map columns</a></li><li><a href="#verify">Verify results</a></li></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <section class="section" id="terkait">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Continue reading</p><h2 class="h2">Related guides</h2></div>
+      <div class="related-grid"><a class="card guide-card" href="/projects/squirio/learn/how-to-track-daily-expenses/"><span class="eyebrow">Financial Habits</span><h3 class="h3">How to Start Tracking Daily Expenses</h3><p>Use a five-minute routine to keep your records accurate.</p><span class="guide-card__meta">6 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/backup-and-restore-financial-data/"><span class="eyebrow">Financial Habits</span><h3 class="h3">How to Back Up and Restore Financial Data</h3><p>Create protected backups and test the restore process.</p><span class="guide-card__meta">6 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/offline-financial-tracker-security/"><span class="eyebrow">Privacy &amp; Data</span><h3 class="h3">Offline Financial Tracker Security</h3><p>Check permissions, storage, exports, device protection, and recovery.</p><span class="guide-card__meta">7 min read</span></a></div>
+    </div>
+  </section>
+  <section class="section section--alt">
+    <div class="wrap article-cta center">
+      <h2 class="h2">See how Squirio works.</h2>
+      <p class="lede">Squirio is a free Android financial tracker. No account, cloud, ads, or tracking.</p>
+      <a href="/projects/squirio/">Explore every Squirio feature</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="/projects/squirio/">
+          <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async">
+          <span class="brand__name">SQUIRIO</span>
+        </a>
+        <p class="footer__description">A free, private financial tracker for Android, built by Japandi Dev.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="/projects/squirio/">Overview</a></li><li><a href="/projects/squirio/#features">Features</a></li><li><a href="/projects/squirio/learn/">Learn</a></li><li><a href="/projects/squirio/#faq">FAQ</a></li></ul></div>
+        <div><h2 class="footer__heading">More</h2><ul><li><a href="/projects/squirio/privacy/">App privacy</a></li><li><a href="/#about">About the developer</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>A project by Japandi Dev.</p></div>
+  </div>
+</footer>
+<script src="/assets/js/shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
+</body>
+</html>

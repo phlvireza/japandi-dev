@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- GENERATED FILE - do not edit.
+     Built by build.py from projects/squirio/_src/content.html + projects/squirio/_src/backup-and-restore-financial-data.<locale>.json.
+     Edit those and re-run `python build.py`; this file is overwritten. -->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back Up and Restore Financial App Data | Squirio</title>
+<meta name="description" content="Create, protect, test, and restore a financial-app backup so local records remain recoverable after phone loss, damage, or replacement.">
+<link rel="canonical" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/">
+<link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/">
+<link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/backup-and-restore-financial-data/">
+<link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:title" content="Back Up and Restore Financial App Data | Squirio">
+<meta property="og:description" content="Create, protect, test, and restore a financial-app backup so local records remain recoverable after phone loss, damage, or replacement.">
+<meta property="og:url" content="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Squirio, a local-first financial tracker for Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/learn.bundle.css">
+<script src="/projects/squirio/js/init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/#article",
+      "url": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/",
+      "headline": "How to Back Up and Restore Your Financial Data",
+      "description": "Create, protect, test, and restore a financial-app backup so local records remain recoverable after phone loss, damage, or replacement.",
+      "inLanguage": "en",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-04",
+      "mainEntityOfPage": { "@id": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/#webpage" },
+      "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/#webpage",
+      "url": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/",
+      "name": "How to Back Up and Restore Your Financial Data",
+      "description": "Create, protect, test, and restore a financial-app backup so local records remain recoverable after phone loss, damage, or replacement.",
+      "inLanguage": "en",
+      "breadcrumb": { "@id": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/#breadcrumb" },
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Squirio", "item": "https://japandi.dev/projects/squirio/" },
+        { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://japandi.dev/projects/squirio/learn/" },
+        { "@type": "ListItem", "position": 3, "name": "Back up financial data", "item": "https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">Skip to content</a>
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="/" aria-label="Japandi Dev home">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span>
+      <span class="jd-brand__separator" aria-hidden="true">/</span>
+      <span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false"
+            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Menu</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="/projects/squirio/#features">Features</a></li>
+        <li><a href="/projects/squirio/learn/">Learn</a></li>
+        <li><a href="/#about">About the developer</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="Language">
+        <a class="jd-lang__option" href="/projects/squirio/learn/backup-and-restore-financial-data/" hreflang="en" lang="en" aria-current="page">EN</a>
+        <a class="jd-lang__option" href="/projects/squirio/id/learn/backup-and-restore-financial-data/" hreflang="id" lang="id">ID</a>
+      </div>
+      <a class="jd-nav__back" href="/projects/squirio/#availability">Get Squirio</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article>
+    <header class="article-hero" id="top">
+      <div class="wrap article-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol><li><a href="/projects/squirio/">Squirio</a></li><li><a href="/projects/squirio/learn/">Learn</a></li><li aria-current="page">Back up financial data</li></ol>
+        </nav>
+        <p class="eyebrow">Personal finance guide</p>
+        <h1 class="display" style="margin-top:var(--s-md)">How to Back Up and Restore Your Financial Data</h1>
+        <p class="lede" style="margin-top:var(--s-lg)">Keep a second copy of locally stored records, protect it, and test recovery before the original is lost.</p>
+        <p class="article-meta"><time datetime="2026-09-03">Published September 3, 2026</time><span aria-hidden="true">&middot;</span><span>5 min read</span></p>
+      </div>
+    </header>
+    <div class="section section--alt" id="isi">
+      <div class="wrap article-layout">
+        <div class="article-body">
+          <p class="summary-box">Create a full backup after an import or other major change, store a second copy away from the phone, protect access to the file, and test restoration. A restore test confirms that the backup can be used.</p>
+<h2 id="backup">Set a backup schedule</h2>
+<ol><li>Reconcile important account balances.</li><li>Create a full application backup in addition to a CSV export.</li><li>Name it with an ISO date such as <code>squirio-backup-2026-09-03.zip</code>.</li><li>Copy it to a destination separate from the phone.</li><li>Retain several recent versions instead of overwriting the only copy.</li></ol>
+<p>CSV is useful for portability and inspection, while a full backup preserves application relationships needed for recovery. Keep both when the history is important.</p>
+<h2 id="protect">Protect the backup file</h2>
+<p>An unprotected financial backup may expose balances, merchants, income patterns, and debts. Store it in a protected location, secure the account with strong authentication, and do not send it through ordinary messaging apps.</p>
+<div class="article-table-wrap" role="region" aria-label="Scrollable comparison table" tabindex="0"><table class="article-table"><caption>Backup risks and practical controls</caption><thead><tr><th scope="col">Risk</th><th scope="col">Control</th></tr></thead><tbody><tr><td>Phone lost</td><td>Keep a separate copy outside the device</td></tr><tr><td>Bad import or accidental edit</td><td>Retain multiple dated versions</td></tr><tr><td>Backup account compromised</td><td>Use strong authentication and restrict sharing</td></tr><tr><td>Corrupt or incompatible file</td><td>Test restoration after important updates</td></tr></tbody></table></div>
+<h2 id="restore">Restore safely</h2>
+<p>Before restoring, copy the current data if possible. Check the backup date and source, follow the app's restore process, then inspect several accounts, budgets, goals, and recent transactions. Keep older copies until the restored data has been verified.</p>
+<p>Review <a href="/projects/squirio/learn/import-bank-transactions-csv/">CSV import safety</a> before bringing in statement data, and understand the responsibilities described in the <a href="/projects/squirio/learn/offline-financial-tracker-security/">offline security guide</a>. The <a href="/projects/squirio/learn/free-financial-tracker/">free tracker overview</a> explains the full storage model.</p>
+
+        </div>
+        <aside class="article-sidebar" aria-label="On this page">
+          <div class="card">
+            <h2>On this page</h2>
+            <ul><li><a href="#backup">Create a backup</a></li><li><a href="#protect">Protect the file</a></li><li><a href="#restore">Restore safely</a></li></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <section class="section" id="terkait">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Continue reading</p><h2 class="h2">Related guides</h2></div>
+      <div class="related-grid"><a class="card guide-card" href="/projects/squirio/learn/import-bank-transactions-csv/"><span class="eyebrow">Privacy &amp; Data</span><h3 class="h3">How to Import Bank Transactions from CSV</h3><p>Prepare, map, import, and verify transaction data without duplicating records.</p><span class="guide-card__meta">6 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/offline-financial-tracker-security/"><span class="eyebrow">Privacy &amp; Data</span><h3 class="h3">Offline Financial Tracker Security</h3><p>Check permissions, storage, exports, device protection, and recovery.</p><span class="guide-card__meta">7 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/offline-finance-app/"><span class="eyebrow">Privacy &amp; Data</span><h3 class="h3">How Offline Finance Apps Work</h3><p>Learn how local storage works and test the app with airplane mode enabled.</p><span class="guide-card__meta">13 min read</span></a></div>
+    </div>
+  </section>
+  <section class="section section--alt">
+    <div class="wrap article-cta center">
+      <h2 class="h2">See how Squirio works.</h2>
+      <p class="lede">Squirio is a free Android financial tracker. No account, cloud, ads, or tracking.</p>
+      <a href="/projects/squirio/">Explore every Squirio feature</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="/projects/squirio/">
+          <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async">
+          <span class="brand__name">SQUIRIO</span>
+        </a>
+        <p class="footer__description">A free, private financial tracker for Android, built by Japandi Dev.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="/projects/squirio/">Overview</a></li><li><a href="/projects/squirio/#features">Features</a></li><li><a href="/projects/squirio/learn/">Learn</a></li><li><a href="/projects/squirio/#faq">FAQ</a></li></ul></div>
+        <div><h2 class="footer__heading">More</h2><ul><li><a href="/projects/squirio/privacy/">App privacy</a></li><li><a href="/#about">About the developer</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>A project by Japandi Dev.</p></div>
+  </div>
+</footer>
+<script src="/assets/js/shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
+</body>
+</html>

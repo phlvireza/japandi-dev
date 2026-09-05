@@ -41,22 +41,16 @@
 <meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
 
 <link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
 
 <!-- Inter is the app's typeface, served from this origin. See css/fonts.css for
      why it is not loaded from Google Fonts and how to update the files. The
      preload starts the latin file before the CSS parser reaches the @font-face
      rule; latin-ext is left to load on demand since most visitors never need it. -->
-<link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../css/fonts.css">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/landing.bundle.css">
 
-<link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/mockups.css">
-<link rel="stylesheet" href="../css/japandi-shell.css">
-
-<script src="../js/init.js"></script>
+<script src="/projects/squirio/js/init.js"></script>
 
 <!-- Structured data. Note this is raw JSON, not HTML: write literal "&",
      never "&amp;".
@@ -153,7 +147,7 @@
           "name": "Apakah aplikasi ini terhubung ke bank saya?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tidak — dan itu disengaja. Koneksi bank mengharuskan Anda menyerahkan kredensial kepada agregator pihak ketiga yang kemudian menyimpan seluruh riwayat transaksi Anda. Squirio tidak punya server, jadi ia tidak akan bisa melakukannya sekalipun ingin. Anda memasukkan transaksi sendiri, atau mengimpor CSV yang sudah diberikan bank Anda."
+            "text": "Tidak. Masukkan transaksi secara manual atau impor CSV dari bank. Squirio tidak memiliki server atau layanan agregasi bank."
           }
         },
         {
@@ -161,7 +155,7 @@
           "name": "Apakah saya harus menyusun anggaran lagi setiap bulan?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Hanya jika Anda mau. Setiap anggaran punya sakelar \"Ulangi setiap periode\" — nyalakan dan batas yang sama kembali setiap siklus, memperbarui pada tanggal gajian Anda alih-alih tanggal 1, membawa sisa dana jika Anda memintanya. Biarkan mati dan anggaran itu hanya mencakup periode saat Anda membuatnya, lalu pindah ke daftar \"Berakhir\" alih-alih menghilang. Ini berupa sakelar dan bukan asumsi karena anggaran yang sengaja Anda pilih untuk diulang adalah anggaran yang masih bisa Anda jelaskan kepada diri sendiri enam bulan kemudian."
+            "text": "Tidak. Aktifkan \"Ulangi setiap periode\" agar anggaran diperbarui pada setiap siklus gajian. Nonaktifkan untuk anggaran satu kali. Rollover dapat dipilih jika diperlukan."
           }
         },
         {
@@ -169,7 +163,7 @@
           "name": "Apa yang terjadi jika ponsel saya hilang?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Inilah konsekuensi jujur dari aplikasi yang menyimpan data secara lokal: jika satu-satunya salinan ada di ponsel dan ponselnya hilang, datanya ikut hilang. Squirio memberi Anda pencadangan satu ketukan yang menghasilkan berkas zip yang bisa Anda simpan di penyimpanan awan Anda sendiri, kirim ke email Anda, atau taruh di mana pun Anda suka. Lakukan sesekali dan Anda aman — dengan cara Anda sendiri, dalam berkas yang Anda kendalikan."
+            "text": "Jika ponsel menyimpan satu-satunya salinan, data ikut hilang. Buat cadangan zip secara berkala dan simpan di tempat yang Anda kendalikan."
           }
         },
         {
@@ -177,7 +171,7 @@
           "name": "Bisakah saya menyinkronkan antara dua perangkat?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tidak otomatis. Sinkronisasi berarti server, dan server berarti riwayat pengeluaran Anda berada di komputer orang lain — yang justru merupakan hal yang ingin dihindari aplikasi ini. Anda bisa memindahkan data antar perangkat dengan berkas cadangan kapan pun Anda perlu."
+            "text": "Tidak secara otomatis. Pindahkan data antarperangkat dengan berkas cadangan saat diperlukan."
           }
         },
         {
@@ -201,7 +195,7 @@
           "name": "Bisakah saya mengeluarkan data saya?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kapan saja, dengan dua cara. Cadangan penuh berupa zip yang berisi berkas basis data sesungguhnya, dan ekspor CSV memberi Anda lembar kerja biasa berisi setiap transaksi. Keduanya langsung menuju lembar berbagi Anda."
+            "text": "Ya. Buat cadangan zip lengkap atau ekspor seluruh transaksi ke CSV melalui menu berbagi Android."
           }
         }
       ]
@@ -290,7 +284,7 @@
 
 <header class="jd-header" data-jd-header>
   <div class="jd-header__inner jd-shell-container">
-    <a class="jd-brand" href="#top" aria-label="Ikhtisar proyek Squirio">
+    <a class="jd-brand" href="/id/" aria-label="Beranda Japandi Dev">
       <img class="jd-brand__mark"
            src="/assets/images/japandi-dev-logo-transparent-96.webp"
            srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
@@ -306,13 +300,11 @@
       <span>Menu</span>
     </button>
 
-    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
       <ul class="jd-nav__list">
-        <li><a href="#top">Ikhtisar</a></li>
-        <li><a href="#payday">Gajian</a></li>
-        <li><a href="#privacy">Privasi</a></li>
         <li><a href="#features">Fitur</a></li>
-        <li><a href="#faq">Tanya Jawab</a></li>
+        <li><a href="/projects/squirio/id/learn/">Belajar</a></li>
+        <li><a href="/id/#about">Tentang</a></li>
       </ul>
       <div class="jd-lang" role="group" aria-label="Bahasa">
         <a class="jd-lang__option" href="/projects/squirio/" hreflang="en" lang="en"
@@ -320,7 +312,7 @@
         <a class="jd-lang__option" href="/projects/squirio/id/" hreflang="id" lang="id"
            data-lang-choice="id" aria-current="page">ID</a>
       </div>
-      <a class="jd-nav__back" href="/id/#projects">Semua Proyek</a>
+      <a class="jd-nav__back" href="#availability">Dapatkan Squirio</a>
     </nav>
   </div>
 </header>
@@ -331,11 +323,11 @@
 <section class="section" id="top">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Android · Gratis sepenuhnya · Segera hadir</p>
-      <h1 class="display" style="margin-top:var(--s-md)">Aplikasi pencatatan keuangan gratis yang tetap di ponsel Anda.</h1>
-      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio adalah aplikasi pencatatan keuangan gratis tanpa akun yang perlu dibuat, tanpa cloud untuk sinkronisasi, dan tanpa perusahaan yang berdiri di antara Anda dan angka-angka Anda sendiri. Semua fitur tersedia tanpa biaya, langganan, pembelian dalam aplikasi, iklan, atau fitur premium berbayar. Semuanya tersimpan dalam satu berkas di perangkat Anda — dan anggarannya mengikuti tanggal gajian Anda, bukan tanggal 1.</p>
+      <p class="eyebrow">Android · Gratis · Segera hadir</p>
+      <h1 class="display" style="margin-top:var(--s-md)">Aplikasi pencatatan keuangan gratis dengan data yang tetap di ponsel.</h1>
+      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio adalah aplikasi Android untuk mencatat pengeluaran, anggaran, tabungan, serta utang dan piutang. Tidak perlu membuat akun, berlangganan, melihat iklan, atau membeli fitur premium. Data tersimpan dalam satu berkas di perangkat, sedangkan periode anggaran dapat dimulai pada tanggal gajian, bukan selalu tanggal 1.</p>
 
-      <div class="launch-note" style="margin-top:var(--s-2xl)">
+      <div class="launch-note" id="availability" style="margin-top:var(--s-2xl)">
         <span class="launch-note__platform">Gratis · Android</span>
         <strong class="launch-note__date">Hadir Oktober 2026</strong>
       </div>
@@ -566,7 +558,7 @@
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M18 10a5 5 0 00-9.6-1.6A4 4 0 006 18h11a4 4 0 001-7.9z"/><path d="M3 3l18 18"/></svg>
         <h3 class="trust__title">Tanpa cloud</h3>
-        <div class="trust__note">Tidak ada yang keluar dari perangkat</div>
+        <div class="trust__note">Tidak ada unggahan otomatis</div>
       </li>
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.6M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.6"/><path d="M3 3l18 18"/></svg>
@@ -575,7 +567,7 @@
       </li>
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-        <h3 class="trust__title">Bisa diekspor sepenuhnya</h3>
+        <h3 class="trust__title">Ekspor CSV dan cadangan</h3>
         <div class="trust__note">Cadangan + CSV, kapan saja</div>
       </li>
     </ul>
@@ -594,14 +586,14 @@
            960px for a 320px box: three device pixels per CSS pixel, which covers
            every phone that exists. The 1254px PNG master is kept in this folder
            but never served because it was 608 KB to draw 320 CSS px. -->
-      <img src="../assets/squi_wave_cutout-960.webp" alt="" width="320" height="320"
+      <img src="/projects/squirio/assets/squi_wave_cutout-960.webp" alt="" width="320" height="320"
            loading="lazy" decoding="async">
     </div>
     <div>
       <p class="eyebrow">Kenalan dengan Squi</p>
-      <h2 class="h2" id="squi-heading">Sedikit kehangatan, hanya di tempat yang memang membantu.</h2>
-      <p class="lede">Squi adalah tupai yang tinggal di dalam Squirio, dan muncul tepat di dua tempat: ketika sebuah layar belum berisi apa pun, dan ketika Anda mencapai sesuatu yang layak dirayakan.</p>
-      <p class="body-2 squi-intro__rule">Squi tidak pernah mengomentari saldo, anggaran, atau wawasan Anda — semua itu tetap berupa angka apa adanya. Kehangatannya disimpan untuk momen yang memang tidak ada apa pun untuk dibaca.</p>
+      <h2 class="h2" id="squi-heading">Squi di dalam antarmuka</h2>
+      <p class="lede">Squi menandai halaman kosong dan target yang selesai.</p>
+      <p class="body-2 squi-intro__rule">Layar data keuangan tidak menggunakan ilustrasi maskot.</p>
     </div>
   </div>
 </section>
@@ -610,9 +602,9 @@
 <section class="section" id="payday">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Perbedaan yang langsung terasa</p>
+      <p class="eyebrow">Mengapa periode gajian berguna</p>
       <h2 class="h2">Anggaran berdasarkan tanggal gajian, bukan tanggal 1.</h2>
-      <p class="lede">Hampir semua aplikasi keuangan memotong hidup Anda menjadi bulan kalender. Jika Anda gajian tanggal 25, pemisahan itu keliru dengan cara yang diam-diam merusak angkanya — gaji Anda masuk di satu bulan sementara sewa, belanja dan transportasi yang dibiayainya jatuh di bulan berikutnya.</p>
+      <p class="lede">Jika Anda menerima gaji tanggal 25, laporan bulanan memisahkan pemasukan tersebut dari sebagian besar pengeluaran yang dibiayainya. Squirio dapat memakai periode tanggal 25 sampai 24 agar satu gaji dan pengeluarannya tercatat bersama.</p>
     </div>
 
     <div class="split">
@@ -621,7 +613,7 @@
           <!-- Both windows share one Jul 1 - Aug 31 axis, so the offset between
                them is the thing you actually see. -->
           <div class="cycle" role="img"
-               aria-label="Lini masa dari 1 Juli sampai 31 Agustus. Bulan kalender Agustus dimulai sepekan setelah gaji masuk pada 25 Juli, memisahkan gaji itu dari pengeluaran yang dibiayainya. Periode gajian Squirio justru berjalan dari 25 Juli sampai 24 Agustus, sehingga keduanya tetap menyatu.">
+               aria-label="Lini masa dari 1 Juli sampai 31 Agustus. Bulan kalender Agustus dimulai sepekan setelah gaji masuk pada 25 Juli, sehingga pemasukan dan sebagian pengeluarannya tercatat di bulan berbeda. Periode Squirio berlangsung dari 25 Juli sampai 24 Agustus agar keduanya tercatat bersama.">
             <div>
               <div class="cycle__label">Bulan kalender</div>
               <div style="position:relative;height:20px">
@@ -630,7 +622,7 @@
               <div class="cycle__track">
                 <div class="cycle__band cycle__band--calendar" style="--from:50.8%;--span:49.2%">Agustus</div>
               </div>
-              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">Gaji sudah berumur sepekan ketika jendelanya dibuka — sehingga Agustus menampilkan sebulan penuh pengeluaran dengan nyaris tanpa pemasukan.</p>
+              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">Laporan Agustus dimulai sepekan setelah gajian, sehingga sebagian besar pemasukan tercatat pada bulan kalender sebelumnya.</p>
             </div>
 
             <div style="border-top:1px solid var(--border);padding-top:var(--s-xl)">
@@ -641,7 +633,7 @@
               <div class="cycle__track">
                 <div class="cycle__band cycle__band--period" style="--from:39.3%;--span:49.2%">25 Jul – 24 Agu</div>
               </div>
-              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">Jendelanya dibuka pada hari uangnya tiba dan ditutup sehari sebelum gaji berikutnya. Satu gaji masuk, pengeluaran satu gaji keluar.</p>
+              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">Periode dimulai saat gaji masuk dan berakhir sehari sebelum gajian berikutnya. Pemasukan dan pengeluaran terkait tetap tercatat bersama.</p>
             </div>
 
             <div class="cycle__axis">
@@ -654,12 +646,12 @@
       </div>
 
       <div>
-        <p class="body-2" style="font-size:1rem;color:var(--text)">Atur tanggal gajian Anda sekali, saat penyiapan. Setelah itu seluruh aplikasi berjalan pada siklus tersebut — dasbor, setiap anggaran, analitik, skor kesehatan dan rekap semuanya memakai jendela yang sama.</p>
+        <p class="body-2" style="font-size:1rem;color:var(--text)">Atur tanggal gajian sekali saat penyiapan. Dasbor, anggaran, laporan, skor kesehatan keuangan, dan rekap akan memakai periode yang sama.</p>
         <ul class="points">
-          <li><span><strong>Hari apa pun, 1 sampai 31.</strong> Pilih tanggal 31 dan Februari tetap berjalan — jangkarnya menyesuaikan ke hari terakhir bulan pendek alih-alih meluber ke bulan berikutnya.</span></li>
+          <li><span><strong>Hari apa pun, 1 sampai 31.</strong> Jika Anda memilih tanggal 31, periode Februari memakai hari terakhir pada bulan tersebut.</span></li>
           <li><span><strong>Periode tidak pernah bertumpuk atau menyisakan celah.</strong> Masing-masing berakhir sehari sebelum gajian berikutnya, berapa pun tanggal yang Anda pilih.</span></li>
-          <li><span><strong>Mundur ke periode sebelumnya kapan saja.</strong> Pemilih periode berada di tempat judul aplikasi biasanya berada, jadi siklus lalu hanya berjarak satu ketukan.</span></li>
-          <li><span><strong>Pemasukan dan pengeluaran yang dibiayainya tetap menyatu</strong>, dan justru itulah yang membuat rasio tabungan dan skor kesehatan punya arti.</span></li>
+          <li><span><strong>Mundur ke periode sebelumnya kapan saja.</strong> Gunakan pemilih periode di area judul untuk membuka siklus sebelumnya dengan satu ketukan.</span></li>
+          <li><span><strong>Pemasukan dan pengeluaran terkait memakai periode yang sama</strong>, sehingga rasio tabungan dan skor kesehatan dihitung dari data yang sebanding.</span></li>
         </ul>
       </div>
     </div>
@@ -670,9 +662,9 @@
 <section class="section section--alt" id="privacy">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Privasi sejak rancangannya</p>
-      <h2 class="h2">Privasi data keuangan tanpa server atau cloud.</h2>
-      <p class="lede">Sebagian besar aplikasi keuangan meminta Anda menyerahkan riwayat pengeluaran lalu berjanji akan menjaganya. Squirio menghapus tahap ketika Anda harus memercayai siapa pun. Data Anda tidak pernah pergi ke mana-mana, karena aplikasinya tidak punya tempat untuk mengirimkannya.</p>
+      <p class="eyebrow">Data tersimpan di perangkat</p>
+      <h2 class="h2">Penyimpanan lokal tanpa akun atau server Squirio.</h2>
+      <p class="lede">Squirio menyimpan catatan keuangan di ponsel tanpa membuat akun jarak jauh. Tidak ada salinan di luar perangkat kecuali Anda sendiri mengekspor atau mencadangkan data.</p>
     </div>
 
     <div class="grid grid--3">
@@ -681,7 +673,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M8 11V7a4 4 0 118 0v4"/></svg>
         </span>
         <h3 class="feature-card__title">Satu berkas, di perangkat Anda</h3>
-        <p class="feature-card__body">Semuanya berupa satu basis data SQLite di penyimpanan privat aplikasi. Tidak ada salinan di tempat lain kecuali Anda sendiri yang membuatnya.</p>
+        <p class="feature-card__body">Squirio memakai satu basis data SQLite di penyimpanan privat aplikasi. Salinan di luar perangkat hanya dibuat ketika Anda membagikan hasil ekspor atau cadangan.</p>
       </div>
 
       <div class="card">
@@ -689,21 +681,21 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.6M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.6"/><path d="M3 3l18 18"/></svg>
         </span>
         <h3 class="feature-card__title">Sembunyikan semua nominal seketika</h3>
-        <p class="feature-card__body">Satu ketukan pada ikon mata menyamarkan seluruh angka di aplikasi sekaligus — untuk saat menyerahkan ponsel kepada orang lain, atau sekadar membukanya di kereta yang penuh.</p>
+        <p class="feature-card__body">Satu ketukan pada ikon mata menyamarkan semua nominal sebelum layar ditunjukkan kepada orang lain atau digunakan di tempat umum.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c2)" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
         </span>
-        <h3 class="feature-card__title">Pergi kapan pun Anda mau</h3>
-        <p class="feature-card__body">Cadangkan ke berkas zip milik Anda, atau ekspor ke CSV dan buka di aplikasi lembar kerja. Tidak ada kuncian yang perlu dilepaskan.</p>
+        <h3 class="feature-card__title">Ekspor dan cadangkan data</h3>
+        <p class="feature-card__body">Ekspor transaksi ke CSV atau buat cadangan zip untuk disimpan sendiri.</p>
       </div>
     </div>
 
     <div class="card" style="margin-top:var(--s-lg)">
-      <h3 class="h3">Cara Anda bisa memeriksanya</h3>
-      <p class="body-2" style="margin-top:var(--s-sm);max-width:70ch">"Tanpa pelacakan" mudah diklaim, jadi ini versi yang bisa Anda periksa sendiri: nyalakan mode pesawat dan pakai Squirio seharian. Semuanya tetap berjalan, karena memang tidak pernah ada yang dikirim ke mana pun. Aplikasi ini dibangun tanpa bagian yang memungkinkan sebuah aplikasi berbicara dengan internet sama sekali — jadi tidak ada yang diam-diam melaporkan apa yang Anda ketuk, dan tidak ada yang menghubungi pusat ketika terjadi kesalahan. Tidak ada pula yang bisa mengambil iklan: menayangkan iklan berarti permintaan jaringan, dan itulah tepatnya kemampuan yang sengaja ditiadakan. Wawasan, peringatan pengeluaran tak biasa dan skor kesehatan adalah penjumlahan dan rata-rata yang dihitung di ponsel Anda. Satu-satunya saat data Anda berpindah adalah ketika Anda menekan bagikan pada sebuah cadangan atau ekspor — dan saat itu ia pergi tepat ke tempat yang Anda tuju.</p>
+      <h3 class="h3">Cara memeriksa bahwa aplikasi bekerja offline</h3>
+      <p class="body-2" style="margin-top:var(--s-sm);max-width:70ch">Aktifkan mode pesawat, lalu gunakan aplikasi seperti biasa. Pencatatan, anggaran, laporan, wawasan, dan peringatan tetap berjalan karena diproses di ponsel. Fitur tersebut tidak memakai akses internet. Data keluar dari aplikasi hanya ketika Anda memilih tujuan melalui menu berbagi Android.</p>
     </div>
   </div>
 </section>
@@ -712,14 +704,14 @@
 <section class="section">
   <div class="wrap split split--reverse">
     <div>
-      <p class="eyebrow">Kecerdasan di dalam perangkat</p>
-      <h2 class="h2">Insight keuangan yang diproses di perangkat.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Squirio membaca riwayat Anda sendiri dan menunjukkan apa yang berubah — tanpa satu pun darinya meninggalkan ponsel.</p>
+      <p class="eyebrow">Perhitungan di perangkat</p>
+      <h2 class="h2">Wawasan keuangan yang dihitung di perangkat.</h2>
+      <p class="lede" style="margin-top:var(--s-lg)">Squirio memakai transaksi yang Anda catat untuk menunjukkan perubahan yang mungkin perlu diperiksa.</p>
       <ul class="points">
-        <li><span><strong>Menemukan langganan dengan sendirinya.</strong> Ketika merchant yang sama menagih Anda dengan jumlah yang kurang lebih sama hampir setiap bulan, Squirio mengenalinya dan menawarkan untuk mulai melacaknya dalam satu ketukan.</span></li>
-        <li><span><strong>Menandai nominal tak biasa saat Anda mengetiknya.</strong> Jika secangkir kopi berharga sepuluh kali lipat dari kopi Anda biasanya, ia bertanya sebelum menyimpan — dan memberi tahu Anda berapa yang wajar. Sebuah dorongan, bukan penghalang.</span></li>
-        <li><span><strong>Menilai kesehatan keuangan Anda dari 100</strong> berdasarkan rasio tabungan, seberapa disiplin Anda menjaga anggaran, dan seberapa stabil pemasukan Anda — dengan ketiga sub-skornya ditampilkan, bukan satu angka misterius.</span></li>
-        <li><span><strong>Menyebut kategori Anda yang tumbuh paling cepat</strong> sebelum ia menjadi kejutan di akhir siklus.</span></li>
+        <li><span><strong>Mendeteksi pola langganan berulang.</strong> Jika merchant yang sama menagih nominal serupa setiap bulan, Squirio dapat mengenali polanya dan menawarkan pelacakan langganan.</span></li>
+        <li><span><strong>Menandai nominal tak biasa saat Anda mengetiknya.</strong> Jika nominal kopi sepuluh kali lebih besar dari biasanya, Squirio menampilkan kisaran umum dan meminta konfirmasi sebelum menyimpan. Transaksi tetap dapat disimpan.</span></li>
+        <li><span><strong>Menilai kesehatan keuangan Anda dari 100</strong> berdasarkan rasio tabungan, kinerja anggaran, dan stabilitas pemasukan. Ketiga sub-skor tetap ditampilkan.</span></li>
+        <li><span><strong>Menampilkan kategori dengan kenaikan terbesar</strong> agar dapat diperiksa sebelum siklus berakhir.</span></li>
       </ul>
     </div>
 
@@ -740,7 +732,7 @@
             <div class="ph-appbar__action" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
             </div>
-            <div class="ph-appbar__title">Wawasan cerdas</div>
+            <div class="ph-appbar__title">Wawasan transaksi</div>
           </div>
 
           <div class="ph-body">
@@ -813,7 +805,7 @@
 <section class="section section--alt" id="methodology">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Metodologi yang transparan</p>
+      <p class="eyebrow">Metode perhitungan</p>
       <h2 class="h2">Cara Squirio menghitung skor kesehatan keuangan</h2>
       <p class="lede">Skor kesehatan keuangan merangkum pola dari transaksi yang Anda catat dalam periode gajian. Seluruh perhitungan berlangsung di perangkat dan ketiga sub-skor tetap ditampilkan agar angka akhirnya tidak menjadi penilaian tersembunyi.</p>
     </div>
@@ -845,7 +837,7 @@
         <p class="lede" style="margin-top:var(--s-lg)">Pratinjau menggunakan data demonstrasi dan memperlihatkan periode gajian, saldo, pemasukan, pengeluaran, batas aman belanja, dompet, dan transaksi terbaru.</p>
       </div>
       <figure class="card split__visual product-preview">
-        <img src="../../../assets/images/squirio-home-preview.webp"
+        <img src="/assets/images/squirio-home-preview.webp"
              width="941" height="1672" loading="lazy" decoding="async"
              class="product-preview__image" alt="Pratinjau aplikasi pencatatan keuangan gratis Squirio menampilkan periode gajian, saldo, pemasukan, pengeluaran, batas aman belanja, dompet, dan transaksi terbaru.">
       </figure>
@@ -857,14 +849,14 @@
 <section class="section section--alt">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Dibuat untuk nominal sungguhan</p>
+      <p class="eyebrow">Input transaksi rupiah</p>
       <h2 class="h2">Pencatatan transaksi dalam tiga ketukan.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Orang berhenti memakai pencatat keuangan karena pencatatannya merepotkan. Maka pencatatan adalah bagian yang digarap paling keras oleh Squirio.</p>
+      <p class="lede" style="margin-top:var(--s-lg)">Transaksi favorit, saran merchant, dan edit massal mengurangi pekerjaan untuk menjaga catatan tetap lengkap.</p>
       <ul class="points">
-        <li><span><strong>Papan angka yang dibuat untuk bilangan enam digit,</strong> dengan tombol<strong> 000</strong> — karena mengetik 1.250.000 di papan ketik ponsel adalah cara sebuah kebiasaan mati.</span></li>
-        <li><span><strong>Berhitung langsung di kolom nominal.</strong> Ketik<span class="tnum"> 12000+3500</span> atau<span class="tnum"> 45000/3</span> dan semuanya langsung bekerja. Membagi tagihan tidak perlu aplikasi kalkulator.</span></li>
-        <li><span><strong>Pelengkap otomatis merchant yang belajar.</strong> Mulai ketik tempat yang pernah Anda datangi dan akunnya terisi sendiri.</span></li>
-        <li><span><strong>Favorit satu ketukan</strong> untuk hal-hal yang terus-menerus Anda beli, ditambah duplikat, dan penyuntingan massal untuk saat Anda mencatat seminggu penuh sekaligus.</span></li>
+        <li><span><strong>Papan angka yang dibuat untuk bilangan enam digit,</strong> dengan tombol<strong> 000</strong> untuk memasukkan nominal rupiah besar dengan cepat.</span></li>
+        <li><span><strong>Berhitung langsung di kolom nominal.</strong> Ketik<span class="tnum"> 12000+3500</span> atau<span class="tnum"> 45000/3</span> untuk menghitung hasil tanpa membuka aplikasi lain.</span></li>
+        <li><span><strong>Saran merchant dari riwayat transaksi.</strong> Mulai ketik merchant yang tersimpan untuk memakai kembali akun dan kategorinya.</span></li>
+        <li><span><strong>Favorit satu ketukan</strong> untuk pembelian rutin. Fitur duplikat dan edit massal membantu saat memasukkan beberapa transaksi lama.</span></li>
       </ul>
     </div>
 
@@ -1032,13 +1024,13 @@
 <section class="section">
   <div class="wrap split split--reverse">
     <div>
-      <p class="eyebrow">Anggaran yang berkata jujur</p>
+      <p class="eyebrow">Anggaran dengan konteks periode</p>
       <h2 class="h2">Pantau anggaran sesuai periode gajian.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Berada di 85% anggaran makan Anda mengkhawatirkan pada hari ke-3 dan sama sekali wajar pada hari ke-27. Setiap batang anggaran Squirio membawa penanda laju yang menunjukkan sudah sejauh mana periode Anda benar-benar berjalan, sehingga angkanya punya konteks.</p>
+      <p class="lede" style="margin-top:var(--s-lg)">Pemakaian 85% anggaran makan memiliki arti berbeda pada hari ke-3 dan hari ke-27. Setiap anggaran menampilkan penanda laju di samping jumlah yang sudah digunakan.</p>
       <ul class="points">
-        <li><span><strong>Anggaran bisa memperbarui dirinya sendiri.</strong> Nyalakan "Ulangi setiap periode" dan batas yang sama kembali setiap siklus — yang bulanan mengikuti tanggal gajian Anda, bukan tanggal 1. Biarkan mati dan ia hanya mencakup periode saat Anda membuatnya.</span></li>
-        <li><span><strong>Lalu sisa dana terbawa ke periode berikutnya.</strong> Pilih apakah bulan yang hemat menambah jatah bulan berikutnya, atau apakah pemborosan juga menggerogotinya.</span></li>
-        <li><span><strong>Anda diberi tahu di 75% dan sekali lagi di 100%,</strong> tepat ketika Anda menyimpan transaksi yang melewati batas.</span></li>
+        <li><span><strong>Ulangi anggaran setiap periode.</strong> Aktifkan "Ulangi setiap periode" untuk memakai kembali batas di setiap siklus, termasuk periode bulanan berdasarkan tanggal gajian. Nonaktifkan untuk anggaran satu kali.</span></li>
+        <li><span><strong>Pilih apakah sisa dana diteruskan.</strong> Rollover dapat hanya membawa sisa dana atau juga meneruskan kelebihan pengeluaran ke periode berikutnya.</span></li>
+        <li><span><strong>Dapatkan peringatan saat penggunaan mencapai 75% dan 100%</strong> ketika transaksi yang disimpan melewati salah satu batas tersebut.</span></li>
       </ul>
     </div>
 
@@ -1162,7 +1154,7 @@
     <div class="section-head">
       <p class="eyebrow">Analitik</p>
       <h2 class="h2">Analisis arus kas dan pengeluaran.</h2>
-      <p class="lede">Rincian per kategori, arus kas dua belas bulan berjalan, tren pengeluaran dibanding rata-rata Anda sendiri, kalender intensitas harian, dan peringkat merchant yang diam-diam mengambil paling banyak.</p>
+      <p class="lede">Tinjau total per kategori, arus kas dua belas bulan, perubahan dari rata-rata pengeluaran, intensitas pengeluaran harian, dan merchant dengan total terbesar.</p>
     </div>
 
     <div class="viz">
@@ -1220,7 +1212,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Selebihnya</p>
-      <h2 class="h2">Fitur gratis lain dalam aplikasi Squirio.</h2>
+      <h2 class="h2">Fitur lain di Squirio.</h2>
     </div>
 
     <div class="grid grid--3">
@@ -1233,53 +1225,55 @@
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c2)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.8 6.4 20l1.4-6.2L3 9.5l6.4-.6z"/></svg></span>
         <h3 class="feature-card__title">Target tabungan</h3>
-        <p class="feature-card__body">Tetapkan target, sisihkan uang untuknya, dan lihat tanggal Anda benar-benar akan sampai berdasarkan seberapa rutin Anda menyetor selama ini.</p>
+        <p class="feature-card__body">Tetapkan nominal dan tenggat, catat setiap setoran, lalu lihat perkiraan waktu pencapaiannya.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c3)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-8 8M8 21H3v-5M3 21l8-8"/></svg></span>
-        <h3 class="feature-card__title">Utang, dua arah</h3>
-        <p class="feature-card__body">Uang yang Anda pinjamkan dan uang yang Anda pinjam, dengan kalkulator pelunasan yang memberi tahu berapa bulan yang dibutuhkan sebuah cicilan bulanan.</p>
+        <h3 class="feature-card__title">Utang dan piutang</h3>
+        <p class="feature-card__body">Catat uang yang dipinjamkan dan uang yang Anda pinjam. Kalkulator pelunasan memperkirakan jumlah bulan berdasarkan cicilan yang dipilih.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c6)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
-        <h3 class="feature-card__title">Segala jenis akun</h3>
-        <p class="feature-card__body">Tunai, bank, kartu kredit, dompet digital, tabungan dan investasi — dengan transfer di antaranya dan kekayaan bersih yang terus berjalan. Kartu menampilkan berapa yang Anda utang.</p>
+        <h3 class="feature-card__title">Jenis akun yang umum</h3>
+        <p class="feature-card__body">Catat akun tunai, bank, kartu kredit, dompet digital, tabungan, dan investasi, termasuk transfer dan kekayaan bersih. Akun kartu kredit menampilkan saldo terutang.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c5)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></span>
         <h3 class="feature-card__title">Impor riwayat Anda</h3>
-        <p class="feature-card__body">Bawa masuk CSV dari bank atau aplikasi lain, petakan kolomnya sekali, dan lihat pratinjaunya sebelum apa pun ditulis.</p>
+        <p class="feature-card__body">Impor CSV dari bank atau aplikasi lain, petakan kolomnya, lalu periksa pratinjau sebelum menyimpan.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c7)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16v18l-8-4-8 4z"/></svg></span>
-        <h3 class="feature-card__title">Rekap yang layak dibagikan</h3>
-        <p class="feature-card__body">Setiap siklus gajian mendapat kartu ringkasan yang bisa Anda ekspor sebagai gambar — dan ia menunggu sampai periodenya benar-benar selesai sebelum menyebutnya hasil.</p>
+        <h3 class="feature-card__title">Rekap periode yang dapat diekspor</h3>
+        <p class="feature-card__body">Setelah siklus gajian berakhir, ekspor kartu ringkasannya sebagai gambar.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--income)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg></span>
         <h3 class="feature-card__title">English &amp; Bahasa Indonesia</h3>
-        <p class="feature-card__body">Kedua bahasa diterjemahkan sepenuhnya, bukan diisi mesin. Rupiah adalah mata uang kelas satu, diformat tanpa desimal sebagaimana orang benar-benar menuliskannya.</p>
+        <p class="feature-card__body">Antarmuka tersedia dalam English dan Bahasa Indonesia. Nominal rupiah ditampilkan tanpa angka desimal.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c1)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>
-        <h3 class="feature-card__title">Terang dan gelap, sebagaimana mestinya</h3>
-        <p class="feature-card__body">Palet hangat yang dirancang agar terasa seperti buku catatan alih-alih terminal perdagangan — termasuk pengeluaran dalam warna dusty rose alih-alih merah tanda bahaya.</p>
+        <h3 class="feature-card__title">Tema terang dan gelap</h3>
+        <p class="feature-card__body">Palet hangat digunakan pada kedua tema, dengan pengeluaran berwarna merah mawar lembut, bukan merah terang.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--warning)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6v12a2 2 0 002 2h14a2 2 0 002-2V6"/><path d="M3 6l9 7 9-7"/><path d="M3 6h18"/></svg></span>
-        <h3 class="feature-card__title">Angka yang mengoreksi dirinya sendiri</h3>
-        <p class="feature-card__body">Saldo dan kemajuan target dihitung ulang dari transaksi Anda setiap saat, jadi memperbaiki satu catatan dari tiga bulan lalu ikut memperbaiki semua yang mengikutinya.</p>
+        <h3 class="feature-card__title">Hasil dihitung ulang setelah perubahan</h3>
+        <p class="feature-card__body">Saldo dan kemajuan target dihitung dari transaksi, sehingga perubahan pada catatan lama memperbarui hasil yang terkait.</p>
       </div>
     </div>
   </div>
 </section>
+
+<section class="section" id="learn" aria-labelledby="learn-heading"><div class="wrap"><div class="section-head"><p class="eyebrow">Belajar bersama Squirio</p><h2 class="h2" id="learn-heading">Panduan memilih dan menggunakan aplikasi pencatat keuangan.</h2><p class="lede">Pelajari cara memilih aplikasi keuangan, mencatat pengeluaran, dan menyusun anggaran dari pemasukan serta biaya tetap.</p></div><div class="grid grid--3"><a class="card guide-card" href="/projects/squirio/id/learn/personal-finance-app/"><span class="eyebrow">Memilih aplikasi</span><h3 class="h3">Cara Memilih Aplikasi Keuangan Pribadi</h3><p>Bandingkan alur penggunaan, penyimpanan, privasi, dan tingkat kerumitan.</p><span class="guide-card__meta">12 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/how-to-track-daily-expenses/"><span class="eyebrow">Pencatatan pengeluaran</span><h3 class="h3">Cara Mulai Mencatat Pengeluaran Harian</h3><p>Gunakan rutinitas lima menit agar catatan tetap rapi.</p><span class="guide-card__meta">6 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/how-to-create-a-monthly-budget/"><span class="eyebrow">Anggaran</span><h3 class="h3">Cara Membuat Budget Bulanan Sederhana</h3><p>Tetapkan batas dari pemasukan, biaya tetap, pengeluaran rutin, tabungan, dan buffer.</p><span class="guide-card__meta">7 menit baca</span></a></div><p class="guides-more"><a href="/projects/squirio/id/learn/">Lihat semua panduan <span aria-hidden="true">→</span></a></p></div></section>
 
 <!-- ===================== FAQ ============================================ -->
 <section class="section section--alt" id="faq">
@@ -1291,22 +1285,22 @@
     <div class="faq">
       <details class="faq__item">
         <summary><h3 class="faq__question">Apakah aplikasi ini terhubung ke bank saya?</h3></summary>
-        <p class="faq__answer">Tidak — dan itu disengaja. Koneksi bank mengharuskan Anda menyerahkan kredensial kepada agregator pihak ketiga yang kemudian menyimpan seluruh riwayat transaksi Anda. Squirio tidak punya server, jadi ia tidak akan bisa melakukannya sekalipun ingin. Anda memasukkan transaksi sendiri, atau mengimpor CSV yang sudah diberikan bank Anda.</p>
+        <p class="faq__answer">Tidak. Masukkan transaksi secara manual atau impor CSV dari bank. Squirio tidak memiliki server atau layanan agregasi bank.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Apakah saya harus menyusun anggaran lagi setiap bulan?</h3></summary>
-        <p class="faq__answer">Hanya jika Anda mau. Setiap anggaran punya sakelar "Ulangi setiap periode" — nyalakan dan batas yang sama kembali setiap siklus, memperbarui pada tanggal gajian Anda alih-alih tanggal 1, membawa sisa dana jika Anda memintanya. Biarkan mati dan anggaran itu hanya mencakup periode saat Anda membuatnya, lalu pindah ke daftar "Berakhir" alih-alih menghilang. Ini berupa sakelar dan bukan asumsi karena anggaran yang sengaja Anda pilih untuk diulang adalah anggaran yang masih bisa Anda jelaskan kepada diri sendiri enam bulan kemudian.</p>
+        <p class="faq__answer">Tidak. Aktifkan "Ulangi setiap periode" agar anggaran diperbarui pada setiap siklus gajian. Nonaktifkan untuk anggaran satu kali. Rollover dapat dipilih jika diperlukan.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Apa yang terjadi jika ponsel saya hilang?</h3></summary>
-        <p class="faq__answer">Inilah konsekuensi jujur dari aplikasi yang menyimpan data secara lokal: jika satu-satunya salinan ada di ponsel dan ponselnya hilang, datanya ikut hilang. Squirio memberi Anda pencadangan satu ketukan yang menghasilkan berkas zip yang bisa Anda simpan di penyimpanan awan Anda sendiri, kirim ke email Anda, atau taruh di mana pun Anda suka. Lakukan sesekali dan Anda aman — dengan cara Anda sendiri, dalam berkas yang Anda kendalikan.</p>
+        <p class="faq__answer">Jika ponsel menyimpan satu-satunya salinan, data ikut hilang. Buat cadangan zip secara berkala dan simpan di tempat yang Anda kendalikan.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Bisakah saya menyinkronkan antara dua perangkat?</h3></summary>
-        <p class="faq__answer">Tidak otomatis. Sinkronisasi berarti server, dan server berarti riwayat pengeluaran Anda berada di komputer orang lain — yang justru merupakan hal yang ingin dihindari aplikasi ini. Anda bisa memindahkan data antar perangkat dengan berkas cadangan kapan pun Anda perlu.</p>
+        <p class="faq__answer">Tidak secara otomatis. Pindahkan data antarperangkat dengan berkas cadangan saat diperlukan.</p>
       </details>
 
       <details class="faq__item">
@@ -1321,7 +1315,7 @@
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Bisakah saya mengeluarkan data saya?</h3></summary>
-        <p class="faq__answer">Kapan saja, dengan dua cara. Cadangan penuh berupa zip yang berisi berkas basis data sesungguhnya, dan ekspor CSV memberi Anda lembar kerja biasa berisi setiap transaksi. Keduanya langsung menuju lembar berbagi Anda.</p>
+        <p class="faq__answer">Ya. Buat cadangan zip lengkap atau ekspor seluruh transaksi ke CSV melalui menu berbagi Android.</p>
       </details>
     </div>
   </div>
@@ -1331,8 +1325,8 @@
 <!-- Sign-off only: availability is deliberately stated without a signup flow. -->
 <section class="section">
   <div class="wrap center" style="max-width:640px">
-    <h2 class="h2">Lacak uang Anda, bukan kecemasan Anda.</h2>
-    <p class="lede" style="margin-top:var(--s-lg)">Gratis sepenuhnya dan hadir khusus di Android pada Oktober 2026.</p>
+    <h2 class="h2">Catat keuangan Anda dengan Squirio.</h2>
+    <p class="lede" style="margin-top:var(--s-lg)">Gratis dan hadir khusus di Android pada Oktober 2026.</p>
   </div>
 </section>
 
@@ -1355,7 +1349,7 @@
           <h2 class="footer__heading">Jelajahi</h2>
           <ul>
             <li><a href="#top">Ikhtisar</a></li>
-            <li><a href="#methodology">Metodologi</a></li>
+            <li><a href="/projects/squirio/id/learn/">Belajar</a></li>
             <li><a href="#faq">Tanya Jawab</a></li>
           </ul>
         </div>
@@ -1372,12 +1366,12 @@
     </div>
     <div class="footer__bottom">
       <p>&copy; 2026 Japandi Dev</p>
-      <p>Dibangun dengan kejelasan dan kepedulian.</p>
+      <p>Proyek dari Japandi Dev.</p>
     </div>
   </div>
 </footer>
 
 <script src="/assets/js/shell.js"></script>
-<script src="../js/japandi-shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
 </body>
 </html>

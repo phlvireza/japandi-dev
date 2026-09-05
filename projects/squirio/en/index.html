@@ -41,22 +41,16 @@
 <meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
 
 <link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
 
 <!-- Inter is the app's typeface, served from this origin. See css/fonts.css for
      why it is not loaded from Google Fonts and how to update the files. The
      preload starts the latin file before the CSS parser reaches the @font-face
      rule; latin-ext is left to load on demand since most visitors never need it. -->
-<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/landing.bundle.css">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/mockups.css">
-<link rel="stylesheet" href="css/japandi-shell.css">
-
-<script src="js/init.js"></script>
+<script src="/projects/squirio/js/init.js"></script>
 
 <!-- Structured data. Note this is raw JSON, not HTML: write literal "&",
      never "&amp;".
@@ -153,7 +147,7 @@
           "name": "Does it connect to my bank?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No — and that is deliberate. Bank connections require handing your credentials to a third-party aggregator that then holds your full transaction history. Squirio doesn't have a server, so it couldn't do that even if it wanted to. You enter transactions yourself, or import a CSV your bank already gives you."
+            "text": "No. Enter transactions manually or import a CSV supplied by your bank. Squirio has no server or bank-aggregation service."
           }
         },
         {
@@ -161,7 +155,7 @@
           "name": "Do I have to set my budgets up again every month?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Only if you want to. Every budget has a \"Repeat every period\" switch — turn it on and the same limit comes back each cycle, renewing on your payday rather than the 1st, carrying unspent money across if you asked for that. Leave it off and the budget covers just the period you made it in, then moves to an \"Ended\" list instead of disappearing. It is a switch rather than an assumption because a budget you deliberately chose to repeat is one you can still explain to yourself six months later."
+            "text": "No. Turn on \"Repeat every period\" to renew a budget on each payday cycle. Leave it off for a one-time budget. Rollover is optional."
           }
         },
         {
@@ -169,7 +163,7 @@
           "name": "What happens if I lose my phone?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This is the honest trade-off of a local-first app: if the only copy is on the phone and the phone is gone, the data is gone. Squirio gives you a one-tap backup that produces a zip file you can put in your own cloud drive, email to yourself, or keep anywhere you like. Do it occasionally and you are covered — on your terms, in a file you control."
+            "text": "If the phone holds the only copy, the data is lost with it. Create a zip backup regularly and store it somewhere you control."
           }
         },
         {
@@ -177,7 +171,7 @@
           "name": "Can I sync between two devices?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not automatically. Sync means a server, and a server means your spending history sits on someone else's computer — which is the exact thing this app is built to avoid. You can move data between devices with a backup file whenever you need to."
+            "text": "Not automatically. Move data between devices with a backup file when needed."
           }
         },
         {
@@ -201,7 +195,7 @@
           "name": "Can I get my data out?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Any time, two ways. A full backup is a zip containing the actual database file, and CSV export gives you a plain spreadsheet of every transaction. Both go straight to your share sheet."
+            "text": "Yes. Create a full zip backup or export every transaction to CSV through Android's share sheet."
           }
         }
       ]
@@ -290,7 +284,7 @@
 
 <header class="jd-header" data-jd-header>
   <div class="jd-header__inner jd-shell-container">
-    <a class="jd-brand" href="#top" aria-label="Squirio project overview">
+    <a class="jd-brand" href="/" aria-label="Japandi Dev home">
       <img class="jd-brand__mark"
            src="/assets/images/japandi-dev-logo-transparent-96.webp"
            srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
@@ -306,13 +300,11 @@
       <span>Menu</span>
     </button>
 
-    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
       <ul class="jd-nav__list">
-        <li><a href="#top">Overview</a></li>
-        <li><a href="#payday">Payday</a></li>
-        <li><a href="#privacy">Privacy</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="/projects/squirio/learn/">Learn</a></li>
+        <li><a href="/#about">About</a></li>
       </ul>
       <div class="jd-lang" role="group" aria-label="Language">
         <a class="jd-lang__option" href="/projects/squirio/" hreflang="en" lang="en"
@@ -320,7 +312,7 @@
         <a class="jd-lang__option" href="/projects/squirio/id/" hreflang="id" lang="id"
            data-lang-choice="id">ID</a>
       </div>
-      <a class="jd-nav__back" href="/#projects">All Projects</a>
+      <a class="jd-nav__back" href="#availability">Get Squirio</a>
     </nav>
   </div>
 </header>
@@ -331,11 +323,11 @@
 <section class="section" id="top">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Android · Completely free · Coming soon</p>
-      <h1 class="display" style="margin-top:var(--s-md)">The free financial tracker app that stays on your phone.</h1>
-      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio is a free financial tracker app with no account to create, no cloud to sync to, and no company sitting between you and your own numbers. Every feature is available without a fee, subscription, in-app purchase, advertising, or paid premium tier. Everything lives in a single file on your device — and it budgets around your payday, not the 1st of the month.</p>
+      <p class="eyebrow">Android · Free · Coming soon</p>
+      <h1 class="display" style="margin-top:var(--s-md)">A free financial tracker that keeps your data on your phone.</h1>
+      <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">Squirio is an Android app for tracking expenses, budgets, savings, and debts. It requires no account, subscription, advertising, or paid tier. Your records stay in one file on your device, and budget periods can begin on payday instead of the first day of the month.</p>
 
-      <div class="launch-note" style="margin-top:var(--s-2xl)">
+      <div class="launch-note" id="availability" style="margin-top:var(--s-2xl)">
         <span class="launch-note__platform">Free · Android</span>
         <strong class="launch-note__date">Coming October 2026</strong>
       </div>
@@ -566,7 +558,7 @@
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M18 10a5 5 0 00-9.6-1.6A4 4 0 006 18h11a4 4 0 001-7.9z"/><path d="M3 3l18 18"/></svg>
         <h3 class="trust__title">No cloud</h3>
-        <div class="trust__note">Nothing leaves the device</div>
+        <div class="trust__note">No automatic upload</div>
       </li>
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.6M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.6"/><path d="M3 3l18 18"/></svg>
@@ -575,7 +567,7 @@
       </li>
       <li class="trust__item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--income)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline:auto" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-        <h3 class="trust__title">Fully exportable</h3>
+        <h3 class="trust__title">CSV export and backup</h3>
         <div class="trust__note">Backup + CSV, any time</div>
       </li>
     </ul>
@@ -594,14 +586,14 @@
            960px for a 320px box: three device pixels per CSS pixel, which covers
            every phone that exists. The 1254px PNG master is kept in this folder
            but never served because it was 608 KB to draw 320 CSS px. -->
-      <img src="assets/squi_wave_cutout-960.webp" alt="" width="320" height="320"
+      <img src="/projects/squirio/assets/squi_wave_cutout-960.webp" alt="" width="320" height="320"
            loading="lazy" decoding="async">
     </div>
     <div>
       <p class="eyebrow">Meet Squi</p>
-      <h2 class="h2" id="squi-heading">A little warmth, only where it helps.</h2>
-      <p class="lede">Squi is the squirrel who lives in Squirio, and turns up in exactly two places: when a screen has nothing on it yet, and when you reach something worth celebrating.</p>
-      <p class="body-2 squi-intro__rule">Squi never narrates your balances, budgets, or insights — those stay plain numbers. The warmth is saved for the moments where there was nothing to read anyway.</p>
+      <h2 class="h2" id="squi-heading">Squi in the interface</h2>
+      <p class="lede">Squi marks empty states and completed goals.</p>
+      <p class="body-2 squi-intro__rule">Financial data screens do not use mascot illustrations.</p>
     </div>
   </div>
 </section>
@@ -610,9 +602,9 @@
 <section class="section" id="payday">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">The difference you feel first</p>
+      <p class="eyebrow">Why payday-based periods matter</p>
       <h2 class="h2">Budgets based on payday, not the 1st.</h2>
-      <p class="lede">Almost every finance app slices your life into calendar months. If you get paid on the 25th, that split is wrong in a way that quietly ruins the numbers — your salary lands in one month while the rent, groceries and transport it pays for land in the next.</p>
+      <p class="lede">If you are paid on the 25th, a calendar-month report separates that income from much of the spending it covers. Squirio can use a period from the 25th to the 24th, keeping one salary and its expenses together.</p>
     </div>
 
     <div class="split">
@@ -630,7 +622,7 @@
               <div class="cycle__track">
                 <div class="cycle__band cycle__band--calendar" style="--from:50.8%;--span:49.2%">August</div>
               </div>
-              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">The paycheque is already a week old when the window opens — so August shows a month of spending against almost no income.</p>
+              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">The August report starts a week after payday, so much of the income appears in the previous calendar month.</p>
             </div>
 
             <div style="border-top:1px solid var(--border);padding-top:var(--s-xl)">
@@ -641,7 +633,7 @@
               <div class="cycle__track">
                 <div class="cycle__band cycle__band--period" style="--from:39.3%;--span:49.2%">25 Jul – 24 Aug</div>
               </div>
-              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">The window opens the day the money arrives and closes the day before the next one. One paycheque in, one paycheque's spending out.</p>
+              <p class="body-2" style="font-size:0.8125rem;margin-top:var(--s-sm)">The period begins on payday and ends the day before the next one, keeping the income and related spending together.</p>
             </div>
 
             <div class="cycle__axis">
@@ -654,12 +646,12 @@
       </div>
 
       <div>
-        <p class="body-2" style="font-size:1rem;color:var(--text)">Set your payday once, during setup. From then on the entire app runs on that cycle — the dashboard, every budget, the analytics, the health score and the recap all use the same window.</p>
+        <p class="body-2" style="font-size:1rem;color:var(--text)">Set the payday once during setup. The dashboard, budgets, reports, financial health score, and recap then use the same period.</p>
         <ul class="points">
-          <li><span><strong>Any day, 1 to 31.</strong> Pick the 31st and February still works — the anchor clamps to the last day of short months instead of spilling into the next one.</span></li>
+          <li><span><strong>Any day, 1 to 31.</strong> If you choose the 31st, February uses its final calendar day.</span></li>
           <li><span><strong>Periods never overlap or leave gaps.</strong> Each one ends the day before the next payday, whatever number you chose.</span></li>
-          <li><span><strong>Step backwards any time.</strong> The period selector sits where the app title normally would, so last cycle is one tap away.</span></li>
-          <li><span><strong>Income and the spending it funds stay together</strong>, which is the whole reason savings rate and the health score mean anything.</span></li>
+          <li><span><strong>Step backwards any time.</strong> Use the period selector in the title area to open the previous cycle in one tap.</span></li>
+          <li><span><strong>Income and related spending use the same period</strong>, so the savings rate and financial health score use comparable data.</span></li>
         </ul>
       </div>
     </div>
@@ -670,9 +662,9 @@
 <section class="section section--alt" id="privacy">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Privacy by construction</p>
-      <h2 class="h2">Financial data privacy without a server or cloud.</h2>
-      <p class="lede">Most finance apps ask you to hand over your spending history and then promise to look after it. Squirio removes the step where you have to believe anyone. Your data never goes anywhere, because the app has nowhere to send it.</p>
+      <p class="eyebrow">Data stored on your device</p>
+      <h2 class="h2">Local storage, with no Squirio account or server.</h2>
+      <p class="lede">Squirio stores financial records on your phone instead of creating a remote account. No outside copy is created unless you choose to export or back up the data.</p>
     </div>
 
     <div class="grid grid--3">
@@ -681,7 +673,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M8 11V7a4 4 0 118 0v4"/></svg>
         </span>
         <h3 class="feature-card__title">One file, on your device</h3>
-        <p class="feature-card__body">Everything is a single SQLite database in the app's private storage. No copy exists anywhere else unless you make one yourself.</p>
+        <p class="feature-card__body">Squirio uses one SQLite database in the app's private storage. A remote copy is created only when you choose to share an export or backup.</p>
       </div>
 
       <div class="card">
@@ -689,21 +681,21 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.6M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.6"/><path d="M3 3l18 18"/></svg>
         </span>
         <h3 class="feature-card__title">Hide every amount instantly</h3>
-        <p class="feature-card__body">One tap on the eye icon masks every number in the app at once — for handing your phone to someone, or just reading it on a crowded train.</p>
+        <p class="feature-card__body">One tap on the eye icon masks every amount before you show the screen to someone else or use it in public.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c2)" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
         </span>
-        <h3 class="feature-card__title">Leave whenever you like</h3>
-        <p class="feature-card__body">Back up to a zip you keep, or export to CSV and open it in a spreadsheet. There is no lock-in to escape from.</p>
+        <h3 class="feature-card__title">Export and back up your data</h3>
+        <p class="feature-card__body">Export transactions to CSV or create a zip backup that you store yourself.</p>
       </div>
     </div>
 
     <div class="card" style="margin-top:var(--s-lg)">
-      <h3 class="h3">How you can check</h3>
-      <p class="body-2" style="margin-top:var(--s-sm);max-width:70ch">"No tracking" is easy to claim, so here is the version you can check yourself: turn on airplane mode and use Squirio all day. Everything still works, because nothing was ever being sent anywhere. The app was built without the part that lets an app talk to the internet at all — so there is nothing quietly reporting what you tap, and nothing calling home when something goes wrong. There is also nothing to fetch an ad from: serving one means a network request, and that is the exact capability the app was built without. The insights, the unusual-spending warnings and the health score are sums and averages worked out on your phone. The only time your data moves is when you tap share on a backup or an export — and then it goes exactly where you send it.</p>
+      <h3 class="h3">How to verify the offline design</h3>
+      <p class="body-2" style="margin-top:var(--s-sm);max-width:70ch">Turn on airplane mode and use the app. Entry, budgets, reports, insights, and warnings continue to work because they are processed on the phone. Squirio does not use internet access for these features. Data leaves the app only when you choose a destination from Android's share sheet.</p>
     </div>
   </div>
 </section>
@@ -712,14 +704,14 @@
 <section class="section">
   <div class="wrap split split--reverse">
     <div>
-      <p class="eyebrow">On-device intelligence</p>
-      <h2 class="h2">Financial insights processed on your device.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Squirio reads your own history and points out what changed — without any of it leaving the phone.</p>
+      <p class="eyebrow">On-device calculations</p>
+      <h2 class="h2">Financial insights calculated on your device.</h2>
+      <p class="lede" style="margin-top:var(--s-lg)">Squirio uses the transactions you record to show changes that may need attention.</p>
       <ul class="points">
-        <li><span><strong>Finds subscriptions by itself.</strong> When the same merchant charges you roughly the same amount roughly every month, Squirio spots it and offers to start tracking it in one tap.</span></li>
-        <li><span><strong>Flags an unusual amount as you type it.</strong> If a coffee costs ten times what your coffees normally cost, it asks before saving — and tells you what typical looks like. A nudge, never a block.</span></li>
-        <li><span><strong>Scores your financial health out of 100</strong> from your savings rate, how closely you hold your budgets, and how steady your income is — with all three sub-scores shown, not one mystery number.</span></li>
-        <li><span><strong>Names your fastest-growing category</strong> before it becomes a surprise at the end of the cycle.</span></li>
+        <li><span><strong>Detects recurring subscription patterns.</strong> When the same merchant charges a similar amount each month, Squirio can identify the pattern and offer to track it.</span></li>
+        <li><span><strong>Flags an unusual amount as you type it.</strong> If a coffee entry is ten times your usual amount, Squirio shows the typical amount and asks you to confirm before saving. You can still save it.</span></li>
+        <li><span><strong>Scores your financial health out of 100</strong> from your savings rate, budget performance, and income stability. All three sub-scores remain visible.</span></li>
+        <li><span><strong>Shows the category with the largest increase</strong> so you can review it before the cycle ends.</span></li>
       </ul>
     </div>
 
@@ -740,7 +732,7 @@
             <div class="ph-appbar__action" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
             </div>
-            <div class="ph-appbar__title">Smart insights</div>
+            <div class="ph-appbar__title">Transaction insights</div>
           </div>
 
           <div class="ph-body">
@@ -813,7 +805,7 @@
 <section class="section section--alt" id="methodology">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Transparent methodology</p>
+      <p class="eyebrow">Calculation method</p>
       <h2 class="h2">How Squirio calculates its financial health score</h2>
       <p class="lede">The financial health score summarizes patterns from the transactions you record within a pay cycle. Every calculation stays on your device, and all three sub-scores remain visible so the final number is not a hidden judgment.</p>
     </div>
@@ -845,7 +837,7 @@
         <p class="lede" style="margin-top:var(--s-lg)">This preview uses demonstration data and shows the pay cycle, balance, income, expenses, safe-to-spend guidance, wallets, and recent transactions.</p>
       </div>
       <figure class="card split__visual product-preview">
-        <img src="../../assets/images/squirio-home-preview.webp"
+        <img src="/assets/images/squirio-home-preview.webp"
              width="941" height="1672" loading="lazy" decoding="async"
              class="product-preview__image" alt="Preview of the free Squirio financial tracker app showing a pay cycle, balance, income, expenses, safe-to-spend guidance, wallets, and recent transactions.">
       </figure>
@@ -857,14 +849,14 @@
 <section class="section section--alt">
   <div class="wrap split">
     <div>
-      <p class="eyebrow">Built for real amounts</p>
+      <p class="eyebrow">Rupiah transaction entry</p>
       <h2 class="h2">Log a transaction in three taps.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">People abandon finance trackers because entry is tedious. So entry is the part Squirio works hardest on.</p>
+      <p class="lede" style="margin-top:var(--s-lg)">Favorite transactions, merchant suggestions, and bulk editing reduce the work needed to keep records current.</p>
       <ul class="points">
-        <li><span><strong>A keypad built for six-digit numbers,</strong> with a<strong> 000</strong> key — because typing 1.250.000 on a phone keyboard is how a habit dies.</span></li>
-        <li><span><strong>Do maths in the amount field.</strong> Type<span class="tnum"> 12000+3500</span> or<span class="tnum"> 45000/3</span> and it just works. Splitting a bill needs no calculator app.</span></li>
-        <li><span><strong>Merchant autocomplete that learns.</strong> Start typing a place you have been before and the account fills itself in.</span></li>
-        <li><span><strong>One-tap favourites</strong> for the things you buy constantly, plus duplicate, and bulk edit for when you catch up on a whole week at once.</span></li>
+        <li><span><strong>A keypad built for six-digit numbers,</strong> with a<strong> 000</strong> key for entering large rupiah amounts quickly.</span></li>
+        <li><span><strong>Do maths in the amount field.</strong> Type<span class="tnum"> 12000+3500</span> or<span class="tnum"> 45000/3</span> to calculate the result without opening another app.</span></li>
+        <li><span><strong>Merchant suggestions from your history.</strong> Start typing a saved merchant to reuse its account and category.</span></li>
+        <li><span><strong>One-tap favourites</strong> for frequent purchases. Duplicate and bulk-edit actions help when entering several older transactions.</span></li>
       </ul>
     </div>
 
@@ -1032,13 +1024,13 @@
 <section class="section">
   <div class="wrap split split--reverse">
     <div>
-      <p class="eyebrow">Budgets that tell the truth</p>
+      <p class="eyebrow">Budgets with period context</p>
       <h2 class="h2">Track budgets in the context of your pay cycle.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Being 85% through your food budget is alarming on day 3 and completely fine on day 27. Every Squirio budget bar carries a pace marker showing how far through the period you actually are, so the number has context.</p>
+      <p class="lede" style="margin-top:var(--s-lg)">Using 85% of a food budget means something different on day 3 and day 27. Each budget shows a pace marker alongside the amount used.</p>
       <ul class="points">
-        <li><span><strong>A budget can renew itself.</strong> Switch on "Repeat every period" and the same limit comes back each cycle — monthly ones on your payday, not the 1st. Leave it off and it covers only the period you set it in.</span></li>
-        <li><span><strong>Then unspent money carries over.</strong> Pick whether a quiet month tops up the next one, or whether overspending eats into it too.</span></li>
-        <li><span><strong>You get told at 75% and again at 100%,</strong> right when you save the transaction that crossed the line.</span></li>
+        <li><span><strong>Repeat a budget each period.</strong> Turn on "Repeat every period" to reuse the limit in each cycle, including payday-based monthly periods. Turn it off for a one-time budget.</span></li>
+        <li><span><strong>Choose whether unused funds roll over.</strong> Rollover can include only unused funds or also carry an overspent balance into the next period.</span></li>
+        <li><span><strong>Receive alerts at 75% and 100%</strong> when a saved transaction crosses either threshold.</span></li>
       </ul>
     </div>
 
@@ -1162,7 +1154,7 @@
     <div class="section-head">
       <p class="eyebrow">Analytics</p>
       <h2 class="h2">Analyze cash flow and spending.</h2>
-      <p class="lede">Category breakdowns, a rolling twelve-month cashflow, spend trends against your own average, a daily intensity calendar, and a ranking of the merchants quietly taking the most.</p>
+      <p class="lede">Review category totals, twelve-month cash flow, changes from your usual spending, daily spending intensity, and merchants with the highest totals.</p>
     </div>
 
     <div class="viz">
@@ -1220,7 +1212,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Everything else</p>
-      <h2 class="h2">More features in the free Squirio app.</h2>
+      <h2 class="h2">Other features included with Squirio.</h2>
     </div>
 
     <div class="grid grid--3">
@@ -1233,53 +1225,55 @@
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c2)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.8 6.4 20l1.4-6.2L3 9.5l6.4-.6z"/></svg></span>
         <h3 class="feature-card__title">Savings goals</h3>
-        <p class="feature-card__body">Set a target, put money towards it, and see the date you'll actually get there based on how you've really been contributing.</p>
+        <p class="feature-card__body">Set an amount and deadline, record contributions, and see an estimated completion date based on your progress.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c3)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-8 8M8 21H3v-5M3 21l8-8"/></svg></span>
-        <h3 class="feature-card__title">Debts, both directions</h3>
-        <p class="feature-card__body">Money you lent and money you owe, with a payoff calculator that tells you how many months a given monthly payment needs.</p>
+        <h3 class="feature-card__title">Debts and receivables</h3>
+        <p class="feature-card__body">Track money you lent and money you owe. The payoff calculator estimates the months needed for a chosen monthly payment.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c6)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
-        <h3 class="feature-card__title">Every kind of account</h3>
-        <p class="feature-card__body">Cash, bank, credit card, e-wallet, savings and investment — with transfers between them and a running net worth. Cards show what you owe.</p>
+        <h3 class="feature-card__title">Common account types</h3>
+        <p class="feature-card__body">Track cash, bank, credit card, e-wallet, savings, and investment accounts, including transfers and net worth. Credit-card accounts show the outstanding balance.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c5)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></span>
         <h3 class="feature-card__title">Import your history</h3>
-        <p class="feature-card__body">Bring in a CSV from your bank or another app, map the columns once, and preview it before anything is written.</p>
+        <p class="feature-card__body">Import a CSV from your bank or another app, map its columns, and review the preview before saving.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c7)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16v18l-8-4-8 4z"/></svg></span>
-        <h3 class="feature-card__title">A recap worth sharing</h3>
-        <p class="feature-card__body">Each pay cycle gets a summary card you can export as an image — and it waits until the period is actually finished before calling it a result.</p>
+        <h3 class="feature-card__title">Exportable period recap</h3>
+        <p class="feature-card__body">After a pay cycle ends, export its summary card as an image.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--income)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg></span>
         <h3 class="feature-card__title">English &amp; Bahasa Indonesia</h3>
-        <p class="feature-card__body">Both languages fully translated, not machine-filled. Rupiah is a first-class currency, formatted without decimals the way people actually write it.</p>
+        <p class="feature-card__body">The interface is available in English and Bahasa Indonesia. Rupiah amounts use no decimal places.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--c1)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>
-        <h3 class="feature-card__title">Light and dark, properly</h3>
-        <p class="feature-card__body">A warm palette designed to feel like a notebook rather than a trading terminal — including expenses in dusty rose instead of alarm red.</p>
+        <h3 class="feature-card__title">Light and dark themes</h3>
+        <p class="feature-card__body">A warm palette is used in both themes, with expenses shown in dusty rose instead of bright red.</p>
       </div>
 
       <div class="card">
         <span class="chip-icon" style="--chip:var(--warning)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6v12a2 2 0 002 2h14a2 2 0 002-2V6"/><path d="M3 6l9 7 9-7"/><path d="M3 6h18"/></svg></span>
-        <h3 class="feature-card__title">Numbers that self-correct</h3>
-        <p class="feature-card__body">Balances and goal progress are worked out from your transactions every time, so fixing an entry from three months ago fixes everything downstream.</p>
+        <h3 class="feature-card__title">Results recalculate after edits</h3>
+        <p class="feature-card__body">Balances and goal progress are calculated from transactions, so editing an older entry updates the affected results.</p>
       </div>
     </div>
   </div>
 </section>
+
+<section class="section" id="learn" aria-labelledby="learn-heading"><div class="wrap"><div class="section-head"><p class="eyebrow">Learn with Squirio</p><h2 class="h2" id="learn-heading">Guides to choosing and using a financial tracker.</h2><p class="lede">Learn how to choose a finance app, track expenses, and create a budget from income and fixed costs.</p></div><div class="grid grid--3"><a class="card guide-card" href="/projects/squirio/learn/personal-finance-app/"><span class="eyebrow">Choosing an app</span><h3 class="h3">How to Choose a Personal Finance App</h3><p>Compare workflow, storage, privacy, and complexity.</p><span class="guide-card__meta">12 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/how-to-track-daily-expenses/"><span class="eyebrow">Expense tracking</span><h3 class="h3">How to Start Tracking Daily Expenses</h3><p>Use a five-minute routine to keep your records current.</p><span class="guide-card__meta">6 min read</span></a><a class="card guide-card" href="/projects/squirio/learn/how-to-create-a-monthly-budget/"><span class="eyebrow">Budgeting</span><h3 class="h3">How to Create a Simple Monthly Budget</h3><p>Set limits from income, fixed costs, regular spending, savings, and a buffer.</p><span class="guide-card__meta">7 min read</span></a></div><p class="guides-more"><a href="/projects/squirio/learn/">Explore all guides <span aria-hidden="true">→</span></a></p></div></section>
 
 <!-- ===================== FAQ ============================================ -->
 <section class="section section--alt" id="faq">
@@ -1291,22 +1285,22 @@
     <div class="faq">
       <details class="faq__item">
         <summary><h3 class="faq__question">Does it connect to my bank?</h3></summary>
-        <p class="faq__answer">No — and that is deliberate. Bank connections require handing your credentials to a third-party aggregator that then holds your full transaction history. Squirio doesn't have a server, so it couldn't do that even if it wanted to. You enter transactions yourself, or import a CSV your bank already gives you.</p>
+        <p class="faq__answer">No. Enter transactions manually or import a CSV supplied by your bank. Squirio has no server or bank-aggregation service.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Do I have to set my budgets up again every month?</h3></summary>
-        <p class="faq__answer">Only if you want to. Every budget has a "Repeat every period" switch — turn it on and the same limit comes back each cycle, renewing on your payday rather than the 1st, carrying unspent money across if you asked for that. Leave it off and the budget covers just the period you made it in, then moves to an "Ended" list instead of disappearing. It is a switch rather than an assumption because a budget you deliberately chose to repeat is one you can still explain to yourself six months later.</p>
+        <p class="faq__answer">No. Turn on "Repeat every period" to renew a budget on each payday cycle. Leave it off for a one-time budget. Rollover is optional.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">What happens if I lose my phone?</h3></summary>
-        <p class="faq__answer">This is the honest trade-off of a local-first app: if the only copy is on the phone and the phone is gone, the data is gone. Squirio gives you a one-tap backup that produces a zip file you can put in your own cloud drive, email to yourself, or keep anywhere you like. Do it occasionally and you are covered — on your terms, in a file you control.</p>
+        <p class="faq__answer">If the phone holds the only copy, the data is lost with it. Create a zip backup regularly and store it somewhere you control.</p>
       </details>
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Can I sync between two devices?</h3></summary>
-        <p class="faq__answer">Not automatically. Sync means a server, and a server means your spending history sits on someone else's computer — which is the exact thing this app is built to avoid. You can move data between devices with a backup file whenever you need to.</p>
+        <p class="faq__answer">Not automatically. Move data between devices with a backup file when needed.</p>
       </details>
 
       <details class="faq__item">
@@ -1321,7 +1315,7 @@
 
       <details class="faq__item">
         <summary><h3 class="faq__question">Can I get my data out?</h3></summary>
-        <p class="faq__answer">Any time, two ways. A full backup is a zip containing the actual database file, and CSV export gives you a plain spreadsheet of every transaction. Both go straight to your share sheet.</p>
+        <p class="faq__answer">Yes. Create a full zip backup or export every transaction to CSV through Android's share sheet.</p>
       </details>
     </div>
   </div>
@@ -1332,7 +1326,7 @@
 <section class="section">
   <div class="wrap center" style="max-width:640px">
     <h2 class="h2">Track your money, not your worry.</h2>
-    <p class="lede" style="margin-top:var(--s-lg)">Completely free and coming exclusively to Android in October 2026.</p>
+    <p class="lede" style="margin-top:var(--s-lg)">Free and coming exclusively to Android in October 2026.</p>
   </div>
 </section>
 
@@ -1355,7 +1349,7 @@
           <h2 class="footer__heading">Explore</h2>
           <ul>
             <li><a href="#top">Overview</a></li>
-            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="/projects/squirio/learn/">Learn</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
@@ -1372,12 +1366,12 @@
     </div>
     <div class="footer__bottom">
       <p>&copy; 2026 Japandi Dev</p>
-      <p>Built with clarity and care.</p>
+      <p>A project by Japandi Dev.</p>
     </div>
   </div>
 </footer>
 
 <script src="/assets/js/shell.js"></script>
-<script src="js/japandi-shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
 </body>
 </html>

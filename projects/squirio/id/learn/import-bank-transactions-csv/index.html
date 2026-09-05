@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- GENERATED FILE - do not edit.
+     Built by build.py from projects/squirio/_src/content.html + projects/squirio/_src/import-bank-transactions-csv.<locale>.json.
+     Edit those and re-run `python build.py`; this file is overwritten. -->
+<html lang="id" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara Import Mutasi Bank CSV dengan Aman | Squirio</title>
+<meta name="description" content="Siapkan, petakan, pratinjau, dan impor mutasi bank dari CSV dengan aman tanpa menggandakan, menghilangkan, atau membalik arah transaksi.">
+<link rel="canonical" href="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/">
+<link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Cara Import Mutasi Bank CSV dengan Aman | Squirio">
+<meta property="og:description" content="Siapkan, petakan, pratinjau, dan impor mutasi bank dari CSV dengan aman tanpa menggandakan, menghilangkan, atau membalik arah transaksi.">
+<meta property="og:url" content="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Squirio, aplikasi pencatatan keuangan lokal di Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/learn.bundle.css">
+<script src="/projects/squirio/js/init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/#article",
+      "url": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/",
+      "headline": "Cara Import Mutasi Bank dari CSV dengan Aman",
+      "description": "Siapkan, petakan, pratinjau, dan impor mutasi bank dari CSV dengan aman tanpa menggandakan, menghilangkan, atau membalik arah transaksi.",
+      "inLanguage": "id",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-04",
+      "mainEntityOfPage": { "@id": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/#webpage" },
+      "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/#webpage",
+      "url": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/",
+      "name": "Cara Import Mutasi Bank dari CSV dengan Aman",
+      "description": "Siapkan, petakan, pratinjau, dan impor mutasi bank dari CSV dengan aman tanpa menggandakan, menghilangkan, atau membalik arah transaksi.",
+      "inLanguage": "id",
+      "breadcrumb": { "@id": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/#breadcrumb" },
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Squirio", "item": "https://japandi.dev/projects/squirio/id/" },
+        { "@type": "ListItem", "position": 2, "name": "Belajar", "item": "https://japandi.dev/projects/squirio/id/learn/" },
+        { "@type": "ListItem", "position": 3, "name": "Import mutasi bank CSV", "item": "https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">Lewati ke konten</a>
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="/id/" aria-label="Beranda Japandi Dev">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span>
+      <span class="jd-brand__separator" aria-hidden="true">/</span>
+      <span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false"
+            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Menu</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="/projects/squirio/id/#features">Fitur</a></li>
+        <li><a href="/projects/squirio/id/learn/">Belajar</a></li>
+        <li><a href="/id/#about">Tentang pengembang</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="Bahasa">
+        <a class="jd-lang__option" href="/projects/squirio/learn/import-bank-transactions-csv/" hreflang="en" lang="en">EN</a>
+        <a class="jd-lang__option" href="/projects/squirio/id/learn/import-bank-transactions-csv/" hreflang="id" lang="id" aria-current="page">ID</a>
+      </div>
+      <a class="jd-nav__back" href="/projects/squirio/id/#availability">Dapatkan Squirio</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article>
+    <header class="article-hero" id="top">
+      <div class="wrap article-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol><li><a href="/projects/squirio/id/">Squirio</a></li><li><a href="/projects/squirio/id/learn/">Belajar</a></li><li aria-current="page">Import mutasi bank CSV</li></ol>
+        </nav>
+        <p class="eyebrow">Panduan keuangan pribadi</p>
+        <h1 class="display" style="margin-top:var(--s-md)">Cara Import Mutasi Bank dari CSV dengan Aman</h1>
+        <p class="lede" style="margin-top:var(--s-lg)">Simpan laporan asli, petakan setiap kolom, periksa pratinjau, dan cocokkan total sebelum mengimpor.</p>
+        <p class="article-meta"><time datetime="2026-09-03">Diterbitkan 3 September 2026</time><span aria-hidden="true">&middot;</span><span>6 menit baca</span></p>
+      </div>
+    </header>
+    <div class="section section--alt" id="isi">
+      <div class="wrap article-layout">
+        <div class="article-body">
+          <p class="summary-box">Ekspor CSV dari bank, simpan berkas asli tanpa perubahan, impor salinan kerja, petakan kolom tanggal, deskripsi, dan jumlah, lihat beberapa baris pratinjau, lalu periksa total. Buat cadangan aplikasi terlebih dahulu.</p>
+<h2 id="prepare">Siapkan berkas</h2>
+<ol><li>Unduh laporan langsung dari bank atau e-wallet.</li><li>Simpan berkas asli tanpa perubahan sebagai acuan.</li><li>Periksa rentang tanggal dan identitas rekening.</li><li>Hapus baris ringkasan dari salinan jika pengimpor tidak dapat mengabaikannya.</li><li>Pastikan pengeluaran memakai angka negatif atau kolom debit terpisah.</li></ol>
+<p>Jangan unggah mutasi ke konverter daring yang tidak dikenal hanya untuk mengubah pemisah. Berkas keuangan dapat memuat nama, referensi rekening, saldo, dan pola aktivitas.</p>
+<h2 id="map">Periksa pemetaan setiap kolom</h2>
+<div class="article-table-wrap" role="region" aria-label="Tabel perbandingan yang dapat digulir" tabindex="0"><table class="article-table"><caption>Kolom CSV yang perlu diperiksa sebelum impor</caption><thead><tr><th scope="col">Kolom CSV</th><th scope="col">Periksa</th></tr></thead><tbody><tr><td>Tanggal</td><td>Urutan hari/bulan, empat digit tahun, dan waktu</td></tr><tr><td>Deskripsi</td><td>Nama merchant atau transfer tetap terbaca</td></tr><tr><td>Jumlah</td><td>Pemisah desimal dan ribuan dibaca dengan benar</td></tr><tr><td>Arah</td><td>Debit menjadi pengeluaran dan kredit menjadi pemasukan</td></tr><tr><td>Akun</td><td>Setiap baris masuk ke akun Squirio yang tepat</td></tr></tbody></table></div>
+<p>Squirio menyediakan pemetaan dan pratinjau. Periksa baris pertama, debit, kredit, dan transaksi tidak biasa. Jika rentang tanggal pernah diimpor, hentikan agar tidak terjadi duplikat.</p>
+<h2 id="verify">Periksa setelah impor</h2>
+<p>Bandingkan jumlah baris, total kredit, total debit, dan saldo akhir dengan laporan. Periksa beberapa deskripsi serta tanggal. Simpan berkas asli sampai rekening selesai dicocokkan.</p>
+<p>Setelah impor, ikuti <a href="/projects/squirio/id/learn/how-to-track-daily-expenses/">rutinitas pencatatan harian</a> dan buat <a href="/projects/squirio/id/learn/backup-and-restore-financial-data/">cadangan aplikasi baru</a>. <a href="/projects/squirio/id/learn/free-financial-tracker/">Panduan aplikasi gratis</a> menjelaskan pilihan ekspor dan cadangan.</p>
+
+        </div>
+        <aside class="article-sidebar" aria-label="Di halaman ini">
+          <div class="card">
+            <h2>Di halaman ini</h2>
+            <ul><li><a href="#prepare">Siapkan file</a></li><li><a href="#map">Petakan kolom</a></li><li><a href="#verify">Periksa hasil</a></li></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <section class="section" id="terkait">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Baca selanjutnya</p><h2 class="h2">Panduan terkait</h2></div>
+      <div class="related-grid"><a class="card guide-card" href="/projects/squirio/id/learn/how-to-track-daily-expenses/"><span class="eyebrow">Kebiasaan Keuangan</span><h3 class="h3">Cara Mulai Mencatat Pengeluaran Harian</h3><p>Gunakan rutinitas lima menit untuk menjaga catatan tetap rapi.</p><span class="guide-card__meta">6 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/backup-and-restore-financial-data/"><span class="eyebrow">Kebiasaan Keuangan</span><h3 class="h3">Cara Mencadangkan dan Memulihkan Data Keuangan</h3><p>Simpan cadangan secara terpisah dan uji pemulihannya sebelum dibutuhkan.</p><span class="guide-card__meta">6 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/offline-financial-tracker-security/"><span class="eyebrow">Privasi &amp; Data</span><h3 class="h3">Keamanan Pencatat Keuangan Offline</h3><p>Periksa izin, penyimpanan, ekspor, cadangan, dan risiko yang relevan.</p><span class="guide-card__meta">7 menit baca</span></a></div>
+    </div>
+  </section>
+  <section class="section section--alt">
+    <div class="wrap article-cta center">
+      <h2 class="h2">Kenali cara kerja Squirio.</h2>
+      <p class="lede">Squirio adalah pencatat keuangan Android gratis. Tidak ada akun, cloud, iklan, atau pelacakan.</p>
+      <a href="/projects/squirio/id/">Lihat semua fitur Squirio</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="/projects/squirio/id/">
+          <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async">
+          <span class="brand__name">SQUIRIO</span>
+        </a>
+        <p class="footer__description">Pencatat keuangan Android yang gratis dan privat, dibuat oleh Japandi Dev.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navigasi footer">
+        <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="/projects/squirio/id/">Ikhtisar</a></li><li><a href="/projects/squirio/id/#features">Fitur</a></li><li><a href="/projects/squirio/id/learn/">Belajar</a></li><li><a href="/projects/squirio/id/#faq">FAQ</a></li></ul></div>
+        <div><h2 class="footer__heading">Lainnya</h2><ul><li><a href="/projects/squirio/id/privacy/">Privasi aplikasi</a></li><li><a href="/id/#about">Tentang pengembang</a></li><li><a href="/id/#contact">Kontak</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>Proyek dari Japandi Dev.</p></div>
+  </div>
+</footer>
+<script src="/assets/js/shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
+</body>
+</html>
