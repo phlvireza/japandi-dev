@@ -4,3 +4,4 @@
 # Binary assets must never be touched.
 *.png  binary
 *.woff2 binary
+graphify-out/graph.json merge=graphify
