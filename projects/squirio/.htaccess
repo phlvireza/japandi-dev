@@ -6,6 +6,35 @@
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # English pages live in en/ on disk for the same source/output symmetry as
+  # id/, while their established public URLs deliberately omit the locale.
+  # Redirect direct requests for the implementation directory so it can never
+  # become a second indexable URL, then serve clean English URLs internally.
+  RewriteRule ^en/guides/?$ /projects/squirio/learn/ [R=301,L,NE]
+  RewriteRule ^en/guides/(.+?)/?$ /projects/squirio/learn/$1/ [R=301,L,NE]
+  RewriteRule ^en/(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)/?$ /projects/squirio/learn/$1/ [R=301,L,NE]
+
+  RewriteCond %{THE_REQUEST} \s/+projects/squirio/en(?:[/\s?]) [NC]
+  RewriteRule ^en/?$ /projects/squirio/ [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/+projects/squirio/en(?:[/\s?]) [NC]
+  RewriteRule ^en/(.+?)/?$ /projects/squirio/$1/ [R=301,L,NE]
+
+  # Learn is the sole public namespace. Redirect both the previous Guides
+  # namespace and the original root-level article routes in one hop.
+  RewriteRule ^guides/?$ /projects/squirio/learn/ [R=301,L,NE]
+  RewriteRule ^guides/(.+?)/?$ /projects/squirio/learn/$1/ [R=301,L,NE]
+  RewriteRule ^id/guides/?$ /projects/squirio/id/learn/ [R=301,L,NE]
+  RewriteRule ^id/guides/(.+?)/?$ /projects/squirio/id/learn/$1/ [R=301,L,NE]
+  RewriteRule ^(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)/?$ /projects/squirio/learn/$1/ [R=301,L,NE]
+  RewriteRule ^id/(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)/?$ /projects/squirio/id/learn/$1/ [R=301,L,NE]
+
+  RewriteRule ^$ en/index.html [L]
+
+  RewriteCond %{DOCUMENT_ROOT}/projects/squirio/en/$1/index.html -f
+  RewriteRule ^(.+?)/?$ en/$1/index.html [L]
+
   RewriteRule ^_src(?:/|$) - [F,L]
 </IfModule>
 

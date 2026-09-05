@@ -4,8 +4,8 @@
   so listing it here would ask Google to crawl a page it is told to drop. That
   applies to /id/404.html too.
 
-  Each URL is annotated with the whole language cluster it belongs to, itself
-  included. Google requires every URL in a set to list every alternate - a
+  Each translated URL is annotated with the whole language cluster it belongs
+  to, itself included. Google requires every URL in a set to list every alternate - a
   one-way annotation is ignored outright - and the same reciprocity is repeated
   in the <link rel="alternate"> tags in each page's <head>. x-default points at
   the English URL, which is where a visitor with no matching language
@@ -26,14 +26,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/"/>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-09-05</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/id/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/id/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/"/>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-09-05</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/privacy</loc>
@@ -54,14 +54,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/"/>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-05</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/projects/squirio/id/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/"/>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-05</lastmod>
   </url>
   <url>
     <loc>https://japandi.dev/projects/squirio/privacy/</loc>
@@ -77,4 +77,78 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/privacy/"/>
     <lastmod>2026-08-29</lastmod>
   </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/learn/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/"/>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/learn/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/"/>
+    <lastmod>2026-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/learn/free-financial-tracker/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/free-financial-tracker/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/free-financial-tracker/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/free-financial-tracker/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/learn/free-financial-tracker/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/free-financial-tracker/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/free-financial-tracker/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/free-financial-tracker/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/learn/personal-finance-app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/personal-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/personal-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/personal-finance-app/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/learn/personal-finance-app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/personal-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/personal-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/personal-finance-app/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/learn/offline-finance-app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/offline-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://japandi.dev/projects/squirio/id/learn/offline-finance-app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/offline-finance-app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/"/>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/best-free-financial-tracker-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/best-free-financial-tracker-apps/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/best-free-financial-tracker-apps/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/best-free-financial-tracker-apps/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/best-free-financial-tracker-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/best-free-financial-tracker-apps/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/best-free-financial-tracker-apps/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/best-free-financial-tracker-apps/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/how-to-track-daily-expenses/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/how-to-track-daily-expenses/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/how-to-track-daily-expenses/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/how-to-track-daily-expenses/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/how-to-track-daily-expenses/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/how-to-track-daily-expenses/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/how-to-track-daily-expenses/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/how-to-track-daily-expenses/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/financial-tracker-without-ads/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/financial-tracker-without-ads/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/financial-tracker-without-ads/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/financial-tracker-without-ads/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/financial-tracker-without-ads/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/financial-tracker-without-ads/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/financial-tracker-without-ads/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/financial-tracker-without-ads/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/how-to-create-a-monthly-budget/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/how-to-create-a-monthly-budget/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/how-to-create-a-monthly-budget/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/how-to-create-a-monthly-budget/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/how-to-create-a-monthly-budget/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/how-to-create-a-monthly-budget/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/how-to-create-a-monthly-budget/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/how-to-create-a-monthly-budget/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/import-bank-transactions-csv/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/import-bank-transactions-csv/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/savings-goal-tracker/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/savings-goal-tracker/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/savings-goal-tracker/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/savings-goal-tracker/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/savings-goal-tracker/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/savings-goal-tracker/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/savings-goal-tracker/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/savings-goal-tracker/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/debt-and-receivables-tracker/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/debt-and-receivables-tracker/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/debt-and-receivables-tracker/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/debt-and-receivables-tracker/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/debt-and-receivables-tracker/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/debt-and-receivables-tracker/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/debt-and-receivables-tracker/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/debt-and-receivables-tracker/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/backup-and-restore-financial-data/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/backup-and-restore-financial-data/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/backup-and-restore-financial-data/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/backup-and-restore-financial-data/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/learn/offline-financial-tracker-security/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/offline-financial-tracker-security/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/offline-financial-tracker-security/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/offline-financial-tracker-security/"/><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://japandi.dev/projects/squirio/id/learn/offline-financial-tracker-security/</loc><xhtml:link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/offline-financial-tracker-security/"/><xhtml:link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/offline-financial-tracker-security/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/offline-financial-tracker-security/"/><lastmod>2026-09-03</lastmod></url>
 </urlset>

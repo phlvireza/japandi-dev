@@ -45,13 +45,7 @@
      preload starts the latin file before the CSS parser reaches the @font-face
      rule; latin-ext is left to load on demand since most visitors never need it. -->
 <link rel="preload" href="{{__root}}assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{__root}}css/fonts.css">
-
-<link rel="stylesheet" href="{{__root}}css/tokens.css">
-<link rel="stylesheet" href="{{__root}}css/base.css">
-<link rel="stylesheet" href="{{__root}}css/components.css">
-<link rel="stylesheet" href="{{__root}}css/mockups.css">
-<link rel="stylesheet" href="{{__root}}css/japandi-shell.css">
+<link rel="stylesheet" href="{{__root}}css/landing.bundle.css">
 
 <script src="{{__root}}js/init.js"></script>
 
@@ -166,7 +160,7 @@
           "name": "{{what_happens_if_i|json}}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "{{this_is_the_honest|json}}"
+            "text": "{{phone_loss_answer|json}}"
           }
         },
         {
@@ -287,7 +281,7 @@
 
 <header class="jd-header" data-jd-header>
   <div class="jd-header__inner jd-shell-container">
-    <a class="jd-brand" href="#top" aria-label="{{__brand_aria}}">
+    <a class="jd-brand" href="{{__root_url}}" aria-label="{{__brand_aria}}">
       <img class="jd-brand__mark"
            src="/assets/images/japandi-dev-logo-transparent-96.webp"
            srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
@@ -303,13 +297,11 @@
       <span>{{__menu}}</span>
     </button>
 
-    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
       <ul class="jd-nav__list">
-        <li><a href="#top">{{__nav_overview}}</a></li>
-        <li><a href="#payday">{{__nav_payday}}</a></li>
-        <li><a href="#privacy">{{__nav_privacy}}</a></li>
         <li><a href="#features">{{__nav_features}}</a></li>
-        <li><a href="#faq">{{__nav_faq}}</a></li>
+        <li><a href="{{__learn_url}}">{{__nav_learn}}</a></li>
+        <li><a href="{{__about_url}}">{{__nav_about}}</a></li>
       </ul>
       <div class="jd-lang" role="group" aria-label="{{__lang_group_label}}">
         <a class="jd-lang__option" href="{{__href_en}}" hreflang="en" lang="en"
@@ -317,7 +309,7 @@
         <a class="jd-lang__option" href="{{__href_id}}" hreflang="id" lang="id"
            data-lang-choice="id"{{__lang_current_id}}>ID</a>
       </div>
-      <a class="jd-nav__back" href="{{__root_url}}#projects">{{__nav_all_projects}}</a>
+      <a class="jd-nav__back" href="#availability">{{__nav_get}}</a>
     </nav>
   </div>
 </header>
@@ -332,7 +324,7 @@
       <h1 class="display" style="margin-top:var(--s-md)">{{the_budget_tracker_that}}</h1>
       <p class="lede" style="margin-top:var(--s-lg);max-width:52ch">{{squirio_is_a_personal}}</p>
 
-      <div class="launch-note" style="margin-top:var(--s-2xl)">
+      <div class="launch-note" id="availability" style="margin-top:var(--s-2xl)">
         <span class="launch-note__platform">{{android_only}}</span>
         <strong class="launch-note__date">{{coming_october_2026}}</strong>
       </div>
@@ -1278,6 +1270,8 @@
   </div>
 </section>
 
+{{seo_resources}}
+
 <!-- ===================== FAQ ============================================ -->
 <section class="section section--alt" id="faq">
   <div class="wrap">
@@ -1298,7 +1292,7 @@
 
       <details class="faq__item">
         <summary><h3 class="faq__question">{{what_happens_if_i}}</h3></summary>
-        <p class="faq__answer">{{this_is_the_honest}}</p>
+        <p class="faq__answer">{{phone_loss_answer}}</p>
       </details>
 
       <details class="faq__item">
@@ -1352,7 +1346,7 @@
           <h2 class="footer__heading">{{footer_explore}}</h2>
           <ul>
             <li><a href="#top">{{footer_overview}}</a></li>
-            <li><a href="#methodology">{{footer_methodology}}</a></li>
+            <li><a href="{{__learn_url}}">{{__nav_learn}}</a></li>
             <li><a href="#faq">{{faq_3}}</a></li>
           </ul>
         </div>

@@ -37,11 +37,7 @@
   <meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
   <link rel="apple-touch-icon" href="{{__root}}assets/apple-touch-icon-180.png">
-  <link rel="stylesheet" href="{{__root}}css/fonts.css">
-  <link rel="stylesheet" href="{{__root}}css/tokens.css">
-  <link rel="stylesheet" href="{{__root}}css/base.css">
-  <link rel="stylesheet" href="{{__root}}css/japandi-shell.css">
-  <link rel="stylesheet" href="{{__root}}css/privacy.css">
+  <link rel="stylesheet" href="{{__root}}css/privacy.bundle.css">
 
   <script src="{{__root}}js/init.js"></script>
 
@@ -89,7 +85,7 @@
 
   <header class="jd-header" data-jd-header>
     <div class="jd-header__inner jd-shell-container">
-      <a class="jd-brand" href="../" aria-label="{{__brand_aria}}">
+      <a class="jd-brand" href="{{__root_url}}" aria-label="{{__brand_aria}}">
         <img class="jd-brand__mark"
              src="/assets/images/japandi-dev-logo-transparent-96.webp"
              srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
@@ -103,10 +99,11 @@
         <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>{{__menu}}</span>
       </button>
-      <nav class="jd-nav" id="jd-primary-navigation" aria-label="Japandi Dev" data-jd-nav>
+      <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
         <ul class="jd-nav__list">
-          <li><a href="../">{{__nav_squirio_home}}</a></li>
-          <li><a href="./" aria-current="page">{{__nav_privacy}}</a></li>
+          <li><a href="{{__features_url}}">{{__nav_features}}</a></li>
+          <li><a href="{{__learn_url}}">{{__nav_learn}}</a></li>
+          <li><a href="{{__about_url}}">{{__nav_about}}</a></li>
         </ul>
         <!-- Inside .jd-nav the switch renders in the header row on desktop and
              inside the collapsed panel on mobile, leaving the header's first
@@ -118,7 +115,7 @@
           <a class="jd-lang__option" href="{{__href_id}}" hreflang="id" lang="id"
              data-lang-choice="id"{{__lang_current_id}}>ID</a>
         </div>
-        <a class="jd-nav__back" href="{{__root_url}}#projects">{{__nav_all_projects}}</a>
+        <a class="jd-nav__back" href="{{__get_url}}">{{__nav_get}}</a>
       </nav>
     </div>
   </header>

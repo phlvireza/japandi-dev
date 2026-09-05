@@ -131,15 +131,16 @@ japandi-dev/
 
 No build step and no dependencies. Serve the folder over HTTP — opening `index.html` via `file://`
 breaks the root-relative paths in `404.html` and can block font loading. Note that `.htaccess` is
-not read by either server below, so the extensionless links resolve only under `serve`, which
-happens to apply the same rule; under `python -m http.server` a link to `/privacy` will 404.
+not read by either server below. `serve` loads `serve.json` explicitly to reproduce Squirio's
+clean-English-URL mapping; under `python -m http.server`, `/projects/squirio/` is only a directory
+and `/privacy` will 404.
 
 ```bash
 # Python 3
 python -m http.server 8765
 
-# or Node
-npx --yes serve .
+# or Node — use this for production-like clean Squirio URLs
+npx --yes serve@latest . --listen 8765 --config serve.json
 ```
 
 Then open <http://127.0.0.1:8765/>.
@@ -324,7 +325,10 @@ Purge Everything) or the old CSS may persist at the edge.
 Squirio is served from `/projects/squirio/` in the same document root, and its pages carry the Japandi
 Dev global navbar. Edit `projects/squirio/_src/template.html`, `_src/privacy.html`, or the locale
 files beside them, then run `python build.py` **from the repository root**; never hand-edit the
-generated `projects/squirio/index.html` or `projects/squirio/privacy/index.html`.
+generated `projects/squirio/en/index.html` or `projects/squirio/en/privacy/index.html`.
+English and Indonesian outputs live under `en/` and `id/` respectively. The English locale segment
+is an implementation detail: `.htaccess` serves it internally while public URLs remain under
+`/projects/squirio/` without `/en/`.
 
 The builder used to live at `projects/squirio/build.py` and covered one page in one language. It now
 sits at the repository root and generates every page of both japandi.dev and Squirio, in both
@@ -379,8 +383,8 @@ Consequences worth knowing:
 - `mod_rewrite` is required. LiteSpeed on Biznet Gio supports it; if the host ignores `.htaccess`
   entirely the site still works, just with `.html` back in the address bar.
 - **Local preview:** `python -m http.server` does not read `.htaccess`, so `/privacy` returns 404
-  there. Use `npx --yes serve .`, which resolves extensionless paths the same way, if you want the
-  preview to match production.
+  and `/projects/squirio/` shows a directory listing. Use
+  `npx --yes serve@latest . --listen 8765 --config serve.json` to apply the matching local rewrites.
 
 ---
 
@@ -401,7 +405,7 @@ Cloudflare's Web Analytics beacon.
 The policy:
 
 ```
-default-src 'self'; script-src 'self' 'sha256-XHOQ0kIsWBoBByPYfUPSgQSssYKkXPWpDVfHvX+ryM8='
+default-src 'self'; script-src 'self' 'sha256-bm+Egwabh5OGFJDohAinzUJf36/GGQk2WfS6+JLb8xg='
 https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; font-src 'self';
 connect-src 'self'; base-uri 'none';
 form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
@@ -572,7 +576,7 @@ The status lives in three places, all of which must agree:
 | `operatingSystem` and the platform FAQ answer | `projects/squirio/_src/template.html` |
 
 The Squirio page is generated: edit `projects/squirio/_src/`, then run `python build.py` from the
-repository root. Never hand-edit `projects/squirio/index.html`. Remember the Indonesian copy in
+repository root. Never hand-edit `projects/squirio/en/index.html`. Remember the Indonesian copy in
 `id.json` — the build refuses to run if the two locale files fall out of key parity.
 
 If a waitlist is ever added it becomes a third party: update the privacy policy, and add its origin
@@ -632,15 +636,28 @@ _src/                       root site sources
 projects/squirio/_src/      Squirio sources
   template.html  en.json          id.json
   privacy.html   privacy.en.json  privacy.id.json
-build.py                    generates all ten pages
+  content.html   *.en.json        *.id.json        *.body.html
+projects/squirio/en/        generated English Squirio pages (not in public URLs)
+projects/squirio/id/        generated Indonesian Squirio pages
+build.py                    generates all published pages
 ```
 
 Run `python build.py` from the repository root after editing anything under a `_src/`. The generated
-HTML **is committed** — CI never runs Python, and the deploy excludes `_src/` and `build.py`.
+HTML **is committed**. The deploy excludes `_src/` and `build.py` from the public document root.
 
-**Key parity is enforced.** `check_parity()` aborts the build if the two locale files for a page do
+Before uploading, CI runs `python build.py --check`. Check mode validates locale parity and compares
+every generated HTML file and CSS bundle without rewriting the working tree. It then runs the
+dependency-free checks in `tests/test_site.py` for semantic landmarks, accessible markup, metadata,
+canonical and `hreflang` clusters, sitemap parity, JSON-LD parsing, local links, and the CSP hash.
+
+**Key parity is enforced.** `check_parity()` aborts the build if the locale files for a page do
 not define exactly the same keys, and `render()` aborts on any placeholder it cannot resolve. A
 missing translation fails the build rather than shipping a half-English page.
+
+Search guides use `content.html`, one metadata JSON file, and one body fragment per locale.
+Their English slugs are shared by both language versions. On disk, outputs are grouped under `en/`
+and `id/`; publicly, English omits its locale segment while Bahasa Indonesia uses `/id/`. Each
+translated pair declares reciprocal `en`, `id`, and `x-default` annotations.
 
 **Placeholders** are `{{key}}`, substituted verbatim. The one filter is `{{key|json}}`, which
 escapes a value for the inside of a JSON string — used in the `ld+json` block. That is what lets the

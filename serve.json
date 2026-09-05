@@ -1,0 +1,133 @@
+{
+  "cleanUrls": true,
+  "directoryListing": false,
+  "redirects": [
+    {
+      "source": "/projects/squirio/guides",
+      "destination": "/projects/squirio/learn/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/guides/:slug",
+      "destination": "/projects/squirio/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/id/guides",
+      "destination": "/projects/squirio/id/learn/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/id/guides/:slug",
+      "destination": "/projects/squirio/id/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/:slug(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)",
+      "destination": "/projects/squirio/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/id/:slug(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)",
+      "destination": "/projects/squirio/id/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/guides",
+      "destination": "/projects/squirio/learn/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/guides/:slug",
+      "destination": "/projects/squirio/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/:slug(free-financial-tracker|personal-finance-app|offline-finance-app|best-free-financial-tracker-apps|how-to-track-daily-expenses|financial-tracker-without-ads|how-to-create-a-monthly-budget|import-bank-transactions-csv|savings-goal-tracker|debt-and-receivables-tracker|backup-and-restore-financial-data|offline-financial-tracker-security)",
+      "destination": "/projects/squirio/learn/:slug/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en",
+      "destination": "/projects/squirio/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/privacy",
+      "destination": "/projects/squirio/privacy/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/learn",
+      "destination": "/projects/squirio/learn/",
+      "type": 301
+    },
+    {
+      "source": "/projects/squirio/en/learn/:slug",
+      "destination": "/projects/squirio/learn/:slug/",
+      "type": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/projects/squirio",
+      "destination": "/projects/squirio/en/index.html"
+    },
+    {
+      "source": "/projects/squirio/privacy",
+      "destination": "/projects/squirio/en/privacy/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn",
+      "destination": "/projects/squirio/en/learn/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/free-financial-tracker",
+      "destination": "/projects/squirio/en/learn/free-financial-tracker/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/personal-finance-app",
+      "destination": "/projects/squirio/en/learn/personal-finance-app/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/offline-finance-app",
+      "destination": "/projects/squirio/en/learn/offline-finance-app/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/best-free-financial-tracker-apps",
+      "destination": "/projects/squirio/en/learn/best-free-financial-tracker-apps/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/how-to-track-daily-expenses",
+      "destination": "/projects/squirio/en/learn/how-to-track-daily-expenses/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/financial-tracker-without-ads",
+      "destination": "/projects/squirio/en/learn/financial-tracker-without-ads/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/how-to-create-a-monthly-budget",
+      "destination": "/projects/squirio/en/learn/how-to-create-a-monthly-budget/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/import-bank-transactions-csv",
+      "destination": "/projects/squirio/en/learn/import-bank-transactions-csv/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/savings-goal-tracker",
+      "destination": "/projects/squirio/en/learn/savings-goal-tracker/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/debt-and-receivables-tracker",
+      "destination": "/projects/squirio/en/learn/debt-and-receivables-tracker/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/backup-and-restore-financial-data",
+      "destination": "/projects/squirio/en/learn/backup-and-restore-financial-data/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/offline-financial-tracker-security",
+      "destination": "/projects/squirio/en/learn/offline-financial-tracker-security/index.html"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="{{lang}}" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical}}">
+<link rel="alternate" hreflang="en" href="{{alt_en}}">
+<link rel="alternate" hreflang="id" href="{{alt_id}}">
+<link rel="alternate" hreflang="x-default" href="{{alt_en}}">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="{{og_locale}}">
+<meta property="og:locale:alternate" content="{{og_locale_alt}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{og_image_alt}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/learn.bundle.css">
+<script src="/projects/squirio/js/init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "{{canonical}}#article",
+      "url": "{{canonical}}",
+      "headline": "{{headline|json}}",
+      "description": "{{description|json}}",
+      "inLanguage": "{{lang}}",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-04",
+      "mainEntityOfPage": { "@id": "{{canonical}}#webpage" },
+      "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{canonical}}#webpage",
+      "url": "{{canonical}}",
+      "name": "{{headline|json}}",
+      "description": "{{description|json}}",
+      "inLanguage": "{{lang}}",
+      "breadcrumb": { "@id": "{{canonical}}#breadcrumb" },
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{canonical}}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Squirio", "item": "{{product_home_absolute}}" },
+        { "@type": "ListItem", "position": 2, "name": "{{learn_label|json}}", "item": "{{learn_absolute}}" },
+        { "@type": "ListItem", "position": 3, "name": "{{breadcrumb|json}}", "item": "{{canonical}}" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">{{skip}}</a>
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="{{publisher_home}}" aria-label="{{brand_aria}}">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span>
+      <span class="jd-brand__separator" aria-hidden="true">/</span>
+      <span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false"
+            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>{{menu}}</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="{{primary_nav_label}}" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="{{features_url}}">{{footer_features}}</a></li>
+        <li><a href="{{learn_url}}">{{learn_label}}</a></li>
+        <li><a href="{{about_url}}">{{footer_about}}</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="{{language_label}}">
+        <a class="jd-lang__option" href="{{href_en}}" hreflang="en" lang="en"{{current_en}}>EN</a>
+        <a class="jd-lang__option" href="{{href_id}}" hreflang="id" lang="id"{{current_id}}>ID</a>
+      </div>
+      <a class="jd-nav__back" href="{{get_url}}">{{get_label}}</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article>
+    <header class="article-hero" id="top">
+      <div class="wrap article-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol><li><a href="{{product_home}}">Squirio</a></li><li><a href="{{learn_url}}">{{learn_label}}</a></li><li aria-current="page">{{breadcrumb}}</li></ol>
+        </nav>
+        <p class="eyebrow">{{eyebrow}}</p>
+        <h1 class="display" style="margin-top:var(--s-md)">{{headline}}</h1>
+        <p class="lede" style="margin-top:var(--s-lg)">{{dek}}</p>
+        <p class="article-meta"><time datetime="2026-09-03">{{published}}</time><span aria-hidden="true">&middot;</span><span>{{reading_time}}</span></p>
+      </div>
+    </header>
+    <div class="section section--alt" id="isi">
+      <div class="wrap article-layout">
+        <div class="article-body">
+          {{body}}
+        </div>
+        <aside class="article-sidebar" aria-label="{{on_this_page}}">
+          <div class="card">
+            <h2>{{on_this_page}}</h2>
+            {{toc}}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <section class="section" id="terkait">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">{{continue_reading}}</p><h2 class="h2">{{related_heading}}</h2></div>
+      <div class="related-grid">{{related_cards}}</div>
+    </div>
+  </section>
+  <section class="section section--alt">
+    <div class="wrap article-cta center">
+      <h2 class="h2">{{cta_heading}}</h2>
+      <p class="lede">{{cta_copy}}</p>
+      <a href="{{product_home}}">{{cta_link}}</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="{{product_home}}">
+          <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async">
+          <span class="brand__name">SQUIRIO</span>
+        </a>
+        <p class="footer__description">{{footer_description}}</p>
+      </div>
+      <nav class="footer__nav" aria-label="{{footer_nav_label}}">
+        <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="{{product_home}}">{{nav_overview}}</a></li><li><a href="{{features_url}}">{{footer_features}}</a></li><li><a href="{{learn_url}}">{{learn_label}}</a></li><li><a href="{{product_home}}#faq">FAQ</a></li></ul></div>
+        <div><h2 class="footer__heading">{{footer_more}}</h2><ul><li><a href="{{privacy_url}}">{{footer_privacy}}</a></li><li><a href="{{about_url}}">{{footer_about}}</a></li><li><a href="{{contact_url}}">{{footer_contact}}</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>{{footer_tagline}}</p></div>
+  </div>
+</footer>
+<script src="/assets/js/shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
+</body>
+</html>

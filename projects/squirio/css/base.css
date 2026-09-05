@@ -155,6 +155,10 @@ a:hover { opacity: 0.75; }
   grid-template-columns: 1fr;
 }
 
+/* Intrinsic-width mockups must be allowed to shrink inside the 320px reflow
+   viewport instead of widening their grid track. */
+.split > * { min-width: 0; }
+
 @media (min-width: 900px) {
   .split { grid-template-columns: 1fr 1fr; }
   /* Flip the visual to the left without changing DOM order, so the reading

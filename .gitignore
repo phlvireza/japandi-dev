@@ -9,3 +9,10 @@ desktop.ini
 node_modules/
 *.log
 *.bak
+
+# Graphify's code-map output. Generated, machine-local, and never site
+# content - the FTP deploy has no exclude rule for it, so an accidental
+# commit would publish it to the web server.
+graphify-out/
+reports/
+.playwright-mcp/

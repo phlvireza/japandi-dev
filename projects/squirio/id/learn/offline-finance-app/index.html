@@ -1,0 +1,288 @@
+<!doctype html>
+<!-- GENERATED FILE - do not edit.
+     Built by build.py from projects/squirio/_src/content.html + projects/squirio/_src/offline-finance-app.<locale>.json.
+     Edit those and re-run `python build.py`; this file is overwritten. -->
+<html lang="id" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi Keuangan Offline: Data Tetap Lokal | Squirio</title>
+<meta name="description" content="Pelajari cara kerja aplikasi keuangan offline Android, cara memeriksa penyimpanan lokal, manfaat privasi, dan tanggung jawab membuat cadangan data.">
+<link rel="canonical" href="https://japandi.dev/projects/squirio/id/learn/offline-finance-app/">
+<link rel="alternate" hreflang="en" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/">
+<link rel="alternate" hreflang="id" href="https://japandi.dev/projects/squirio/id/learn/offline-finance-app/">
+<link rel="alternate" hreflang="x-default" href="https://japandi.dev/projects/squirio/learn/offline-finance-app/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Aplikasi Keuangan Offline: Data Tetap Lokal | Squirio">
+<meta property="og:description" content="Pelajari cara kerja aplikasi keuangan offline Android, cara memeriksa penyimpanan lokal, manfaat privasi, dan tanggung jawab membuat cadangan data.">
+<meta property="og:url" content="https://japandi.dev/projects/squirio/id/learn/offline-finance-app/">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Squirio, aplikasi pencatatan keuangan lokal di Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="/projects/squirio/assets/apple-touch-icon-180.png">
+<link rel="preload" href="/projects/squirio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/projects/squirio/css/learn.bundle.css">
+<script src="/projects/squirio/js/init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/#article",
+      "url": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/",
+      "headline": "Aplikasi Keuangan Offline Android: Data Tetap di Perangkat",
+      "description": "Pelajari cara kerja aplikasi keuangan offline Android, cara memeriksa penyimpanan lokal, manfaat privasi, dan tanggung jawab membuat cadangan data.",
+      "inLanguage": "id",
+      "datePublished": "2026-09-03",
+      "dateModified": "2026-09-04",
+      "mainEntityOfPage": { "@id": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/#webpage" },
+      "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/#webpage",
+      "url": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/",
+      "name": "Aplikasi Keuangan Offline Android: Data Tetap di Perangkat",
+      "description": "Pelajari cara kerja aplikasi keuangan offline Android, cara memeriksa penyimpanan lokal, manfaat privasi, dan tanggung jawab membuat cadangan data.",
+      "inLanguage": "id",
+      "breadcrumb": { "@id": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/#breadcrumb" },
+      "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Squirio", "item": "https://japandi.dev/projects/squirio/id/" },
+        { "@type": "ListItem", "position": 2, "name": "Belajar", "item": "https://japandi.dev/projects/squirio/id/learn/" },
+        { "@type": "ListItem", "position": 3, "name": "Aplikasi keuangan offline", "item": "https://japandi.dev/projects/squirio/id/learn/offline-finance-app/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">Lewati ke konten</a>
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="/id/" aria-label="Beranda Japandi Dev">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span>
+      <span class="jd-brand__separator" aria-hidden="true">/</span>
+      <span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false"
+            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Menu</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="/projects/squirio/id/#features">Fitur</a></li>
+        <li><a href="/projects/squirio/id/learn/">Belajar</a></li>
+        <li><a href="/id/#about">Tentang pengembang</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="Bahasa">
+        <a class="jd-lang__option" href="/projects/squirio/learn/offline-finance-app/" hreflang="en" lang="en">EN</a>
+        <a class="jd-lang__option" href="/projects/squirio/id/learn/offline-finance-app/" hreflang="id" lang="id" aria-current="page">ID</a>
+      </div>
+      <a class="jd-nav__back" href="/projects/squirio/id/#availability">Dapatkan Squirio</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article>
+    <header class="article-hero" id="top">
+      <div class="wrap article-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol><li><a href="/projects/squirio/id/">Squirio</a></li><li><a href="/projects/squirio/id/learn/">Belajar</a></li><li aria-current="page">Aplikasi keuangan offline</li></ol>
+        </nav>
+        <p class="eyebrow">Panduan keuangan pribadi</p>
+        <h1 class="display" style="margin-top:var(--s-md)">Aplikasi Keuangan Offline Android: Data Tetap di Perangkat</h1>
+        <p class="lede" style="margin-top:var(--s-lg)">Aplikasi offline dapat bekerja tanpa akun atau server aplikasi. Pengguna tetap bertanggung jawab melindungi ponsel dan cadangannya.</p>
+        <p class="article-meta"><time datetime="2026-09-03">Diterbitkan 3 September 2026</time><span aria-hidden="true">&middot;</span><span>8 menit baca</span></p>
+      </div>
+    </header>
+    <div class="section section--alt" id="isi">
+      <div class="wrap article-layout">
+        <div class="article-body">
+          <p class="summary-box">Aplikasi keuangan offline menyimpan dan mengolah transaksi di perangkat sehingga fungsi utamanya tetap berjalan tanpa koneksi internet. Aplikasi seperti ini tidak otomatis sama dengan “aman”; periksa kebutuhan akun, izin jaringan, analitik, ekspor, dan cara cadangan sebelum mempercayakan riwayat keuangan Anda.</p>
+
+<p>Riwayat pengeluaran dapat mengungkap kebiasaan, lokasi, kesehatan, hubungan, dan kemampuan finansial seseorang. Sebelum memilih aplikasi, periksa fitur dan lokasi penyimpanan informasi tersebut. Pada aplikasi lokal, salinan utama berada di ponsel pengguna.</p>
+
+<h2 id="definisi">Apa yang dimaksud dengan aplikasi keuangan offline?</h2>
+
+<p>Aplikasi keuangan offline tidak membutuhkan koneksi untuk mencatat transaksi, menghitung saldo, menampilkan anggaran, atau membuat laporan. Aplikasi juga tidak mewajibkan akun server untuk membuka data lokal.</p>
+
+<p>Beberapa produk tetap membuka layar tertentu saat sinyal terputus, tetapi kemudian meminta login, memeriksa langganan, atau mengirim perubahan ketika koneksi kembali. Cara ini berbeda dari sistem lokal yang tidak bergantung pada server aplikasi.</p>
+
+<p>Squirio dirancang tanpa akun, cloud, iklan, dan pelacakan. Aplikasi tidak menghubungkan rekening bank. Transaksi dimasukkan langsung atau diimpor dari CSV, lalu seluruh perhitungan dilakukan di perangkat Android.</p>
+
+<h2 id="memeriksa">Cara memeriksa fungsi offline</h2>
+
+<ol>
+  <li><strong>Periksa proses awal.</strong> Aplikasi lokal seharusnya dapat dibuka dan digunakan tanpa membuat akun.</li>
+  <li><strong>Aktifkan mode pesawat.</strong> Coba buat transaksi, ubah kategori, buka laporan, dan tutup-buka aplikasi.</li>
+  <li><strong>Baca halaman privasi.</strong> Cari penjelasan spesifik tentang penyimpanan, analitik, iklan, crash reporting, dan pihak ketiga.</li>
+  <li><strong>Periksa izin aplikasi.</strong> Izin harus sejalan dengan fungsi. Pencatat manual tidak semestinya meminta kontak atau lokasi tanpa alasan yang terlihat.</li>
+  <li><strong>Uji ekspor.</strong> Pastikan data bisa keluar dalam format yang dapat Anda gunakan, bukan hanya berkas yang terkunci.</li>
+  <li><strong>Uji cadangan dan pemulihan.</strong> Jangan menunggu perangkat rusak untuk mengetahui bahwa salinan tidak dapat dipulihkan.</li>
+</ol>
+
+<p>Periksa klaim privasi dengan menguji aplikasi dan membaca kebijakannya. <a href="/projects/squirio/id/privacy/">Kebijakan privasi aplikasi Squirio</a> menjelaskan penyimpanan, akses jaringan, dan tanggung jawab pengguna.</p>
+
+<h2>Mengapa menyimpan data keuangan secara lokal?</h2>
+
+<h3>Lebih sedikit pihak memegang data</h3>
+<p>Jika tidak ada server aplikasi, penyedia tidak perlu menyimpan riwayat transaksi pengguna. Ini mengurangi satu jalur pemrosesan dan satu tempat yang dapat menjadi sasaran kebocoran.</p>
+
+<h3>Tetap berguna ketika koneksi buruk</h3>
+<p>Pencatatan tunai, peninjauan anggaran, dan laporan tidak berhenti karena sinyal hilang atau layanan server sedang bermasalah.</p>
+
+<h3>Tidak bergantung pada keberlangsungan layanan</h3>
+<p>Produk daring dapat mengubah harga, menghentikan fitur, atau menutup layanan. Ekspor dari aplikasi lokal memudahkan pengguna menyimpan riwayat saat berhenti memakai layanan.</p>
+
+<h3>Anda memilih tempat menyimpan cadangan</h3>
+<p>Anda menentukan kapan salinan dibuat dan tempat menyimpannya. Data hanya terlindungi jika pencadangan dilakukan secara rutin.</p>
+
+<h2 id="fitur">Fitur Squirio yang bekerja tanpa internet</h2>
+
+<ul>
+  <li>Mencatat pemasukan, pengeluaran, dan transfer antarakun.</li>
+  <li>Mengelola kas, rekening, kartu kredit, e-wallet, tabungan, dan investasi sebagai akun manual.</li>
+  <li>Membuat anggaran sekali pakai atau berulang berdasarkan siklus gajian.</li>
+  <li>Memantau arus kas, tren pengeluaran, kategori, merchant, dan kalender intensitas belanja.</li>
+  <li>Mengelola target tabungan serta utang dan piutang.</li>
+  <li>Membuat transaksi berulang untuk gaji, sewa, tagihan, dan langganan.</li>
+  <li>Mengimpor riwayat dari CSV dan mengekspor transaksi kembali ke CSV.</li>
+  <li>Membuat berkas cadangan lengkap untuk dipindahkan oleh pengguna.</li>
+</ul>
+
+<p>Rupiah ditampilkan tanpa desimal yang tidak diperlukan. Bahasa Indonesia dan Inggris tersedia langsung di aplikasi, bukan melalui terjemahan halaman web saat digunakan.</p>
+
+<h2 id="cadangan">Bagaimana cadangan bekerja tanpa cloud?</h2>
+
+<p>Tanpa cloud bawaan, cadangan menjadi berkas yang berada di bawah kendali Anda. Squirio menghasilkan zip berisi basis data untuk pemulihan penuh. Anda dapat menaruhnya di penyimpanan eksternal, mengirimnya ke perangkat lain, atau menyimpannya di layanan cloud pilihan sendiri.</p>
+
+<p>Gunakan jadwal pencadangan tetap:</p>
+
+<ul>
+  <li>Buat cadangan setelah pengaturan awal dan impor besar.</li>
+  <li>Buat cadangan rutin setiap akhir siklus gajian.</li>
+  <li>Simpan sedikitnya satu salinan di luar ponsel.</li>
+  <li>Hapus salinan lama dari tempat berbagi yang tidak lagi diperlukan.</li>
+  <li>Uji pemulihan ketika aplikasi menyediakan lingkungan yang aman untuk melakukannya.</li>
+</ul>
+
+<p class="note-box">Jika ponsel hilang dan tidak ada cadangan di tempat lain, data ikut hilang. Dalam penyimpanan lokal, pengguna perlu menyimpan salinan yang dapat dipulihkan.</p>
+
+<h2 id="pertimbangan">Offline vs sinkronisasi bank dan cloud</h2>
+
+<div class="article-table-wrap" role="region" aria-label="Tabel perbandingan yang dapat digulir" tabindex="0">
+<table class="article-table"><caption>Perbandingan aplikasi keuangan offline dan cloud</caption>
+  <thead><tr><th scope="col">Pertimbangan</th><th scope="col">Offline/lokal</th><th scope="col">Sinkronisasi bank/cloud</th></tr></thead>
+  <tbody>
+    <tr><td>Input transaksi</td><td>Manual atau impor CSV</td><td>Dapat ditarik otomatis jika bank didukung</td></tr>
+    <tr><td>Akses beberapa perangkat</td><td>Melalui pemindahan cadangan</td><td>Biasanya otomatis setelah login</td></tr>
+    <tr><td>Penyimpanan</td><td>Perangkat dan lokasi cadangan pilihan pengguna</td><td>Server penyedia dan/atau pemroses pihak ketiga</td></tr>
+    <tr><td>Saat tanpa internet</td><td>Fitur utama tetap berjalan</td><td>Dapat terbatas atau menunggu sinkronisasi</td></tr>
+    <tr><td>Pemulihan</td><td>Bergantung pada cadangan pengguna</td><td>Biasanya melalui akun dan server</td></tr>
+    <tr><td>Kebiasaan yang dibutuhkan</td><td>Mencatat dan membuat cadangan</td><td>Meninjau kategorisasi dan menjaga keamanan akun</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Pilih sinkronisasi jika Anda membutuhkan akses otomatis di beberapa perangkat. Pilih penyimpanan offline jika pencatatan manual, akses tanpa jaringan, dan penggunaan tanpa akun sesuai dengan kebutuhan Anda.</p>
+
+<h2>Praktik keamanan untuk data yang disimpan di ponsel</h2>
+
+<p>Penyimpanan lokal mengurangi ketergantungan pada server, tetapi keamanan perangkat tetap penting. Gunakan kunci layar yang kuat, aktifkan enkripsi perangkat yang tersedia pada Android modern, dan pasang pembaruan sistem. Jangan membagikan berkas cadangan melalui kanal publik atau meninggalkannya di folder unduhan bersama.</p>
+
+<p>Jika Anda menyimpan cadangan di layanan cloud pilihan sendiri, akun cloud tersebut menjadi bagian dari model keamanan. Aktifkan autentikasi dua faktor dan hapus tautan berbagi setelah tidak diperlukan. Jika menggunakan penyimpanan fisik, simpan perangkatnya di tempat yang berbeda dari ponsel agar keduanya tidak hilang dalam kejadian yang sama.</p>
+
+<p>Mode penyamaran nominal dapat menyembunyikan angka di tempat umum, tetapi bukan pengganti kunci perangkat. Aplikasi offline juga tidak dapat melindungi data dari orang yang bisa membuka ponsel. Gunakan keamanan perangkat dan cadangan yang terlindungi.</p>
+
+<h2>Kapan aplikasi offline paling berguna?</h2>
+
+<ul>
+  <li><strong>Koneksi tidak stabil:</strong> transaksi tetap dapat dicatat saat bepergian atau berada di area dengan sinyal buruk.</li>
+  <li><strong>Banyak menggunakan uang tunai:</strong> input manual memberi konteks yang tidak tersedia dalam mutasi digital.</li>
+  <li><strong>Tidak ingin membuat akun baru:</strong> aplikasi dapat dipakai tanpa email, kata sandi, atau proses pemulihan server.</li>
+  <li><strong>Ingin sistem jangka panjang yang sederhana:</strong> ekspor dan cadangan mengurangi ketergantungan pada kelangsungan layanan daring.</li>
+  <li><strong>Mencatat data sensitif:</strong> pengguna dapat mengurangi jumlah pihak yang menyimpan riwayat lengkapnya.</li>
+</ul>
+
+<p>Aplikasi offline kurang cocok untuk tim, pasangan yang perlu mengedit dompet yang sama secara bersamaan, atau pengguna yang menginginkan semua transaksi bank masuk tanpa tindakan. Fitur tersebut memerlukan pertukaran data antarsistem.</p>
+
+<p>Sebelum memilih, bandingkan proses pemulihan setiap model. Sistem lokal dapat kehilangan satu-satunya salinan saat perangkat hilang tanpa cadangan. Sistem akun menambah risiko akses akun, perubahan layanan, dan gangguan sinkronisasi. Pastikan Anda memahami kegagalan yang mungkin terjadi dan cara memulihkan catatan.</p>
+
+<h2>Cara memulai dengan Squirio</h2>
+
+<ol>
+  <li>Buat akun manual sesuai tempat uang berada: kas, bank, e-wallet, atau kartu.</li>
+  <li>Masukkan saldo awal pada hari sebelum transaksi pertama.</li>
+  <li>Tentukan tanggal mulai periode berdasarkan hari gajian.</li>
+  <li>Buat satu atau dua anggaran yang paling penting, bukan semua kategori sekaligus.</li>
+  <li>Catat transaksi selama tujuh hari dan periksa apakah kategorinya membantu.</li>
+  <li>Buat cadangan pertama dan simpan di luar perangkat.</li>
+</ol>
+
+<p>Jika biaya juga menjadi pertimbangan utama, baca panduan <a href="/projects/squirio/id/learn/free-financial-tracker/">aplikasi pencatat keuangan gratis tanpa iklan</a>. Untuk membandingkan kebutuhan secara lebih luas, gunakan <a href="/projects/squirio/id/learn/personal-finance-app/">checklist memilih aplikasi pengatur keuangan pribadi</a>.</p>
+
+        </div>
+        <aside class="article-sidebar" aria-label="Di halaman ini">
+          <div class="card">
+            <h2>Di halaman ini</h2>
+            <ul><li><a href="#definisi">Apa arti offline?</a></li><li><a href="#memeriksa">Cara memeriksa</a></li><li><a href="#fitur">Fitur tanpa internet</a></li><li><a href="#cadangan">Cadangan lokal</a></li><li><a href="#pertimbangan">Offline vs sinkronisasi</a></li></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <section class="section" id="terkait">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Baca selanjutnya</p><h2 class="h2">Panduan terkait</h2></div>
+      <div class="related-grid"><a class="card guide-card" href="/projects/squirio/id/learn/offline-financial-tracker-security/"><span class="eyebrow">Privasi &amp; Data</span><h3 class="h3">Keamanan Pencatat Keuangan Offline</h3><p>Periksa izin, penyimpanan, ekspor, cadangan, dan risiko yang relevan.</p><span class="guide-card__meta">7 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/backup-and-restore-financial-data/"><span class="eyebrow">Kebiasaan Keuangan</span><h3 class="h3">Cara Mencadangkan dan Memulihkan Data Keuangan</h3><p>Simpan cadangan secara terpisah dan uji pemulihannya sebelum dibutuhkan.</p><span class="guide-card__meta">6 menit baca</span></a><a class="card guide-card" href="/projects/squirio/id/learn/financial-tracker-without-ads/"><span class="eyebrow">Privasi &amp; Data</span><h3 class="h3">Memilih Pencatat Keuangan Tanpa Iklan</h3><p>Periksa iklan, kebutuhan akun, koneksi jaringan, ekspor, dan cadangan.</p><span class="guide-card__meta">6 menit baca</span></a></div>
+    </div>
+  </section>
+  <section class="section section--alt">
+    <div class="wrap article-cta center">
+      <h2 class="h2">Kenali cara kerja Squirio.</h2>
+      <p class="lede">Squirio adalah pencatat keuangan Android gratis. Tidak ada akun, cloud, iklan, atau pelacakan.</p>
+      <a href="/projects/squirio/id/">Lihat semua fitur Squirio</a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="/projects/squirio/id/">
+          <img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async">
+          <span class="brand__name">SQUIRIO</span>
+        </a>
+        <p class="footer__description">Pencatat keuangan Android yang gratis dan privat, dibuat oleh Japandi Dev.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navigasi footer">
+        <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="/projects/squirio/id/">Ikhtisar</a></li><li><a href="/projects/squirio/id/#features">Fitur</a></li><li><a href="/projects/squirio/id/learn/">Belajar</a></li><li><a href="/projects/squirio/id/#faq">FAQ</a></li></ul></div>
+        <div><h2 class="footer__heading">Lainnya</h2><ul><li><a href="/projects/squirio/id/privacy/">Privasi aplikasi</a></li><li><a href="/id/#about">Tentang pengembang</a></li><li><a href="/id/#contact">Kontak</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>Proyek dari Japandi Dev.</p></div>
+  </div>
+</footer>
+<script src="/assets/js/shell.js"></script>
+<script src="/projects/squirio/js/japandi-shell.js"></script>
+</body>
+</html>

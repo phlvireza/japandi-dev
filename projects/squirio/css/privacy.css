@@ -44,6 +44,11 @@
 
 .privacy-card h2:first-child { margin-top: 0; }
 .privacy-card p { margin-top: 8px; }
+.privacy-card p a,
+.privacy-footer p a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* Sign-off. Every other page on the site ends with a way back; this one used to
    stop dead at the end of the policy text. */
