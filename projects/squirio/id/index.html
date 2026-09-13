@@ -1024,20 +1024,20 @@
 <section class="section">
   <div class="wrap split split--reverse">
     <div>
-      <p class="eyebrow">Anggaran dengan konteks periode</p>
-      <h2 class="h2">Pantau anggaran sesuai periode gajian.</h2>
-      <p class="lede" style="margin-top:var(--s-lg)">Pemakaian 85% anggaran makan memiliki arti berbeda pada hari ke-3 dan hari ke-27. Setiap anggaran menampilkan penanda laju di samping jumlah yang sudah digunakan.</p>
+      <p class="eyebrow">Kondisi anggaran dalam sekali lihat</p>
+      <h2 class="h2">Lihat jumlah tersisa dan hal yang perlu diperhatikan.</h2>
+      <p class="lede" style="margin-top:var(--s-lg)">Anggaran mingguan dan bulanan tetap terpisah. Periode terpilih menampilkan total pemakaian lebih dahulu, lalu membandingkan setiap batas dengan pengeluarannya.</p>
       <ul class="points">
-        <li><span><strong>Ulangi anggaran setiap periode.</strong> Aktifkan "Ulangi setiap periode" untuk memakai kembali batas di setiap siklus, termasuk periode bulanan berdasarkan tanggal gajian. Nonaktifkan untuk anggaran satu kali.</span></li>
-        <li><span><strong>Pilih apakah sisa dana diteruskan.</strong> Rollover dapat hanya membawa sisa dana atau juga meneruskan kelebihan pengeluaran ke periode berikutnya.</span></li>
-        <li><span><strong>Dapatkan peringatan saat penggunaan mencapai 75% dan 100%</strong> ketika transaksi yang disimpan melewati salah satu batas tersebut.</span></li>
+        <li><span><strong>Jaga tampilan mingguan dan bulanan tetap fokus.</strong> Squirio hanya menampilkan pilihan periode ketika kedua jenis anggaran sedang digunakan.</span></li>
+        <li><span><strong>Lihat setiap nilai dengan jelas.</strong> Total dianggarkan, terpakai, dan tersisa ditampilkan berdekatan, sedangkan kelebihan pengeluaran memakai warna peringatan yang terkendali.</span></li>
+        <li><span><strong>Pengulangan, rollover, dan peringatan tetap fleksibel.</strong> Gunakan kembali batas setiap periode, teruskan sisa dana jika dipilih, dan terima peringatan pada 75% dan 100%.</span></li>
       </ul>
     </div>
 
-    <!-- Mockup B: budgets -->
+    <!-- Mockup B: cadence-filtered budget overview -->
     <div class="split__visual reveal">
-      <div class="phone phone--short" role="img"
-           aria-label="Layar anggaran Squirio dengan donat yang menampilkan sisa dana periode ini dan empat batang anggaran, masing-masing dengan penanda laju.">
+      <div class="phone" role="img"
+           aria-label="Ringkasan anggaran Bulanan Squirio yang menampilkan sisa Rp550.000, total pemakaian 88%, nilai Dianggarkan, Terpakai, dan Tersisa, serta batang perbandingan untuk Makan dan Minum, Transportasi, dan anggaran Jalan-jalan yang terlampaui.">
         <div class="phone__screen">
           <div class="ph-status">
             <span class="tnum">9:41</span>
@@ -1049,97 +1049,117 @@
 
           <div class="ph-appbar">
             <div class="ph-appbar__title" style="margin-right:auto">Kelola Anggaran</div>
-            <div class="ph-appbar__action" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+
+          <div class="ph-body ph-body--budget">
+            <div class="ph-cadence" aria-hidden="true">
+              <span>Mingguan</span>
+              <span class="is-active">Bulanan</span>
+            </div>
+
+            <div class="ph-card ph-budget-summary">
+              <div class="ph-budget-summary__top">
+                <span>Sisa periode ini</span>
+                <span class="ph-budget-summary__status">Perlu diperhatikan</span>
+              </div>
+              <div class="ph-budget-summary__amount tnum">Rp550.000</div>
+              <div class="ph-budget-summary__meta tnum">3 anggaran aktif · 1 Sep–30 Sep</div>
+
+              <div class="ph-budget-usage">
+                <div class="ph-budget-usage__head">
+                  <strong>Total pemakaian anggaran</strong>
+                  <span class="tnum">88% terpakai</span>
+                </div>
+                <div class="ph-budget-usage__track" aria-hidden="true">
+                  <span class="ph-budget-usage__fill"></span>
+                  <span class="ph-budget-usage__pace"></span>
+                </div>
+              </div>
+
+              <div class="ph-budget-metrics">
+                <div><span>Dianggarkan</span><strong class="tnum">Rp4.500.000</strong></div>
+                <div><span>Terpakai</span><strong class="tnum">Rp3.950.000</strong></div>
+                <div><span>Tersisa</span><strong class="tnum">Rp550.000</strong></div>
+              </div>
+            </div>
+
+            <div class="ph-card ph-budget-chart-card">
+              <div class="ph-budget-chart__title">Anggaran dibanding pengeluaran</div>
+              <div class="ph-budget-chart__hint">Ketuk batang untuk nilai lengkap</div>
+              <div class="ph-budget-chart__legend">
+                <span><i class="is-budgeted"></i>Dianggarkan</span>
+                <span><i class="is-spent"></i>Terpakai</span>
+              </div>
+
+              <div class="ph-budget-tooltip">
+                <strong>Jalan-jalan</strong>
+                <span class="tnum">Dianggarkan Rp1,5 jt · Terpakai Rp1,71 jt</span>
+                <span class="expense tnum">Rp 210.000 lebih</span>
+              </div>
+
+              <div class="ph-budget-chart">
+                <div class="ph-budget-chart__axis" aria-hidden="true">
+                  <span>Rp2jt</span><span>Rp1jt</span><span>Rp0</span>
+                </div>
+                <div class="ph-budget-chart__plot" aria-hidden="true">
+                  <span class="ph-budget-chart__grid is-top"></span>
+                  <span class="ph-budget-chart__grid is-middle"></span>
+                  <span class="ph-budget-chart__grid is-base"></span>
+                  <div class="ph-budget-chart__groups">
+                    <div class="ph-budget-chart__group" style="--budget-height:100%;--spent-height:68%">
+                      <div class="ph-budget-chart__rods"><i></i><i></i></div>
+                      <span>Makan</span>
+                    </div>
+                    <div class="ph-budget-chart__group" style="--budget-height:50%;--spent-height:44%">
+                      <div class="ph-budget-chart__rods"><i></i><i></i></div>
+                      <span>Transportasi</span>
+                    </div>
+                    <div class="ph-budget-chart__group is-selected is-over" style="--budget-height:75%;--spent-height:85.5%">
+                      <div class="ph-budget-chart__rods"><i></i><i></i></div>
+                      <span>Jalan-jalan</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ph-card ph-budget-details">
+              <div class="ph-budget-chart__title">Rincian anggaran</div>
+              <div class="ph-budget-detail-row">
+                <span class="ph-icon ph-icon--sm" style="--chip:var(--c1)" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 006 0V3M7 11v10M17 3c-1.7 1.5-2 4-2 6s.5 3 2 3v9"/></svg>
+                </span>
+                <span><strong>Makan &amp; Minum</strong><small class="tnum">1 Sep–30 Sep</small></span>
+                <span class="tnum">Rp 640.000 tersisa</span>
+              </div>
             </div>
           </div>
 
-          <div class="ph-body">
-            <div class="ph-card" style="text-align:center">
-              <div class="ph-ring">
-                <div class="ph-ring__track" aria-hidden="true"></div>
-                <div class="ph-ring__center">
-                  <div class="ph-ring__label">Sisa periode ini</div>
-                  <div class="ph-ring__value tnum">Rp 1.4jt</div>
-                </div>
+          <!-- The Budget tab uses the same shell-owned docked add action as
+               the real app; creation is not duplicated in the app bar. -->
+          <div class="ph-nav">
+            <div class="ph-nav__surface" aria-hidden="true"></div>
+            <div class="ph-nav__items">
+              <div class="ph-nav__item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                <span>Beranda</span>
               </div>
-              <div style="font-size:9px;color:var(--text-2);margin-top:2px" class="tnum">Rp 4.6jt dari 6.0jt terpakai</div>
+              <div class="ph-nav__item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2v14H3v3c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V2l-1.5 1.5zM15 20H6c-.55 0-1-.45-1-1v-1h10v2zm4-1c0 .55-.45 1-1 1s-1-.45-1-1v-3H8V5h11v14z"/><path d="M9 7h6v2H9zm0 3h6v2H9z"/></svg>
+                <span>Transaksi</span>
+              </div>
+              <div></div>
+              <div class="ph-nav__item is-active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.07 4.93l-1.41 1.41A7.94 7.94 0 0120 12a8 8 0 11-9-7.93v2.02A6 6 0 1018 12a5.94 5.94 0 00-1.76-4.24l-1.41 1.41A3.96 3.96 0 0116 12a4 4 0 11-5-3.86v2.14A2 2 0 1014 12c0-.74-.4-1.38-1-1.72V2h-1C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10a9.95 9.95 0 00-2.93-7.07z"/></svg>
+                <span>Anggaran</span>
+              </div>
+              <div class="ph-nav__item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>
+                <span>Lainnya</span>
+              </div>
             </div>
-
-            <div class="ph-card">
-              <div class="ph-budget">
-                <div class="ph-budget__head">
-                  <span class="ph-icon ph-icon--sm" style="--chip:var(--c1)" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 006 0V3M7 11v10M17 3c-1.7 1.5-2 4-2 6s.5 3 2 3v9"/></svg>
-                  </span>
-                  <span class="ph-budget__name">Makan &amp; Minum</span>
-                  <span class="ph-budget__meta">68%</span>
-                </div>
-                <div class="ph-bar" style="--bar:var(--c1);--pct:68%;--pace:71%">
-                  <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
-                </div>
-                <div class="ph-budget__details">
-                  <div>
-                    <div class="ph-budget__pace">Sesuai laju <span class="ph-budget__info" aria-hidden="true">i</span></div>
-                    <div class="ph-budget__used tnum">Rp 1.360.000 dari Rp 2.000.000</div>
-                  </div>
-                  <span class="ph-budget__remaining tnum">Rp 640.000 tersisa</span>
-                </div>
-              </div>
-
-              <div class="ph-budget">
-                <div class="ph-budget__head">
-                  <span class="ph-icon ph-icon--sm" style="--chip:var(--warning)" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17V9l6-5 6 5v8"/></svg>
-                  </span>
-                  <span class="ph-budget__name">Transportasi</span>
-                  <span class="ph-budget__meta">88%</span>
-                </div>
-                <div class="ph-bar" style="--bar:var(--warning);--pct:88%;--pace:71%">
-                  <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
-                </div>
-                <div class="ph-budget__details">
-                  <div>
-                    <div class="ph-budget__pace">Melebihi laju <span class="ph-budget__info" aria-hidden="true">i</span></div>
-                    <div class="ph-budget__used tnum">Rp 880.000 dari Rp 1.000.000</div>
-                  </div>
-                  <span class="ph-budget__remaining tnum">Rp 120.000 tersisa</span>
-                </div>
-              </div>
-
-              <div class="ph-budget">
-                <div class="ph-budget__head">
-                  <span class="ph-icon ph-icon--sm" style="--chip:var(--expense)" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 15v6M5 3h14l-7 12z"/></svg>
-                  </span>
-                  <span class="ph-budget__name">Jalan-jalan<span style="font-size:8px;color:var(--text-2)">· grup</span></span>
-                  <span class="ph-budget__meta expense">114%</span>
-                </div>
-                <div class="ph-bar" style="--bar:var(--expense);--pct:100%;--pace:71%">
-                  <div class="ph-bar__fill"></div><div class="ph-bar__pace"></div>
-                </div>
-                <div class="ph-budget__details">
-                  <div>
-                    <div class="ph-budget__pace">Melebihi laju <span class="ph-budget__info" aria-hidden="true">i</span></div>
-                    <div class="ph-budget__used tnum">Rp 1.710.000 dari Rp 1.500.000</div>
-                  </div>
-                  <span class="ph-budget__remaining expense tnum">Rp 210.000 lebih</span>
-                </div>
-              </div>
-
-              <div class="ph-budget ph-budget--ended">
-                <div class="ph-budget__head">
-                  <span class="ph-icon ph-icon--sm" style="--chip:var(--c2)" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
-                  </span>
-                  <span class="ph-budget__name">Hadiah Ramadan</span>
-                  <span class="ph-budget__meta">Berakhir</span>
-                </div>
-                <div class="ph-bar" style="--bar:var(--c2);--pct:92%;--pace:100%">
-                  <div class="ph-bar__fill"></div>
-                </div>
-                <div class="ph-bar__caption"><span>Berakhir pada 24 Apr</span><span>92% terpakai</span></div>
-              </div>
+            <div class="ph-fab" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
             </div>
           </div>
         </div>
