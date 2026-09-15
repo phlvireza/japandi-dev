@@ -334,6 +334,69 @@ class IntegrityTests(unittest.TestCase):
                                     for item in follow_actions))
                 self.assertFalse(header_socials)
 
+    def test_squirio_pages_render_one_shared_consistent_header(self):
+        templates = ('landing.html', 'learn.html', 'content.html', 'privacy.html')
+        source_root = os.path.join(ROOT, 'projects', 'squirio', '_src')
+        for template in templates:
+            source = build.load(os.path.join(source_root, template))
+            with self.subTest(template=template):
+                self.assertEqual(source.count('{{squirio_header}}'), 1)
+                self.assertNotIn('<header class="jd-header"', source)
+
+        header_source = build.load(os.path.join(source_root, 'header.html'))
+        self.assertEqual(header_source.count('<header class="jd-header"'), 1)
+        self.assertNotIn('jd-social', header_source)
+
+        squirio_pages = [page for page in PAGES
+                         if page.relative_path.startswith('projects/squirio/')]
+        for page in squirio_pages:
+            headers = [attrs for attrs in page.tags('header')
+                       if 'data-jd-header' in attrs]
+            ctas = [attrs for attrs in page.tags('a')
+                    if 'jd-nav__back' in attrs.get('class', '').split()]
+            header_socials = [attrs for attrs in page.tags('div')
+                              if 'jd-social' in attrs.get('class', '').split()]
+            is_landing = page.relative_path in (
+                'projects/squirio/en/index.html',
+                'projects/squirio/id/index.html')
+            locale_prefix = ('/projects/squirio/id/'
+                             if '/id/' in page.relative_path
+                             else '/projects/squirio/')
+            expected_cta = '#availability' if is_landing else (
+                locale_prefix + '#availability')
+            with self.subTest(page=page.relative_path):
+                self.assertEqual(len(headers), 1)
+                self.assertEqual(len(ctas), 1)
+                self.assertEqual(ctas[0].get('href'), expected_cta)
+                self.assertFalse(header_socials)
+
+    def test_local_preview_covers_every_public_english_squirio_page(self):
+        config = json.loads(build.load(os.path.join(ROOT, 'serve.json')))
+        rewrites = {
+            item['source'].rstrip('/') or '/': item['destination']
+            for item in config.get('rewrites', [])
+        }
+        english_outputs = [
+            page['out']['en'] for page in build.PAGES
+            if page['out'].get('en', '').startswith('projects/squirio/en/')
+        ]
+        for output in english_outputs:
+            public_path = ('/' + output.replace(
+                'projects/squirio/en/', 'projects/squirio/', 1))
+            self.assertTrue(public_path.endswith('index.html'))
+            public_path = public_path[:-len('index.html')].rstrip('/') or '/'
+            expected_destination = '/' + output
+            with self.subTest(path=public_path):
+                self.assertIn(public_path, rewrites)
+                self.assertEqual(rewrites[public_path], expected_destination)
+                self.assertTrue(os.path.isfile(os.path.join(
+                    ROOT, output.replace('/', os.sep))))
+
+        for source, destination in rewrites.items():
+            with self.subTest(rewrite=source):
+                self.assertTrue(os.path.isfile(os.path.join(
+                    ROOT, destination.lstrip('/').replace('/', os.sep))))
+
     def test_local_links_assets_and_fragments_resolve(self):
         for page in INDEXABLE:
             base = page.rel('canonical')[0]['href']

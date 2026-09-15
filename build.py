@@ -106,6 +106,7 @@ def squirio_learn_article(article):
         },
         'learn_slug': slug,
         'article_kind': article.get('kind', 'guide'),
+        'squirio_header': 'learn',
         'date_published': article.get('published', '2026-09-03'),
         'date_modified': article.get('modified', article.get('published', '2026-09-04')),
     }
@@ -188,6 +189,43 @@ def landing_build_notes(catalog):
     return ''.join(card_markup(item, catalog) for item in notes[:3])
 
 
+def first_present(strings, *keys):
+    """Return the first available alias used by older Squirio locale files."""
+    for key in keys:
+        if key in strings:
+            return strings[key]
+    raise SystemExit('Squirio header is missing all aliases: %s' % ', '.join(keys))
+
+
+def squirio_header(template, strings, code, page_kind, shell_strings):
+    """Render the single Squirio publisher/product header for every page family."""
+    product_home = '/projects/squirio/id/' if code == 'id' else '/projects/squirio/'
+    publisher_home = '/id/' if code == 'id' else '/'
+    values = {
+        'header_brand_url': publisher_home,
+        'header_brand_aria': shell_strings['__brand_aria'],
+        'header_menu': shell_strings['__menu'],
+        'header_features_url': '#features' if page_kind == 'landing' else product_home + '#features',
+        'header_features_label': shell_strings['__nav_features'],
+        'header_learn_url': shell_strings['__learn_url'],
+        'header_learn_label': shell_strings['__nav_learn'],
+        'header_learn_current': ' aria-current="page"' if page_kind == 'learn' else '',
+        'header_about_url': shell_strings['__about_url'],
+        'header_about_label': shell_strings['__nav_about'],
+        'header_language_label': first_present(
+            strings, '__lang_group_label', 'language_label'),
+        'header_href_en': first_present(strings, '__href_en', 'href_en'),
+        'header_href_id': first_present(strings, '__href_id', 'href_id'),
+        'header_current_en': first_present(
+            strings, '__lang_current_en', 'current_en'),
+        'header_current_id': first_present(
+            strings, '__lang_current_id', 'current_id'),
+        'header_cta_url': '#availability' if page_kind == 'landing' else product_home + '#availability',
+        'header_cta_label': shell_strings['follow_updates'],
+    }
+    return render(template, values, code, '')
+
+
 # One entry per page.
 #
 #   src       directory holding the template and the locale JSON files
@@ -222,6 +260,7 @@ PAGES = (
         'template': 'landing.html',
         'strings': '{locale}.json',
         'computed': 'landing_build_notes',
+        'squirio_header': 'landing',
         'out': {'en': 'projects/squirio/en/index.html',
                 'id': 'projects/squirio/id/index.html'},
     },
@@ -229,6 +268,7 @@ PAGES = (
         'src': 'projects/squirio/_src',
         'template': 'privacy.html',
         'strings': 'privacy.{locale}.json',
+        'squirio_header': 'privacy',
         'out': {'en': 'projects/squirio/en/privacy/index.html',
                 'id': 'projects/squirio/id/privacy/index.html'},
     },
@@ -237,6 +277,7 @@ PAGES = (
         'template': 'learn.html',
         'strings': 'learn.{locale}.json',
         'computed': 'learn_sections',
+        'squirio_header': 'learn',
         'out': {'en': 'projects/squirio/en/learn/index.html',
                 'id': 'projects/squirio/id/learn/index.html'},
     },
@@ -335,6 +376,13 @@ def main():
         raise SystemExit('usage: python build.py [--check]')
     check_only = args == ['--check']
     loaded = []
+    squirio_header_template = load(os.path.join(
+        HERE, 'projects', 'squirio', '_src', 'header.html'))
+    squirio_shell_strings = {
+        code: json.loads(load(os.path.join(
+            HERE, 'projects', 'squirio', '_src', '%s.json' % code)))
+        for code in LOCALES
+    }
 
     print('key parity:')
     for page in PAGES:
@@ -381,6 +429,10 @@ def main():
                 if page['article_kind'] == 'build_note':
                     strings['eyebrow'] = (
                         'Catatan pengembangan' if code == 'id' else 'Build note')
+            if page.get('squirio_header'):
+                strings['squirio_header'] = squirio_header(
+                    squirio_header_template, strings, code,
+                    page['squirio_header'], squirio_shell_strings[code])
             locales[code] = strings
         if not check_parity(locales, label):
             raise SystemExit('locale files are not at key parity - aborting')
