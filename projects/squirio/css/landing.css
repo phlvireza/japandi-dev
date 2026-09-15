@@ -124,7 +124,7 @@
 .faq-layout { display: grid; grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr); gap: clamp(40px, 8vw, 112px); }
 .faq-layout .section-head { align-self: start; }
 
-.follow-section { padding: 0 0 clamp(64px, 9vw, 112px); }
+.follow-section { padding: 0 var(--gutter) clamp(64px, 9vw, 112px); }
 .follow-card { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: clamp(28px, 5vw, 56px); border-radius: var(--r-xl); background: var(--text); color: var(--bg); }
 .follow-card .eyebrow { color: var(--primary); }
 .follow-card .h2 { margin-top: 8px; color: inherit; }
