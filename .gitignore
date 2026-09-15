@@ -7,6 +7,8 @@ desktop.ini
 
 # Local preview and build noise
 node_modules/
+__pycache__/
+*.pyc
 *.log
 *.bak
 

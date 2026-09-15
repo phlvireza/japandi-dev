@@ -6,7 +6,7 @@
   src: url("../../../assets/fonts/karla-latin-var.woff2") format("woff2");
   font-style: normal;
   font-weight: 200 800;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -14,7 +14,7 @@
   src: url("../../../assets/fonts/fraunces-latin-var.woff2") format("woff2");
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -445,4 +445,65 @@ html { scroll-padding-top: calc(var(--jd-header-h) + var(--s-lg, 16px)); }
 :root[data-theme="dark"] .jd-lang__option[aria-current] {
   background: #f0b28d;
   color: #21201c;
+}
+
+/* Shared publisher/product bridge. Squirio owns the semantic surfaces while
+   Japandi Dev keeps its mark and display face. No second palette at the seam. */
+.jd-header,
+.jd-header.is-scrolled {
+  background: color-mix(in srgb, var(--bg, #faf7f2) 94%, var(--surface, #fff));
+  color: var(--text, #2c2520);
+}
+.jd-header.is-scrolled { border-bottom-color: var(--border, #e5ded5); }
+.jd-brand,
+.jd-nav__list a,
+.jd-nav-toggle { color: var(--text, #2c2520); }
+.jd-brand__project { color: var(--text-2-strong, #6f655c); }
+.jd-brand__separator,
+.jd-nav__list a:hover,
+.jd-nav__list a[aria-current] { color: var(--primary-ink, #a25526); }
+.jd-nav__list a::before { background: var(--primary-ink, #a25526); }
+.jd-nav__back { border-color: var(--border-strong, #9a8c7a); color: var(--text, #2c2520); }
+.jd-nav__back:hover { background: var(--surface-2, #f0ebe3); color: var(--text, #2c2520); }
+.jd-lang { border-color: var(--border-strong, #9a8c7a); }
+.jd-lang__option { color: var(--text-2-strong, #6f655c); }
+.jd-lang__option[aria-current] { background: var(--primary-ink, #a25526); color: var(--on-primary, #fff); }
+
+.jd-social { display: flex; align-items: center; gap: 4px; }
+.jd-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: var(--text-2-strong, #6f655c);
+}
+.jd-social a:hover { background: var(--surface-2, #f0ebe3); color: var(--primary-ink, #a25526); opacity: 1; }
+.jd-social a:focus-visible { outline: 2px solid var(--primary-ink, #a25526); outline-offset: 2px; }
+.jd-social svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.jd-social svg .fill { fill: currentColor; stroke: none; }
+
+@media (max-width: 1099px) {
+  .jd-social { width: 100%; padding-block: 4px; }
+  .jd-social a { border: 1px solid var(--border, #e5ded5); }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .jd-header,
+  :root:not([data-theme="light"]) .jd-header.is-scrolled {
+    background: color-mix(in srgb, var(--bg) 92%, var(--surface));
+    color: var(--text);
+  }
+  :root:not([data-theme="light"]) .jd-brand,
+  :root:not([data-theme="light"]) .jd-nav__list a,
+  :root:not([data-theme="light"]) .jd-nav-toggle { color: var(--text); }
+  :root:not([data-theme="light"]) .jd-brand__project,
+  :root:not([data-theme="light"]) .jd-social a { color: var(--text-2-strong); }
+  :root:not([data-theme="light"]) .jd-brand__separator,
+  :root:not([data-theme="light"]) .jd-nav__list a:hover,
+  :root:not([data-theme="light"]) .jd-nav__list a[aria-current] { color: var(--primary-ink); }
+  :root:not([data-theme="light"]) .jd-nav__back { border-color: var(--border-strong); color: var(--text); }
+  :root:not([data-theme="light"]) .jd-nav__back:hover,
+  :root:not([data-theme="light"]) .jd-social a:hover { background: var(--surface-2); color: var(--primary-ink); }
 }

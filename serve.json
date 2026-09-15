@@ -128,6 +128,18 @@
     {
       "source": "/projects/squirio/learn/offline-financial-tracker-security",
       "destination": "/projects/squirio/en/learn/offline-financial-tracker-security/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/why-budgets-begin-on-payday",
+      "destination": "/projects/squirio/en/learn/why-budgets-begin-on-payday/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/designing-calm-financial-warnings",
+      "destination": "/projects/squirio/en/learn/designing-calm-financial-warnings/index.html"
+    },
+    {
+      "source": "/projects/squirio/learn/offline-exportable-finance-tracker",
+      "destination": "/projects/squirio/en/learn/offline-exportable-finance-tracker/index.html"
     }
   ]
 }

@@ -38,8 +38,8 @@
       "headline": "{{headline|json}}",
       "description": "{{description|json}}",
       "inLanguage": "{{lang}}",
-      "datePublished": "2026-09-03",
-      "dateModified": "2026-09-04",
+      "datePublished": "{{date_published}}",
+      "dateModified": "{{date_modified}}",
       "mainEntityOfPage": { "@id": "{{canonical}}#webpage" },
       "image": "https://japandi.dev/projects/squirio/assets/og-card.png",
       "about": { "@id": "https://japandi.dev/projects/squirio/#app" }
@@ -69,35 +69,7 @@
 </head>
 <body>
 <a class="jd-skip-link" href="#main">{{skip}}</a>
-<header class="jd-header" data-jd-header>
-  <div class="jd-header__inner jd-shell-container">
-    <a class="jd-brand" href="{{publisher_home}}" aria-label="{{brand_aria}}">
-      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
-           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
-           width="44" height="44" alt="" decoding="sync">
-      <span class="jd-brand__name">Japandi Dev</span>
-      <span class="jd-brand__separator" aria-hidden="true">/</span>
-      <span class="jd-brand__project">Squirio</span>
-    </a>
-    <button class="jd-nav-toggle" type="button" aria-expanded="false"
-            aria-controls="jd-primary-navigation" data-jd-nav-toggle>
-      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span>{{menu}}</span>
-    </button>
-    <nav class="jd-nav" id="jd-primary-navigation" aria-label="{{primary_nav_label}}" data-jd-nav>
-      <ul class="jd-nav__list">
-        <li><a href="{{features_url}}">{{footer_features}}</a></li>
-        <li><a href="{{learn_url}}">{{learn_label}}</a></li>
-        <li><a href="{{about_url}}">{{footer_about}}</a></li>
-      </ul>
-      <div class="jd-lang" role="group" aria-label="{{language_label}}">
-        <a class="jd-lang__option" href="{{href_en}}" hreflang="en" lang="en"{{current_en}}>EN</a>
-        <a class="jd-lang__option" href="{{href_id}}" hreflang="id" lang="id"{{current_id}}>ID</a>
-      </div>
-      <a class="jd-nav__back" href="{{get_url}}">{{get_label}}</a>
-    </nav>
-  </div>
-</header>
+{{squirio_header}}
 <main id="main">
   <article>
     <header class="article-hero" id="top">
@@ -108,7 +80,7 @@
         <p class="eyebrow">{{eyebrow}}</p>
         <h1 class="display" style="margin-top:var(--s-md)">{{headline}}</h1>
         <p class="lede" style="margin-top:var(--s-lg)">{{dek}}</p>
-        <p class="article-meta"><time datetime="2026-09-03">{{published}}</time><span aria-hidden="true">&middot;</span><span>{{reading_time}}</span></p>
+        <p class="article-meta"><time datetime="{{date_published}}">{{published}}</time><span aria-hidden="true">&middot;</span><span>{{reading_time}}</span></p>
       </div>
     </header>
     <div class="section section--alt" id="isi">
@@ -152,6 +124,7 @@
       <nav class="footer__nav" aria-label="{{footer_nav_label}}">
         <div><h2 class="footer__heading">Squirio</h2><ul><li><a href="{{product_home}}">{{nav_overview}}</a></li><li><a href="{{features_url}}">{{footer_features}}</a></li><li><a href="{{learn_url}}">{{learn_label}}</a></li><li><a href="{{product_home}}#faq">FAQ</a></li></ul></div>
         <div><h2 class="footer__heading">{{footer_more}}</h2><ul><li><a href="{{privacy_url}}">{{footer_privacy}}</a></li><li><a href="{{about_url}}">{{footer_about}}</a></li><li><a href="{{contact_url}}">{{footer_contact}}</a></li></ul></div>
+        <div><h2 class="footer__heading">Japandi Dev</h2><ul><li><a href="https://www.threads.com/@japandi.dev" rel="me noopener noreferrer">Threads</a></li><li><a href="https://instagram.com/japandi.dev" rel="me noopener noreferrer">Instagram</a></li></ul></div>
       </nav>
     </div>
     <div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>{{footer_tagline}}</p></div>

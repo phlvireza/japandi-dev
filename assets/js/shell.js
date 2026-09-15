@@ -89,7 +89,10 @@ window.JapandiShell = (function () {
     var update = function () {
       header.classList.toggle(scrolledClass, window.scrollY > 8);
     };
-    update();
+    /* Let the first style calculation finish before reading scroll position.
+       This preserves restored-scroll state without forcing layout during the
+       script's initial task. */
+    requestAnimationFrame(update);
     window.addEventListener('scroll', update, { passive: true });
   }
 

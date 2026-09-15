@@ -1,0 +1,25 @@
+<header class="jd-header" data-jd-header>
+  <div class="jd-header__inner jd-shell-container">
+    <a class="jd-brand" href="{{header_brand_url}}" aria-label="{{header_brand_aria}}">
+      <img class="jd-brand__mark" src="/assets/images/japandi-dev-logo-transparent-96.webp"
+           srcset="/assets/images/japandi-dev-logo-transparent-96.webp 1x, /assets/images/japandi-dev-logo-transparent-192.webp 2x"
+           width="44" height="44" alt="" decoding="sync">
+      <span class="jd-brand__name">Japandi Dev</span><span class="jd-brand__separator" aria-hidden="true">/</span><span class="jd-brand__project">Squirio</span>
+    </a>
+    <button class="jd-nav-toggle" type="button" aria-expanded="false" aria-controls="jd-primary-navigation" data-jd-nav-toggle>
+      <span class="jd-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span><span>{{header_menu}}</span>
+    </button>
+    <nav class="jd-nav" id="jd-primary-navigation" aria-label="Squirio" data-jd-nav>
+      <ul class="jd-nav__list">
+        <li><a href="{{header_features_url}}">{{header_features_label}}</a></li>
+        <li><a href="{{header_learn_url}}"{{header_learn_current}}>{{header_learn_label}}</a></li>
+        <li><a href="{{header_about_url}}">{{header_about_label}}</a></li>
+      </ul>
+      <div class="jd-lang" role="group" aria-label="{{header_language_label}}">
+        <a class="jd-lang__option" href="{{header_href_en}}" hreflang="en" lang="en" data-lang-choice="en"{{header_current_en}}>EN</a>
+        <a class="jd-lang__option" href="{{header_href_id}}" hreflang="id" lang="id" data-lang-choice="id"{{header_current_id}}>ID</a>
+      </div>
+      <a class="jd-nav__back" href="{{header_cta_url}}">{{header_cta_label}}</a>
+    </nav>
+  </div>
+</header>

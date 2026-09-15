@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="{{__lang}}" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{__title}}</title>
+<meta name="description" content="{{__desc}}">
+<link rel="canonical" href="https://japandi.dev/projects/squirio/{{__path}}">
+<link rel="alternate" hreflang="en" href="{{__alt_en}}">
+<link rel="alternate" hreflang="id" href="{{__alt_id}}">
+<link rel="alternate" hreflang="x-default" href="{{__alt_en}}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="{{__oglocale}}">
+<meta property="og:locale:alternate" content="{{__oglocale_alt}}">
+<meta property="og:title" content="{{__title}}">
+<meta property="og:description" content="{{__desc}}">
+<meta property="og:url" content="https://japandi.dev/projects/squirio/{{__path}}">
+<meta property="og:image" content="https://japandi.dev/projects/squirio/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{__ogalt}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1816" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/images/squirio-app-icon-96.webp" type="image/webp" sizes="96x96">
+<link rel="apple-touch-icon" href="{{__root}}assets/apple-touch-icon-180.png">
+<link rel="preload" href="{{__root}}assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="{{__root}}js/init.js"></script>
+<link rel="stylesheet" href="{{__root}}css/landing.bundle.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Brand",
+      "@id": "https://japandi.dev/projects/squirio/#brand",
+      "name": "Squirio",
+      "url": "https://japandi.dev/projects/squirio/",
+      "description": "The product identity for a local-first personal finance tracker that keeps every transaction on the user's own device.",
+      "slogan": "Track your money, not your worry.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://japandi.dev/projects/squirio/#logo",
+        "url": "https://japandi.dev/projects/squirio/assets/app_icon.png",
+        "contentUrl": "https://japandi.dev/projects/squirio/assets/app_icon.png",
+        "width": 1024,
+        "height": 1024,
+        "encodingFormat": "image/png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://japandi.dev/projects/squirio/#website",
+      "url": "https://japandi.dev/projects/squirio/",
+      "name": "Squirio",
+      "description": "{{__desc|json}}",
+      "inLanguage": ["en", "id"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://japandi.dev/projects/squirio/{{__path}}#webpage",
+      "url": "https://japandi.dev/projects/squirio/{{__path}}",
+      "name": "{{__title|json}}",
+      "description": "{{__desc|json}}",
+      "isPartOf": {"@id": "https://japandi.dev/projects/squirio/#website"},
+      "about": {"@id": "https://japandi.dev/projects/squirio/#app"},
+      "inLanguage": "{{__lang}}",
+      "datePublished": "2026-08-16",
+      "dateModified": "2026-09-13"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://japandi.dev/projects/squirio/#app",
+      "name": "Squirio",
+      "url": "https://japandi.dev/projects/squirio/",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Personal Finance",
+      "operatingSystem": "Android",
+      "isAccessibleForFree": true,
+      "offers": {"@type": "Offer", "price": 0, "priceCurrency": "IDR", "availability": "https://schema.org/PreOrder", "url": "https://japandi.dev/projects/squirio/"},
+      "brand": {"@id": "https://japandi.dev/projects/squirio/#brand"},
+      "description": "{{__desc|json}}",
+      "inLanguage": ["en", "id"],
+      "permissions": "No network access",
+      "softwareRequirements": "Android. No internet connection required.",
+      "screenshot": "https://japandi.dev/assets/images/squirio-home-preview.webp",
+      "featureList": [
+        "Free with no subscription, in-app purchase or paid tier",
+        "Budgets anchored to payday",
+        "Local financial records with no Squirio account or cloud",
+        "CSV import, export and local backup",
+        "Budgets, savings goals, debt tracking and on-device insights"
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="jd-skip-link" href="#main">{{__skip_to_content}}</a>
+{{squirio_header}}
+<main id="main">
+  <section class="landing-hero" id="top">
+    <div class="wrap landing-hero__grid">
+      <div class="landing-hero__copy">
+        <p class="eyebrow">{{coming_soon_to_android}}</p>
+        <h1 class="display">{{the_budget_tracker_that}}</h1>
+        <p class="lede">{{squirio_is_a_personal}}</p>
+        <div class="landing-actions"><a class="button button--primary" href="#availability">{{follow_updates}}</a><a class="button button--quiet" href="#features">{{explore_features}}</a></div>
+        <p class="landing-status"><span>{{free_android}}</span><strong>{{launch_date}}</strong></p>
+      </div>
+      <figure class="landing-hero__media"><img src="/assets/images/squirio-home-preview.webp" width="960" height="1707" alt="{{squirio_dashboard_showing_the}}" decoding="async" fetchpriority="high"></figure>
+    </div>
+  </section>
+
+  <section class="trust-band" aria-labelledby="trust-heading"><div class="wrap"><h2 class="visually-hidden" id="trust-heading">{{what_squirio_does_not}}</h2><ul class="trust-grid">
+    <li><strong>{{no_account}}</strong><span>{{nothing_to_sign_up}}</span></li><li><strong>{{no_cloud}}</strong><span>{{nothing_leaves_the_device}}</span></li><li><strong>{{no_ads}}</strong><span>{{no_tracking_no_analytics}}</span></li><li><strong>{{fully_exportable}}</strong><span>{{backup_csv_any_time}}</span></li>
+  </ul></div></section>
+
+  <section class="section" id="features"><div class="wrap"><div class="section-head"><p class="eyebrow">{{difference_eyebrow}}</p><h2 class="h2">{{difference_heading}}</h2><p class="lede">{{difference_intro}}</p></div>
+    <div class="difference-grid">
+      <article class="difference-card"><span class="difference-card__number">01</span><h3 class="h3">{{your_budget_resets_on}}</h3><p>{{almost_every_finance_app}}</p><a href="{{__learn_url}}why-budgets-begin-on-payday/">{{read_build_note}}</a></article>
+      <article class="difference-card"><span class="difference-card__number">02</span><h3 class="h3">{{there_is_no_server}}</h3><p>{{most_finance_apps_ask}}</p><a href="{{__learn_url}}offline-exportable-finance-tracker/">{{read_build_note}}</a></article>
+      <article class="difference-card"><span class="difference-card__number">03</span><h3 class="h3">{{logging_a_transaction_takes}}</h3><p>{{favorite_transactions_merchants_and}}</p><a href="#product-proof">{{see_product}}</a></article>
+    </div>
+  </div></section>
+
+  <section class="section section--alt" id="product-proof"><div class="wrap"><div class="section-head"><p class="eyebrow">{{product_preview_eyebrow}}</p><h2 class="h2">{{product_evidence_heading}}</h2><p class="lede">{{product_evidence_intro}}</p></div>
+    <div class="proof-grid">
+      <article class="proof-card proof-card--image"><img src="/assets/images/squirio-home-preview.webp" width="960" height="1707" loading="lazy" decoding="async" alt="{{squirio_dashboard_showing_the}}"><div><p class="eyebrow">{{overview_label}}</p><h3>{{safe_to_spend_per}}</h3><p>{{product_home_copy}}</p></div></article>
+      <article class="proof-card"><div class="proof-panel proof-panel--budget" role="img" aria-label="{{squirio_budgets_screen_with}}"><span>{{left_this_period}}</span><strong>Rp 550.000</strong><div class="proof-meter"><span></span></div><small>88% {{used}}</small></div><div><p class="eyebrow">{{budget_health_at_a}}</p><h3>{{85_used_means_nothing}}</h3><p>{{weekly_and_monthly_budgets_stay}}</p></div></article>
+      <article class="proof-card"><div class="proof-panel" role="img" aria-label="{{squirio_insights_screen_showing}}"><span>{{financial_health}}</span><strong>78<small>/100</small></strong><ul><li>{{savings_rate}} <b>86</b></li><li>{{budget_adherence}} <b>71</b></li><li>{{income_stability}} <b>74</b></li></ul></div><div><p class="eyebrow">{{on_device_intelligence}}</p><h3>{{it_notices_things_you}}</h3><p>{{squirio_reads_your_own}}</p></div></article>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap"><div class="section-head"><p class="eyebrow">{{everything_else}}</p><h2 class="h2">{{supporting_heading}}</h2></div><div class="feature-list">
+    <article><h3>{{recurring_amp_bills}}</h3><p>{{salary_rent_and_subscriptions}}</p></article><article><h3>{{savings_goals}}</h3><p>{{set_an_amount_and}}</p></article><article><h3>{{debts_amp_receivables}}</h3><p>{{track_money_you_lent}}</p></article><article><h3>{{import_your_history}}</h3><p>{{import_a_csv_from}}</p></article><article><h3>{{english_amp_bahasa_indonesia}}</h3><p>{{the_interface_is_available}}</p></article><article><h3>{{light_and_dark_themes}}</h3><p>{{a_warm_palette_is}}</p></article>
+  </div></div></section>
+
+  <section class="section section--alt" id="updates"><div class="wrap"><div class="section-head section-head--with-link"><div><p class="eyebrow">{{build_notes_eyebrow}}</p><h2 class="h2">{{build_notes_heading}}</h2><p class="lede">{{build_notes_intro}}</p></div><a href="{{__learn_url}}">{{view_all_learning}}</a></div><div class="guide-grid">{{landing_build_notes}}</div></div></section>
+
+  <section class="section" id="faq"><div class="wrap faq-layout"><div class="section-head"><p class="eyebrow">FAQ</p><h2 class="h2">{{questions_worth_asking}}</h2></div><div class="faq">
+    <details class="faq__item"><summary><h3 class="faq__question">{{does_it_connect_to}}</h3></summary><p class="faq__answer">{{no_and_that_is}}</p></details>
+    <details class="faq__item"><summary><h3 class="faq__question">{{what_happens_if_i}}</h3></summary><p class="faq__answer">{{phone_loss_answer}}</p></details>
+    <details class="faq__item"><summary><h3 class="faq__question">{{will_it_cost_anything}}</h3></summary><p class="faq__answer">{{pricing_isn_t_settled}}</p></details>
+    <details class="faq__item"><summary><h3 class="faq__question">{{can_i_get_my}}</h3></summary><p class="faq__answer">{{any_time_two_ways}}</p></details>
+  </div></div></section>
+
+  <section class="follow-section" id="availability" aria-labelledby="follow-heading"><div class="wrap follow-card"><div><p class="eyebrow">{{stay_in_loop}}</p><h2 class="h2" id="follow-heading">{{follow_heading}}</h2><p>{{follow_copy}}</p></div><div class="follow-links"><a class="button button--quiet follow-link" href="https://www.threads.com/@japandi.dev" rel="me noopener noreferrer">Threads <span aria-hidden="true">↗</span></a><a class="button button--quiet follow-link" href="https://instagram.com/japandi.dev" rel="me noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></div></div></section>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer__top"><div class="footer__brand"><a class="brand" href="#top"><img class="brand__mark" src="/assets/images/squirio-app-icon-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async"><span class="brand__name">SQUIRIO</span></a><p class="footer__description">{{footer_a_completely_free}}</p></div><nav class="footer__nav" aria-label="{{footer_navigation}}"><div><h2 class="footer__heading">{{footer_explore}}</h2><ul><li><a href="#top">{{__nav_overview}}</a></li><li><a href="#features">{{__nav_features}}</a></li><li><a href="{{__learn_url}}">{{__nav_learn}}</a></li><li><a href="#faq">FAQ</a></li></ul></div><div><h2 class="footer__heading">{{footer_more}}</h2><ul><li><a href="{{__root}}privacy/">{{footer_app_privacy}}</a></li><li><a href="{{__about_url}}">{{footer_about_the_developer}}</a></li><li><a href="/#contact">{{footer_contact}}</a></li></ul></div><div><h2 class="footer__heading">{{social_follow_label}}</h2><ul><li><a href="https://www.threads.com/@japandi.dev" rel="me noopener noreferrer">Threads</a></li><li><a href="https://instagram.com/japandi.dev" rel="me noopener noreferrer">Instagram</a></li></ul></div></nav></div><div class="footer__bottom"><p>&copy; 2026 Japandi Dev</p><p>{{footer_a_project_by}}</p></div></div></footer>
+<script src="/assets/js/shell.js"></script><script src="{{__root}}js/japandi-shell.js"></script>
+</body>
+</html>

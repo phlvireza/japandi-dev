@@ -61,10 +61,19 @@ SQUIRIO_LEARN_ARTICLES = (
      'card': 'security', 'related': ('offline-finance-app', 'backup-and-restore-financial-data', 'financial-tracker-without-ads')},
     {'slug': 'import-bank-transactions-csv', 'topic': 'privacy_data', 'featured': False,
      'card': 'csv', 'related': ('how-to-track-daily-expenses', 'backup-and-restore-financial-data', 'offline-financial-tracker-security')},
+    {'slug': 'why-budgets-begin-on-payday', 'topic': 'build_notes', 'featured': False,
+     'kind': 'build_note', 'featured_on_landing': True, 'published': '2026-09-13',
+     'card': 'note_payday', 'related': ('how-to-create-a-monthly-budget', 'personal-finance-app', 'how-to-track-daily-expenses')},
+    {'slug': 'designing-calm-financial-warnings', 'topic': 'build_notes', 'featured': False,
+     'kind': 'build_note', 'featured_on_landing': True, 'published': '2026-09-13',
+     'card': 'note_calm', 'related': ('personal-finance-app', 'how-to-create-a-monthly-budget', 'offline-financial-tracker-security')},
+    {'slug': 'offline-exportable-finance-tracker', 'topic': 'build_notes', 'featured': False,
+     'kind': 'build_note', 'featured_on_landing': True, 'published': '2026-09-13',
+     'card': 'note_offline', 'related': ('offline-finance-app', 'backup-and-restore-financial-data', 'offline-financial-tracker-security')},
 )
 
 LEARN_BY_SLUG = {article['slug']: article for article in SQUIRIO_LEARN_ARTICLES}
-LEARN_TOPICS = ('money_basics', 'budgeting', 'saving', 'financial_habits', 'privacy_data')
+LEARN_TOPICS = ('build_notes', 'money_basics', 'budgeting', 'saving', 'financial_habits', 'privacy_data')
 
 # Keep CSS maintainable by responsibility, then emit one render-blocking file
 # per Squirio template family. This preserves modular sources without making a
@@ -72,7 +81,7 @@ LEARN_TOPICS = ('money_basics', 'budgeting', 'saving', 'financial_habits', 'priv
 SQUIRIO_CSS_BUNDLES = {
     'projects/squirio/css/landing.bundle.css': (
         'fonts.css', 'tokens.css', 'base.css', 'components.css',
-        'mockups.css', 'japandi-shell.css'),
+        'landing.css', 'japandi-shell.css'),
     'projects/squirio/css/learn.bundle.css': (
         'fonts.css', 'tokens.css', 'base.css', 'components.css',
         'japandi-shell.css', 'content.css'),
@@ -96,7 +105,25 @@ def squirio_learn_article(article):
             'id': 'projects/squirio/id/learn/%s/index.html' % slug,
         },
         'learn_slug': slug,
+        'article_kind': article.get('kind', 'guide'),
+        'squirio_header': 'learn',
+        'date_published': article.get('published', '2026-09-03'),
+        'date_modified': article.get('modified', article.get('published', '2026-09-04')),
     }
+
+
+def localized_publication_date(iso_date, code):
+    """Format an ISO registry date for visible article metadata."""
+    year, month, day = (int(part) for part in iso_date.split('-'))
+    month_names = {
+        'en': ('January', 'February', 'March', 'April', 'May', 'June',
+               'July', 'August', 'September', 'October', 'November', 'December'),
+        'id': ('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+               'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'),
+    }
+    if code == 'id':
+        return 'Diterbitkan %d %s %d' % (day, month_names[code][month - 1], year)
+    return 'Published %s %d, %d' % (month_names[code][month - 1], day, year)
 
 
 def card_markup(article, catalog, heading_level=3):
@@ -154,6 +181,51 @@ def related_cards(slug, catalog):
     return ''.join(card_markup(LEARN_BY_SLUG[item], catalog) for item in related)
 
 
+def landing_build_notes(catalog):
+    """Render the latest public build notes without a client-side content layer."""
+    notes = [item for item in SQUIRIO_LEARN_ARTICLES
+             if item.get('kind') == 'build_note' and item.get('featured_on_landing')]
+    notes.sort(key=lambda item: item['published'], reverse=True)
+    return ''.join(card_markup(item, catalog) for item in notes[:3])
+
+
+def first_present(strings, *keys):
+    """Return the first available alias used by older Squirio locale files."""
+    for key in keys:
+        if key in strings:
+            return strings[key]
+    raise SystemExit('Squirio header is missing all aliases: %s' % ', '.join(keys))
+
+
+def squirio_header(template, strings, code, page_kind, shell_strings):
+    """Render the single Squirio publisher/product header for every page family."""
+    product_home = '/projects/squirio/id/' if code == 'id' else '/projects/squirio/'
+    publisher_home = '/id/' if code == 'id' else '/'
+    values = {
+        'header_brand_url': publisher_home,
+        'header_brand_aria': shell_strings['__brand_aria'],
+        'header_menu': shell_strings['__menu'],
+        'header_features_url': '#features' if page_kind == 'landing' else product_home + '#features',
+        'header_features_label': shell_strings['__nav_features'],
+        'header_learn_url': shell_strings['__learn_url'],
+        'header_learn_label': shell_strings['__nav_learn'],
+        'header_learn_current': ' aria-current="page"' if page_kind == 'learn' else '',
+        'header_about_url': shell_strings['__about_url'],
+        'header_about_label': shell_strings['__nav_about'],
+        'header_language_label': first_present(
+            strings, '__lang_group_label', 'language_label'),
+        'header_href_en': first_present(strings, '__href_en', 'href_en'),
+        'header_href_id': first_present(strings, '__href_id', 'href_id'),
+        'header_current_en': first_present(
+            strings, '__lang_current_en', 'current_en'),
+        'header_current_id': first_present(
+            strings, '__lang_current_id', 'current_id'),
+        'header_cta_url': '#availability' if page_kind == 'landing' else product_home + '#availability',
+        'header_cta_label': shell_strings['follow_updates'],
+    }
+    return render(template, values, code, '')
+
+
 # One entry per page.
 #
 #   src       directory holding the template and the locale JSON files
@@ -185,8 +257,10 @@ PAGES = (
     },
     {
         'src': 'projects/squirio/_src',
-        'template': 'template.html',
+        'template': 'landing.html',
         'strings': '{locale}.json',
+        'computed': 'landing_build_notes',
+        'squirio_header': 'landing',
         'out': {'en': 'projects/squirio/en/index.html',
                 'id': 'projects/squirio/id/index.html'},
     },
@@ -194,6 +268,7 @@ PAGES = (
         'src': 'projects/squirio/_src',
         'template': 'privacy.html',
         'strings': 'privacy.{locale}.json',
+        'squirio_header': 'privacy',
         'out': {'en': 'projects/squirio/en/privacy/index.html',
                 'id': 'projects/squirio/id/privacy/index.html'},
     },
@@ -202,6 +277,7 @@ PAGES = (
         'template': 'learn.html',
         'strings': 'learn.{locale}.json',
         'computed': 'learn_sections',
+        'squirio_header': 'learn',
         'out': {'en': 'projects/squirio/en/learn/index.html',
                 'id': 'projects/squirio/id/learn/index.html'},
     },
@@ -300,6 +376,13 @@ def main():
         raise SystemExit('usage: python build.py [--check]')
     check_only = args == ['--check']
     loaded = []
+    squirio_header_template = load(os.path.join(
+        HERE, 'projects', 'squirio', '_src', 'header.html'))
+    squirio_shell_strings = {
+        code: json.loads(load(os.path.join(
+            HERE, 'projects', 'squirio', '_src', '%s.json' % code)))
+        for code in LOCALES
+    }
 
     print('key parity:')
     for page in PAGES:
@@ -330,11 +413,26 @@ def main():
                 strings['href_id'] = urlsplit(strings['alt_id']).path
             if page.get('computed') == 'learn_sections':
                 strings['learn_sections'] = learn_sections(strings)
+            if page.get('computed') == 'landing_build_notes':
+                catalog = json.loads(load(os.path.join(
+                    src, 'learn.%s.json' % code)))
+                strings['landing_build_notes'] = landing_build_notes(catalog)
             if page.get('learn_slug'):
                 catalog = json.loads(load(os.path.join(
                     src, 'learn.%s.json' % code)))
                 strings['related_cards'] = related_cards(
                     page['learn_slug'], catalog)
+                strings['date_published'] = page['date_published']
+                strings['date_modified'] = page['date_modified']
+                strings['published'] = localized_publication_date(
+                    page['date_published'], code)
+                if page['article_kind'] == 'build_note':
+                    strings['eyebrow'] = (
+                        'Catatan pengembangan' if code == 'id' else 'Build note')
+            if page.get('squirio_header'):
+                strings['squirio_header'] = squirio_header(
+                    squirio_header_template, strings, code,
+                    page['squirio_header'], squirio_shell_strings[code])
             locales[code] = strings
         if not check_parity(locales, label):
             raise SystemExit('locale files are not at key parity - aborting')
