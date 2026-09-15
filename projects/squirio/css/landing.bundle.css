@@ -833,6 +833,7 @@ html.no-js .reveal { opacity: 1; transform: none; }
 .follow-card .h2 { margin-top: 8px; color: inherit; }
 .follow-card p:last-child { max-width: 58ch; margin-top: 12px; color: var(--surface-2); }
 .follow-links { display: flex; flex: 0 0 auto; gap: 12px; }
+.follow-link { min-width: 9rem; }
 .follow-card .button--quiet { border-color: var(--border-strong); color: var(--bg); }
 .follow-card .button--quiet:hover { background: rgba(255,255,255,.12); }
 

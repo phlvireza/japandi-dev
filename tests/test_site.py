@@ -334,6 +334,24 @@ class IntegrityTests(unittest.TestCase):
                                     for item in follow_actions))
                 self.assertFalse(header_socials)
 
+    def test_squirio_follow_destinations_have_equal_visual_weight(self):
+        expected_urls = {
+            'https://www.threads.com/@japandi.dev',
+            'https://instagram.com/japandi.dev',
+        }
+        for relative in ('projects/squirio/en/index.html',
+                         'projects/squirio/id/index.html'):
+            page = next(item for item in PAGES if item.relative_path == relative)
+            follow_links = [attrs for attrs in page.tags('a')
+                            if 'follow-link' in attrs.get('class', '').split()]
+            with self.subTest(page=relative):
+                self.assertEqual(len(follow_links), 2)
+                self.assertEqual({link['href'] for link in follow_links}, expected_urls)
+                self.assertTrue(all('button--quiet' in link['class'].split()
+                                    for link in follow_links))
+                self.assertTrue(all('button--primary' not in link['class'].split()
+                                    for link in follow_links))
+
     def test_squirio_pages_render_one_shared_consistent_header(self):
         templates = ('landing.html', 'learn.html', 'content.html', 'privacy.html')
         source_root = os.path.join(ROOT, 'projects', 'squirio', '_src')
