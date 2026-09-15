@@ -607,7 +607,7 @@ a { color: inherit; }
   gap: 0.45rem;
   min-height: 44px;
   margin-top: var(--space-md);
-  color: var(--terracotta-ink);
+  color: var(--pine);
   font-weight: 700;
   text-decoration: none;
   transition: color var(--transition), gap var(--transition);
@@ -640,24 +640,6 @@ a { color: inherit; }
   background: transparent;
   border-color: var(--line-strong);
   color: var(--ink-soft);
-}
-
-/* -- Future products note ------------------------------------------------- */
-
-.future-note {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
-  font-size: var(--step-small);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.future-note__rule {
-  flex: 1 1 auto;
-  height: 1px;
-  background: var(--line);
 }
 
 /* -- Philosophy ----------------------------------------------------------- */
@@ -696,74 +678,42 @@ a { color: inherit; }
 
 /* -- About ---------------------------------------------------------------- */
 
-.about { max-width: 48rem; }
+.about { max-width: 64rem; }
+.about__layout {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: start;
+}
+.about__story { max-width: 44rem; }
 .about__lead {
   font-family: var(--font-display);
   font-size: var(--step-lead);
   line-height: 1.5;
   margin-bottom: var(--space-md);
 }
-.about p + p { margin-top: var(--space-md); color: var(--ink-soft); }
+.about__story p + p { margin-top: var(--space-md); color: var(--ink-soft); }
 
-.about__tech-title {
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-md);
-  font-family: var(--font-body);
-  font-size: var(--step-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.about__connect {
+  scroll-margin-top: calc(var(--header-h) + var(--space-md));
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+.about__connect-title {
+  font-size: var(--step-h3);
+  margin-top: var(--space-sm);
+}
+.about__connect-copy {
+  margin-top: var(--space-sm);
   color: var(--ink-soft);
 }
-
-.tech-list {
+.about__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
 }
-.tech-list li {
-  padding: 0.4rem 0.85rem;
-  background: var(--surface);
-  border: var(--border);
-  border-radius: 999px;
-  font-size: var(--step-small);
-  color: var(--ink);
-}
-
-/* -- Contact -------------------------------------------------------------- */
-
-.contact { max-width: 46rem; margin-inline: auto; text-align: center; }
-.contact .eyebrow { justify-content: center; }
-.contact .section__lead { margin-inline: auto; }
-
-.contact__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md) var(--space-xl);
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--line);
-}
-.contact__label {
-  display: block;
-  font-size: var(--step-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: var(--space-2xs);
-}
-.contact__links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  font-size: var(--step-small);
-  color: var(--ink);
-  text-decoration-color: var(--line);
-  text-underline-offset: 4px;
-}
-.contact__links a:hover { color: var(--pine); text-decoration-color: currentColor; }
 
 /* -- Footer --------------------------------------------------------------- */
 
@@ -850,12 +800,13 @@ a { color: inherit; }
 /* ------------------------------------------------------------ 7. RESPONSIVE */
 
 @media (min-width: 48em) {
-  .principles { grid-template-columns: repeat(2, 1fr); gap: var(--space-lg) var(--space-xl); }
+  .principles { grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
   .site-footer__top { grid-template-columns: 1.3fr 1fr; align-items: start; }
 }
 
 @media (min-width: 56em) {
   .product { grid-template-columns: 1.05fr 0.95fr; }
+  .about__layout { grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr); }
 }
 
 @media (min-width: 62em) {

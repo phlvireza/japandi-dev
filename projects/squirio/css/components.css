@@ -406,7 +406,7 @@
 
 @media (min-width: 768px) {
   .footer__top {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1fr 1.35fr;
     align-items: start;
   }
 }

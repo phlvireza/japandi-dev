@@ -281,11 +281,6 @@
         </div>
       </article>
 
-      <p class="future-note" data-reveal>
-        <span class="future-note__rule" aria-hidden="true"></span>
-        {{more_thoughtful_projects_are}}
-      </p>
-
     </div>
   </section>
 
@@ -338,18 +333,6 @@
           <p>{{i_balance_functionality_maintainability}}</p>
         </li>
 
-        <li class="principle" data-reveal>
-          <span class="principle__index" aria-hidden="true">04</span>
-          <span class="principle__mark" aria-hidden="true">
-            <svg viewBox="0 0 48 48" focusable="false">
-              <circle cx="24" cy="24" r="21" fill="none" stroke="var(--line)" stroke-width="1.5"/>
-              <path d="M32 19a10 10 0 1 0 2.5 7" fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M33 13v7h-7" fill="none" stroke="var(--pine)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <h3 class="principle__title">{{continuous_improvement}}</h3>
-          <p>{{i_treat_every_project}}</p>
-        </li>
       </ul>
 
       <p class="philosophy__note" data-reveal>
@@ -368,51 +351,24 @@
           <h2 class="section__title" id="about-title">{{about_japandi_dev_2}}</h2>
         </header>
 
-        <p class="about__lead">{{japandi_dev_is_my}}</p>
-        <p>{{the_name_reflects_my}}</p>
-        <p>{{i_try_to_bring}}</p>
+        <div class="about__layout">
+          <div class="about__story">
+            <p class="about__lead">{{japandi_dev_is_my}}</p>
+            <p>{{the_name_reflects_my}}</p>
+            <p>{{i_try_to_bring}}</p>
+          </div>
 
-        <!-- Plain list, no ratings or proficiency bars. Add or remove <li> items freely. -->
-        <h3 class="about__tech-title">{{things_i_build_with}}</h3>
-        <ul class="tech-list">
-          <li>{{javascript}}</li>
-          <li>{{typescript}}</li>
-          <li>{{react}}</li>
-          <li>{{next_js}}</li>
-          <li>{{node_js}}</li>
-          <li>{{java}}</li>
-          <li>{{spring_boot}}</li>
-          <li>{{aws}}</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================== CONTACT ========================== -->
-  <section class="section section--sand" id="contact" aria-labelledby="contact-title">
-    <div class="container">
-      <div class="contact" data-reveal>
-
-        <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>{{contact_2}}</p>
-        <h2 class="section__title" id="contact-title">{{let_rsquo_s_connect}}</h2>
-        <p class="section__lead">{{if_you_would_like}}</p>
-
-        <p class="button-row button-row--center">
-          <!-- Verified brand mailbox; keep personal addresses out of public markup. -->
-          <a class="button button--primary" href="mailto:hello@japandi.dev">{{get_in_touch}}</a>
-        </p>
-
-        <ul class="contact__links">
-          <li>
-            <span class="contact__label">{{email}}</span>
-            <a href="mailto:hello@japandi.dev">{{hello_japandi_dev}}</a>
-          </li>
-        </ul>
-        <!--
-          No GitHub or other profile is linked. A link only belongs here once a dedicated,
-          privacy-safe Japandi Dev account exists. See README, "Adding a brand GitHub account".
-        -->
-
+          <div class="about__connect" id="contact" aria-labelledby="contact-title">
+            <p class="eyebrow"><span class="eyebrow__node" aria-hidden="true"></span>{{contact_2}}</p>
+            <h3 class="about__connect-title" id="contact-title">{{let_rsquo_s_connect}}</h3>
+            <p class="about__connect-copy">{{connect_copy}}</p>
+            <ul class="about__actions" aria-label="{{follow_japandi_dev}}">
+              <li><a class="button button--primary" href="mailto:hello@japandi.dev">{{get_in_touch}}</a></li>
+              <li><a class="button button--ghost" href="https://www.threads.com/@japandi.dev" target="_blank" rel="me noopener noreferrer">{{threads}} <span aria-hidden="true">&nearr;</span></a></li>
+              <li><a class="button button--ghost" href="https://instagram.com/japandi.dev" target="_blank" rel="me noopener noreferrer">{{instagram}} <span aria-hidden="true">&nearr;</span></a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>

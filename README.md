@@ -59,7 +59,8 @@ the following has crept in:
 - A real name, initials, photograph, age, gender, employer, job title, education or biography.
 - An exact location. (The footer says "Built with clarity and care." precisely so it does not have
   to say where.)
-- Personal social accounts. The site links to no social profile at all.
+- Personal social accounts. Only the anonymous Japandi Dev brand profiles on Threads and Instagram
+  are linked; verify they contain no identifying details before publishing.
 - A personal email address. Only a brand address is used.
 - Identifying data inside **image metadata** — see [The logo](#the-logo).
 - Identifying data inside code comments, JSON-LD, meta tags, or file and folder names.
@@ -323,7 +324,7 @@ Purge Everything) or the old CSS may persist at the edge.
 ### Squirio project site
 
 Squirio is served from `/projects/squirio/` in the same document root, and its pages carry the Japandi
-Dev global navbar. Edit `projects/squirio/_src/template.html`, `_src/privacy.html`, or the locale
+Dev global navbar. Edit `projects/squirio/_src/landing.html`, `_src/privacy.html`, or the locale
 files beside them, then run `python build.py` **from the repository root**; never hand-edit the
 generated `projects/squirio/en/index.html` or `projects/squirio/en/privacy/index.html`.
 English and Indonesian outputs live under `en/` and `id/` respectively. The English locale segment
@@ -529,7 +530,7 @@ reader announce the name twice. If you ever use the logo as a link *without* adj
 
 ## Squirio artwork
 
-The compact project card uses a high-resolution WebP derivative of the supplied app icon:
+The project catalog uses a high-resolution WebP derivative of the supplied app icon:
 
 ```html
 <img src="assets/images/squirio-app-icon-512.webp"
@@ -544,17 +545,10 @@ heading already names Squirio.
 
 ## Adding a project
 
-Project cards are plain HTML on purpose — no CMS, no config file, no rendering layer.
-
-In `index.html`, find the comment `FEATURED PROJECT CARD`, copy the whole `<article class="product">`
-block, paste it below, and edit the text. Then:
-
-- Change `aria-labelledby="squirio-name"` and the matching `id` on the `<h3>` to something unique.
-- Update the icon `src`, the links, and the status pill.
-- If the project has shipped, reword or delete the `<p class="pill">`.
-
-No CSS or JavaScript changes are needed. If you add a second card, wrap them in a
-`<div class="projects">` and give that class a grid — or let them stack, which already works.
+Project cards are plain semantic HTML in `_src/index.html`. Copy the existing product article,
+give its heading a unique `id`, update the icon, status, copy, and links, then add matching strings
+to both `_src/index.en.json` and `_src/index.id.json`. Run `python build.py` afterward; locale parity
+and generated-output checks catch missing translations and stale pages.
 
 Once a project has its own page, add it to `sitemap.xml`.
 
@@ -571,9 +565,9 @@ The status lives in three places, all of which must agree:
 
 | What | Where |
 |---|---|
-| Card pill and category on the homepage | `index.html`, the Squirio `<article class="product">` |
+| Card pill and category on the homepage | `_src/index.html` plus `_src/index.<locale>.json` |
 | Hero eyebrow, launch note and closing line | `projects/squirio/_src/en.json` |
-| `operatingSystem` and the platform FAQ answer | `projects/squirio/_src/template.html` |
+| `operatingSystem` and the platform FAQ answer | `projects/squirio/_src/landing.html` |
 
 The Squirio page is generated: edit `projects/squirio/_src/`, then run `python build.py` from the
 repository root. Never hand-edit `projects/squirio/en/index.html`. Remember the Indonesian copy in
@@ -634,7 +628,7 @@ _src/                       root site sources
   privacy.html privacy.en.json privacy.id.json
   404.html     404.en.json     404.id.json
 projects/squirio/_src/      Squirio sources
-  template.html  en.json          id.json
+  landing.html   en.json          id.json
   privacy.html   privacy.en.json  privacy.id.json
   content.html   *.en.json        *.id.json        *.body.html
 projects/squirio/en/        generated English Squirio pages (not in public URLs)
@@ -932,7 +926,7 @@ checks are also not a substitute for testing with real assistive technology and 
 | `robots.txt` | Directive parse | Valid, absolute `Sitemap:` URL |
 | CSP | Site served with the real headers | **0 violations**; inline script accepted by hash |
 | Logo metadata strip | IHDR/IDAT byte comparison + CRC + decompression | **Pixel data byte-identical** |
-| Identity leak scan | grep across every shipped file | No name, email, path, location or social profile |
+| Identity leak scan | grep across every shipped file | No personal name, email, path, location or personal social profile |
 | Unused code | Custom script | 0 unused CSS classes, 0 orphan custom properties |
 | Lighthouse | Lighthouse 12.8.2 | See below |
 
@@ -1021,7 +1015,7 @@ Target: **WCAG 2.2 Level AA**.
 
 - [x] No real name, initials, photograph, age, gender, employer, job title or education
 - [x] No exact location anywhere in content or metadata
-- [x] No personal social profiles; no social links at all
+- [x] No personal social profiles; only anonymous Japandi Dev brand profiles
 - [x] No personal email — brand address only
 - [x] No `Person` or `Organization` structured data
 - [x] No `author` meta tag
