@@ -318,6 +318,22 @@ class IntegrityTests(unittest.TestCase):
                 self.assertTrue(priority[0].get('height'))
                 self.assertNotEqual(priority[0].get('loading'), 'lazy')
 
+    def test_squirio_follow_actions_target_follow_section(self):
+        for relative in ('projects/squirio/en/index.html',
+                         'projects/squirio/id/index.html'):
+            page = next(item for item in PAGES if item.relative_path == relative)
+            follow_actions = [attrs for attrs in page.tags('a')
+                              if 'jd-nav__back' in attrs.get('class', '').split() or
+                              ('button--primary' in attrs.get('class', '').split() and
+                               attrs.get('href', '').startswith('#'))]
+            header_socials = [attrs for attrs in page.tags('div')
+                              if 'jd-social' in attrs.get('class', '').split()]
+            with self.subTest(page=relative):
+                self.assertEqual(len(follow_actions), 2)
+                self.assertTrue(all(item.get('href') == '#availability'
+                                    for item in follow_actions))
+                self.assertFalse(header_socials)
+
     def test_local_links_assets_and_fragments_resolve(self):
         for page in INDEXABLE:
             base = page.rel('canonical')[0]['href']
