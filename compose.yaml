@@ -1,13 +1,13 @@
-name: japandi-dev
+name: ${JAPANDI_PROJECT:-japandi-dev}
 
 services:
   web:
     build:
       context: .
-    image: japandi-dev:local
+    image: ${JAPANDI_IMAGE:-japandi-dev:local}
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:${JAPANDI_PORT:-8080}:80"
     logging:
       driver: json-file
       options:
