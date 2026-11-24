@@ -1,84 +1,102 @@
-name: Deploy to Biznet Gio
+name: Deploy to Sumopod
 
 on:
   push:
     branches: [main]
-  # Lets you re-run a deploy by hand from the Actions tab without a new commit.
   workflow_dispatch:
 
-# A second push while a deploy is running cancels the first, so two syncs can
-# never interleave and leave the document root in a mixed state.
+permissions:
+  contents: read
+
 concurrency:
   group: deploy-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
-    name: Sync to document root
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      VPS_HOST: ${{ secrets.VPS_HOST }}
+      VPS_USER: ${{ secrets.VPS_USER }}
+      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+      VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
 
       - name: Verify generated site output
         run: |
-          python build.py --check
-          python -B -m unittest discover -s tests -v
+          python3 -B build.py --check
+          python3 -B -m unittest discover -s tests -q
 
-      - name: Sync over FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          # Explicit FTPS on the standard port. Plain `ftp` would send the
-          # password in clear text across the public internet.
-          protocol: ftps
-          port: 21
-          # `strict` rejects any connection whose certificate does not verify.
-          # This is safe here ONLY because FTP_SERVER is the server's own
-          # hostname (web6-cpn.neohosting.id), which is on the Let's Encrypt
-          # certificate Pure-FTPd presents. Point FTP_SERVER at ftp.japandi.dev
-          # or a bare IP instead and this will fail the handshake - the fix is
-          # to go back to the hostname, not to downgrade this to `loose`.
-          security: strict
-          # The first three are the action's own defaults, re-stated because
-          # specifying `exclude` at all replaces them. .htaccess is deliberately
-          # NOT excluded - without it there is no 404 page, no security headers
-          # and no clean URLs.
-          # _src/ and build.py are inputs to Squirio's page, not site content.
-          # projects/squirio/.htaccess already blocks them if they reach the
-          # server; not uploading them is one fewer thing depending on that.
-          # (Comments must stay outside the block scalar below - inside it a
-          # "#" line is a literal exclude pattern, not a comment.)
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/README.md
-            **/.gitattributes
-            **/_src/**
-            **/build.py
+      - name: Validate deployment configuration
+        run: |
+          set -euo pipefail
+          for name in VPS_HOST VPS_USER VPS_SSH_KEY VPS_KNOWN_HOSTS CF_API_TOKEN CF_ZONE_ID; do
+            if [ -z "${!name}" ]; then
+              echo "Missing required secret: $name" >&2
+              exit 1
+            fi
+          done
 
-      # The sync above updates the origin, but Cloudflare keeps serving whatever it
-      # already cached until its own TTL expires. Skipping this is how a fixed
-      # stylesheet once sat live-on-origin but unreachable behind a stale edge copy
-      # for a full day. Runs AFTER the sync so the origin is already correct when
-      # the edge is told to refetch.
-      #
-      # Fails the job loudly on error: `curl --fail-with-body` catches HTTP status,
-      # and the grep catches Cloudflare's 200-with-"success":false responses. A
-      # silent purge failure is the exact failure mode this step exists to prevent.
-      #
-      # CF_API_TOKEN needs one permission only - Zone > Cache Purge > Purge, scoped
-      # to the japandi.dev zone. It cannot read or change DNS, settings or content.
+      - name: Configure SSH
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$VPS_SSH_KEY" > "$RUNNER_TEMP/deploy_key"
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > "$RUNNER_TEMP/deploy_known_hosts"
+
+      - name: Verify deployment access
+        run: |
+          ssh -T \
+            -i "$RUNNER_TEMP/deploy_key" \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$RUNNER_TEMP/deploy_known_hosts" \
+            -o ConnectTimeout=15 \
+            "$VPS_USER@$VPS_HOST" check
+
+      - name: Deploy the verified commit
+        run: |
+          ssh -T \
+            -i "$RUNNER_TEMP/deploy_key" \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$RUNNER_TEMP/deploy_known_hosts" \
+            -o ConnectTimeout=15 \
+            -o ServerAliveInterval=30 \
+            -o ServerAliveCountMax=5 \
+            "$VPS_USER@$VPS_HOST" "deploy $GITHUB_SHA"
+
       - name: Purge the Cloudflare cache
         run: |
-          curl -sS --fail-with-body -X POST \
-            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
-            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+          set -euo pipefail
+          curl --silent --show-error --fail-with-body \
+            -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_API_TOKEN" \
             -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}' | tee purge-result.json
-          echo
-          grep -q '"success":true' purge-result.json
+            --data '{"purge_everything":true}' \
+            --output "$RUNNER_TEMP/purge-result.json"
+
+          python3 -c '
+          import json, sys
+          with open(sys.argv[1]) as response:
+              result = json.load(response)
+          if result.get("success") is not True:
+              raise SystemExit("Cloudflare cache purge failed")
+          print("Cloudflare cache purged")
+          ' "$RUNNER_TEMP/purge-result.json"
+
+      - name: Remove temporary SSH credentials
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/deploy_key" "$RUNNER_TEMP/deploy_known_hosts"
