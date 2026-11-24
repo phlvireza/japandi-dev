@@ -7,9 +7,9 @@ experiments and ideas made through code. It is not a company, an organization, a
 a studio, and the site is written in the first person throughout.
 
 It is a static site: semantic HTML5, one stylesheet, and one small vanilla-JavaScript file. There is
-no framework, build step, server-side runtime, or database. Cloudflare injects one Web Analytics
-beacon at the edge; all application assets remain self-hosted. Deploying the site means copying
-files into a document root.
+no application framework, server-side application runtime, or database. Cloudflare injects one Web
+Analytics beacon at the edge; all application assets remain self-hosted. Apache serves the generated
+static files from a Docker container on Sumopod.
 
 The first featured project is **Squirio**, a personal finance tracker
 ("Track your money, not your stress"), integrated at <https://japandi.dev/projects/squirio/>.
@@ -21,8 +21,7 @@ The first featured project is **Squirio**, a personal finance tracker
 - [The anonymity requirement](#the-anonymity-requirement)
 - [Folder structure](#folder-structure)
 - [Local preview](#local-preview)
-- [Deploying to Biznet Gio](#deploying-to-biznet-gio)
-- [Automatic deploys from GitHub](#automatic-deploys-from-github)
+- [Deploying to Sumopod with Docker](#deploying-to-sumopod-with-docker)
 - [Cloudflare](#cloudflare)
 - [Connecting japandi.dev](#connecting-japandidev)
 - [Clean URLs](#clean-urls)
@@ -151,26 +150,7 @@ exercised locally by default. See [Security headers](#security-headers) for how 
 
 ---
 
-## Deploying to Biznet Gio
-
-Biznet Gio NEO Web Hosting is cPanel-based and runs LiteSpeed, which reads `.htaccess` the same way
-Apache does.
-
-1. **Log in to cPanel** from your Biznet Gio portal (usually `https://<your-server>:2083`).
-2. **Open File Manager** and go to the document root for the domain — `public_html` for a primary
-   domain, or `public_html/japandi.dev` if you added it as an addon domain.
-3. **Upload the contents of this folder, not the folder itself.** `index.html` must sit directly in
-   the document root. The simplest route is to zip the project contents locally, upload the zip, and
-   use cPanel's *Extract*.
-4. **Confirm `.htaccess` uploaded.** It is a dotfile, so enable *Settings → Show Hidden Files* in
-   File Manager. Without it there is no custom 404 and no security headers.
-5. **Check permissions** — `644` for files, `755` for directories. cPanel usually gets this right.
-
-SFTP works equally well; upload to the same document root.
-
----
-
-## Automatic deploys from GitHub
+## Deploying to Sumopod with Docker
 
 The repository lives at `github.com/phlvireza/japandi-dev` and is **private** — deliberately. The
 site claims an anonymous identity, and a public repository under a personal handle would tie that
@@ -178,78 +158,29 @@ handle to `japandi.dev` no matter what the site itself says. Commits are authore
 `japandi-dev <hello@japandi.dev>` for the same reason. Keep both when you add collaborators or
 mirror the repo.
 
-`.github/workflows/deploy.yml` syncs the working tree to the document root over FTPS on every push
-to `main`. The action keeps a state file in the document root and uploads only changed files, so a
-routine deploy moves kilobytes, not the whole bundle.
-
-### One-time setup
-
-Add four repository secrets under **Settings → Secrets and variables → Actions**:
-
-| Secret | Where to find it | Value |
+| Branch | Environment | URL |
 |---|---|---|
-| `FTP_SERVER` | the hosting server's own hostname | `web6-cpn.neohosting.id` |
-| `FTP_USERNAME` | cPanel → FTP Accounts, the **full** username including `@japandi.dev` | `deploy@japandi.dev` |
-| `FTP_PASSWORD` | the password you set when creating that account | |
-| `FTP_SERVER_DIR` | see below — depends on how the FTP account is scoped | `./` |
+| `qa` | Password-protected staging | <https://staging.japandi.dev> |
+| `main` | Production | <https://japandi.dev> |
 
-**`FTP_SERVER` must be the server hostname, not `ftp.japandi.dev`.** `japandi.dev` is proxied
-through Cloudflare, and Cloudflare proxies HTTP only — it has no FTP listener, so a proxied record
-sends the deploy to an edge that cannot answer it. `web6-cpn.neohosting.id` bypasses Cloudflare
-entirely, which is what an origin-side deploy wants. It is also the hostname on the certificate
-Pure-FTPd presents, which is why the workflow can run `security: strict`; a bare IP or any other
-name would fail the handshake.
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on pushes to `qa` and `main` and
+can also be run manually for either branch. GitHub Actions checks the generated site and runs the
+unit tests, then verifies SSH access and requests deployment on Sumopod for the exact branch and
+commit SHA. Only the `main` workflow run purges the Cloudflare cache after the deploy step.
 
-Verified against the live server: port 21 answers `220 Welcome to Pure-FTPd [privsep] [TLS]`, so
-explicit FTPS on port 21 is the correct protocol. Port 990 (implicit FTPS, `ftps-legacy`) is
-closed — do not use it.
+Both environments use [`compose.yaml`](compose.yaml). Its `web` service builds the Apache image
+from the repository's `Dockerfile`. The Compose project name, image name and host port are
+configurable; the service maps the host port on `127.0.0.1` to port `80` in the container.
 
-Create a dedicated FTP account in cPanel rather than reusing the main cPanel login. Scope its
-**Directory** to the document root, so a leaked secret cannot reach the rest of the account.
-
-`FTP_SERVER_DIR` is then relative to **wherever that account lands after login**, not an absolute
-path — and the two settings interact:
-
-| FTP account | Lands in | `FTP_SERVER_DIR` |
-|---|---|---|
-| Sub-account, Directory scoped to `public_html` | inside `public_html` | `./` |
-| Main cPanel account, unscoped | `/home/<user>` | `public_html/` |
-
-Scoping the account *and* writing `public_html/` here gives `public_html/public_html/`. Either way,
-drop the `/home/<user>` prefix that cPanel shows under Domains → Document Root, and keep the
-trailing slash.
-
-This is the most expensive of the four to get wrong, because it fails silently: the files upload
-successfully to a folder the domain does not point at, and the symptom — a directory listing or the
-host's placeholder — looks identical to not having deployed at all. **Run once with `dry-run: true`
-and read the paths in the Actions log before the first real deploy.**
+Push changes to `qa` and review them on staging. To promote an approved change, open a pull request
+from `qa` to `main`. The human owner merges it; the resulting push to `main` triggers production
+deployment. Do not push directly to `main`.
 
 ### Verifying a deploy
 
-Run it once with `dry-run: true` added under `with:` before trusting it against the live document
-root. The Actions log then lists what *would* change without touching the server.
-
-After a real deploy, purge the Cloudflare cache — the origin has new files but the edge may still
-answer from the old ones.
-
-### What is not uploaded
-
-`exclude` in the workflow drops `.git*`, `node_modules`, `README.md` and `.gitattributes`.
-`.htaccess` is deliberately **not** excluded: without it there is no 404 page, no security headers
-and no clean URLs. `.ftp-deploy-sync-state.json`, which the action writes into the document root, is
-denied in `.htaccess` — it lists every file and its hash, which is a free map of the site.
-
----
-
-### Enable HTTPS
-
-In cPanel go to **Security → SSL/TLS Status** and run **AutoSSL** (Let's Encrypt) for `japandi.dev`
-and `www.japandi.dev`. Wait until the certificate is issued and `https://japandi.dev` loads cleanly.
-
-**Only then** open `.htaccess` and uncomment the `mod_rewrite` block that forces HTTPS and the bare
-domain. Enabling it earlier redirects visitors to a URL the server cannot yet serve. `.dev` is on
-the HSTS preload list, so **`.dev` domains only work over HTTPS at all** — get the certificate
-issued before announcing anything.
+Check the GitHub Actions run for the expected branch and commit SHA, then verify the corresponding
+HTTPS site separately. For staging, confirm that access is blocked without a password and check the
+site after signing in. A successful Git push alone does not verify a deployment.
 
 ---
 
@@ -269,8 +200,8 @@ behind Cloudflare's proxy without modification. Recommended settings:
 | Browser Insights | Speed → Optimization | **Off** — use Web Analytics as the single RUM configuration |
 
 **Full (strict) matters.** *Flexible* would make Cloudflare talk to your origin over plain HTTP
-while showing visitors a padlock, which is worse than no TLS at all. Issue the origin certificate
-via cPanel AutoSSL first, then set Full (strict).
+while showing visitors a padlock, which is worse than no TLS at all. Confirm that the origin has a
+valid certificate before setting Full (strict).
 
 **Do not enable Cloudflare's Auto Minify for HTML.** It rewrites inline scripts, which changes the
 bytes the CSP hash covers, and the inline snippet would then be blocked — silently disabling the
@@ -302,24 +233,16 @@ on Cloudflare's HSTS (SSL/TLS → Edge Certificates), leave the HSTS line in `.h
 sending it from both places is redundant and easy to get inconsistent.
 
 **Caching.** The `Expires` rules in `.htaccess` give CSS, JS, fonts and images a one-year TTL and
-HTML one hour. After deploying a change, **purge the Cloudflare cache** (Caching → Configuration →
-Purge Everything) or the old CSS may persist at the edge.
+HTML one hour. The `main` workflow purges the Cloudflare cache after deploying so that old files
+do not persist at the edge.
 
 ---
 
 ## Connecting japandi.dev
 
-1. Find your hosting IP in cPanel (*Shared IP Address* in the right sidebar).
-2. At your registrar, either point nameservers at Cloudflare (if using it) or at Biznet Gio's
-   nameservers, or keep your registrar's DNS and create:
-
-   | Type | Name  | Value           |
-   |------|-------|-----------------|
-   | A    | `@`   | your hosting IP |
-   | A    | `www` | your hosting IP |
-
-3. Wait for propagation (minutes to a few hours). Verify with `nslookup japandi.dev`.
-4. Issue the certificate, then enable the redirect block in `.htaccess`.
+The deployment workflow does not configure DNS or TLS. Verify DNS resolution with
+`nslookup japandi.dev` and confirm that <https://japandi.dev> loads over HTTPS before enabling the
+HTTPS and bare-domain redirect block in `.htaccess`.
 
 ### Squirio project site
 
@@ -335,9 +258,9 @@ The builder used to live at `projects/squirio/build.py` and covered one page in 
 sits at the repository root and generates every page of both japandi.dev and Squirio, in both
 languages, from a single `PAGES` table — see [Localisation](#localisation).
 
-`build.py` runs on your machine only — the host serves static files and executes no Python. It is
-excluded from the FTP deploy, and both `.htaccess` files deny it and `_src/` if a copy ever reaches
-the server.
+`build.py` runs locally to generate the site and in CI to check the committed output. The Apache
+container serves static files and does not run Python. `.dockerignore` excludes `build.py` and
+`_src/` from the Docker build context.
 
 **Image derivatives.** Every raster the page fetches is sized for where it is drawn, because a
 1024px file drawn at 32px costs the visitor the full 1024px:
@@ -381,8 +304,8 @@ Consequences worth knowing:
   the extensionless form. If you add a page, link it as `/newpage`, never `/newpage.html`.
 - The redirect is permanent and browsers cache it hard. That is what you want in production, but
   it means a mistake here is slow to undo.
-- `mod_rewrite` is required. LiteSpeed on Biznet Gio supports it; if the host ignores `.htaccess`
-  entirely the site still works, just with `.html` back in the address bar.
+- `mod_rewrite` is required. The Docker image enables it, and its Apache configuration allows
+  `.htaccess` overrides in the document root.
 - **Local preview:** `python -m http.server` does not read `.htaccess`, so `/privacy` returns 404
   and `/projects/squirio/` shows a directory listing. Use
   `npx --yes serve@latest . --listen 8765 --config serve.json` to apply the matching local rewrites.
@@ -639,7 +562,7 @@ build.py                    generates all published pages
 Run `python build.py` from the repository root after editing anything under a `_src/`. The generated
 HTML **is committed**. The deploy excludes `_src/` and `build.py` from the public document root.
 
-Before uploading, CI runs `python build.py --check`. Check mode validates locale parity and compares
+Before deploying, CI runs `python3 -B build.py --check`. Check mode validates locale parity and compares
 every generated HTML file and CSS bundle without rewriting the working tree. It then runs the
 dependency-free checks in `tests/test_site.py` for semantic landmarks, accessible markup, metadata,
 canonical and `hreflang` clusters, sitemap parity, JSON-LD parsing, local links, and the CSP hash.
@@ -952,8 +875,8 @@ checks are also not a substitute for testing with real assistive technology and 
 - No screen-reader testing (NVDA / JAWS / VoiceOver).
 - No testing on real Safari, Firefox or physical mobile hardware — Chromium only.
 - Field Core Web Vitals cannot be measured before launch; Lighthouse numbers are lab data.
-- The `.htaccess` directives were exercised by replaying the same headers from a local server, not
-  on LiteSpeed itself. Confirm them against the live site after deploying.
+- The `.htaccess` directives were exercised by replaying the same headers from a local server.
+  Confirm them against the live Apache deployment.
 
 ---
 
@@ -1092,12 +1015,14 @@ and a 100 does not mean the site is accessible.
 ## Pre-launch checklist
 
 - [x] Verify `hello@japandi.dev` is active
-- [ ] Confirm `.htaccess` uploaded (show hidden files in File Manager)
-- [ ] Run AutoSSL and confirm `https://japandi.dev` loads
+- [ ] Verify the `qa` workflow run, staging password protection and site behaviour on staging
+- [ ] Promote through a human-merged `qa` → `main` PR, then verify the `main` workflow run and
+  <https://japandi.dev>
 - [ ] Enable the HTTPS / bare-domain redirect block in `.htaccess`
 - [ ] Verify the security headers on the live site (`curl -I https://japandi.dev/`)
 - [ ] Enable HSTS only after HTTPS is confirmed
-- [ ] If using Cloudflare: SSL/TLS **Full (strict)**, Auto Minify **off**, Web Analytics **on**, purge cache
+- [ ] Confirm Cloudflare SSL/TLS **Full (strict)**, Auto Minify **off**, Web Analytics **on**, and
+  the production workflow's cache purge
 - [ ] Confirm `/privacy` loads, and that `/privacy.html` and `/privacy/` both 301 to it
 - [ ] Visit a nonsense URL and confirm `404.html` is served
 - [ ] Check `/robots.txt` and `/sitemap.xml` load
