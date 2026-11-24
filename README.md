@@ -479,10 +479,8 @@ Once a project has its own page, add it to `sitemap.xml`.
 
 ## Launch status
 
-There is no waitlist. Squirio ships **exclusively on Android in October 2026**, and the site states
-that plainly rather than collecting addresses it has nowhere to store — a static site cannot keep a
-submission, and a page whose whole argument is "we collect nothing" is the wrong place to ask for an
-email.
+There is no waitlist. Squirio is **coming soon, exclusively on Android**. The site does not announce a
+release date or ask visitors for their email addresses.
 
 The status lives in three places, all of which must agree:
 
