@@ -1,20 +1,20 @@
-name: Deploy to Sumopod
+name: Deploy Japandi Dev
 
 on:
   push:
-    branches: [main]
+    branches: [main, qa]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-production
+  group: deploy-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/qa'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -74,9 +74,10 @@ jobs:
             -o ConnectTimeout=15 \
             -o ServerAliveInterval=30 \
             -o ServerAliveCountMax=5 \
-            "$VPS_USER@$VPS_HOST" "deploy $GITHUB_SHA"
+            "$VPS_USER@$VPS_HOST" "deploy $GITHUB_REF_NAME $GITHUB_SHA"
 
       - name: Purge the Cloudflare cache
+        if: github.ref == 'refs/heads/main'
         run: |
           set -euo pipefail
           curl --silent --show-error --fail-with-body \
